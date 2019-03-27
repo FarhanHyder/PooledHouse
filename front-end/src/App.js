@@ -6,24 +6,27 @@ import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
       <Navbar className="bg-olive justify-content-between">
-        <Navbar.Brand href="#home">Pooled House</Navbar.Brand>
 
-          <Button type="" variant="">Change View</Button>
+        {/* TODO: update the logo with Navbar.Brand */}
+        <h3 className="text-color-white">Pooled House</h3>
 
-          <Form inline>
-            <FormControl type="text" placeholder="ex: upper manhattan" className=" mr-sm-2" />
-            <Button type="submit" variant="outline-info">Search</Button>
-          </Form>
-          
-
-          <Button type="" variant="">Create New Account</Button>
-          <Button type="" variant="">Log In</Button>
+        <Form inline>
+          <FormControl type="text" placeholder="ex: upper manhattan" className="mr-sm" />
+          <Button type="submit" variant="outline-light">Search</Button>
+        </Form>
+        
+        <ButtonToolbar>
+          <Button type="submit" value="ChangeView" variant="link" className="text-color-white">Change View</Button>
+          <Button href="#" variant="link" className="text-color-white">Create New Account</Button>
+          <Button href="#" variant="link" className="text-color-white">Log In</Button>
+        </ButtonToolbar>
           
       </Navbar>
 
