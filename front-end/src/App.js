@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Navbar className="bg-dark justify-content-between" variant="dark">
+      <Navbar className="bg-olive justify-content-between">
         <Navbar.Brand href="#home">Pooled House</Navbar.Brand>
 
           <Button type="" variant="">Change View</Button>
@@ -20,6 +20,7 @@ class App extends Component {
             <FormControl type="text" placeholder="ex: upper manhattan" className=" mr-sm-2" />
             <Button type="submit" variant="outline-info">Search</Button>
           </Form>
+          
 
           <Button type="" variant="">Create New Account</Button>
           <Button type="" variant="">Log In</Button>
