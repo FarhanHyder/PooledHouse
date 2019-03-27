@@ -1,5 +1,23 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Requirements
+Make sure the latest version of Node.js is installed in your system. For this project, we are using "node.js version 11.12.0".
+### `npm install `
+- Let's load the biggest thing on earth...node_modules. Luckily you need to do this only once.
+
+The process I followed to initially create this: (you don't need this)
+- install create-react-app globally via NPM
+             - `$ npm install create-react-app -g`
+- create the front-end app
+             - `$ create-react-app front-end`
+- change to the front-end directory
+             - `$ cd .\front-end`
+- install react-bootstrap and peer dependencies via NPM
+             - `$ npm install react-bootstrap bootstrap --save`
+
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
