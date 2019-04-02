@@ -39,11 +39,12 @@ class App extends Component {
           
       </Navbar>
 
-      <Container>
+      {/* <Container>
         <Login>
           
         </Login>
-      </Container>
+      </Container> */}
+
       </div>
     );
   }
