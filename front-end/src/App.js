@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import Login from './Login/Login.js';
 // react-bootstrap
 import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
+import Container from 'react-bootstrap/Container'
 
 class App extends Component {
   render() {
@@ -37,6 +38,12 @@ class App extends Component {
         </ButtonToolbar>
           
       </Navbar>
+
+      {/* <Container>
+        <Login>
+          
+        </Login>
+      </Container> */}
 
       </div>
     );
