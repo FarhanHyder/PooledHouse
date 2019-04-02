@@ -7,6 +7,8 @@ import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
+import ToggleButton from 'react-bootstrap/ToggleButton'
 
 class App extends Component {
   render() {
@@ -19,11 +21,17 @@ class App extends Component {
 
         <Form inline>
           <FormControl type="text" placeholder="ex: upper manhattan" className="mr-sm" />
-          <Button type="submit" variant="outline-light">Search</Button>
+          <Button type="submit" variant="outline-light"><span>{"\uD83D\uDD0D"}</span></Button>
         </Form>
+
+        <ButtonToolbar>
+          <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+            <ToggleButton value={1} variant="warning">Map View</ToggleButton>
+            <ToggleButton value={2} variant="warning">List View</ToggleButton>
+          </ToggleButtonGroup>
+        </ButtonToolbar>
         
         <ButtonToolbar>
-          <Button type="submit" value="ChangeView" variant="link" className="text-color-white">Change View</Button>
           <Button href="#" variant="link" className="text-color-white">Create New Account</Button>
           <Button href="#" variant="link" className="text-color-white">Log In</Button>
         </ButtonToolbar>
