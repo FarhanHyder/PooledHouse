@@ -42,14 +42,20 @@ class App extends Component {
           
       </Navbar>
 
+<<<<<<< HEAD
+=======
       {/* <GetTipsData/> */}
 
+>>>>>>> 2026a6f1a925367f7122ef7fa6076894e7332d53
       {/* <Container>
         <Login>
-          
+
         </Login>
       </Container> */}
+<<<<<<< HEAD
+=======
 
+>>>>>>> 2026a6f1a925367f7122ef7fa6076894e7332d53
       </div>
     );
   }
