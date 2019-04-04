@@ -31,6 +31,7 @@ class App extends Component {
             <ToggleButton value={2} variant="warning">List View</ToggleButton>
           </ToggleButtonGroup>
         </ButtonToolbar>
+        <h4><a href = "">Forgot password?</a></h4>
         
         <ButtonToolbar>
           <Button href="#" variant="link" className="text-color-white">Create New Account</Button>
@@ -40,9 +41,7 @@ class App extends Component {
       </Navbar>
 
       <Container>
-        <Login>
-          
-        </Login>
+        <Login />
       </Container>
       </div>
     );
