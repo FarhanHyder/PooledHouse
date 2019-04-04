@@ -21,7 +21,8 @@ const LoginPage = () => {
                         id=""
                         className="form-control"
                         />
-                        <div className= "text-center mt-4">
+                        <h6><a href = "">Forgot password?</a></h6>
+                        <div className="text-center mt-4">
                             <Button color="indigo" type="submit">Login</Button>
                         </div>
                     </form>
