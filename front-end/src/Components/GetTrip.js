@@ -24,6 +24,7 @@ const getTipsData = (props) => {
             </div>
 
         </Form.Group>
+        <Button variant="primary" type = "submit">Submit</Button>
     </Form>
 }
 
