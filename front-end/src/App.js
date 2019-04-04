@@ -11,6 +11,9 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import Container from 'react-bootstrap/Container'
 
+// component to get data from user / guest
+import GetTipsData from './Components/GetTrip';
+
 class App extends Component {
   render() {
     return (
@@ -38,6 +41,8 @@ class App extends Component {
         </ButtonToolbar>
           
       </Navbar>
+
+      {/* <GetTipsData/> */}
 
       {/* <Container>
         <Login>

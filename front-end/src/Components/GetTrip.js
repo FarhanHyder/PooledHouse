@@ -3,16 +3,19 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 const getTipsData = (props) => {
-    <Form className="text-left newTips" onSubmit={props.data}>
+    return (
+    <Form className="text-left newTips" onSubmit={()=>{console.log(props.name)}}>
         <Form.Group controlId="tipData">
 
             <div className="inputBlock">
                 <Form.Label>Job Title</Form.Label>
                 <Form.Control
                     type="text"
+                    required
                     placeholder="Enter Your Job Title"
-                    value={}
-                    onChange={/* function to update state*/}/>
+                    // value={}
+                    // onChange={/* function to update state*/}
+                    />
             </div>
 
             <div className="inputBlock">
@@ -20,8 +23,10 @@ const getTipsData = (props) => {
                 <Form.Control
                     type="text"
                     placeholder="Enter Tips you received in the past week"
-                    value={}
-                    onChange={/* function to update state*/}/>
+                    required
+                    // value={}
+                    // onChange={/* function to update state*/}
+                    />
             </div>
 
             <div className="inputBlock">
@@ -29,8 +34,10 @@ const getTipsData = (props) => {
             </div>
 
         </Form.Group>
+        
         <Button variant="primary" type = "submit">Submit</Button>
     </Form>
+    );
 }
 
 export default getTipsData;
