@@ -16,7 +16,12 @@ const getTipsData = (props) => {
             </div>
 
             <div className="inputBlock">
-            
+                <Form.Label>Tips Info</Form.Label>
+                <Form.Control
+                    type="text"
+                    placeholder="Enter Tips you received in the past week"
+                    value={}
+                    onChange={/* function to update state*/}/>
             </div>
 
             <div className="inputBlock">
