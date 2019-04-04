@@ -1,7 +1,7 @@
 import React from "react";
 import DatePicker from "react-datepicker";
 
-//unfinished, doesn't work
+//unfinished, doesn't work :)
 
 class TipUpdateForm extends React.Component {
     constructor(props) {
