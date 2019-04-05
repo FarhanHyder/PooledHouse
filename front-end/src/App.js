@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Login from './Login/Login.js';
+import SignUp from './SignUp/SignUp.js';
 // react-bootstrap
 import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
@@ -15,9 +16,23 @@ import Container from 'react-bootstrap/Container'
 import GetTipsData from './Components/GetTrip';
 
 class App extends Component {
-  handleSignUp = () => {
-    alert('signed up');
+  constructor (props) {
+    super(props);
+    this.state = {
+      showHome: true,
+      showSignUp: false
+    }
+
+    this.handleSignUp = this.handleSignUp.bind(this);
   }
+
+  handleSignUp = () => {
+    this.setState({
+      showHome: false,
+      showSignUp: true
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -44,6 +59,9 @@ class App extends Component {
         </ButtonToolbar>
           
       </Navbar>
+
+      {this.state.showSignUp? <SignUp/>: <br/>}
+
       </div>
     );
   }
