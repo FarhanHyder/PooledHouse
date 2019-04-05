@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './SignUp.css';
 
 class SighUp extends Component {
   constructor(props) {
@@ -8,20 +9,25 @@ class SighUp extends Component {
   }
 
   submit(e) {
-    alert('The value is: ' + this.input.value);
+    alert('Account for ' + this.input.value + " is created");
     e.preventDefault();
   }
 
   render() {
     return (<div>
-      <label>UserName:
-        <input type="text" ref={(input) => this.input = input} />
-      </label>
       <form className='container' onSubmit={this.submit}>
-        <input type='text' name='FirstName' placeholder='First Name' onChange={this.change} required/>
-        <input type='text' name='LastName' placeholder='Last Name' onChange={this.change} required/>
-        <input type='date' name='Birthday' placeholder='DOB' onChange={this.change} required/>
-        <input type='tel' name='Telephone' placeholder='Phone Number' onChange={this.change} required/>
+        <label>First Name:
+          <input type='text' name='FirstName' placeholder='First Name' onChange={this.change} required/>
+        </label>
+        <label>Last Name: 
+          <input type='text' name='LastName' placeholder='Last Name' onChange={this.change} required/>
+        </label>
+        <label>Phone Number: 
+          <input type='tel' name='Telephone' placeholder='Phone Number' onChange={this.change} required/>
+        </label>
+        <label>Username:
+          <input type="text" ref={(input) => this.input = input} />
+        </label>
         <input type="submit" value="Submit" className='button'/>
       </form>
     </div>);
