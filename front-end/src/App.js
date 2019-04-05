@@ -28,14 +28,13 @@ class App extends Component {
 
   handleSignUp = () => {
     this.setState({
-      showHome: false,
-      showSignUp: true
+      showHome: !this.state.showHome,
+      showSignUp: !this.state.showSignUp
     });
   }
 
   render() {
-    return (
-      <div className="App">
+    const home = (
       <Navbar className="bg-olive justify-content-between">
 
         {/* TODO: update the logo with Navbar.Brand */}
@@ -59,9 +58,10 @@ class App extends Component {
         </ButtonToolbar>
           
       </Navbar>
-
-      {this.state.showSignUp? <SignUp/>: <br/>}
-
+      );
+    return (
+      <div className="App">
+        {this.state.showSignUp? <SignUp handler={this.handleSignUp} />: <div id="home">{home}</div>}
       </div>
     );
   }

@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 import './SignUp.css';
+import '../App.css';
+import Navbar from 'react-bootstrap/Navbar'
+import Form from 'react-bootstrap/Form'
+import FormControl from 'react-bootstrap/FormControl'
+import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
+import ToggleButton from 'react-bootstrap/ToggleButton'
+
 
 class SighUp extends Component {
   constructor(props) {
@@ -15,6 +24,13 @@ class SighUp extends Component {
 
   render() {
     return (<div>
+      <Navbar className="bg-olive justify-content-between">
+        <h3 className="text-color-white">Pooled House</h3>
+        <ButtonToolbar>
+          <Button href="#" variant="link" className="text-color-white" onClick={this.props.handler}>Home</Button>
+        </ButtonToolbar>
+      </Navbar>
+
       <form className='container' onSubmit={this.submit}>
         <label>First Name:
           <input type='text' name='FirstName' placeholder='First Name' required/>
