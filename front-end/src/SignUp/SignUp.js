@@ -17,16 +17,22 @@ class SighUp extends Component {
     return (<div>
       <form className='container' onSubmit={this.submit}>
         <label>First Name:
-          <input type='text' name='FirstName' placeholder='First Name' onChange={this.change} required/>
+          <input type='text' name='FirstName' placeholder='First Name' required/>
         </label>
         <label>Last Name: 
-          <input type='text' name='LastName' placeholder='Last Name' onChange={this.change} required/>
+          <input type='text' name='LastName' placeholder='Last Name' required/>
         </label>
         <label>Phone Number: 
-          <input type='tel' name='Telephone' placeholder='Phone Number' onChange={this.change} required/>
+          <input type='tel' name='Telephone' placeholder='Phone Number' required/>
         </label>
         <label>Username:
           <input type="text" ref={(input) => this.input = input} />
+        </label>
+        <label>Password: 
+          <input type='password' name='Password' placeholder='Password' required/>
+        </label>
+        <label>Confirm Password: 
+          <input type='password' name='ConfirmPassword' placeholder='Confirm Password' required/>
         </label>
         <input type="submit" value="Submit" className='button'/>
       </form>
