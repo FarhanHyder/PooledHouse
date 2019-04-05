@@ -15,6 +15,9 @@ import Container from 'react-bootstrap/Container'
 import GetTipsData from './Components/GetTrip';
 
 class App extends Component {
+  handleSignUp = () => {
+    alert('signed up');
+  }
   render() {
     return (
       <div className="App">
@@ -36,7 +39,7 @@ class App extends Component {
         </ButtonToolbar>
         
         <ButtonToolbar>
-          <Button href="#" variant="link" className="text-color-white">Create New Account</Button>
+          <Button href="#" variant="link" className="text-color-white" onClick={this.handleSignUp}>Sign Up</Button>
           <Button href="#" variant="link" className="text-color-white">Log In</Button>
         </ButtonToolbar>
           
