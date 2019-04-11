@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Login from './Login/Login.js';
 import SignUp from './SignUp/SignUp.js';
+import TipInfo from './TipInfo/TipInfo';
 // react-bootstrap
 import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
@@ -13,17 +14,18 @@ import ToggleButton from 'react-bootstrap/ToggleButton'
 import Container from 'react-bootstrap/Container'
 
 // component to get data from user / guest
-import GetTipsData from './Components/GetTrip';
 
 class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
       showHome: true,
-      showSignUp: false
+      showSignUp: false,
+      showTipUpdate: false,
     }
 
     this.handleSignUp = this.handleSignUp.bind(this);
+    this.handleTipUpdate = this.handleTipUpdate.bind(this);
   }
 
   handleSignUp = () => {
@@ -33,7 +35,15 @@ class App extends Component {
     });
   }
 
+  handleTipUpdate = () => {
+    this.setState({
+      showHome: !this.state.showHome,
+      showTipUpdate: !this.state.showTipUpdate
+    })
+  }
+
   render() {
+
     const home = (
       <Navbar className="bg-olive justify-content-between">
 
@@ -53,15 +63,38 @@ class App extends Component {
         </ButtonToolbar>
         
         <ButtonToolbar>
-          <Button href="#" variant="link" className="text-color-white" onClick={this.handleSignUp}>Sign Up</Button>
-          <Button href="#" variant="link" className="text-color-white">Log In</Button>
+          <Button 
+            href="#" variant="link" className="text-color-white" 
+            onClick={this.handleTipUpdate}>Tip Update
+          </Button>
+          <Button 
+            href="#" variant="link" className="text-color-white" 
+            onClick={this.handleSignUp}>Sign Up
+          </Button>
+          <Button 
+            href="#" variant="link" className="text-color-white">Log In
+          </Button>
         </ButtonToolbar>
-          
       </Navbar>
       );
+/*
+
+attempt to streamline multiple conditional views...unsuccessful.
+
+    function whichView(tu_h, su_h, TU, SU) {
+      if (TU === true) {
+        return <TipInfo handler={tu_h}/>;
+      } else if (SU === true) {
+        return <SignUp handler={su_h}/>;
+      } else {
+        return home;
+      }
+    }
+*/ 
     return (
       <div className="App">
-        {this.state.showSignUp? <SignUp handler={this.handleSignUp} />: <div id="home">{home}</div>}
+        {this.state.showSignUp ? <SignUp handler={this.handleSignUp} /> : <div id="home">{home}</div>}
+        {this.state.showTipUpdate ? <TipInfo handler={this.handleTipUpdate}/> : null }
       </div>
     );
   }
