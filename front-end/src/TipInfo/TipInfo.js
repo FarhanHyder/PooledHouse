@@ -24,6 +24,19 @@ const TipInfo = (props) => {
                 />
             </Form.Group>
             <Form.Group>
+                <Form.Label>Tip Takehome</Form.Label>
+                <Form.Control
+                    type='number'
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Shift Location</Form.Label>
+                <Form.Control
+                    type='text'
+                    placeholder='i.e. 123 E 29th St, New York, New York, 99999'
+                />
+            </Form.Group>
+            <Form.Group>
                     <Form.Label>Job Title</Form.Label>
                     <Form.Control
                         type="text"
