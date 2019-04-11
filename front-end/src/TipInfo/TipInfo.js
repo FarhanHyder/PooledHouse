@@ -37,24 +37,17 @@ const TipInfo = (props) => {
                 />
             </Form.Group>
             <Form.Group>
-                    <Form.Label>Job Title</Form.Label>
-                    <Form.Control
-                        type="text"
-                        required
-                        placeholder="Enter Your Job Title"
-                        // value={}
-                        // onChange={/* function to update state*/}
-                        />
+                    <Form.Label>Position</Form.Label>
+                    <Form.Control as='select'>
+                        <option>Bartender</option>
+                        <option>Server</option>
+                        <option>Barback</option>
+                        <option>Busser</option>
+                        <option>Other</option>
+                    </Form.Control>
             </Form.Group>
             <Form.Group>
-                    <Form.Label>Tips Info</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter Tips you received in the past week"
-                        required
-                        // value={}
-                        // onChange={/* function to update state*/}
-                        />
+
             </Form.Group>
             <Button variant="primary" type = "submit">Submit</Button>
         </Form>
