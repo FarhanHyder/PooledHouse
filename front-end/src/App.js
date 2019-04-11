@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Login from './Login/Login.js';
 import SignUp from './SignUp/SignUp.js';
+import TipInfo from './TipInfo/TipInfo';
 // react-bootstrap
 import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
@@ -13,7 +14,6 @@ import ToggleButton from 'react-bootstrap/ToggleButton'
 import Container from 'react-bootstrap/Container'
 
 // component to get data from user / guest
-import GetTipsData from './Components/GetTrip';
 
 class App extends Component {
   constructor (props) {
@@ -62,6 +62,7 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.showSignUp? <SignUp handler={this.handleSignUp} />: <div id="home">{home}</div>}
+        <TipInfo />
       </div>
     );
   }
