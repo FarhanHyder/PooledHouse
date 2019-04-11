@@ -23,7 +23,8 @@ class SighUp extends Component {
   }
 
   render() {
-    return (<div>
+    return (
+    <div>
       <Navbar className="bg-olive justify-content-between">
         <h3 className="text-color-white">Pooled House</h3>
         <ButtonToolbar>
