@@ -18,6 +18,12 @@ const TipInfo = (props) => {
                     <Form.Check inline label='PM' type='radio' name='rad' id='radio-PM' />
             </Form.Group>
             <Form.Group>
+                <Form.Label>Shift Length (hours)</Form.Label>
+                <Form.Control
+                    type='number'
+                />
+            </Form.Group>
+            <Form.Group>
                     <Form.Label>Job Title</Form.Label>
                     <Form.Control
                         type="text"
