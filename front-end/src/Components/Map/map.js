@@ -80,7 +80,25 @@ const Wrapper = styled.div`
 
 export default class Map extends React.Component{
 
+    getColor = (d) =>{
+        return d > 1000 ? '#0A2A12' :
+               d > 500  ? '#088A29' :
+               d > 200  ? '#01DF3A' :
+               d > 100  ? '#58FA82' :
+               d > 50   ? '#F5DA81' :
+               d > 20   ? '#FACC2E' :
+               d > 10   ? '#FE9A2E' :
+                          '#DF0101';
+    }
+
+
+
+
     componentDidMount(){
+
+
+    
+    
         var mapboxAccessToken = "pk.eyJ1IjoicG9vbGVkaG91c2UiLCJhIjoiY2p1aGg2N2o5MHozZTRkcDhrZDltMXp6dyJ9.SXu4dBf_bVC8Xlpy7WnYqQ";
         var map = L.map('map').setView([37.8, -96], 4);
 
