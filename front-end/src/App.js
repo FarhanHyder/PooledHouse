@@ -3,6 +3,7 @@ import './App.css';
 import Login from './Login/Login.js';
 import SignUp from './SignUp/SignUp.js';
 import TipInfo from './TipInfo/TipInfo';
+import Map from './Components/Map/map.js';  
 // react-bootstrap
 import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
@@ -12,6 +13,8 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import Container from 'react-bootstrap/Container'
+
+import styled from 'styled-components';
 
 // component to get data from user / guest
 
@@ -76,6 +79,7 @@ class App extends Component {
           </Button>
         </ButtonToolbar>
       </Navbar>
+
       );
 /*
 
@@ -93,8 +97,9 @@ attempt to streamline multiple conditional views...unsuccessful.
 */ 
     return (
       <div className="App">
-        {this.state.showSignUp ? <SignUp handler={this.handleSignUp} /> : <div id="home">{home}</div>}
+        {this.state.showSignUp ? <SignUp handler={this.handleSignUp} /> : <div id="home">{home} <Map/></div>}
         {this.state.showTipUpdate ? <TipInfo handler={this.handleTipUpdate}/> : null }
+        
       </div>
     );
   }
