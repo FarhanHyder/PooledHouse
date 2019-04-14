@@ -1,0 +1,8 @@
+.tipInfo {
+    display: grid;
+    
+    margin: 10px 10px 10px 10px;
+    border: 5px solid rgb(61, 100, 80);
+    border-radius: 10%;
+
+}
