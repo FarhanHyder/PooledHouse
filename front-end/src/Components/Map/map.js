@@ -91,7 +91,16 @@ export default class Map extends React.Component{
                           '#DF0101';
     }
 
-
+    style = (feature) => {
+        return {
+            fillColor: this.getColor(feature.properties.density),
+            weight: 2,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.7
+        };
+    }
 
 
     componentDidMount(){
