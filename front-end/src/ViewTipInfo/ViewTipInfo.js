@@ -6,7 +6,7 @@ const ViewTipInfo = (props) => {
             return (
                 <div className="tipInfo">
                     <div>Business Name : {tips.business_name}</div>
-                    <div>Adress : {tips.business_address}</div>
+                    <div>Address : {tips.business_address}</div>
                     <div> Tips : {tips.takehome}</div>
                     <div>Hours Worked : {tips.shift_length}</div>
                     <div>Work Shift : {tips.shift_time}</div>
