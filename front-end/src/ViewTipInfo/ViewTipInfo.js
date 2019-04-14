@@ -5,8 +5,12 @@ const ViewTipInfo = (props) => {
         if(tips.position === props.position) {
             return (
                 <div className="tipInfo">
-                    <div>{tips.business_name}, {tips.business_address}</div>
-                    <div>{tips.takehome}, {tips.shift_length}</div>
+                    <div>Business Name : {tips.business_name}</div>
+                    <div>Adress : {tips.business_address}</div>
+                    <div> Tips : {tips.takehome}</div>
+                    <div>Hours Worked : {tips.shift_length}</div>
+                    <div>Work Shift : {tips.shift_time}</div>
+                    <div>Date : {tips.shift_date}</div>
                 </div>
             );
         }          
