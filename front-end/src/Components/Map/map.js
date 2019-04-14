@@ -116,7 +116,7 @@ export default class Map extends React.Component{
         // attribution: ...
         }).addTo(map);
 
-        L.geoJson(statesData).addTo(map);
+        L.geoJson(statesData, {style: this.style}).addTo(map);
 
     }
 
