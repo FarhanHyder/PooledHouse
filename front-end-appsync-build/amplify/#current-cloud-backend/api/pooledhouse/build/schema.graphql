@@ -1,0 +1,136 @@
+type TipEntry {
+  id: ID!
+  user: String!
+  shift_length: Int!
+  shift_time: String!
+  shift_date: String!
+  shift_position: String!
+  takehome: Int!
+  business_name: String!
+  business_address: String!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelTipEntryConnection {
+  items: [TipEntry]
+  nextToken: String
+}
+
+input ModelStringFilterInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+}
+
+input ModelIDFilterInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+}
+
+input ModelIntFilterInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  contains: Int
+  notContains: Int
+  between: [Int]
+}
+
+input ModelFloatFilterInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  contains: Float
+  notContains: Float
+  between: [Float]
+}
+
+input ModelBooleanFilterInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelTipEntryFilterInput {
+  id: ModelIDFilterInput
+  user: ModelStringFilterInput
+  shift_length: ModelIntFilterInput
+  shift_time: ModelStringFilterInput
+  shift_date: ModelStringFilterInput
+  shift_position: ModelStringFilterInput
+  takehome: ModelIntFilterInput
+  business_name: ModelStringFilterInput
+  business_address: ModelStringFilterInput
+  and: [ModelTipEntryFilterInput]
+  or: [ModelTipEntryFilterInput]
+  not: ModelTipEntryFilterInput
+}
+
+type Query {
+  getTipEntry(id: ID!): TipEntry
+  listTipEntrys(filter: ModelTipEntryFilterInput, limit: Int, nextToken: String): ModelTipEntryConnection
+}
+
+input CreateTipEntryInput {
+  id: ID
+  user: String!
+  shift_length: Int!
+  shift_time: String!
+  shift_date: String!
+  shift_position: String!
+  takehome: Int!
+  business_name: String!
+  business_address: String!
+}
+
+input UpdateTipEntryInput {
+  id: ID!
+  user: String
+  shift_length: Int
+  shift_time: String
+  shift_date: String
+  shift_position: String
+  takehome: Int
+  business_name: String
+  business_address: String
+}
+
+input DeleteTipEntryInput {
+  id: ID
+}
+
+type Mutation {
+  createTipEntry(input: CreateTipEntryInput!): TipEntry
+  updateTipEntry(input: UpdateTipEntryInput!): TipEntry
+  deleteTipEntry(input: DeleteTipEntryInput!): TipEntry
+}
+
+type Subscription {
+  onCreateTipEntry: TipEntry @aws_subscribe(mutations: ["createTipEntry"])
+  onUpdateTipEntry: TipEntry @aws_subscribe(mutations: ["updateTipEntry"])
+  onDeleteTipEntry: TipEntry @aws_subscribe(mutations: ["deleteTipEntry"])
+}
