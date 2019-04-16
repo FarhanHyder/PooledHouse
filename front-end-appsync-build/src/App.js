@@ -35,7 +35,7 @@ class App extends Component {
       showHome: true,
       showSignUp: false,
       showTipUpdate: false,
-      curr_user_email: ''
+      curr_user_username: ''
     }
 
     this.handleSignUp = this.handleSignUp.bind(this);
@@ -63,9 +63,9 @@ class App extends Component {
 
   async componentDidMount() {
     let current_user = await Auth.currentAuthenticatedUser();
-    const { attributes } = current_user;
+    let un = current_user.username;
     this.setState({
-      curr_user_email: attributes.email
+      curr_user_username: un
     })
   }
 
@@ -120,10 +120,10 @@ class App extends Component {
       const allEntries = API.graphql(graphqlOperation(queries.listTipEntrys));
       console.log(allEntries);
 
-      const ShowEmailMessage = () => (
+      const ShowUsernameMessage = () => (
         <div>
           <p>
-            Current user is {this.state.curr_user_email}
+            Current user is {this.state.curr_user_username}
           </p>
         </div>
       )
@@ -142,7 +142,7 @@ class App extends Component {
             return (<ListView tip_entries={listTipEntrys.items} /> );
         }}
         </Connect>
-        <ShowEmailMessage />
+        <ShowUsernameMessage />
       </div>
     );
   }
