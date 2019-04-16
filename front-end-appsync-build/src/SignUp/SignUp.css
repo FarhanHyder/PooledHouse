@@ -1,0 +1,31 @@
+/* Sign Up styles live here */
+
+.button {
+  background-color: #3e8e41;
+  color: white;
+  margin: 2%;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+.button:hover {
+  background-color: green;
+}
+
+.container {
+  display: grid;
+  margin: 5%;
+  text-align: center;
+  border: 5px;
+  border-style: solid;
+  border-color: #bfbfbf;
+  background-color: #feffdd;
+  padding: 1%;
+  color: #2d5929;
+  width: 25em;
+}
+
+input {
+  margin: 5px;
+}

@@ -1,0 +1,10 @@
+{
+    "AppSyncApiName": "pooledhouse",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognitofe5f8862",
+            "Outputs.UserPoolId"
+        ]
+    }
+}
