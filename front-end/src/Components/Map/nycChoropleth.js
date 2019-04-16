@@ -1,4 +1,20 @@
-
+/*
+    Note: this is a NYC choropleth data collected from https://github.com/knxyzkn/react-nyc-choropleth
+    TODO: 
+        - clean this data with the following structure
+            -  {
+                    "type": "Feature",
+                    "id": ID#Integer,
+                    "properties": {
+                        "name": "neighborhoodName",
+                        "density": densityValueDouble
+                    },
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": []
+                    }
+                }
+*/
 
 
     nycData={
