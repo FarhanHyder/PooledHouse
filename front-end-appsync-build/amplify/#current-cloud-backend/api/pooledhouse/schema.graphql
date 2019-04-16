@@ -1,0 +1,11 @@
+type TipEntry @model {
+  id: ID!
+  user: String!
+  shift_length: Int!
+  shift_time: String!
+  shift_date: String!
+  shift_position: String!
+  takehome: Int!
+  business_name: String!
+  business_address: String!
+}
