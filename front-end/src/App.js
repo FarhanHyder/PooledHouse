@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import Login from './Login/Login.js';
-import SignUp from './SignUp/SignUp.js';
+import Login from './Login/Login';
+import SignUp from './SignUp/SignUp';
 import TipInfo from './TipInfo/TipInfo';
-import Map from './Components/Map/map.js';  
+import Map from './Components/Map/map';  
 // react-bootstrap
 import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
@@ -17,6 +17,9 @@ import Container from 'react-bootstrap/Container'
 //for maps
 import styled from 'styled-components';
 
+// View Component
+import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
+import './Components/ViewTipInfo/ViewTipInfo.css';
 //amplify imports
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
 import awsmobile from './aws-exports';
@@ -143,7 +146,8 @@ class App extends Component {
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
-            return (<ListView tip_entries={listTipEntrys.items} /> );
+            // return (<ListView tip_entries={listTipEntrys.items} /> );
+            return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
         }}
         </Connect>
         <ShowUsernameMessage />
