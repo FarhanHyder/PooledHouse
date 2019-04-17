@@ -14,7 +14,21 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import Container from 'react-bootstrap/Container'
 
+//for maps
 import styled from 'styled-components';
+
+//amplify imports
+import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
+import awsmobile from './aws-exports';
+import { withAuthenticator } from 'aws-amplify-react';
+import { Connect } from 'aws-amplify-react';
+
+import aws_config from './aws-exports';
+
+import * as queries from './graphql/queries'
+
+Amplify.configure(awsmobile);
+Amplify.configure(aws_config);
 
 // component to get data from user / guest
 
@@ -25,6 +39,7 @@ class App extends Component {
       showHome: true,
       showSignUp: false,
       showTipUpdate: false,
+      curr_user_username: '',
     }
 
     this.handleSignUp = this.handleSignUp.bind(this);
@@ -45,7 +60,38 @@ class App extends Component {
     })
   }
 
+  //this grabs email attribute from current user.  testing for 
+  //collecting current user attributes.
+  //componentDidMount is executed after the webpage is rendered,
+  //allowing for the page to be reloaded with data from API calls?
+
+  async componentDidMount() {
+    let current_user = await Auth.currentAuthenticatedUser();
+    let un = current_user.username;
+    this.setState({
+      curr_user_username: un
+    })
+  }
+
   render() {
+
+    // this ListView handles information from the connect component and organizes
+    // them in a meaningful way on the the webpage.
+
+    const ListView = ({ tip_entries }) => (
+      <div>
+        <h3>All Entries</h3>
+        <ul>
+            {tip_entries.map(entry => 
+              <li key={entry.id}>business: {entry.business_name}, 
+                                 takehome: {entry.takehome}, 
+                                 date: {entry.shift_date}
+              </li>
+            )
+            }
+        </ul>
+      </div>
+    );
 
     const home = (
       <Navbar className="bg-olive justify-content-between">
@@ -70,39 +116,40 @@ class App extends Component {
             href="#" variant="link" className="text-color-white" 
             onClick={this.handleTipUpdate}>Tip Update
           </Button>
-          <Button 
-            href="#" variant="link" className="text-color-white" 
-            onClick={this.handleSignUp}>Sign Up
-          </Button>
-          <Button 
-            href="#" variant="link" className="text-color-white">Log In
-          </Button>
         </ButtonToolbar>
       </Navbar>
 
       );
-/*
 
-attempt to streamline multiple conditional views...unsuccessful.
+      // this prints the current entries in our db in the web console
+      const allEntries = API.graphql(graphqlOperation(queries.listTipEntrys));
+      console.log(allEntries);
 
-    function whichView(tu_h, su_h, TU, SU) {
-      if (TU === true) {
-        return <TipInfo handler={tu_h}/>;
-      } else if (SU === true) {
-        return <SignUp handler={su_h}/>;
-      } else {
-        return home;
-      }
-    }
-*/ 
+      const ShowUsernameMessage = () => (
+        <div>
+          <p>
+            Current user is {this.state.curr_user_username}
+          </p>
+        </div>
+      )
+
     return (
       <div className="App">
         {this.state.showSignUp ? <SignUp handler={this.handleSignUp} /> : <div id="home">{home} <Map/></div>}
         {this.state.showTipUpdate ? <TipInfo handler={this.handleTipUpdate}/> : null }
-        
+        {/* the connect component queries our database and then passes the query
+          result to the ListView function */} 
+        <Connect query={graphqlOperation(queries.listTipEntrys)}>
+        {({ data: { listTipEntrys }, loading, error }) => {
+            if (error) return (<h3>Error</h3>);
+            if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+            return (<ListView tip_entries={listTipEntrys.items} /> );
+        }}
+        </Connect>
+        <ShowUsernameMessage />
       </div>
     );
   }
 }
 
-export default App;
+export default withAuthenticator(App, true);
