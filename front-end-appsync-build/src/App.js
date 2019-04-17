@@ -3,6 +3,7 @@ import './App.css';
 import Login from './Login/Login.js';
 import SignUp from './SignUp/SignUp.js';
 import TipInfo from './TipInfo/TipInfo';
+import Map from './Components/Map/map.js';  
 // react-bootstrap
 import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
@@ -12,6 +13,9 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import Container from 'react-bootstrap/Container'
+
+//for maps
+import styled from 'styled-components';
 
 //amplify imports
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
@@ -35,7 +39,7 @@ class App extends Component {
       showHome: true,
       showSignUp: false,
       showTipUpdate: false,
-      curr_user_username: ''
+      curr_user_username: '',
     }
 
     this.handleSignUp = this.handleSignUp.bind(this);
@@ -114,6 +118,7 @@ class App extends Component {
           </Button>
         </ButtonToolbar>
       </Navbar>
+
       );
 
       // this prints the current entries in our db in the web console
@@ -130,9 +135,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        {this.state.showSignUp ? <SignUp handler={this.handleSignUp} /> : <div id="home">{home}</div>}
+        {this.state.showSignUp ? <SignUp handler={this.handleSignUp} /> : <div id="home">{home} <Map/></div>}
         {this.state.showTipUpdate ? <TipInfo handler={this.handleTipUpdate}/> : null }
-
         {/* the connect component queries our database and then passes the query
           result to the ListView function */} 
         <Connect query={graphqlOperation(queries.listTipEntrys)}>
@@ -149,4 +153,3 @@ class App extends Component {
 }
 
 export default withAuthenticator(App, true);
-
