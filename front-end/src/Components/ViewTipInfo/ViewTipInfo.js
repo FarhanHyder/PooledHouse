@@ -4,6 +4,9 @@ import FormControl from 'react-bootstrap/FormControl'
 
 
 const ViewTipInfo = (props) => {
+
+    // must fix filtered output
+    
     // let position = 'Bartender';
     // <Form.Group onSubmit = {position = this.event.value}>
     //     <Form.Label>Position</Form.Label>
