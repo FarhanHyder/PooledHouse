@@ -14,7 +14,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton'
 import Container from 'react-bootstrap/Container'
 
 //amplify imports
-import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
 import awsmobile from './aws-exports';
 import { withAuthenticator } from 'aws-amplify-react';
 import { Connect } from 'aws-amplify-react';
@@ -35,6 +35,7 @@ class App extends Component {
       showHome: true,
       showSignUp: false,
       showTipUpdate: false,
+      curr_user_username: ''
     }
 
     this.handleSignUp = this.handleSignUp.bind(this);
@@ -52,6 +53,19 @@ class App extends Component {
     this.setState({
       showHome: !this.state.showHome,
       showTipUpdate: !this.state.showTipUpdate
+    })
+  }
+
+  //this grabs email attribute from current user.  testing for 
+  //collecting current user attributes.
+  //componentDidMount is executed after the webpage is rendered,
+  //allowing for the page to be reloaded with data from API calls?
+
+  async componentDidMount() {
+    let current_user = await Auth.currentAuthenticatedUser();
+    let un = current_user.username;
+    this.setState({
+      curr_user_username: un
     })
   }
 
@@ -106,6 +120,14 @@ class App extends Component {
       const allEntries = API.graphql(graphqlOperation(queries.listTipEntrys));
       console.log(allEntries);
 
+      const ShowUsernameMessage = () => (
+        <div>
+          <p>
+            Current user is {this.state.curr_user_username}
+          </p>
+        </div>
+      )
+
     return (
       <div className="App">
         {this.state.showSignUp ? <SignUp handler={this.handleSignUp} /> : <div id="home">{home}</div>}
@@ -120,6 +142,7 @@ class App extends Component {
             return (<ListView tip_entries={listTipEntrys.items} /> );
         }}
         </Connect>
+        <ShowUsernameMessage />
       </div>
     );
   }
