@@ -7,11 +7,11 @@ class TipInfoForm extends React.Component {
         super(props);
         //this.submit = this.submit.bind(this);
         this.state = {
-            shift_length: null,
+            shift_length: '',
             shift_time: '',
             shift_date: '',
-            position: '',
-            takehome: null,
+            position: 'Bartender',
+            takehome: '',
             business_name: '',
             business_address: '',
         }
@@ -19,7 +19,24 @@ class TipInfoForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+
+    handleSubmit = (e) => {
+        alert("submitted");
+    }
+
     render () {
+        const { shift_length, 
+                shift_time,
+                shift_date,
+                position,
+                takehome,
+                business_name,
+                business_address
+            } = this.state;
+
         return (
             <div>
         <Navbar className="bg-olive justify-content-between">
@@ -36,6 +53,9 @@ class TipInfoForm extends React.Component {
                                 <Form.Label>Shift Date</Form.Label>
                                 <Form.Control
                                     type='date'
+                                    name="shift_date"
+                                    value={shift_date}
+                                    onChange={this.handleChange}
                                 />
                             </Form.Group> 
                     </Col>
@@ -44,8 +64,20 @@ class TipInfoForm extends React.Component {
                             <Form.Label>Shift Time</Form.Label>
                             { /*this div just helps with formatting */}
                             <div>
-                                <Form.Check inline label='AM' type='radio' name='rad' id='radio-AM' />
-                                <Form.Check inline label='PM' type='radio' name='rad' id='radio-PM' />
+                                <Form.Check 
+                                    inline label='AM' 
+                                    type='radio' 
+                                    name='shift_time' 
+                                    id='radio-AM'
+                                    value={shift_time}
+                                    onChange={this.handleChange} />
+                                <Form.Check 
+                                    inline label='PM' 
+                                    type='radio' 
+                                    name='shift_time' 
+                                    id='radio-PM'
+                                    value={shift_time}
+                                    onChange={this.handleChange} />
                             </div>
                         </Form.Group>
                     </Col>
@@ -54,13 +86,20 @@ class TipInfoForm extends React.Component {
                             <Form.Label>Shift Length (hours)</Form.Label>
                             <Form.Control
                                 type='number'
+                                name="shift_length"
+                                value={shift_length}
+                                onChange={this.handleChange}
                             />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlID="position">
                                 <Form.Label>Position</Form.Label>
-                                <Form.Control as='select'>
+                                <Form.Control 
+                                    as='select' 
+                                    name="position" 
+                                    value={position}
+                                    onChange={this.handleChange}>
                                     <option>Bartender</option>
                                     <option>Server</option>
                                     <option>Barback</option>
@@ -76,6 +115,9 @@ class TipInfoForm extends React.Component {
                             <Form.Label>Tip Takehome</Form.Label>
                             <Form.Control
                                 type='number'
+                                name="takehome"
+                                value={takehome}
+                                onChange={this.handleChange}
                             />
                         </Form.Group>
                     </Col>
@@ -85,6 +127,9 @@ class TipInfoForm extends React.Component {
                             <Form.Control
                                 type='text'
                                 placeholder="i.e. Hot Jim's BBQ"
+                                name="business_name"
+                                value={business_name}
+                                onChange={this.handleChange}
                             />
                         </Form.Group>
                     </Col>
@@ -94,8 +139,11 @@ class TipInfoForm extends React.Component {
                             <Form.Control
                                 type='text'
                                 placeholder="i.e. 123 E 9th St, New York, NY 99999"
+                                name="business_address"
+                                value={business_address}
+                                onChange={this.handleChange}
                             />
-                            <Button variant="primary" type = "submit">Submit</Button>
+                            <Button variant="primary" type="submit">Submit</Button>
                         </Form.Group>
                     </Col>
                 </Row>
