@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 
 //local imports
-import Login from './Login/Login.js';
 import SignUp from './SignUp/SignUp.js';
 import TipInfoForm from './TipInfoForm/TipInfoForm';
 import Map from './Components/Map/map.js';  
@@ -128,14 +127,6 @@ class App extends Component {
       </Navbar>
       );
 
-      const ShowUsernameMessage = () => (
-        <div>
-          <p>
-            Current user is {this.state.curr_user_username}
-          </p>
-        </div>
-      )
-
     return (
       <div className="App">
         {this.state.showSignUp ? <SignUp handler={this.handleSignUp} /> : <div id="home">{home} <Map/></div>}
@@ -148,7 +139,7 @@ class App extends Component {
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
-            // return (<ListView tip_entries={listTipEntrys.items} /> );
+            //return (<ListView tip_entries={listTipEntrys.items} /> );
             return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
         }}
         </Connect>

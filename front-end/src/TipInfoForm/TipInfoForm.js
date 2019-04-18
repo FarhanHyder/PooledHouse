@@ -52,9 +52,9 @@ class TipInfoForm extends React.Component {
 
 
     async handleSubmit(e) {
-        e.preventDefault();
+        //e.preventDefault();
         let t_e = {
-            id: (Math.floor(Math.random() * 10000)),
+            id: (Math.floor(Math.random() * 100000)),
             user: this.state.user,
             shift_length: this.state.shift_length,
             shift_time: this.state.shift_time,
@@ -68,6 +68,7 @@ class TipInfoForm extends React.Component {
         try {
             await API.graphql(graphqlOperation(mutations.createTipEntry, {input: t_e}));
             console.log('successfully created tipentry');
+            console.log(t_e);
             alert("successfully added tipentry");
         } catch (err) {
             console.log('error creating tipentry: ', err);
