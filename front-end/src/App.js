@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 
 //local imports
-import Login from './Login/Login.js';
 import SignUp from './SignUp/SignUp.js';
-import TipInfoForm from './TipInfoForm/TipInfoForm';
+import TipInfoForm from './Components/TipInfoForm/TipInfoForm';
 import Map from './Components/Map/map.js';  
 
 // react-bootstrap
@@ -16,6 +15,7 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import Container from 'react-bootstrap/Container'
+import Image from 'react-bootstrap/Image'
 
 //for maps
 import styled from 'styled-components';
@@ -23,8 +23,7 @@ import styled from 'styled-components';
 // View Component
 import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
 import './Components/ViewTipInfo/ViewTipInfo.css';
-import ViewTipsAverage from './Components/ProcessTips/ProcessTips';
-import './Components/ProcessTips/ProcessTips.css'
+
 //aws imports
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
 import awsmobile from './aws-exports';
@@ -36,7 +35,9 @@ import aws_config from './aws-exports';
 import * as queries from './graphql/queries'
 import * as mutations from './graphql/mutations'
 import * as subscriptions from './graphql/subscriptions'
-import { ThemeProvider } from 'react-bootstrap';
+
+import logo from './images/logo.png'
+
 
 Amplify.configure(awsmobile);
 Amplify.configure(aws_config);
@@ -51,13 +52,13 @@ class App extends Component {
       showSignUp: false,
       showTipUpdate: false,
       curr_user_username: '',
-      viewList: false,
-      viewOption: "",
-      detailList: false
+      showListView: true,
+      showMapView: false,
     }
 
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleTipUpdate = this.handleTipUpdate.bind(this);
+    this.handleChangeView = this.handleChangeView.bind(this);
   }
 
   handleSignUp = () => {
@@ -74,13 +75,13 @@ class App extends Component {
     })
   }
 
-  // to update view to map or list
-  handleMapListView = () => {
+  handleChangeView = () => {
     this.setState({
-      viewList: true
-    });
+      showListView: !this.state.showListView,
+      showMapView: !this.state.showMapView,
+    })
   }
-
+  
   //this grabs username attribute from current user.  
   //componentDidMount is executed after the webpage is rendered,
   //allowing for the page to be reloaded with data from API calls?
@@ -95,94 +96,80 @@ class App extends Component {
 
   render() {
 
-    // this ListView handles information from the connect component and organizes
-    // them in a meaningful way on the the webpage.
-
-    const ListView = ({ tip_entries }) => (
-      <div>
-        <h3>All Entries</h3>
-        <ul>
-            {tip_entries.map(entry => 
-              <li key={entry.id}>business: {entry.business_name}, 
-                                 takehome: {entry.takehome}, 
-                                 date: {entry.shift_date}
-              </li>
-            )
-            }
-        </ul>
-      </div>
-    );
-
     const home = (
       <Navbar className="bg-olive justify-content-between">
 
         {/* TODO: update the logo with Navbar.Brand */}
-        <h3 className="text-color-white">Pooled House</h3>
-
+      <Navbar.Brand>
+        <img
+        src={ logo }
+        width="200"
+        height="64"
+        className="d-inline-block align-top"
+        alt="Pooled House logo"
+      />
+      </Navbar.Brand>
         <Form inline>
           <FormControl type="text" placeholder="ex: upper manhattan" className="mr-sm" />
           <Button type="submit" variant="outline-light"><span>{"\uD83D\uDD0D"}</span></Button>
         </Form>
 
         <ButtonToolbar>
-          <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
-            <ToggleButton value={1} variant="warning">Map View</ToggleButton>
-            <ToggleButton value={2} variant="warning">List View</ToggleButton>
+          <ToggleButtonGroup type="radio" name="options" defaultValue={1} onChange={this.handleChangeView}>
+            <ToggleButton value={1} variant="warning">List View</ToggleButton>
+            <ToggleButton value={2} variant="warning">Map View</ToggleButton>
           </ToggleButtonGroup>
         </ButtonToolbar>
         
         <ButtonToolbar>
           <Button 
-            href="#" variant="link" className="text-color-white" 
+            className="text-color-white" 
             onClick={this.handleTipUpdate}>Tip Update
           </Button>
         </ButtonToolbar>
       </Navbar>
       );
 
-      const ShowUsernameMessage = () => (
-        <div>
-          <p>
-            Current user is {this.state.curr_user_username}
-          </p>
-        </div>
-      )
+      const list_view = (
+        <Connect query={graphqlOperation(queries.listTipEntrys)}>
+        {({ data: { listTipEntrys }, loading, error }) => {
+            if (error) return (<h3>Error</h3>);
+            if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+            return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
+        }}
+        </Connect>
+      );
 
     return (
-      
       <div className="App">
-        {this.state.showSignUp ? <SignUp handler={this.handleSignUp} /> : <div id="home">{home} <Map/></div>}
+        <div id="home"> { home } </div>
         {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
-        
         {/* the connect component queries our database and then passes the query
           result to the ListView function */} 
-
-
-        <button type="primary" onClick={()=>{this.setState({detailList : !this.state.detailList})}}>{this.state.detailList? "View Detailed Tip Data" : "View Average Tip Data"}</button>
-        {
-          this.state.detailList? (<Connect query={graphqlOperation(queries.listTipEntrys)}>
-          {({ data: { listTipEntrys }, loading, error }) => {
-              if (error) return (<h3>Error</h3>);
-              if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
-              // return (<ListView tip_entries={listTipEntrys.items} /> );
-              return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
-          }}
-          </Connect>) :
-          (<Connect query={graphqlOperation(queries.listTipEntrys)}>
-          {({ data: { listTipEntrys }, loading, error }) => {
-              if (error) return (<h3>Error</h3>);
-              if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
-              // return (<ListView tip_entries={listTipEntrys.items} /> );
-              return (<ViewTipsAverage tipInfo={listTipEntrys.items} /> );
-          }}
-          </Connect>)
-        }
-        
-
-        
+        {this.state.showListView ? <div> { list_view } </div> : <div> <Map /> </div>}
       </div>
     );
   }
 }
 
 export default withAuthenticator(App, true);
+
+// <button type="primary" onClick={()=>{this.setState({detailList : !this.state.detailList})}}>{this.state.detailList? "View Detailed Tip Data" : "View Average Tip Data"}</button>
+// {
+//   this.state.detailList? (<Connect query={graphqlOperation(queries.listTipEntrys)}>
+//   {({ data: { listTipEntrys }, loading, error }) => {
+//       if (error) return (<h3>Error</h3>);
+//       if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+//       // return (<ListView tip_entries={listTipEntrys.items} /> );
+//       return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
+//   }}
+//   </Connect>) :
+//   (<Connect query={graphqlOperation(queries.listTipEntrys)}>
+//   {({ data: { listTipEntrys }, loading, error }) => {
+//       if (error) return (<h3>Error</h3>);
+//       if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+//       // return (<ListView tip_entries={listTipEntrys.items} /> );
+//       return (<ViewTipsAverage tipInfo={listTipEntrys.items} /> );
+//   }}
+//   </Connect>)
+// }
