@@ -3,7 +3,7 @@ import './App.css';
 
 //local imports
 import SignUp from './SignUp/SignUp.js';
-import TipInfoForm from './TipInfoForm/TipInfoForm';
+import TipInfoForm from './Components/TipInfoForm/TipInfoForm';
 import Map from './Components/Map/map.js';  
 
 // react-bootstrap
@@ -48,10 +48,13 @@ class App extends Component {
       showSignUp: false,
       showTipUpdate: false,
       curr_user_username: '',
+      showListView: true,
+      showMapView: false,
     }
 
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleTipUpdate = this.handleTipUpdate.bind(this);
+    this.handleChangeView = this.handleChangeView.bind(this);
   }
 
   handleSignUp = () => {
@@ -65,6 +68,13 @@ class App extends Component {
     this.setState({
       showHome: !this.state.showHome,
       showTipUpdate: !this.state.showTipUpdate
+    })
+  }
+
+  handleChangeView = () => {
+    this.setState({
+      showListView: !this.state.showListView,
+      showMapView: !this.state.showMapView,
     })
   }
   
@@ -82,24 +92,6 @@ class App extends Component {
 
   render() {
 
-    // this ListView handles information from the connect component and organizes
-    // them in a meaningful way on the the webpage.
-
-    const ListView = ({ tip_entries }) => (
-      <div>
-        <h3>All Entries</h3>
-        <ul>
-            {tip_entries.map(entry => 
-              <li key={entry.id}>business: {entry.business_name}, 
-                                 takehome: {entry.takehome}, 
-                                 date: {entry.shift_date}
-              </li>
-            )
-            }
-        </ul>
-      </div>
-    );
-
     const home = (
       <Navbar className="bg-olive justify-content-between">
 
@@ -112,37 +104,38 @@ class App extends Component {
         </Form>
 
         <ButtonToolbar>
-          <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
-            <ToggleButton value={1} variant="warning">Map View</ToggleButton>
-            <ToggleButton value={2} variant="warning">List View</ToggleButton>
+          <ToggleButtonGroup type="radio" name="options" defaultValue={1} onChange={this.handleChangeView}>
+            <ToggleButton value={1} variant="warning">List View</ToggleButton>
+            <ToggleButton value={2} variant="warning">Map View</ToggleButton>
           </ToggleButtonGroup>
         </ButtonToolbar>
         
         <ButtonToolbar>
           <Button 
-            href="#" variant="link" className="text-color-white" 
+            className="text-color-white" 
             onClick={this.handleTipUpdate}>Tip Update
           </Button>
         </ButtonToolbar>
       </Navbar>
       );
 
-    return (
-      <div className="App">
-        {this.state.showSignUp ? <SignUp handler={this.handleSignUp} /> : <div id="home">{home} <Map/></div>}
-        {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
-        
-        {/* the connect component queries our database and then passes the query
-          result to the ListView function */} 
-
+      const list_view = (
         <Connect query={graphqlOperation(queries.listTipEntrys)}>
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
-            //return (<ListView tip_entries={listTipEntrys.items} /> );
             return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
         }}
         </Connect>
+      );
+
+    return (
+      <div className="App">
+        <div id="home"> { home } </div>
+        {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
+        {/* the connect component queries our database and then passes the query
+          result to the ListView function */} 
+        {this.state.showListView ? <div> { list_view } </div> : <Map />}
       </div>
     );
   }

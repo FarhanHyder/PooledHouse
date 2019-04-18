@@ -72,12 +72,6 @@ class TipInfoForm extends React.Component {
 
         return (
             <div>
-        <Navbar className="bg-olive justify-content-between">
-            <h3 className="text-color-white">Pooled House</h3>
-            <ButtonToolbar>
-                <Button href="#" variant="link" className="text-color-white" onClick={this.props.handler}>Home</Button>
-            </ButtonToolbar>
-        </Navbar>
         <Container fluid='true'>
             <Form className="text-left newTips">
                 <Row>
