@@ -61,9 +61,8 @@ class App extends Component {
       showTipUpdate: !this.state.showTipUpdate
     })
   }
-
-  //this grabs email attribute from current user.  testing for 
-  //collecting current user attributes.
+  
+  //this grabs username attribute from current user.  
   //componentDidMount is executed after the webpage is rendered,
   //allowing for the page to be reloaded with data from API calls?
 
@@ -120,12 +119,7 @@ class App extends Component {
           </Button>
         </ButtonToolbar>
       </Navbar>
-
       );
-
-      // this prints the current entries in our db in the web console
-      const allEntries = API.graphql(graphqlOperation(queries.listTipEntrys));
-      console.log(allEntries);
 
       const ShowUsernameMessage = () => (
         <div>
@@ -138,13 +132,8 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.showSignUp ? <SignUp handler={this.handleSignUp} /> : <div id="home">{home} <Map/></div>}
-        {this.state.showTipUpdate ? 
-                  <Connect handler={this.handleTipUpdate} mutation={graphqlOperation(mutations.createTipEntry)}>
-                  {({mutation}) => (
-                    <TipInfoForm  onCreate={mutation}/>
-                  )}
-                </Connect> : null }
-
+        {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
+        
         {/* the connect component queries our database and then passes the query
           result to the ListView function */} 
 
@@ -155,7 +144,6 @@ class App extends Component {
             return (<ListView tip_entries={listTipEntrys.items} /> );
         }}
         </Connect>
-        <ShowUsernameMessage />
       </div>
     );
   }

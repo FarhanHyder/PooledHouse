@@ -13,7 +13,7 @@ class TipInfoForm extends React.Component {
             shift_length: '',
             shift_time: 'AM',
             shift_date: '',
-            position: 'Bartender',
+            shift_position: 'Bartender',
             takehome: '',
             business_name: '',
             business_address: '',
@@ -26,6 +26,10 @@ class TipInfoForm extends React.Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
+/*
+
+//couldn't get this function to work, the other version does work...
+
     async handleSubmit(e) {
         e.preventDefault();
         const { onCreate } = this.props;
@@ -35,7 +39,7 @@ class TipInfoForm extends React.Component {
             shift_length: this.state.shift_length,
             shift_time: this.state.shift_time,
             shift_date: this.state.shift_date,
-            position: this.state.position,
+            shift_position: this.state.shift_position,
             takehome: this.state.takehome,
             business_name: this.state.business_name,
             business_address: this.state.business_address
@@ -44,7 +48,10 @@ class TipInfoForm extends React.Component {
         await onCreate({input})
     }
 
-    async handleSubmit2(e) {
+*/
+
+
+    async handleSubmit(e) {
         e.preventDefault();
         let t_e = {
             id: (Math.floor(Math.random() * 10000)),
@@ -52,13 +59,20 @@ class TipInfoForm extends React.Component {
             shift_length: this.state.shift_length,
             shift_time: this.state.shift_time,
             shift_date: this.state.shift_date,
-            position: this.state.position,
+            shift_position: this.state.shift_position,
             takehome: this.state.takehome,
             business_name: this.state.business_name,
             business_address: this.state.business_address
         }
-        let newTipEntry = await API.graphql(graphqlOperation(mutations.createTipEntry, {input: t_e}));
-        console.log(newTipEntry);
+        console.log(t_e);
+        try {
+            await API.graphql(graphqlOperation(mutations.createTipEntry, {input: t_e}));
+            console.log('successfully created tipentry');
+            alert("successfully added tipentry");
+        } catch (err) {
+            console.log('error creating tipentry: ', err);
+            alert("tipentry failed");
+        }
     }
 
     async componentDidMount() {
@@ -70,10 +84,11 @@ class TipInfoForm extends React.Component {
       }
 
     render () {
+
         const { shift_length, 
                 shift_time,
                 shift_date,
-                position,
+                shift_position,
                 takehome,
                 business_name,
                 business_address
@@ -88,7 +103,6 @@ class TipInfoForm extends React.Component {
             </ButtonToolbar>
         </Navbar>
         <Container fluid='true'>
-        {/*onSubmit={this.handleSubmit}*/}
             <Form className="text-left newTips">
                 <Row>
                     <Col>
@@ -105,7 +119,6 @@ class TipInfoForm extends React.Component {
                     <Col>
                         <Form.Group controlId="shift_time">
                             <Form.Label>Shift Time</Form.Label>
-                            { /*this div just helps with formatting */}
                             <Form.Control 
                                     as='select' 
                                     name="shift_time" 
@@ -128,12 +141,12 @@ class TipInfoForm extends React.Component {
                         </Form.Group>
                     </Col>
                     <Col>
-                        <Form.Group controlID="position">
+                        <Form.Group controlID="shift_position">
                                 <Form.Label>Position</Form.Label>
                                 <Form.Control 
                                     as='select' 
-                                    name="position" 
-                                    value={position}
+                                    name="shift_position" 
+                                    value={shift_position}
                                     onChange={this.handleChange}>
                                     <option>Bartender</option>
                                     <option>Server</option>
@@ -178,7 +191,11 @@ class TipInfoForm extends React.Component {
                                 value={business_address}
                                 onChange={this.handleChange}
                             />
-                            <Button variant="primary" type="submit" onClick={(ev) => this.handleSubmit(ev)}>Submit</Button>
+                            <Button 
+                                variant="primary" 
+                                type="submit" 
+                                onClick={(ev) => this.handleSubmit(ev)}>Submit
+                            </Button>
                         </Form.Group>
                     </Col>
                 </Row>
