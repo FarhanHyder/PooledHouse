@@ -60,10 +60,11 @@ const ViewTipsAverage = (props) => {
         let allBusiness = averageTipsByBusiness(tipsInfo);
         console.log(Object.keys(allBusiness));
         let view = Object.keys(allBusiness).map(tips => {
-            return (<div>
-                <div>{allBusiness[tips].business_name}</div>
-                <div>{allBusiness[tips].business_address}</div>
-                <div>${Number.parseFloat(allBusiness[tips].tipsPerHour).toFixed(2)}/Hour</div>
+            return (
+            <div className ="tipsByBusiness">
+                <div>Employer : {allBusiness[tips].business_name}</div>
+                <div>Address : {allBusiness[tips].business_address}</div>
+                <div>Tips : ${Number.parseFloat(allBusiness[tips].tipsPerHour).toFixed(2)}/Hour</div>
             </div>);
         });
         return view;
