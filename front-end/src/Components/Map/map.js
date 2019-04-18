@@ -105,9 +105,6 @@ export default class Map extends React.Component{
 
     componentDidMount(){
 
-
-    
-    
         var mapboxAccessToken = "pk.eyJ1IjoicG9vbGVkaG91c2UiLCJhIjoiY2p1aGg2N2o5MHozZTRkcDhrZDltMXp6dyJ9.SXu4dBf_bVC8Xlpy7WnYqQ";
         var map = L.map('map').setView([37.8, -96], 4);
 
@@ -121,6 +118,6 @@ export default class Map extends React.Component{
     }
 
     render(){
-        return <Wrapper width="1280px" height="720px" id="map"/>
+        return <Wrapper width="500px" height="500px" id="map"/>
     }
 }
