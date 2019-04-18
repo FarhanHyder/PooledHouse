@@ -23,7 +23,8 @@ import styled from 'styled-components';
 // View Component
 import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
 import './Components/ViewTipInfo/ViewTipInfo.css';
-
+import ViewTipsAverage from './Components/ProcessTips/ProcessTips';
+import './Components/ProcessTips/ProcessTips.css'
 //aws imports
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
 import awsmobile from './aws-exports';
@@ -35,6 +36,7 @@ import aws_config from './aws-exports';
 import * as queries from './graphql/queries'
 import * as mutations from './graphql/mutations'
 import * as subscriptions from './graphql/subscriptions'
+import { ThemeProvider } from 'react-bootstrap';
 
 Amplify.configure(awsmobile);
 Amplify.configure(aws_config);
@@ -49,6 +51,9 @@ class App extends Component {
       showSignUp: false,
       showTipUpdate: false,
       curr_user_username: '',
+      viewList: false,
+      viewOption: "",
+      detailList: false
     }
 
     this.handleSignUp = this.handleSignUp.bind(this);
@@ -68,7 +73,21 @@ class App extends Component {
       showTipUpdate: !this.state.showTipUpdate
     })
   }
-  
+
+  // to update view to map or list
+  handleMapListView = () => {
+    this.setState({
+      viewList: true
+    });
+  }
+  // to show list view : plain data or processed average data
+  // if average list: use view option to select to see different processed data
+  handleListView = () => {
+    this.setState({
+      detailList : !this.state.detailList
+    });
+  }
+
   //this grabs username attribute from current user.  
   //componentDidMount is executed after the webpage is rendered,
   //allowing for the page to be reloaded with data from API calls?
@@ -137,6 +156,7 @@ class App extends Component {
       )
 
     return (
+      
       <div className="App">
         {this.state.showSignUp ? <SignUp handler={this.handleSignUp} /> : <div id="home">{home} <Map/></div>}
         {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
@@ -144,12 +164,23 @@ class App extends Component {
         {/* the connect component queries our database and then passes the query
           result to the ListView function */} 
 
+
         <Connect query={graphqlOperation(queries.listTipEntrys)}>
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
             // return (<ListView tip_entries={listTipEntrys.items} /> );
             return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
+        }}
+        </Connect>
+
+
+        <Connect query={graphqlOperation(queries.listTipEntrys)}>
+        {({ data: { listTipEntrys }, loading, error }) => {
+            if (error) return (<h3>Error</h3>);
+            if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+            // return (<ListView tip_entries={listTipEntrys.items} /> );
+            return (<ViewTipsAverage tipInfo={listTipEntrys.items} /> );
         }}
         </Connect>
       </div>
