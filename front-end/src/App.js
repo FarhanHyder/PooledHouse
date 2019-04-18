@@ -146,7 +146,7 @@ class App extends Component {
         {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
         {/* the connect component queries our database and then passes the query
           result to the ListView function */} 
-        {this.state.showListView ? <div> { list_view } </div> : <Map />}
+        {this.state.showListView ? <div> { list_view } </div> : <div> <Map /> </div>}
       </div>
     );
   }
