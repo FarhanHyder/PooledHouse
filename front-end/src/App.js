@@ -26,6 +26,8 @@ import { Connect } from 'aws-amplify-react';
 import aws_config from './aws-exports';
 
 import * as queries from './graphql/queries'
+import * as mutations from './graphql/mutations'
+import * as subscriptions from './graphql/subscriptions'
 
 Amplify.configure(awsmobile);
 Amplify.configure(aws_config);
@@ -136,11 +138,16 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.showSignUp ? <SignUp handler={this.handleSignUp} /> : <div id="home">{home} <Map/></div>}
-        {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
+        {this.state.showTipUpdate ? 
+                  <Connect handler={this.handleTipUpdate} mutation={graphqlOperation(mutations.createTipEntry)}>
+                  {({mutation}) => (
+                    <TipInfoForm  onCreate={mutation}/>
+                  )}
+                </Connect> : null }
 
         {/* the connect component queries our database and then passes the query
           result to the ListView function */} 
-          
+
         <Connect query={graphqlOperation(queries.listTipEntrys)}>
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
