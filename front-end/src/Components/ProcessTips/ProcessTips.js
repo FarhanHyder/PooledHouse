@@ -3,4 +3,64 @@
 // take the average
 // for each position
 // tips total = takeHome * hour
-// averge total by total employee count
+// average total by total employee count
+
+// shift_length
+// shift_time
+// shift_date
+// shift_position
+// takehome
+// business_name
+// business_address
+
+import React from 'react';
+
+const averageTipsByBusiness = (props) => {
+    const business = {};
+    props.tipInfo.forEach(tips => {
+        let businessName = tips.business_name;
+        if (! business.hasOwnProperty(businessName)) {
+            business.businessName = {business_name: businessName, tipsPerHour: (tips.takehome / tips.shift_length), totalHour: tips.shift_length};
+        }
+        else {
+            let hours = (business.businessName.totalHour + tips.shift_length);
+            business.businessName.tipsPerHour = business.businessName.tipsPerHour * business.businessName.totalHour / hours + tips.takehome / hours;
+            business.businessName.totalHour = hour;
+        }
+       
+    });
+
+    return business;
+}
+
+const averageTipsByPosition = (props) => {
+
+}
+
+const averageTipsByZipCode = (props) => {
+
+}
+
+const averageTipsByPositionAndShift = (props) => {
+
+}
+
+const ViewTipsAverage = (props) => {
+    // user selects the view option
+    // function to process based on data called from above
+    let viewSelect = "Business";
+    // form to select filter type for average tips/hour
+
+    if (viewSelect === "Business") {
+        let allBusiness = averageTipsByBusiness(props.tipInfo);
+        let view = allBusiness.keys().map(tips => {
+            return (<div>
+                <div>{tips.business_name}</div>
+                <div>{tips.tipsPerHour}</div>
+            </div>);
+        });
+        return view;
+    }
+    
+    // else ...
+}
