@@ -3,7 +3,7 @@ import {Col, Row, Container} from 'react-bootstrap';
 import {Form, Button, ButtonToolbar, Navbar} from 'react-bootstrap';
 
 import Amplify, { API, graphqlOperation, Auth } from "aws-amplify";
-import * as mutations from '.././graphql/mutations';
+import * as mutations from '../../graphql/mutations';
 
 class TipInfoForm extends React.Component {
     constructor(props) {
@@ -25,31 +25,6 @@ class TipInfoForm extends React.Component {
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
-
-/*
-
-//couldn't get this function to work, the other version does work...
-
-    async handleSubmit(e) {
-        e.preventDefault();
-        const { onCreate } = this.props;
-        var input = {
-            id: (Math.floor(Math.random() * 10000)),
-            user: this.state.user,
-            shift_length: this.state.shift_length,
-            shift_time: this.state.shift_time,
-            shift_date: this.state.shift_date,
-            shift_position: this.state.shift_position,
-            takehome: this.state.takehome,
-            business_name: this.state.business_name,
-            business_address: this.state.business_address
-        }
-        console.log(input);
-        await onCreate({input})
-    }
-
-*/
-
 
     async handleSubmit(e) {
         //e.preventDefault();
