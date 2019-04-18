@@ -15,6 +15,7 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import Container from 'react-bootstrap/Container'
+import Image from 'react-bootstrap/Image'
 
 //for maps
 import styled from 'styled-components';
@@ -34,6 +35,9 @@ import aws_config from './aws-exports';
 import * as queries from './graphql/queries'
 import * as mutations from './graphql/mutations'
 import * as subscriptions from './graphql/subscriptions'
+
+import logo from './images/logo.png'
+
 
 Amplify.configure(awsmobile);
 Amplify.configure(aws_config);
@@ -96,8 +100,15 @@ class App extends Component {
       <Navbar className="bg-olive justify-content-between">
 
         {/* TODO: update the logo with Navbar.Brand */}
-        <h3 className="text-color-white">Pooled House</h3>
-
+      <Navbar.Brand>
+        <img
+        src={ logo }
+        width="200"
+        height="64"
+        className="d-inline-block align-top"
+        alt="Pooled House logo"
+      />
+      </Navbar.Brand>
         <Form inline>
           <FormControl type="text" placeholder="ex: upper manhattan" className="mr-sm" />
           <Button type="submit" variant="outline-light"><span>{"\uD83D\uDD0D"}</span></Button>
