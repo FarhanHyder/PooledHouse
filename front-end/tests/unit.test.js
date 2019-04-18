@@ -25,15 +25,9 @@ test('Should return a div with all tip info', () => {
   //   ])
   // ).to.equal(true);
 
-<<<<<<< Updated upstream
   // const tip = ViewTipInfo({
   //   args: 'test'
   // });
   const tip = 'test passed!!!'
-=======
-  const tip = ViewTipInfo({
-    args: 'test'
-  });
->>>>>>> Stashed changes
   expect(tip).toBe('test passed!!!');
 });
