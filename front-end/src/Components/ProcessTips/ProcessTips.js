@@ -3,4 +3,23 @@
 // take the average
 // for each position
 // tips total = takeHome * hour
-// averge total by total employee count
+// average total by total employee count
+
+
+import React from 'react';
+
+const averageTipsByBusiness = (props) => {
+
+}
+
+const averageTipsByPosition = (props) => {
+
+}
+
+const averageTipsByZipCode = (props) => {
+
+}
+
+const averageTipsByPositionAndShift = (props) => {
+
+}
