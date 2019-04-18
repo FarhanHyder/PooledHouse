@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
+
+//local imports
 import Login from './Login/Login.js';
 import SignUp from './SignUp/SignUp.js';
 import TipInfoForm from './TipInfoForm/TipInfoForm';
 import Map from './Components/Map/map.js';  
+
 // react-bootstrap
 import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
@@ -17,14 +20,18 @@ import Container from 'react-bootstrap/Container'
 //for maps
 import styled from 'styled-components';
 
-//amplify imports
+// View Component
+import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
+import './Components/ViewTipInfo/ViewTipInfo.css';
+
+//aws imports
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
 import awsmobile from './aws-exports';
 import { withAuthenticator } from 'aws-amplify-react';
 import { Connect } from 'aws-amplify-react';
-
 import aws_config from './aws-exports';
 
+//graphql related imports
 import * as queries from './graphql/queries'
 import * as mutations from './graphql/mutations'
 import * as subscriptions from './graphql/subscriptions'
@@ -141,7 +148,8 @@ class App extends Component {
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
-            return (<ListView tip_entries={listTipEntrys.items} /> );
+            // return (<ListView tip_entries={listTipEntrys.items} /> );
+            return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
         }}
         </Connect>
       </div>
