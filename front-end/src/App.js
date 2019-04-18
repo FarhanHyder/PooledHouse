@@ -15,7 +15,6 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import Container from 'react-bootstrap/Container'
-import Image from 'react-bootstrap/Image'
 
 //for maps
 import styled from 'styled-components';
@@ -99,7 +98,6 @@ class App extends Component {
     const home = (
       <Navbar className="bg-olive justify-content-between">
 
-        {/* TODO: update the logo with Navbar.Brand */}
       <Navbar.Brand>
         <img
         src={ logo }
@@ -107,8 +105,9 @@ class App extends Component {
         height="64"
         className="d-inline-block align-top"
         alt="Pooled House logo"
-      />
+        />
       </Navbar.Brand>
+      
         <Form inline>
           <FormControl type="text" placeholder="ex: upper manhattan" className="mr-sm" />
           <Button type="submit" variant="outline-light"><span>{"\uD83D\uDD0D"}</span></Button>
@@ -144,8 +143,6 @@ class App extends Component {
       <div className="App">
         <div id="home"> { home } </div>
         {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
-        {/* the connect component queries our database and then passes the query
-          result to the ListView function */} 
         {this.state.showListView ? <div> { list_view } </div> : <Map />}
       </div>
     );

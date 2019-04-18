@@ -1,8 +1,8 @@
 import React from 'react';
 import {Col, Row, Container} from 'react-bootstrap';
-import {Form, Button, ButtonToolbar, Navbar} from 'react-bootstrap';
+import {Form, Button} from 'react-bootstrap';
 
-import Amplify, { API, graphqlOperation, Auth } from "aws-amplify";
+import { API, graphqlOperation, Auth } from "aws-amplify";
 import * as mutations from '../../graphql/mutations';
 
 class TipInfoForm extends React.Component {
@@ -42,9 +42,8 @@ class TipInfoForm extends React.Component {
         console.log(t_e);
         try {
             await API.graphql(graphqlOperation(mutations.createTipEntry, {input: t_e}));
-            console.log('successfully created tipentry');
             console.log(t_e);
-            alert("successfully added tipentry");
+            alert("Success!");
             this.setState({
                 user: '',
                 shift_length: '',
@@ -67,7 +66,7 @@ class TipInfoForm extends React.Component {
         this.setState({
           user: un
         })
-      }
+    }
 
     render () {
 
