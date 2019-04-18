@@ -27,7 +27,7 @@ class TipInfoForm extends React.Component {
     }
 
     async handleSubmit(e) {
-        //e.preventDefault();
+        e.preventDefault();
         let t_e = {
             id: (Math.floor(Math.random() * 100000)),
             user: this.state.user,
@@ -45,6 +45,16 @@ class TipInfoForm extends React.Component {
             console.log('successfully created tipentry');
             console.log(t_e);
             alert("successfully added tipentry");
+            this.setState({
+                user: '',
+                shift_length: '',
+                shift_time: 'AM',
+                shift_date: '',
+                shift_position: 'Bartender',
+                takehome: '',
+                business_name: '',
+                business_address: '',
+            })
         } catch (err) {
             console.log('error creating tipentry: ', err);
             alert("tipentry failed");
