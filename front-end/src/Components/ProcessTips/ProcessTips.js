@@ -16,11 +16,11 @@
 import React from 'react';
 
 const averageTipsByBusiness = (props) => {
-    const business = [];
+    const business = {};
     props.tipInfo.forEach(tips => {
         let businessName = tips.business_name;
         if (! business.hasOwnProperty(businessName)) {
-            business.businessName = {tipsPerHour: (tips.takehome / tips.shift_length), totalHour: tips.shift_length};
+            business.businessName = {business_name: businessName, tipsPerHour: (tips.takehome / tips.shift_length), totalHour: tips.shift_length};
         }
         else {
             let hours = (business.businessName.totalHour + tips.shift_length);
@@ -48,5 +48,19 @@ const averageTipsByPositionAndShift = (props) => {
 const ViewTipsAverage = (props) => {
     // user selects the view option
     // function to process based on data called from above
+    let viewSelect = "Business";
+    // form to select filter type for average tips/hour
 
+    if (viewSelect === "Business") {
+        let allBusiness = averageTipsByBusiness(props.tipInfo);
+        let view = allBusiness.keys().map(tips => {
+            return (<div>
+                <div>{tips.business_name}</div>
+                <div>{tips.tipsPerHour}</div>
+            </div>);
+        });
+        return view;
+    }
+    
+    // else ...
 }
