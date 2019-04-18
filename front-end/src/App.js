@@ -153,3 +153,23 @@ class App extends Component {
 }
 
 export default withAuthenticator(App, true);
+
+// <button type="primary" onClick={()=>{this.setState({detailList : !this.state.detailList})}}>{this.state.detailList? "View Detailed Tip Data" : "View Average Tip Data"}</button>
+// {
+//   this.state.detailList? (<Connect query={graphqlOperation(queries.listTipEntrys)}>
+//   {({ data: { listTipEntrys }, loading, error }) => {
+//       if (error) return (<h3>Error</h3>);
+//       if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+//       // return (<ListView tip_entries={listTipEntrys.items} /> );
+//       return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
+//   }}
+//   </Connect>) :
+//   (<Connect query={graphqlOperation(queries.listTipEntrys)}>
+//   {({ data: { listTipEntrys }, loading, error }) => {
+//       if (error) return (<h3>Error</h3>);
+//       if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+//       // return (<ListView tip_entries={listTipEntrys.items} /> );
+//       return (<ViewTipsAverage tipInfo={listTipEntrys.items} /> );
+//   }}
+//   </Connect>)
+// }
