@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Login from './Login/Login';
-import SignUp from './SignUp/SignUp';
-import TipInfo from './TipInfo/TipInfo';
-import Map from './Components/Map/map';  
+
+//local imports
+import Login from './Login/Login.js';
+import SignUp from './SignUp/SignUp.js';
+import TipInfoForm from './TipInfoForm/TipInfoForm';
+import Map from './Components/Map/map.js';  
+
 // react-bootstrap
 import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
@@ -20,15 +23,18 @@ import styled from 'styled-components';
 // View Component
 import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
 import './Components/ViewTipInfo/ViewTipInfo.css';
-//amplify imports
+
+//aws imports
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
 import awsmobile from './aws-exports';
 import { withAuthenticator } from 'aws-amplify-react';
 import { Connect } from 'aws-amplify-react';
-
 import aws_config from './aws-exports';
 
+//graphql related imports
 import * as queries from './graphql/queries'
+import * as mutations from './graphql/mutations'
+import * as subscriptions from './graphql/subscriptions'
 
 Amplify.configure(awsmobile);
 Amplify.configure(aws_config);
@@ -62,9 +68,8 @@ class App extends Component {
       showTipUpdate: !this.state.showTipUpdate
     })
   }
-
-  //this grabs email attribute from current user.  testing for 
-  //collecting current user attributes.
+  
+  //this grabs username attribute from current user.  
   //componentDidMount is executed after the webpage is rendered,
   //allowing for the page to be reloaded with data from API calls?
 
@@ -121,12 +126,7 @@ class App extends Component {
           </Button>
         </ButtonToolbar>
       </Navbar>
-
       );
-
-      // this prints the current entries in our db in the web console
-      const allEntries = API.graphql(graphqlOperation(queries.listTipEntrys));
-      console.log(allEntries);
 
       const ShowUsernameMessage = () => (
         <div>
@@ -139,9 +139,11 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.showSignUp ? <SignUp handler={this.handleSignUp} /> : <div id="home">{home} <Map/></div>}
-        {this.state.showTipUpdate ? <TipInfo handler={this.handleTipUpdate}/> : null }
+        {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
+        
         {/* the connect component queries our database and then passes the query
           result to the ListView function */} 
+
         <Connect query={graphqlOperation(queries.listTipEntrys)}>
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
@@ -150,7 +152,6 @@ class App extends Component {
             return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
         }}
         </Connect>
-        <ShowUsernameMessage />
       </div>
     );
   }
