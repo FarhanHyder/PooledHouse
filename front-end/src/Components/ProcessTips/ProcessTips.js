@@ -63,7 +63,7 @@ const ViewTipsAverage = (props) => {
             return (<div>
                 <div>{allBusiness[tips].business_name}</div>
                 <div>{allBusiness[tips].business_address}</div>
-                <div>{allBusiness[tips].tipsPerHour}</div>
+                <div>${Number.parseFloat(allBusiness[tips].tipsPerHour).toFixed(2)}/Hour</div>
             </div>);
         });
         return view;
