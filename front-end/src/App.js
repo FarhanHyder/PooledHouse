@@ -23,6 +23,8 @@ import styled from 'styled-components';
 // View Component
 import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
 import './Components/ViewTipInfo/ViewTipInfo.css';
+import ViewTipsAverage from './Components/ProcessTips/ProcessTips';
+import './Components/ProcessTips/ProcessTips.css';
 
 //aws imports
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
@@ -54,6 +56,7 @@ class App extends Component {
       curr_user_username: '',
       showListView: true,
       showMapView: false,
+      detailList: false
     }
 
     this.handleSignUp = this.handleSignUp.bind(this);
@@ -130,15 +133,15 @@ class App extends Component {
       </Navbar>
       );
 
-      const list_view = (
-        <Connect query={graphqlOperation(queries.listTipEntrys)}>
-        {({ data: { listTipEntrys }, loading, error }) => {
-            if (error) return (<h3>Error</h3>);
-            if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
-            return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
-        }}
-        </Connect>
-      );
+      // const list_view = (
+      //   <Connect query={graphqlOperation(queries.listTipEntrys)}>
+      //   {({ data: { listTipEntrys }, loading, error }) => {
+      //       if (error) return (<h3>Error</h3>);
+      //       if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+      //       return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
+      //   }}
+      //   </Connect>
+      // );
 
     return (
       <div className="App">
@@ -146,7 +149,29 @@ class App extends Component {
         {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
         {/* the connect component queries our database and then passes the query
           result to the ListView function */} 
-        {this.state.showListView ? <div> { list_view } </div> : <div> <Map /> </div>}
+        {this.state.showListView ?
+          <div> 
+        
+          <button type="primary" onClick={()=>{this.setState({detailList : !this.state.detailList})}}>{this.state.detailList? "View Average Tip Data" :"View Detailed Tip Data"  }</button>
+          {
+            this.state.detailList? (<Connect query={graphqlOperation(queries.listTipEntrys)}>
+            {({ data: { listTipEntrys }, loading, error }) => {
+                if (error) return (<h3>Error</h3>);
+                if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+                // return (<ListView tip_entries={listTipEntrys.items} /> );
+                return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
+            }}
+            </Connect>) :
+            (<Connect query={graphqlOperation(queries.listTipEntrys)}>
+            {({ data: { listTipEntrys }, loading, error }) => {
+                if (error) return (<h3>Error</h3>);
+                if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+                // return (<ListView tip_entries={listTipEntrys.items} /> );
+                return (<ViewTipsAverage tipInfo={listTipEntrys.items} /> );
+            }}
+            </Connect>)
+          }
+         </div> : <div> <Map /> </div>}
       </div>
     );
   }
