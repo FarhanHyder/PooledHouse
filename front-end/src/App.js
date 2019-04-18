@@ -80,13 +80,6 @@ class App extends Component {
       viewList: true
     });
   }
-  // to show list view : plain data or processed average data
-  // if average list: use view option to select to see different processed data
-  handleListView = () => {
-    this.setState({
-      detailList : !this.state.detailList
-    });
-  }
 
   //this grabs username attribute from current user.  
   //componentDidMount is executed after the webpage is rendered,
@@ -165,24 +158,28 @@ class App extends Component {
           result to the ListView function */} 
 
 
-        <Connect query={graphqlOperation(queries.listTipEntrys)}>
-        {({ data: { listTipEntrys }, loading, error }) => {
-            if (error) return (<h3>Error</h3>);
-            if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
-            // return (<ListView tip_entries={listTipEntrys.items} /> );
-            return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
-        }}
-        </Connect>
+        <button type="primary" onClick={()=>{this.setState({detailList : !this.state.detailList})}}>{this.state.detailList? "View Detailed Tip Data" : "View Average Tip Data"}</button>
+        {
+          this.state.detailList? (<Connect query={graphqlOperation(queries.listTipEntrys)}>
+          {({ data: { listTipEntrys }, loading, error }) => {
+              if (error) return (<h3>Error</h3>);
+              if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+              // return (<ListView tip_entries={listTipEntrys.items} /> );
+              return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
+          }}
+          </Connect>) :
+          (<Connect query={graphqlOperation(queries.listTipEntrys)}>
+          {({ data: { listTipEntrys }, loading, error }) => {
+              if (error) return (<h3>Error</h3>);
+              if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+              // return (<ListView tip_entries={listTipEntrys.items} /> );
+              return (<ViewTipsAverage tipInfo={listTipEntrys.items} /> );
+          }}
+          </Connect>)
+        }
+        
 
-
-        <Connect query={graphqlOperation(queries.listTipEntrys)}>
-        {({ data: { listTipEntrys }, loading, error }) => {
-            if (error) return (<h3>Error</h3>);
-            if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
-            // return (<ListView tip_entries={listTipEntrys.items} /> );
-            return (<ViewTipsAverage tipInfo={listTipEntrys.items} /> );
-        }}
-        </Connect>
+        
       </div>
     );
   }
