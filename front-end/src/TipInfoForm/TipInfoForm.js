@@ -2,10 +2,21 @@ import React from 'react';
 import {Col, Row, Container} from 'react-bootstrap';
 import {Form, Button, ButtonToolbar, Navbar} from 'react-bootstrap';
 
-class TipInfo extends React.Component {
+class TipInfoForm extends React.Component {
     constructor(props) {
         super(props);
         //this.submit = this.submit.bind(this);
+        this.state = {
+            shift_length: null,
+            shift_time: '',
+            shift_date: '',
+            position: '',
+            takehome: null,
+            business_name: '',
+            business_address: '',
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     render () {
@@ -18,10 +29,10 @@ class TipInfo extends React.Component {
             </ButtonToolbar>
         </Navbar>
         <Container fluid='true'>
-            <Form className="text-left newTips"> {/*onSubmit={()=>{console.log(props.name)}*/}
+            <Form className="text-left newTips" onSubmit={this.handleSubmit}>
                 <Row>
                     <Col>
-                        <Form.Group controlId="shiftDate">
+                        <Form.Group controlID="shift_date">
                                 <Form.Label>Shift Date</Form.Label>
                                 <Form.Control
                                     type='date'
@@ -29,7 +40,7 @@ class TipInfo extends React.Component {
                             </Form.Group> 
                     </Col>
                     <Col>
-                        <Form.Group controlId="shiftAP">
+                        <Form.Group controlId="shift_time">
                             <Form.Label>Shift Time</Form.Label>
                             { /*this div just helps with formatting */}
                             <div>
@@ -39,7 +50,7 @@ class TipInfo extends React.Component {
                         </Form.Group>
                     </Col>
                     <Col>
-                        <Form.Group>
+                        <Form.Group controlID="shift_length">
                             <Form.Label>Shift Length (hours)</Form.Label>
                             <Form.Control
                                 type='number'
@@ -47,7 +58,7 @@ class TipInfo extends React.Component {
                         </Form.Group>
                     </Col>
                     <Col>
-                        <Form.Group>
+                        <Form.Group controlID="position">
                                 <Form.Label>Position</Form.Label>
                                 <Form.Control as='select'>
                                     <option>Bartender</option>
@@ -61,7 +72,7 @@ class TipInfo extends React.Component {
                 </Row>
                 <Row>
                     <Col>
-                        <Form.Group>
+                        <Form.Group controlID="takehome">
                             <Form.Label>Tip Takehome</Form.Label>
                             <Form.Control
                                 type='number'
@@ -69,11 +80,20 @@ class TipInfo extends React.Component {
                         </Form.Group>
                     </Col>
                     <Col>
-                        <Form.Group>
-                            <Form.Label>Shift Location</Form.Label>
+                        <Form.Group controlID="business_name">
+                            <Form.Label>Business Name</Form.Label>
                             <Form.Control
                                 type='text'
-                                placeholder='i.e. 123 E 29th St, New York, New York, 99999'
+                                placeholder="i.e. Hot Jim's BBQ"
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group controlID="business_address">
+                            <Form.Label>Business Address</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder="i.e. 123 E 9th St, New York, NY 99999"
                             />
                             <Button variant="primary" type = "submit">Submit</Button>
                         </Form.Group>
@@ -86,4 +106,4 @@ class TipInfo extends React.Component {
     }
 }
 
-export default TipInfo;
+export default TipInfoForm;

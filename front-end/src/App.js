@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Login from './Login/Login.js';
 import SignUp from './SignUp/SignUp.js';
-import TipInfo from './TipInfo/TipInfo';
+import TipInfoForm from './TipInfoForm/TipInfoForm';
 import Map from './Components/Map/map.js';  
 // react-bootstrap
 import Navbar from 'react-bootstrap/Navbar'
@@ -136,9 +136,11 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.showSignUp ? <SignUp handler={this.handleSignUp} /> : <div id="home">{home} <Map/></div>}
-        {this.state.showTipUpdate ? <TipInfo handler={this.handleTipUpdate}/> : null }
+        {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
+
         {/* the connect component queries our database and then passes the query
           result to the ListView function */} 
+          
         <Connect query={graphqlOperation(queries.listTipEntrys)}>
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
