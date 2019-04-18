@@ -8,16 +8,19 @@ const ViewTipInfo = (props) => {
     // must fix filtered output
     
     // let position = 'Bartender';
-    // <Form.Group onSubmit = {position = this.event.value}>
-    //     <Form.Label>Position</Form.Label>
-    //     <Form.Control as='select'>
-    //         <option>Bartender</option>
-    //         <option>Server</option>
-    //         <option>Barback</option>
-    //         <option>Busser</option>
-    //         <option>Other</option>
-    //     </Form.Control>
-    // </Form.Group>
+    // <Form  onSubmit = {position = this.event.value}>
+        // <Form.Group>
+        //     <Form.Label>Position</Form.Label>
+        //     <Form.Control as='select'>
+        //         <option>Bartender</option>
+        //         <option>Server</option>
+        //         <option>Barback</option>
+        //         <option>Busser</option>
+        //         <option>Other</option>
+        //     </Form.Control>
+        //     <Button variant="primary" type = "submit">Submit</Button>
+        // </Form.Group>
+    // </Form>
    
     // let filterdTipInfo = props.tipInfo.filter(tips => tips.position === position);
 
