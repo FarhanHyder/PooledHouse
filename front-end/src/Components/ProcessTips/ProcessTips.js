@@ -56,7 +56,17 @@ const ViewTipsAverage = (props) => {
     // form to select filter type for average tips/hour
 
     if (viewSelect === "Business") {
-
+        let tipsInfo = props.tipInfo;
+        let allBusiness = averageTipsByBusiness(tipsInfo);
+        console.log(Object.keys(allBusiness));
+        let view = Object.keys(allBusiness).map(tips => {
+            return (<div>
+                <div>{allBusiness[tips].business_name}</div>
+                <div>{allBusiness[tips].business_address}</div>
+                <div>{allBusiness[tips].tipsPerHour}</div>
+            </div>);
+        });
+        return view;
     }
     
     // else ...
