@@ -16,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
+    "test": "jest --watch",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -29,6 +29,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "jest": "23.6.0"
+    "jest": "23.6.0",
+    "puppeteer": "^1.14.0"
   }
 }
