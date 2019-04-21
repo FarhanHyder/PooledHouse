@@ -59,5 +59,5 @@ export default Map;
 
 
 
-
-// TODO: @self-note: use "http://colorbrewer2.org/" for color picking different zones
+//note: following link has been to select 6 different layer of colors
+//       http://colorbrewer2.org/#type=diverging&scheme=RdYlGn&n=6
