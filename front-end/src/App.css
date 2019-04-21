@@ -56,6 +56,7 @@ footer {
 }
 
 #listView {
-  align-content: center;
-  margin: 10px 100px 10px 100px;
+  display: grid;
+  justify-content: center;
+  margin: 10px 10px 10px 10px;
 }
