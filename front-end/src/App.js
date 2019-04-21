@@ -25,6 +25,7 @@ import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
 import './Components/ViewTipInfo/ViewTipInfo.css';
 import ViewTipsAverage from './Components/ProcessTips/ProcessTips';
 import './Components/ProcessTips/ProcessTips.css';
+import ViewUserTips from './Components/ViewTipInfo/UserTipInfo';
 
 //aws imports
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
@@ -56,7 +57,8 @@ class App extends Component {
       curr_user_username: '',
       showListView: true,
       showMapView: false,
-      detailList: false
+      detailList: false,
+      showUserTips: false
     }
 
     this.handleSignUp = this.handleSignUp.bind(this);
@@ -126,7 +128,10 @@ class App extends Component {
         <ButtonToolbar>
           <Button 
             className="text-color-white" 
-            onClick={this.handleTipUpdate}>Tip Update
+            onClick={this.handleTipUpdate}> Add New Tips
+          </Button>
+          <Button onClick={()=>{this.setState({detailList : false, showUserTips: true})}}>
+            My Tips
           </Button>
         </ButtonToolbar>
       </Navbar>
@@ -144,23 +149,30 @@ class App extends Component {
             if(this.state.detailList) {
               return  (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
             }
+            else  if(this.state.showUserTips) {
+              console.log("user : ")
+              console.log(this.state.curr_user_username)
+              return  (<ViewUserTips user = {this.state.curr_user_username} tipInfo={listTipEntrys.items}/> );
+            }
             else {
-              // TODO: check for other view processed view option here
               return  (<ViewTipsAverage tipInfo={listTipEntrys.items} /> );
             }
         }}
         </Connect>
       );
-      
+
+
     return (
       <div className="App">
         <div id="home"> { home } </div>
         {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
         
         {this.state.showListView ?
-          <div id="listView"> 
-            <button type="primary" onClick={()=>{this.setState({detailList : false})}}>View Average Tip Data</button>
-            <button type="primary" onClick={()=>{this.setState({detailList : true})}}>View Detailed Tip Data</button>
+          <div id="listView">
+            <div>
+              <button type="primary" onClick={()=>{this.setState({detailList : false, showUserTips: false})}}>View Average Tip Data</button>
+              <button type="primary" onClick={()=>{this.setState({detailList : true, showUserTips: false})}}>View Detailed Tip Data</button>
+            </div> 
             {viewData}
          </div> : <div> <Map /> </div>}
       </div>
