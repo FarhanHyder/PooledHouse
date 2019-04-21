@@ -33,9 +33,7 @@ const averageTipsByBusiness = (tipInfo) => {
             business[businessName].tipsPerHour = business[businessName].tipsPerHour * business[businessName].totalHour / hours + tips.takehome / hours;
             business[businessName].totalHour = hours;
         }
-        console.log(business.businessName);
     });
-    console.log(business);
     return business;
 }
 

@@ -33,6 +33,7 @@ const ViewTipInfo = (props) => {
             <Form.Group>
             <Form.Label>Position</Form.Label>
                 <Form.Control as='select'>
+                    <option>All Position</option>
                     <option>Bartender</option>
                     <option>Server</option>
                     <option>Barback</option>

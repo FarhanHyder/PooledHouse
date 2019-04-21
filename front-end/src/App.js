@@ -55,6 +55,7 @@ class App extends Component {
       showSignUp: false,
       showTipUpdate: false,
       curr_user_username: '',
+      // userProfile : "",
       showListView: true,
       showMapView: false,
       detailList: false,
@@ -95,6 +96,7 @@ class App extends Component {
     let current_user = await Auth.currentAuthenticatedUser();
     let un = current_user.username;
     this.setState({
+      // userProfile: current_user, // TODO
       curr_user_username: un
     })
   }
@@ -150,8 +152,6 @@ class App extends Component {
               return  (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
             }
             else  if(this.state.showUserTips) {
-              console.log("user : ")
-              console.log(this.state.curr_user_username)
               return  (<ViewUserTips user = {this.state.curr_user_username} tipInfo={listTipEntrys.items}/> );
             }
             else {
@@ -166,7 +166,7 @@ class App extends Component {
       <div className="App">
         <div id="home"> { home } </div>
         {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
-        
+        {/* {this.state.userProfile} */}
         {this.state.showListView ?
           <div id="listView">
             <div>
