@@ -2,6 +2,7 @@
 .tipsByBusiness {
     display: grid;
     grid-template-columns: auto;
-    border: 5px solid green;
-    margin: 10px 100px 10px 100px;
+    margin: 10px 200px 10px 200px;
+    border: 5px solid rgb(61, 100, 80);
+   /* background-color: rgb(58, 61, 58); */ /*for night mode*/
 }

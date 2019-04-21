@@ -5,10 +5,12 @@
     border: 5px solid rgb(61, 100, 80);
     justify-content: center;
     align-content: start;
+    /* background-color: rgb(58, 61, 58); */ /*for night mode*/
 }
 
 .busTitle {
     color: rgb(2, 118, 226);
+    
 }
 
 .addr {

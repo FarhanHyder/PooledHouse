@@ -98,7 +98,6 @@ class App extends Component {
   }
 
   render() {
-
     const home = (
       <Navbar className="bg-olive justify-content-between">
 
@@ -133,7 +132,10 @@ class App extends Component {
       </Navbar>
       );
 
+
       const viewData = (
+        // {/* the connect component queries our database and then passes the query
+        //result to the ListView function */} 
         <Connect query={graphqlOperation(queries.listTipEntrys)}>
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
@@ -143,6 +145,7 @@ class App extends Component {
               return  (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
             }
             else {
+              // TODO: check for other view processed view option here
               return  (<ViewTipsAverage tipInfo={listTipEntrys.items} /> );
             }
         }}
@@ -153,13 +156,12 @@ class App extends Component {
       <div className="App">
         <div id="home"> { home } </div>
         {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
-        {/* the connect component queries our database and then passes the query
-          result to the ListView function */} 
-        {this.state.showListView ?
-          <div> 
         
-          <button type="primary" onClick={()=>{this.setState({detailList : !this.state.detailList})}}>{this.state.detailList? "View Average Tip Data" :"View Detailed Tip Data"  }</button>
-          {viewData}
+        {this.state.showListView ?
+          <div id="listView"> 
+            <button type="primary" onClick={()=>{this.setState({detailList : false})}}>View Average Tip Data</button>
+            <button type="primary" onClick={()=>{this.setState({detailList : true})}}>View Detailed Tip Data</button>
+            {viewData}
          </div> : <div> <Map /> </div>}
       </div>
     );

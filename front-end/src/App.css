@@ -54,3 +54,8 @@ footer {
 .bg-olive {
   background-color: #538235;
 }
+
+#listView {
+  align-content: center;
+  margin: 10px 100px 10px 100px;
+}
