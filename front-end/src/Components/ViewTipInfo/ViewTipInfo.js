@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form'
+import {Button, Form} from 'react-bootstrap'
 import FormControl from 'react-bootstrap/FormControl'
 
 
@@ -7,24 +7,12 @@ const ViewTipInfo = (props) => {
 
     // must fix filtered output
     
-    // let position = 'Bartender';
-    // <Form  onSubmit = {position = this.event.value}>
-        // <Form.Group>
-        //     <Form.Label>Position</Form.Label>
-        //     <Form.Control as='select'>
-        //         <option>Bartender</option>
-        //         <option>Server</option>
-        //         <option>Barback</option>
-        //         <option>Busser</option>
-        //         <option>Other</option>
-        //     </Form.Control>
-        //     <Button variant="primary" type = "submit">Submit</Button>
-        // </Form.Group>
-    // </Form>
+    let position = '';
    
-    // let filterdTipInfo = props.tipInfo.filter(tips => tips.position === position);
+   
+    let filterdTipInfo = position.length > 0? props.tipInfo.filter(tips => tips.position === position) : props.tipInfo;
 
-    let tipInfo = props.tipInfo.map( (tips, index) => {
+    let tipInfo = filterdTipInfo.map( (tips, index) => {
         return (
             <div className="tipInfo">
                 <h2 className="busTitle">{tips.business_name}</h2>
@@ -38,7 +26,25 @@ const ViewTipInfo = (props) => {
         );        
     });
 
-    return tipInfo;
+    return (
+        // TODO: move the selector to the App.js
+        <div>
+            <Form  onSubmit = {()=> {position = this.event.value}}>
+            <Form.Group>
+            <Form.Label>Position</Form.Label>
+                <Form.Control as='select'>
+                    <option>Bartender</option>
+                    <option>Server</option>
+                    <option>Barback</option>
+                    <option>Busser</option>
+                    <option>Other</option>
+                    </Form.Control>
+                <Button variant="primary" type = "submit">Submit</Button>
+            </Form.Group>
+            </Form>
+            {tipInfo}
+        </div>
+    );
 }
 
 export default ViewTipInfo;
