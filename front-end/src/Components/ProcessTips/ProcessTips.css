@@ -1,6 +1,7 @@
 /* styleSheet for average tips */
 .tipsByBusiness {
     display: grid;
+    grid-template-columns: auto;
     border: 5px solid green;
     margin: 10px 100px 10px 100px;
 }
