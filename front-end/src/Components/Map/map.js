@@ -4,7 +4,7 @@ import ReactNYC from 'react-nyc-choropleth';
 class Map extends React.Component {
   render() {
     const mapboxAccessToken = "pk.eyJ1IjoicG9vbGVkaG91c2UiLCJhIjoiY2p1aGg2N2o5MHozZTRkcDhrZDltMXp6dyJ9.SXu4dBf_bVC8Xlpy7WnYqQ"; // Your access token
-    const mapboxType = "streets";
+    const mapboxType = "light";
     const position = [40.7831, -73.9712];
     const zoom = 12;
     const data = [
@@ -24,7 +24,7 @@ class Map extends React.Component {
         <ReactNYC
           mapboxAccessToken={mapboxAccessToken} // Required
           mapHeight="800px" // Required
-          mapWidth="600px"
+          mapWidth="100%"
           className="container"
           mapboxType={mapboxType}
           mapCenter={position}
