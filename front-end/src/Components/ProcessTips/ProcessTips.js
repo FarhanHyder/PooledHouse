@@ -14,6 +14,8 @@
 // business_address
 
 import React from 'react';
+import {Button, Form} from 'react-bootstrap'
+import FormControl from 'react-bootstrap/FormControl'
 
 const averageTipsByBusiness = (tipInfo) => {
     // let tipInfo = [...props.tipInfo];
@@ -31,9 +33,7 @@ const averageTipsByBusiness = (tipInfo) => {
             business[businessName].tipsPerHour = business[businessName].tipsPerHour * business[businessName].totalHour / hours + tips.takehome / hours;
             business[businessName].totalHour = hours;
         }
-        console.log(business.businessName);
     });
-    console.log(business);
     return business;
 }
 
@@ -54,21 +54,40 @@ const ViewTipsAverage = (props) => {
     // function to process based on data called from above
     let viewSelect = "Business";
     // form to select filter type for average tips/hour
+    let tipsInfo = props.tipInfo;
+    let processedTips = null;
 
     if (viewSelect === "Business") {
-        let tipsInfo = props.tipInfo;
-        let allBusiness = averageTipsByBusiness(tipsInfo);
-        console.log(Object.keys(allBusiness));
-        let view = Object.keys(allBusiness).map(tips => {
-            return (
-            <div className ="tipsByBusiness">
-                <div>Employer : {allBusiness[tips].business_name}</div>
-                <div>Address : {allBusiness[tips].business_address}</div>
-                <div>Tips : ${Number.parseFloat(allBusiness[tips].tipsPerHour).toFixed(2)}/Hour</div>
-            </div>);
-        });
-        return view;
+        processedTips = averageTipsByBusiness(tipsInfo);
     }
+    
+    let view = Object.keys(processedTips).map(tips => {
+        return (
+        <div className ="tipsByBusiness">
+            <div className="busTitle">{processedTips[tips].business_name}</div>
+            <div className="addr">{processedTips[tips].business_address}</div>
+            <div>Tips : ${Number.parseFloat(processedTips[tips].tipsPerHour).toFixed(2)}/Hour</div>
+        </div>);
+    });
+    // return view;
+    return (
+        // TODO: move the selector to the App.js
+        <div>
+            <Form  onSubmit = {()=>{viewSelect = this.event.value}}>
+                <Form.Group>
+                    <Form.Label>Select Option to View Average Tips by </Form.Label>
+                    <Form.Control as='select'>
+                        <option>Business</option>
+                        <option>Positon</option>
+                        <option>Neighborhood</option>
+                        <option>Highest Average Tips</option>
+                        <option>Lowest Average Tips</option>
+                    </Form.Control>
+                    <Button variant="primary" type = "submit">Submit</Button>
+                </Form.Group>
+            </Form>
+            {view}
+        </div>);
     
     // else ...
 }
