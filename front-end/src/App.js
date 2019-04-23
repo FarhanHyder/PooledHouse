@@ -59,7 +59,9 @@ class App extends Component {
       showListView: true,
       showMapView: false,
       detailList: false,
-      showUserTips: false
+      showUserTips: false,
+      processFilter: "Business",
+      positionFilter: "All Position"
     }
 
     this.handleSignUp = this.handleSignUp.bind(this);
@@ -139,7 +141,22 @@ class App extends Component {
       </Navbar>
       );
 
-
+      let processOption = (
+        <Form>
+            <Form.Group>
+              <Form.Label>View Average Tips By </Form.Label>
+              <Form.Control
+              as='select'
+              onChange = {(event)=>{this.setState({processFilter : event.target.value})}}>
+                  <option>Business</option>
+                  <option>Positon</option>
+                  <option>Neighborhood</option>
+                  <option>Highest Average Tips</option>
+                  <option>Lowest Average Tips</option>
+              </Form.Control>
+            </Form.Group>
+        </Form>
+      );
       const viewData = (
         // {/* the connect component queries our database and then passes the query
         //result to the ListView function */} 
@@ -155,7 +172,12 @@ class App extends Component {
               return  (<ViewUserTips user = {this.state.curr_user_username} tipInfo={listTipEntrys.items}/> );
             }
             else {
-              return  (<ViewTipsAverage tipInfo={listTipEntrys.items} /> );
+              return  (
+                <div>
+                  {processOption}
+                  <ViewTipsAverage tipInfo={listTipEntrys.items} process = {this.state.processFilter} />
+                </div>);
+              
             }
         }}
         </Connect>
