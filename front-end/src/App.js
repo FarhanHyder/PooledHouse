@@ -24,6 +24,7 @@ import styled from 'styled-components';
 import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
 import './Components/ViewTipInfo/ViewTipInfo.css';
 import ViewTipsAverage from './Components/ProcessTips/ProcessTips';
+import ProcessOption from './Components/ProcessTips/ProcessOption';
 import './Components/ProcessTips/ProcessTips.css';
 import ViewUserTips from './Components/ViewTipInfo/UserTipInfo';
 
@@ -67,6 +68,7 @@ class App extends Component {
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleTipUpdate = this.handleTipUpdate.bind(this);
     this.handleChangeView = this.handleChangeView.bind(this);
+    this.handleProcess = this.handleProcess.bind(this);
   }
 
   handleSignUp = () => {
@@ -90,6 +92,11 @@ class App extends Component {
     })
   }
   
+  handleProcess =(event) => {
+    this.setState({
+      processFilter : event.target.value
+    })
+  }
   //this grabs username attribute from current user.  
   //componentDidMount is executed after the webpage is rendered,
   //allowing for the page to be reloaded with data from API calls?
@@ -141,22 +148,6 @@ class App extends Component {
       </Navbar>
       );
 
-      let processOption = (
-        <Form>
-            <Form.Group>
-              <Form.Label>View Average Tips By </Form.Label>
-              <Form.Control
-              as='select'
-              onChange = {(event)=>{this.setState({processFilter : event.target.value})}}>
-                  <option>Business</option>
-                  <option>Positon</option>
-                  <option>Neighborhood</option>
-                  <option>Highest Average Tips</option>
-                  <option>Lowest Average Tips</option>
-              </Form.Control>
-            </Form.Group>
-        </Form>
-      );
       const viewData = (
         // {/* the connect component queries our database and then passes the query
         //result to the ListView function */} 
@@ -174,10 +165,9 @@ class App extends Component {
             else {
               return  (
                 <div>
-                  {processOption}
+                  <ProcessOption process = {this.handleProcess}/>
                   <ViewTipsAverage tipInfo={listTipEntrys.items} process = {this.state.processFilter} />
                 </div>);
-              
             }
         }}
         </Connect>

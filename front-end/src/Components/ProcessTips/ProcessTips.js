@@ -14,7 +14,6 @@
 // business_address
 
 import React from 'react';
-import {Form} from 'react-bootstrap'
 
 export const averageTipsByBusiness = (tipInfo) => {
     // let tipInfo = [...props.tipInfo];
