@@ -23,6 +23,10 @@
   color: #61dafb;
 }
 
+body {
+  margin-bottom: 35px;
+}
+
 footer {
   background-color: #282c34;
   height:25px;
@@ -49,4 +53,10 @@ footer {
 
 .bg-olive {
   background-color: #538235;
+}
+
+#listView {
+  display: grid;
+  justify-content: center;
+  margin: 10px 10px 10px 10px;
 }
