@@ -182,11 +182,6 @@ class TipInfoForm extends React.Component {
                                 value={business_street_address}
                                 onChange={this.handleChange}
                             />
-                            <Button 
-                                variant="primary" 
-                                type="submit" 
-                                onClick={(ev) => this.handleSubmit(ev)}>Submit
-                            </Button>
                         </Form.Group>
                     </Col>
                     <Col>
