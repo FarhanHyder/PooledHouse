@@ -22,6 +22,7 @@ import styled from 'styled-components';
 
 // View Component
 import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
+import PositionOption from './Components/ViewTipInfo/PositionOption';
 import './Components/ViewTipInfo/ViewTipInfo.css';
 import ViewTipsAverage from './Components/ProcessTips/ProcessTips';
 import ProcessOption from './Components/ProcessTips/ProcessOption';
@@ -69,6 +70,7 @@ class App extends Component {
     this.handleTipUpdate = this.handleTipUpdate.bind(this);
     this.handleChangeView = this.handleChangeView.bind(this);
     this.handleProcess = this.handleProcess.bind(this);
+    this.handlePosition = this.handlePosition.bind(this);
   }
 
   handleSignUp = () => {
@@ -95,6 +97,11 @@ class App extends Component {
   handleProcess =(event) => {
     this.setState({
       processFilter : event.target.value
+    })
+  }
+  handlePosition = (event) => {
+    this.setState({
+      positionFilter : event.target.value
     })
   }
   //this grabs username attribute from current user.  
@@ -157,10 +164,19 @@ class App extends Component {
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
             // return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
             if(this.state.detailList) {
-              return  (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
+              return  (
+                <div>
+                  <PositionOption position={this.handlePosition}/>
+                  <ViewTipInfo tipInfo={listTipEntrys.items} position={this.state.positionFilter} />
+                </div>
+                );
             }
             else  if(this.state.showUserTips) {
-              return  (<ViewUserTips user = {this.state.curr_user_username} tipInfo={listTipEntrys.items}/> );
+              return  (
+                <div>
+                  <ViewUserTips user = {this.state.curr_user_username} tipInfo={listTipEntrys.items}/>
+                </div>
+                );
             }
             else {
               return  (

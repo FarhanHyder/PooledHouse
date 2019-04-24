@@ -1,17 +1,25 @@
 import React from 'react';
-import {Button, Form} from 'react-bootstrap'
-import FormControl from 'react-bootstrap/FormControl'
 
 
+// TODO: function sort 
+
+export const sortTips = (tipInfo) => {
+
+}
+
+// output style
+// |Business Name |
+// |address |
+// |position name : Tips|
+// |position name : Tips|
+// .....
 const ViewTipInfo = (props) => {
 
     // must fix filtered output
-    
-    let position = '';
-   
-   
-    let filterdTipInfo = position.length > 0? props.tipInfo.filter(tips => tips.position === position) : props.tipInfo;
 
+    let filterdTipInfo = props.position !== "All Position"? props.tipInfo.filter(tips => tips.shift_position === props.position) : props.tipInfo;
+    // TODO : sort all tips into object business name as key
+    // 
     let tipInfo = filterdTipInfo.map( (tips, index) => {
         return (
             <div className="tipInfo">
@@ -26,26 +34,7 @@ const ViewTipInfo = (props) => {
         );        
     });
 
-    return (
-        // TODO: move the selector to the App.js
-        <div>
-            <Form  onSubmit = {()=> {position = this.event.value}}>
-            <Form.Group>
-            <Form.Label>Position</Form.Label>
-                <Form.Control as='select'>
-                    <option>All Position</option>
-                    <option>Bartender</option>
-                    <option>Server</option>
-                    <option>Barback</option>
-                    <option>Busser</option>
-                    <option>Other</option>
-                    </Form.Control>
-                <Button variant="primary" type = "submit">Submit</Button>
-            </Form.Group>
-            </Form>
-            {tipInfo}
-        </div>
-    );
+    return tipInfo;
 }
 
 export default ViewTipInfo;
