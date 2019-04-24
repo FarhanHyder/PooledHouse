@@ -11,7 +11,10 @@
 // shift_position
 // takehome
 // business_name
-// business_address
+// business_street_address
+// business_city
+// business_state
+// business_zip
 
 import React from 'react';
 import {Button, Form} from 'react-bootstrap'

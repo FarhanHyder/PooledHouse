@@ -16,7 +16,10 @@ class TipInfoForm extends React.Component {
             shift_position: 'Bartender',
             takehome: '',
             business_name: '',
-            business_address: '',
+            business_street_address: '',
+            business_city: '',
+            business_state: '', 
+            business_zip: ''
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,7 +40,10 @@ class TipInfoForm extends React.Component {
             shift_position: this.state.shift_position,
             takehome: this.state.takehome,
             business_name: this.state.business_name,
-            business_address: this.state.business_address
+            business_street_address: this.state.business_street_address,
+            business_city: this.state.business_city,
+            business_state: this.state.business_state,
+            business_zip: this.state.business_zip
         }
         console.log(t_e);
         try {
@@ -52,7 +58,10 @@ class TipInfoForm extends React.Component {
                 shift_position: 'Bartender',
                 takehome: '',
                 business_name: '',
-                business_address: '',
+                business_street_address: '',
+                business_city: '', 
+                business_state: '',
+                business_zip: ''
             })
         } catch (err) {
             console.log('error creating tipentry: ', err);
@@ -76,7 +85,10 @@ class TipInfoForm extends React.Component {
                 shift_position,
                 takehome,
                 business_name,
-                business_address
+                business_street_address,
+                business_city,
+                business_state,
+                business_zip
             } = this.state;
 
         return (
@@ -161,13 +173,13 @@ class TipInfoForm extends React.Component {
                         </Form.Group>
                     </Col>
                     <Col>
-                        <Form.Group controlID="business_address">
-                            <Form.Label>Business Address</Form.Label>
+                        <Form.Group controlID="business_street_address">
+                            <Form.Label>Business Street Address</Form.Label>
                             <Form.Control
                                 type='text'
-                                placeholder="i.e. 123 E 9th St, New York, NY 99999"
-                                name="business_address"
-                                value={business_address}
+                                placeholder="i.e. 123 E 9th St"
+                                name="business_street_address"
+                                value={business_street_address}
                                 onChange={this.handleChange}
                             />
                             <Button 

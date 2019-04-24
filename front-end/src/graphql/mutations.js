@@ -11,7 +11,10 @@ export const createTipEntry = `mutation CreateTipEntry($input: CreateTipEntryInp
     shift_position
     takehome
     business_name
-    business_address
+    business_street_address
+    business_city
+    business_state
+    business_zip
   }
 }
 `;
@@ -25,7 +28,10 @@ export const updateTipEntry = `mutation UpdateTipEntry($input: UpdateTipEntryInp
     shift_position
     takehome
     business_name
-    business_address
+    business_street_address
+    business_city
+    business_state
+    business_zip
   }
 }
 `;
@@ -39,7 +45,10 @@ export const deleteTipEntry = `mutation DeleteTipEntry($input: DeleteTipEntryInp
     shift_position
     takehome
     business_name
-    business_address
+    business_street_address
+    business_city
+    business_state
+    business_zip
   }
 }
 `;
