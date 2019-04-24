@@ -174,12 +174,53 @@ class TipInfoForm extends React.Component {
                     </Col>
                     <Col>
                         <Form.Group controlID="business_street_address">
-                            <Form.Label>Business Street Address</Form.Label>
+                            <Form.Label>Street Address</Form.Label>
                             <Form.Control
                                 type='text'
                                 placeholder="i.e. 123 E 9th St"
                                 name="business_street_address"
                                 value={business_street_address}
+                                onChange={this.handleChange}
+                            />
+                            <Button 
+                                variant="primary" 
+                                type="submit" 
+                                onClick={(ev) => this.handleSubmit(ev)}>Submit
+                            </Button>
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group controlID="business_city">
+                            <Form.Label>City</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder="i.e. New York City"
+                                name="business_city"
+                                value={business_city}
+                                onChange={this.handleChange}
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group controlID="business_state">
+                            <Form.Label>State</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder="i.e. NY"
+                                name="business_state"
+                                value={business_state}
+                                onChange={this.handleChange}
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group controlID="business_zip">
+                            <Form.Label>Zipcode</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder="i.e. 11105"
+                                name="business_zip"
+                                value={business_zip}
                                 onChange={this.handleChange}
                             />
                             <Button 
