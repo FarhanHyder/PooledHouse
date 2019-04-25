@@ -24,7 +24,7 @@ const ViewTipInfo = (props) => {
         return (
             <div className="tipInfo">
                 <h2 className="busTitle">{tips.business_name}</h2>
-                <div className="addr">{tips.business_address}</div>
+                <div className="addr">{tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip}</div>
                 <div>Position: {tips.shift_position}</div>
                 <div>Tips : ${tips.takehome}</div>
                 <div>Hours Worked : {tips.shift_length}</div>

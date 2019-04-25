@@ -25,7 +25,7 @@ export const averageTipsByBusiness = (tipInfo) => {
         let businessName = tips.business_name;
         if (! business.hasOwnProperty(businessName)) {
             business[businessName] = {business_name: businessName,
-                                    business_street_address: tips.business_street_address, 
+                                    business_street_address: tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip, 
                                     tipsPerHour: (tips.takehome / tips.shift_length),
                                     totalHour: tips.shift_length};
         }
