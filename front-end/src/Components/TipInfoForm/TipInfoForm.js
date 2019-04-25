@@ -19,7 +19,8 @@ class TipInfoForm extends React.Component {
             business_street_address: '',
             business_city: '',
             business_state: '', 
-            business_zip: ''
+            business_zip: '',
+            neighborhood: '',
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -43,7 +44,8 @@ class TipInfoForm extends React.Component {
             business_street_address: this.state.business_street_address,
             business_city: this.state.business_city,
             business_state: this.state.business_state,
-            business_zip: this.state.business_zip
+            business_zip: this.state.business_zip,
+            neighborhood: this.state.neighborhood,
         }
         console.log(t_e);
         try {
@@ -61,7 +63,8 @@ class TipInfoForm extends React.Component {
                 business_street_address: '',
                 business_city: '', 
                 business_state: '',
-                business_zip: ''
+                business_zip: '',
+                neighborhood: ''
             })
         } catch (err) {
             console.log('error creating tipentry: ', err);
@@ -79,6 +82,23 @@ class TipInfoForm extends React.Component {
 
     render () {
 
+        const neighborhoods = [ 'Battery Park City', 'Central Harlem', 'Central Park',
+                                'Chelsea', 'Chinatown', 'City Hall Area', 'East Village',
+                                'Ellis Island', 'Financial District', 'Flatiron District',
+                                'Governors Island', 'Gramercy', 'Greenwich Village', 'Hamilton Heights',
+                                "Hell's Kitchen", 'Inwood', 'Kips Bay', 'Liberty Island', 'Little Italy',
+                                'Lower East Side', 'Marble Hill', 'Midtown East', 'Midtown West', 'Morningside Heights',
+                                'Murray Hill', 'NoHo', 'Nolita', "Randall's Island", 'Roosevelt Island', 
+                                'SoHo', 'Spanish Harlem', 'Stuyvesant Town', 'Tribeca', 'Two Bridges', 'Upper East Side',
+                                'Upper West Side', 'Washington Heights', 'West Village'
+                               ];
+        
+        let hoodlist = [];
+
+        neighborhoods.forEach(function(neighborhood) {
+            hoodlist.push({ label: neighborhood, value: neighborhood })
+        })
+
         const { shift_length, 
                 shift_time,
                 shift_date,
@@ -88,7 +108,8 @@ class TipInfoForm extends React.Component {
                 business_street_address,
                 business_city,
                 business_state,
-                business_zip
+                business_zip,
+                neighborhood
             } = this.state;
 
         return (
@@ -218,11 +239,27 @@ class TipInfoForm extends React.Component {
                                 value={business_zip}
                                 onChange={this.handleChange}
                             />
-                            <Button 
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group controlID="neighborhood">
+                                <Form.Label>Neighborhood</Form.Label>
+                                <Form.Control 
+                                    as='select' 
+                                    name="neighborhood" 
+                                    value={neighborhood}
+                                    onChange={this.handleChange}>
+                                    { neighborhoods.map((neighborhood, index) => {
+                                        return (
+                                            <option key="{index}" value="{neighborhood}">{neighborhood}</option>
+                                        )
+                                    })}
+                                </Form.Control>
+                                <Button 
                                 variant="primary" 
                                 type="submit" 
                                 onClick={(ev) => this.handleSubmit(ev)}>Submit
-                            </Button>
+                                </Button>
                         </Form.Group>
                     </Col>
                 </Row>
