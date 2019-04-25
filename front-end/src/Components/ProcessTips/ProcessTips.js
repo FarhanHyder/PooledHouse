@@ -18,10 +18,10 @@
 
 import React from 'react';
 
-export const averageTipsByBusiness = (tipInfo) => {
+export const averageTipsByBusiness = (tipsInfo) => {
     // let tipInfo = [...props.tipInfo];
-    const business = new Object();
-    tipInfo.forEach(tips => {
+    const business = {};
+    tipsInfo.forEach(tips => {
         let businessName = tips.business_name;
         if (! business.hasOwnProperty(businessName)) {
             business[businessName] = {business_name: businessName,
@@ -38,6 +38,33 @@ export const averageTipsByBusiness = (tipInfo) => {
     return business;
 }
 
+export const getDay = (date) => {
+    let day = date.getDay();
+    if(day === 0) {
+        return "Sunday";
+    }
+    else if (day === 1) {
+        return "Monday";
+    }
+    else if (day === 2) {
+        return "Tuesday";
+    }
+    else if (day === 3) {
+        return "Wednesday"
+    }
+    else if (day === 4) {
+        return "Thursday";
+    }
+    else if (day === 5) {
+        return "Friday";
+    }
+    else if (day === 6) {
+        return "Sunday";
+    }
+}
+
+export const averageTipsByBusinessDay = (tipsInfo) => {
+}
 const averageTipsByPosition = (props) => {
 
 }
