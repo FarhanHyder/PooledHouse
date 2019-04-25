@@ -188,6 +188,20 @@ class App extends Component {
         </Connect>
       );
 
+      const mapData = (
+        <Connect query={graphqlOperation(queries.listTipEntrys)}>
+        {({ data: { listTipEntrys }, loading, error }) => {
+            if (error) return (<h3>Error</h3>);
+            if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+            return (
+              <div>
+                <Map tip_info={listTipEntrys.items} />
+              </div>
+            )
+        }}
+        </Connect>
+      )
+
 
     return (
       <div className="App">
@@ -201,7 +215,7 @@ class App extends Component {
               <button type="primary" onClick={()=>{this.setState({detailList : true, showUserTips: false})}}>View Detailed Tip Data</button>
             </div> 
             {viewData}
-         </div> : <div> <Map /> </div>}
+         </div> : <div> {mapData} </div>}
       </div>
     );
   }

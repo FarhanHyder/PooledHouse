@@ -15,6 +15,7 @@ export const onCreateTipEntry = `subscription OnCreateTipEntry {
     business_city
     business_state
     business_zip
+    neighborhood
   }
 }
 `;
@@ -32,6 +33,7 @@ export const onUpdateTipEntry = `subscription OnUpdateTipEntry {
     business_city
     business_state
     business_zip
+    neighborhood
   }
 }
 `;
@@ -49,6 +51,7 @@ export const onDeleteTipEntry = `subscription OnDeleteTipEntry {
     business_city
     business_state
     business_zip
+    neighborhood
   }
 }
 `;

@@ -15,6 +15,7 @@ export const getTipEntry = `query GetTipEntry($id: ID!) {
     business_city
     business_state
     business_zip
+    neighborhood
   }
 }
 `;
@@ -37,6 +38,7 @@ export const listTipEntrys = `query ListTipEntrys(
       business_city
       business_state
       business_zip
+      neighborhood
     }
     nextToken
   }
