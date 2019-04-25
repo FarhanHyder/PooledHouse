@@ -11,7 +11,10 @@
 // shift_position
 // takehome
 // business_name
-// business_address
+// business_street_address
+// business_city
+// business_state
+// business_zip
 
 import React from 'react';
 import {Button, Form} from 'react-bootstrap'
@@ -24,7 +27,7 @@ const averageTipsByBusiness = (tipInfo) => {
         let businessName = tips.business_name;
         if (! business.hasOwnProperty(businessName)) {
             business[businessName] = {business_name: businessName,
-                                    business_address: tips.business_address, 
+                                    business_street_address: tips.business_street_address, 
                                     tipsPerHour: (tips.takehome / tips.shift_length),
                                     totalHour: tips.shift_length};
         }
@@ -65,7 +68,7 @@ const ViewTipsAverage = (props) => {
         return (
         <div className ="tipsByBusiness">
             <div className="busTitle">{processedTips[tips].business_name}</div>
-            <div className="addr">{processedTips[tips].business_address}</div>
+            <div className="addr">{processedTips[tips].business_street_address}</div>
             <div>Tips : ${Number.parseFloat(processedTips[tips].tipsPerHour).toFixed(2)}/Hour</div>
         </div>);
     });
