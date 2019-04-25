@@ -11,7 +11,10 @@
 // shift_position
 // takehome
 // business_name
-// business_address
+// business_street_address
+// business_city
+// business_state
+// business_zip
 
 import React from 'react';
 
@@ -22,7 +25,7 @@ export const averageTipsByBusiness = (tipInfo) => {
         let businessName = tips.business_name;
         if (! business.hasOwnProperty(businessName)) {
             business[businessName] = {business_name: businessName,
-                                    business_address: tips.business_address, 
+                                    business_address: tips.business_street_address, 
                                     tipsPerHour: (tips.takehome / tips.shift_length),
                                     totalHour: tips.shift_length};
         }
