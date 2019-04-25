@@ -11,4 +11,5 @@ type TipEntry @model {
   business_city: String!
   business_state: String!
   business_zip: String!
+  neighborhood: String!
 }
