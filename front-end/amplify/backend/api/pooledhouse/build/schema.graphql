@@ -7,7 +7,10 @@ type TipEntry {
   shift_position: String!
   takehome: Int!
   business_name: String!
-  business_address: String!
+  business_street_address: String!
+  business_city: String!
+  business_state: String!
+  business_zip: String!
 }
 
 enum ModelSortDirection {
@@ -84,7 +87,10 @@ input ModelTipEntryFilterInput {
   shift_position: ModelStringFilterInput
   takehome: ModelIntFilterInput
   business_name: ModelStringFilterInput
-  business_address: ModelStringFilterInput
+  business_street_address: ModelStringFilterInput
+  business_city: ModelStringFilterInput
+  business_state: ModelStringFilterInput
+  business_zip: ModelStringFilterInput
   and: [ModelTipEntryFilterInput]
   or: [ModelTipEntryFilterInput]
   not: ModelTipEntryFilterInput
@@ -104,7 +110,10 @@ input CreateTipEntryInput {
   shift_position: String!
   takehome: Int!
   business_name: String!
-  business_address: String!
+  business_street_address: String!
+  business_city: String!
+  business_state: String!
+  business_zip: String!
 }
 
 input UpdateTipEntryInput {
@@ -116,7 +125,10 @@ input UpdateTipEntryInput {
   shift_position: String
   takehome: Int
   business_name: String
-  business_address: String
+  business_street_address: String
+  business_city: String
+  business_state: String
+  business_zip: String
 }
 
 input DeleteTipEntryInput {

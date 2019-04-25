@@ -11,7 +11,10 @@ export const onCreateTipEntry = `subscription OnCreateTipEntry {
     shift_position
     takehome
     business_name
-    business_address
+    business_street_address
+    business_city
+    business_state
+    business_zip
   }
 }
 `;
@@ -25,7 +28,10 @@ export const onUpdateTipEntry = `subscription OnUpdateTipEntry {
     shift_position
     takehome
     business_name
-    business_address
+    business_street_address
+    business_city
+    business_state
+    business_zip
   }
 }
 `;
@@ -39,7 +45,10 @@ export const onDeleteTipEntry = `subscription OnDeleteTipEntry {
     shift_position
     takehome
     business_name
-    business_address
+    business_street_address
+    business_city
+    business_state
+    business_zip
   }
 }
 `;
