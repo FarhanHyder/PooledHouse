@@ -2,29 +2,51 @@ import React from 'react';
 import ReactNYC from 'react-nyc-choropleth';
 
 class Map extends React.Component {
+
   render() {
 
     const mapboxAccessToken = "pk.eyJ1IjoicG9vbGVkaG91c2UiLCJhIjoiY2p1aGg2N2o5MHozZTRkcDhrZDltMXp6dyJ9.SXu4dBf_bVC8Xlpy7WnYqQ"; //TODO: delete token before final deployment
     const mapboxType = "light";
     const position = [40.7831, -73.9712];
     const zoom = 12;
-    // const data = {...nycData};
-    const data = [
-        {
-          name: "Chelsea",
-          values: [{label: "Mean $", val: 250},{label: "Median $", val: 221}, {label: "Total Businesses", val: "89"}],
-          color: "#E31A1C"
-        },
-        {
-          name: "SoHo",
-          values: [{label: "Mean $", val: 445},{label: "Median $", val: 450}, {label: "Total Businesses", val: "34"}],
-          color: "#1b7837"
-        }
-      ]
+    
+    const averageTipsByNeighborhood = (tip_info) => {
+      const neighborhoods = new Object();
+      tip_info.forEach(entry => {
+          let hoodName = entry.neighborhood;
+          if (! neighborhoods.hasOwnProperty(hoodName)) {
+              neighborhoods[hoodName] = {neighborhood: hoodName,
+                                      tipsPerHour: (entry.takehome / entry.shift_length),
+                                      totalHour: entry.shift_length};
+          }
+          else {
+              let hours = (neighborhoods[hoodName].totalHour + entry.shift_length);
+              neighborhoods[hoodName].tipsPerHour = neighborhoods[hoodName].tipsPerHour * neighborhoods[hoodName].totalHour / hours + entry.takehome / hours;
+              neighborhoods[hoodName].totalHour = hours;
+          }
+      });
+      return neighborhoods;
+    }
 
+    const averageTipsClean = (average_tips) => {
+      let data = [];
+      let element = {};
+      for (var entry in average_tips) {
+        element = {};
+        element.name = average_tips[entry].neighborhood;
+        element.values = [];
+        element.values.push({label: "Avg Hourly $", val: average_tips[entry].tipsPerHour});
+        element.color = "#E31A1C"
+        data.push(element);
+      }
+      return data;
+    }
+    
     const neighborhoodStyle = { weight: 1, opacity: 1, color: '#666', dashArray: '3', fillOpacity: 0.7 };
     const neighborhoodHoverStyle = { weight: 5, color: '#FFF', dashArray: '1', fillOpacity: 0.7 };
     const excludeNeighborhoods = ["Liberty Island", "Ellis Island"];
+
+    const data = averageTipsClean(averageTipsByNeighborhood(this.props.tip_info));
 
     return (
       <div>
@@ -46,7 +68,6 @@ class Map extends React.Component {
           neighborhoodHoverStyle={neighborhoodHoverStyle}
           excludeNeighborhoods={excludeNeighborhoods}
         />
-
       </div>
     )
   }
