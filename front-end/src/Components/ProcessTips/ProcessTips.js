@@ -25,7 +25,7 @@ export const averageTipsByBusiness = (tipInfo) => {
         let businessName = tips.business_name;
         if (! business.hasOwnProperty(businessName)) {
             business[businessName] = {business_name: businessName,
-                                    business_address: tips.business_street_address, 
+                                    business_street_address: tips.business_street_address, 
                                     tipsPerHour: (tips.takehome / tips.shift_length),
                                     totalHour: tips.shift_length};
         }
@@ -66,8 +66,8 @@ const ViewTipsAverage = (props) => {
     let view = Object.keys(processedTips).map(tips => {
         return (
         <div className ="tipsByBusiness">
-            <h2 className="busTitle">{processedTips[tips].business_name}</h2>
-            <div className="addr">{processedTips[tips].business_address}</div>
+            <div className="busTitle">{processedTips[tips].business_name}</div>
+            <div className="addr">{processedTips[tips].business_street_address}</div>
             <div>Tips : ${Number.parseFloat(processedTips[tips].tipsPerHour).toFixed(2)}/Hour</div>
         </div>);
     });

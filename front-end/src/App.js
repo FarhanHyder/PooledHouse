@@ -129,6 +129,7 @@ class App extends Component {
         alt="Pooled House logo"
         />
       </Navbar.Brand>
+      
         <Form inline>
           <FormControl type="text" placeholder="ex: upper manhattan" className="mr-sm" />
           <Button type="submit" variant="outline-light"><span>{"\uD83D\uDD0D"}</span></Button>

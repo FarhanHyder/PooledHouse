@@ -7,5 +7,8 @@ type TipEntry @model {
   shift_position: String!
   takehome: Int!
   business_name: String!
-  business_address: String!
+  business_street_address: String!
+  business_city: String!
+  business_state: String!
+  business_zip: String!
 }

@@ -1,0 +1,18 @@
+projects:
+  pooledhouse-phdev:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        graphQLApiId: tpdcoumewnbc5hxjln653qmm24
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql
+        region: us-east-1
+        maxDepth: 2
+      endpoints:
+        prod: >-
+          https://emyq5kcuofepfaoo5lrohkfdra.appsync-api.us-east-1.amazonaws.com/graphql

@@ -11,7 +11,10 @@ export const getTipEntry = `query GetTipEntry($id: ID!) {
     shift_position
     takehome
     business_name
-    business_address
+    business_street_address
+    business_city
+    business_state
+    business_zip
   }
 }
 `;
@@ -30,7 +33,10 @@ export const listTipEntrys = `query ListTipEntrys(
       shift_position
       takehome
       business_name
-      business_address
+      business_street_address
+      business_city
+      business_state
+      business_zip
     }
     nextToken
   }

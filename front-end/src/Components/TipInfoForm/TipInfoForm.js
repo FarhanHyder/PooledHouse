@@ -1,8 +1,8 @@
 import React from 'react';
 import {Col, Row, Container} from 'react-bootstrap';
-import {Form, Button, ButtonToolbar, Navbar} from 'react-bootstrap';
+import {Form, Button} from 'react-bootstrap';
 
-import Amplify, { API, graphqlOperation, Auth } from "aws-amplify";
+import { API, graphqlOperation, Auth } from "aws-amplify";
 import * as mutations from '../../graphql/mutations';
 
 class TipInfoForm extends React.Component {
@@ -16,7 +16,10 @@ class TipInfoForm extends React.Component {
             shift_position: 'Bartender',
             takehome: '',
             business_name: '',
-            business_address: '',
+            business_street_address: '',
+            business_city: '',
+            business_state: '', 
+            business_zip: ''
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,14 +40,16 @@ class TipInfoForm extends React.Component {
             shift_position: this.state.shift_position,
             takehome: this.state.takehome,
             business_name: this.state.business_name,
-            business_address: this.state.business_address
+            business_street_address: this.state.business_street_address,
+            business_city: this.state.business_city,
+            business_state: this.state.business_state,
+            business_zip: this.state.business_zip
         }
         console.log(t_e);
         try {
             await API.graphql(graphqlOperation(mutations.createTipEntry, {input: t_e}));
-            console.log('successfully created tipentry');
             console.log(t_e);
-            alert("successfully added tipentry");
+            alert("Success!");
             this.setState({
                 user: '',
                 shift_length: '',
@@ -53,7 +58,10 @@ class TipInfoForm extends React.Component {
                 shift_position: 'Bartender',
                 takehome: '',
                 business_name: '',
-                business_address: '',
+                business_street_address: '',
+                business_city: '', 
+                business_state: '',
+                business_zip: ''
             })
         } catch (err) {
             console.log('error creating tipentry: ', err);
@@ -67,7 +75,7 @@ class TipInfoForm extends React.Component {
         this.setState({
           user: un
         })
-      }
+    }
 
     render () {
 
@@ -77,7 +85,10 @@ class TipInfoForm extends React.Component {
                 shift_position,
                 takehome,
                 business_name,
-                business_address
+                business_street_address,
+                business_city,
+                business_state,
+                business_zip
             } = this.state;
 
         return (
@@ -162,13 +173,49 @@ class TipInfoForm extends React.Component {
                         </Form.Group>
                     </Col>
                     <Col>
-                        <Form.Group controlID="business_address">
-                            <Form.Label>Business Address</Form.Label>
+                        <Form.Group controlID="business_street_address">
+                            <Form.Label>Street Address</Form.Label>
                             <Form.Control
                                 type='text'
-                                placeholder="i.e. 123 E 9th St, New York, NY 99999"
-                                name="business_address"
-                                value={business_address}
+                                placeholder="i.e. 123 E 9th St"
+                                name="business_street_address"
+                                value={business_street_address}
+                                onChange={this.handleChange}
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group controlID="business_city">
+                            <Form.Label>City</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder="i.e. New York City"
+                                name="business_city"
+                                value={business_city}
+                                onChange={this.handleChange}
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group controlID="business_state">
+                            <Form.Label>State</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder="i.e. NY"
+                                name="business_state"
+                                value={business_state}
+                                onChange={this.handleChange}
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group controlID="business_zip">
+                            <Form.Label>Zipcode</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder="i.e. 11105"
+                                name="business_zip"
+                                value={business_zip}
                                 onChange={this.handleChange}
                             />
                             <Button 
