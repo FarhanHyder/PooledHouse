@@ -17,17 +17,15 @@
 // business_zip
 
 import React from 'react';
-import {Button, Form} from 'react-bootstrap'
-import FormControl from 'react-bootstrap/FormControl'
 
-const averageTipsByBusiness = (tipInfo) => {
+export const averageTipsByBusiness = (tipInfo) => {
     // let tipInfo = [...props.tipInfo];
     const business = new Object();
     tipInfo.forEach(tips => {
         let businessName = tips.business_name;
         if (! business.hasOwnProperty(businessName)) {
             business[businessName] = {business_name: businessName,
-                                    business_street_address: tips.business_street_address, 
+                                    business_street_address: tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip, 
                                     tipsPerHour: (tips.takehome / tips.shift_length),
                                     totalHour: tips.shift_length};
         }
@@ -55,12 +53,13 @@ const averageTipsByPositionAndShift = (props) => {
 const ViewTipsAverage = (props) => {
     // user selects the view option
     // function to process based on data called from above
-    let viewSelect = "Business";
-    // form to select filter type for average tips/hour
-    let tipsInfo = props.tipInfo;
-    let processedTips = null;
 
-    if (viewSelect === "Business") {
+    // form to select filter type for average tips/hour
+
+    let tipsInfo = props.tipInfo;
+
+    let processedTips = [];
+    if (props.process === "Business") {
         processedTips = averageTipsByBusiness(tipsInfo);
     }
     
@@ -72,27 +71,9 @@ const ViewTipsAverage = (props) => {
             <div>Tips : ${Number.parseFloat(processedTips[tips].tipsPerHour).toFixed(2)}/Hour</div>
         </div>);
     });
+
     // return view;
-    return (
-        // TODO: move the selector to the App.js
-        <div>
-            <Form  onSubmit = {()=>{viewSelect = this.event.value}}>
-                <Form.Group>
-                    <Form.Label>Select Option to View Average Tips by </Form.Label>
-                    <Form.Control as='select'>
-                        <option>Business</option>
-                        <option>Positon</option>
-                        <option>Neighborhood</option>
-                        <option>Highest Average Tips</option>
-                        <option>Lowest Average Tips</option>
-                    </Form.Control>
-                    <Button variant="primary" type = "submit">Submit</Button>
-                </Form.Group>
-            </Form>
-            {view}
-        </div>);
-    
-    // else ...
+    return view;
 }
 
 export default ViewTipsAverage;
