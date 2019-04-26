@@ -17,8 +17,9 @@
 // business_zip
 
 import React from 'react';
+import { all } from 'q';
 
-export const averageTipsByBusiness = (tipsInfo) => {
+const averageTipsByBusiness = (tipsInfo) => {
     // let tipInfo = [...props.tipInfo];
     const business = {};
     tipsInfo.forEach(tips => {
@@ -38,7 +39,7 @@ export const averageTipsByBusiness = (tipsInfo) => {
     return business;
 }
 
-export const getDay = (date) => {
+const getDay = (date) => {
     let day = date.getDay();
     if(day === 0) {
         return "Sunday";
@@ -63,8 +64,9 @@ export const getDay = (date) => {
     }
 }
 
-export const averageTipsByBusinessDay = (tipsInfo) => {
+const averageTipsByBusinessDay = (tipsInfo) => {
 }
+
 const averageTipsByPosition = (props) => {
 
 }
@@ -77,30 +79,4 @@ const averageTipsByPositionAndShift = (props) => {
 
 }
 
-const ViewTipsAverage = (props) => {
-    // user selects the view option
-    // function to process based on data called from above
-
-    // form to select filter type for average tips/hour
-
-    let tipsInfo = props.tipInfo;
-
-    let processedTips = [];
-    if (props.process === "Business") {
-        processedTips = averageTipsByBusiness(tipsInfo);
-    }
-    
-    let view = Object.keys(processedTips).map(tips => {
-        return (
-        <div className ="tipsByBusiness">
-            <div className="busTitle">{processedTips[tips].business_name}</div>
-            <div className="addr">{processedTips[tips].business_street_address}</div>
-            <div>Tips : ${Number.parseFloat(processedTips[tips].tipsPerHour).toFixed(2)}/Hour</div>
-        </div>);
-    });
-
-    // return view;
-    return view;
-}
-
-export default ViewTipsAverage;
+export {averageTipsByBusiness, averageTipsByBusinessDay};
