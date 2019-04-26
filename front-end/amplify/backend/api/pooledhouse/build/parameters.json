@@ -8,5 +8,5 @@
         ]
     },
     "S3DeploymentBucket": "front-end-20190411124924-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/3ab31d301ea60e82673ac9b15ba57eca8b876e79"
+    "S3DeploymentRootKey": "amplify-appsync-files/53df2ca20dfc98a4fd5a6fbfc701a85279ab519f"
 }

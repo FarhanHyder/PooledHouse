@@ -15,6 +15,7 @@ export const createTipEntry = `mutation CreateTipEntry($input: CreateTipEntryInp
     business_city
     business_state
     business_zip
+    neighborhood
   }
 }
 `;
@@ -32,6 +33,7 @@ export const updateTipEntry = `mutation UpdateTipEntry($input: UpdateTipEntryInp
     business_city
     business_state
     business_zip
+    neighborhood
   }
 }
 `;
@@ -49,6 +51,7 @@ export const deleteTipEntry = `mutation DeleteTipEntry($input: DeleteTipEntryInp
     business_city
     business_state
     business_zip
+    neighborhood
   }
 }
 `;
