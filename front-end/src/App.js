@@ -83,7 +83,7 @@ class App extends Component {
     this.setState({
       //showHome: !this.state.showHome,
       showTipUpdate: !this.state.showTipUpdate,
-      showListView: true
+      showListView: !this.state.showListView
     })
   }
 
