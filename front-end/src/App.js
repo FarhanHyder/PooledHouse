@@ -81,8 +81,9 @@ class App extends Component {
 
   handleTipUpdate = () => {
     this.setState({
-      showHome: !this.state.showHome,
-      showTipUpdate: !this.state.showTipUpdate
+      //showHome: !this.state.showHome,
+      showTipUpdate: !this.state.showTipUpdate,
+      showListView: true
     })
   }
 
@@ -156,17 +157,17 @@ class App extends Component {
 
         <ButtonToolbar>
           <ToggleButtonGroup type="radio" name="options" defaultValue={1} onChange={this.handleChangeView}>
-            <ToggleButton value={1} variant="warning">List View</ToggleButton>
-            <ToggleButton value={2} variant="warning">Map View</ToggleButton>
+            <ToggleButton value={1} variant="warning">Map View</ToggleButton>
+            <ToggleButton value={2} variant="warning">List View</ToggleButton>
           </ToggleButtonGroup>
         </ButtonToolbar>
         
         <ButtonToolbar>
-          <Button 
+          {/* <Button 
             className="text-color-white" 
             onClick={this.handleTipUpdate}> Add New Tips
-          </Button>
-          <Button onClick={()=>{this.setState({detailList : false, showUserTips: true})}}>
+          </Button> */}
+          <Button onClick={()=>{this.setState({detailList : false, showUserTips: true}); this.handleTipUpdate()}}>
             My Tips
           </Button>
         </ButtonToolbar>
