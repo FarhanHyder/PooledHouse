@@ -258,7 +258,7 @@ class TipInfoForm extends React.Component {
                                 <Button 
                                 variant="primary" 
                                 type="submit" 
-                                onClick={(ev) => this.handleSubmit(ev)}>Submit
+                                onClick={(ev) => this.handleSubmit(ev)}>Add Tips
                                 </Button>
                         </Form.Group>
                     </Col>
