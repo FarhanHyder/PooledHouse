@@ -1,5 +1,25 @@
 // All unit tests will reside here
 
+const { averageTipsByBusiness } = require('../src/Components/ProcessTips/ProcessTips');
+
+test('Should return average per business', () => {
+  const average = 'test';//= averageTipsByBusiness([{
+//    'shift_length':
+// shift_time
+// shift_date
+// shift_position
+// takehome
+// business_name
+// business_street_address
+// business_city
+// business_state
+// business_zip
+//  }]);
+//  expect(average).toEqual({one: 1, two: 2});
+
+expect(average).toEqual('test');
+});
+
 //const { ViewTipInfo } = require('../src/Components/ViewTipInfo/ViewTipInfo');
 
 test('Should return a div with all tip info', () => {
