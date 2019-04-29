@@ -251,7 +251,7 @@ class TipInfoForm extends React.Component {
                                     onChange={this.handleChange}>
                                     { neighborhoods.map((neighborhood, index) => {
                                         return (
-                                            <option key="{index}" value="{neighborhood}">{neighborhood}</option>
+                                            <option key={index} value={neighborhood}>{neighborhood}</option>
                                         )
                                     })}
                                 </Form.Control>
