@@ -103,6 +103,22 @@ class App extends Component {
       positionFilter : event.target.value
     })
   }
+
+  handleHomeView = () => {
+    this.setState({
+      showHome: true,
+      showSignUp: false,
+      showTipUpdate: false,
+      curr_user_username: '',
+      // userProfile : "",
+      showListView: false,
+      showMapView: true,
+      detailList: false,
+      showUserTips: false,
+      processFilter: "Business",
+      positionFilter: "All Position"
+    })
+  }
   //this grabs username attribute from current user.  
   //componentDidMount is executed after the webpage is rendered,
   //allowing for the page to be reloaded with data from API calls?
@@ -121,13 +137,16 @@ class App extends Component {
       <Navbar className="bg-olive justify-content-between">
 
       <Navbar.Brand>
-        <img
+        <a href='#' onClick={this.handleHomeView}>
+        <img 
         src={ logo }
         width="200"
         height="64"
         className="d-inline-block align-top"
         alt="Pooled House logo"
         />
+        </a>
+
       </Navbar.Brand>
       
         <Form inline>
