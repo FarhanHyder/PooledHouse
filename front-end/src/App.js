@@ -57,8 +57,8 @@ class App extends Component {
       showTipUpdate: false,
       curr_user_username: '',
       // userProfile : "",
-      showListView: true,
-      showMapView: false,
+      showListView: false,
+      showMapView: true,
       detailList: false,
       showUserTips: false,
       processFilter: "Business",
@@ -81,8 +81,9 @@ class App extends Component {
 
   handleTipUpdate = () => {
     this.setState({
-      showHome: !this.state.showHome,
-      showTipUpdate: !this.state.showTipUpdate
+      //showHome: !this.state.showHome,
+      showTipUpdate: !this.state.showTipUpdate,
+      showListView: !this.state.showListView
     })
   }
 
@@ -104,6 +105,22 @@ class App extends Component {
       positionFilter : event.target.value
     })
   }
+
+  handleHomeView = () => {
+    this.setState({
+      showHome: true,
+      showSignUp: false,
+      showTipUpdate: false,
+      curr_user_username: '',
+      // userProfile : "",
+      showListView: false,
+      showMapView: true,
+      detailList: false,
+      showUserTips: false,
+      processFilter: "Business",
+      positionFilter: "All Position"
+    })
+  }
   //this grabs username attribute from current user.  
   //componentDidMount is executed after the webpage is rendered,
   //allowing for the page to be reloaded with data from API calls?
@@ -122,13 +139,16 @@ class App extends Component {
       <Navbar className="bg-olive justify-content-between">
 
       <Navbar.Brand>
-        <img
+        <a href='#' onClick={this.handleHomeView}>
+        <img 
         src={ logo }
         width="200"
         height="64"
         className="d-inline-block align-top"
         alt="Pooled House logo"
         />
+        </a>
+
       </Navbar.Brand>
       
         <Form inline>
@@ -138,17 +158,17 @@ class App extends Component {
 
         <ButtonToolbar>
           <ToggleButtonGroup type="radio" name="options" defaultValue={1} onChange={this.handleChangeView}>
-            <ToggleButton value={1} variant="warning">List View</ToggleButton>
-            <ToggleButton value={2} variant="warning">Map View</ToggleButton>
+            <ToggleButton value={1} variant="warning">Map View</ToggleButton>
+            <ToggleButton value={2} variant="warning">List View</ToggleButton>
           </ToggleButtonGroup>
         </ButtonToolbar>
         
         <ButtonToolbar>
-          <Button 
+          {/* <Button 
             className="text-color-white" 
             onClick={this.handleTipUpdate}> Add New Tips
-          </Button>
-          <Button onClick={()=>{this.setState({detailList : false, showUserTips: true})}}>
+          </Button> */}
+          <Button onClick={()=>{this.setState({detailList : false, showUserTips: true}); this.handleTipUpdate()}}>
             My Tips
           </Button>
         </ButtonToolbar>
