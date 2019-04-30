@@ -251,14 +251,14 @@ class TipInfoForm extends React.Component {
                                     onChange={this.handleChange}>
                                     { neighborhoods.map((neighborhood, index) => {
                                         return (
-                                            <option key="{index}" value="{neighborhood}">{neighborhood}</option>
+                                            <option key={index} value={neighborhood}>{neighborhood}</option>
                                         )
                                     })}
                                 </Form.Control>
                                 <Button 
                                 variant="primary" 
                                 type="submit" 
-                                onClick={(ev) => this.handleSubmit(ev)}>Submit
+                                onClick={(ev) => this.handleSubmit(ev)}>Add Tips
                                 </Button>
                         </Form.Group>
                     </Col>
