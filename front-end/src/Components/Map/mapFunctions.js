@@ -46,6 +46,7 @@ const getLevel = (amount, max) =>{
 }
 
 //this function takes db tipentry list and returns an object containing neighborhood name, avg tips/hour, total hours
+//deprecated
 const averageTipsByNeighborhood = (tip_info) => {
     console.log(tip_info);
     const neighborhoods = new Object();
@@ -66,6 +67,7 @@ const averageTipsByNeighborhood = (tip_info) => {
 }
 
 //this function works just like averageTipsByNeighborhood, but filters by day of week.
+//deprecated
 const aTBNDayParse = (tip_info, day) => {
     console.log(tip_info);
     const neighborhoods = new Object();
@@ -89,7 +91,32 @@ const aTBNDayParse = (tip_info, day) => {
     return neighborhoods;
 }
 
+//this works like the original averageTipByNeighborhood, but filters by day, shift, and position.
+const aTBNMasterParse = (tip_info, day, shift, position) => {
+    console.log(tip_info);
+    const neighborhoods = new Object();
+    tip_info.forEach(entry => {
+        let e_day = new Date(entry.shift_date).getDay();
+        e_day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][e_day];
+        if ((day == 'All' || e_day == day) && 
+            (shift == 'All' ||  entry.shift_time == shift) && 
+            (position == 'All' || entry.shift_position == position)) {
 
+                let hoodName = entry.neighborhood;
+                if (! neighborhoods.hasOwnProperty(hoodName)) {
+                    neighborhoods[hoodName] = {neighborhood: hoodName,
+                                            tipsPerHour: (entry.takehome / entry.shift_length),
+                                            totalHour: entry.shift_length};
+                }
+                else {
+                    let hours = (neighborhoods[hoodName].totalHour + entry.shift_length);
+                    neighborhoods[hoodName].tipsPerHour = neighborhoods[hoodName].tipsPerHour * neighborhoods[hoodName].totalHour / hours + entry.takehome / hours;
+                    neighborhoods[hoodName].totalHour = hours;
+                }
+        }
+    });
+    return neighborhoods;
+}
 
 //takes the neighborhoods object returns by averageTipsByNeighborhood and returns an object for use by reactnyc component
 const averageTipsClean = (average_tips) => {
@@ -107,4 +134,4 @@ const averageTipsClean = (average_tips) => {
     return data;
 }
 
-export { getColor, averageTipsByNeighborhood, averageTipsClean, aTBNDayParse };
+export { getColor, averageTipsClean, aTBNMasterParse };
