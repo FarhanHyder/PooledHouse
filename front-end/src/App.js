@@ -167,7 +167,7 @@ class App extends Component {
             className="text-color-white" 
             onClick={this.handleTipUpdate}> Add New Tips
           </Button> */}
-          <Button onClick={()=>{this.setState({detailList : false, showUserTips: true}); this.handleTipUpdate()}}>
+          <Button onClick={()=>{this.setState({detailList: false, showUserTips: true}); this.handleTipUpdate()}}>
             My Tips
           </Button>
         </ButtonToolbar>
