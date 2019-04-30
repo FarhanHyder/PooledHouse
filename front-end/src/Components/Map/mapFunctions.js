@@ -11,30 +11,38 @@ const HIGHEST = 200;        // FIXME: fetch this data from database
 
 // pre: a number as a param
 // post: return color code
-const getColor = (amount) =>{
-    const level = getLevel(amount);
+/*
+const getColor = (amount, max) =>{
+    const level = getLevel(amount, max);
     switch(level){
-        case 6:
+        case 7:
             return EMERALD_GREEN;
-        case 5:
+        case 6:
             return PARAKEET_GREEN;
-        case 4:
+        case 5:
             return LIME_GREEN;
-        case 3:
+        case 4:
             return CRIMSON_RED;
-        case 2:
+        case 3:
             return ORANGE; 
         default:
             return NAVAJO_WHITE;
-
     }
+}
+*/
 
+const getColor = (amount) => {
+    if (amount < 100) return ORANGE;
+    if (amount < 200) return CRIMSON_RED;
+    if (amount < 300) return LIME_GREEN;
+    if (amount < 400) return PARAKEET_GREEN;
+    return EMERALD_GREEN;
 }
 
 // pre: a number as a param
 // post: return an integer between [1,6]
-const getLevel = (amount) =>{
-    return Math.floor((amount*7)/HIGHEST);
+const getLevel = (amount, max) =>{
+    return Math.floor((amount*7)/max);
 }
 
-
+export { getColor };

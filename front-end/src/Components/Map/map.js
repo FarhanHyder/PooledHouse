@@ -2,6 +2,7 @@ import React from 'react';
 import ReactNYC from 'react-nyc-choropleth';
 import { API, graphqlOperation } from "aws-amplify";
 import * as queries from '../../graphql/queries';
+import { getColor } from './mapFunctions';
 
 class Map extends React.Component {
   constructor(props) {
@@ -55,7 +56,8 @@ class Map extends React.Component {
         element.name = average_tips[entry].neighborhood;
         element.values = [];
         element.values.push({label: "Avg Hourly $", val: Math.floor(average_tips[entry].tipsPerHour)});
-        element.color = "#E31A1C"
+        console.log(element.values[0].val);
+        element.color = getColor(element.values[0].val);
         data.push(element);
       }
       return data;
@@ -94,9 +96,6 @@ class Map extends React.Component {
 }
 
 export default Map;
-
-
-
 
 
 
