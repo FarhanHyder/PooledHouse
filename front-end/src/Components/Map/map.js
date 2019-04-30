@@ -2,14 +2,20 @@ import React from 'react';
 import ReactNYC from 'react-nyc-choropleth';
 import { API, graphqlOperation } from "aws-amplify";
 import * as queries from '../../graphql/queries';
-import { getColor, averageTipsByNeighborhood, averageTipsClean } from './mapFunctions';
+import { getColor, averageTipsByNeighborhood, averageTipsClean, aTBNDayParse } from './mapFunctions';
+import { Form } from 'react-bootstrap'
 
 class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tip_data: [],
+      day: 'All',
     }
+  }
+
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+    console.log(this.state.day);
   }
 /*
   async componentDidMount() {
@@ -34,11 +40,35 @@ class Map extends React.Component {
     const neighborhoodHoverStyle = { weight: 5, color: '#FFF', dashArray: '1', fillOpacity: 0.7 };
     const excludeNeighborhoods = ["Liberty Island", "Ellis Island"];
 
-    const data = averageTipsClean(averageTipsByNeighborhood(this.props.tip_info));
-    //const data = averageTipsClean(averageTipsByNeighborhood(this.state.tip_data))
+    let data = '';
+    const day = this.state.day;
 
+    if (this.state.day == 'All') {
+      data = averageTipsClean(averageTipsByNeighborhood(this.props.tip_info));
+    } else {
+      data = averageTipsClean(aTBNDayParse(this.props.tip_info, this.state.day));
+      console.log(this.state.day);
+    }
+    
     return (
       <div>
+        <Form.Group controlID="day">
+                <Form.Label>Filter by Day</Form.Label>
+                <Form.Control 
+                    as='select' 
+                    name="day" 
+                    value={day}
+                    onChange={this.handleChange}>
+                    <option>All</option>
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                    <option>Saturday</option>
+                    <option>Sunday</option>
+                </Form.Control>
+        </Form.Group>
         <ReactNYC
           mapboxAccessToken={mapboxAccessToken} // Required
           mapHeight="600px" // Required

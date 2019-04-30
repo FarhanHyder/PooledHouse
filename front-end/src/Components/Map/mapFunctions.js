@@ -45,7 +45,9 @@ const getLevel = (amount, max) =>{
     return Math.floor((amount*7)/max);
 }
 
+//this function takes db tipentry list and returns an object containing neighborhood name, avg tips/hour, total hours
 const averageTipsByNeighborhood = (tip_info) => {
+    console.log(tip_info);
     const neighborhoods = new Object();
     tip_info.forEach(entry => {
         let hoodName = entry.neighborhood;
@@ -63,6 +65,33 @@ const averageTipsByNeighborhood = (tip_info) => {
     return neighborhoods;
 }
 
+//this function works just like averageTipsByNeighborhood, but filters by day of week.
+const aTBNDayParse = (tip_info, day) => {
+    console.log(tip_info);
+    const neighborhoods = new Object();
+    tip_info.forEach(entry => {
+        let e_day = new Date(entry.shift_date).getDay();
+        e_day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][e_day];
+        if (e_day == day) {
+            let hoodName = entry.neighborhood;
+            if (! neighborhoods.hasOwnProperty(hoodName)) {
+                neighborhoods[hoodName] = {neighborhood: hoodName,
+                                        tipsPerHour: (entry.takehome / entry.shift_length),
+                                        totalHour: entry.shift_length};
+            }
+            else {
+                let hours = (neighborhoods[hoodName].totalHour + entry.shift_length);
+                neighborhoods[hoodName].tipsPerHour = neighborhoods[hoodName].tipsPerHour * neighborhoods[hoodName].totalHour / hours + entry.takehome / hours;
+                neighborhoods[hoodName].totalHour = hours;
+            }
+        }
+    });
+    return neighborhoods;
+}
+
+
+
+//takes the neighborhoods object returns by averageTipsByNeighborhood and returns an object for use by reactnyc component
 const averageTipsClean = (average_tips) => {
     let data = [];
     let element = {};
@@ -78,4 +107,4 @@ const averageTipsClean = (average_tips) => {
     return data;
 }
 
-export { getColor, averageTipsByNeighborhood, averageTipsClean };
+export { getColor, averageTipsByNeighborhood, averageTipsClean, aTBNDayParse };
