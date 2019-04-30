@@ -45,4 +45,37 @@ const getLevel = (amount, max) =>{
     return Math.floor((amount*7)/max);
 }
 
-export { getColor };
+const averageTipsByNeighborhood = (tip_info) => {
+    const neighborhoods = new Object();
+    tip_info.forEach(entry => {
+        let hoodName = entry.neighborhood;
+        if (! neighborhoods.hasOwnProperty(hoodName)) {
+            neighborhoods[hoodName] = {neighborhood: hoodName,
+                                    tipsPerHour: (entry.takehome / entry.shift_length),
+                                    totalHour: entry.shift_length};
+        }
+        else {
+            let hours = (neighborhoods[hoodName].totalHour + entry.shift_length);
+            neighborhoods[hoodName].tipsPerHour = neighborhoods[hoodName].tipsPerHour * neighborhoods[hoodName].totalHour / hours + entry.takehome / hours;
+            neighborhoods[hoodName].totalHour = hours;
+        }
+    });
+    return neighborhoods;
+}
+
+const averageTipsClean = (average_tips) => {
+    let data = [];
+    let element = {};
+    for (var entry in average_tips) {
+      element = {};
+      element.name = average_tips[entry].neighborhood;
+      element.values = [];
+      element.values.push({label: "Avg Hourly $", val: Math.floor(average_tips[entry].tipsPerHour)});
+      console.log(element.values[0].val);
+      element.color = getColor(element.values[0].val);
+      data.push(element);
+    }
+    return data;
+}
+
+export { getColor, averageTipsByNeighborhood, averageTipsClean };
