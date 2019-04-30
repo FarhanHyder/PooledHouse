@@ -107,6 +107,12 @@ class App extends Component {
     })
   }
 
+  handleSignOut = () => {
+    Auth.signOut()
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+  }
+
   handleHomeView = () => {
     this.setState({
       showHome: true,
@@ -165,12 +171,11 @@ class App extends Component {
         </ButtonToolbar>
         
         <ButtonToolbar>
-          {/* <Button 
-            className="text-color-white" 
-            onClick={this.handleTipUpdate}> Add New Tips
-          </Button> */}
           <Button onClick={()=>{this.setState({detailList : false, showUserTips: true}); this.handleTipUpdate()}}>
             My Tips
+          </Button>
+          <Button onClick={this.handleSignOut}>
+            Sign Out
           </Button>
         </ButtonToolbar>
       </Navbar>
@@ -216,4 +221,4 @@ class App extends Component {
   }
 }
 
-export default withAuthenticator(App, true);
+export default withAuthenticator(App);

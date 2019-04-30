@@ -3,7 +3,7 @@ import ReactNYC from 'react-nyc-choropleth';
 import { API, graphqlOperation } from "aws-amplify";
 import * as queries from '../../graphql/queries';
 import { getColor, averageTipsByNeighborhood, averageTipsClean, aTBNDayParse, aTBNMasterParse } from './mapFunctions';
-import { Form, Container, Col, Row, Button, Jumbotron } from 'react-bootstrap'
+import { Form, Container, Col, Row, Button, Card } from 'react-bootstrap'
 
 class Map extends React.Component {
   constructor(props) {
@@ -71,6 +71,8 @@ class Map extends React.Component {
 
     return (
         <Container fluid='true'>
+        <Card bg='light'>
+          <Card.Body>
           <Form className="text-left filter">
             <Form.Row>
                 <Form.Group controlID="day" as={Col} md='4'>
@@ -130,6 +132,8 @@ class Map extends React.Component {
               <Col md='4'></Col>
               </Row>
           </Form>
+          </Card.Body>
+          </Card>
           <Row>
             <Col md='1'></Col>
             <Col>
@@ -160,8 +164,6 @@ class Map extends React.Component {
 }
 
 export default Map;
-
-
 
 //note: following link has been to select 6 different layer of colors
 //       http://colorbrewer2.org/#type=diverging&scheme=RdYlGn&n=6
