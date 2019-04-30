@@ -15,18 +15,14 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import Container from 'react-bootstrap/Container'
+import Image from 'react-bootstrap/Image'
 
 //for maps
 import styled from 'styled-components';
 
 // View Component
 import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
-import PositionOption from './Components/ViewTipInfo/PositionOption';
 import './Components/ViewTipInfo/ViewTipInfo.css';
-import ViewTipsAverage from './Components/ProcessTips/ViewProcessedTips';
-import ProcessOption from './Components/ProcessTips/ProcessOption';
-import './Components/ProcessTips/ProcessTips.css';
-import ViewUserTips from './Components/ViewTipInfo/UserTipInfo';
 
 //aws imports
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
@@ -56,20 +52,13 @@ class App extends Component {
       showSignUp: false,
       showTipUpdate: false,
       curr_user_username: '',
-      // userProfile : "",
       showListView: true,
       showMapView: false,
-      detailList: false,
-      showUserTips: false,
-      processFilter: "Business",
-      positionFilter: "All Position"
     }
 
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleTipUpdate = this.handleTipUpdate.bind(this);
     this.handleChangeView = this.handleChangeView.bind(this);
-    this.handleProcess = this.handleProcess.bind(this);
-    this.handlePosition = this.handlePosition.bind(this);
   }
 
   handleSignUp = () => {
@@ -93,16 +82,6 @@ class App extends Component {
     })
   }
   
-  handleProcess =(event) => {
-    this.setState({
-      processFilter : event.target.value
-    })
-  }
-  handlePosition = (event) => {
-    this.setState({
-      positionFilter : event.target.value
-    })
-  }
   //this grabs username attribute from current user.  
   //componentDidMount is executed after the webpage is rendered,
   //allowing for the page to be reloaded with data from API calls?
@@ -111,15 +90,16 @@ class App extends Component {
     let current_user = await Auth.currentAuthenticatedUser();
     let un = current_user.username;
     this.setState({
-      // userProfile: current_user, // TODO
       curr_user_username: un
     })
   }
 
   render() {
+
     const home = (
       <Navbar className="bg-olive justify-content-between">
 
+        {/* TODO: update the logo with Navbar.Brand */}
       <Navbar.Brand>
         <img
         src={ logo }
@@ -127,9 +107,8 @@ class App extends Component {
         height="64"
         className="d-inline-block align-top"
         alt="Pooled House logo"
-        />
+      />
       </Navbar.Brand>
-      
         <Form inline>
           <FormControl type="text" placeholder="ex: upper manhattan" className="mr-sm" />
           <Button type="submit" variant="outline-light"><span>{"\uD83D\uDD0D"}</span></Button>
@@ -145,79 +124,29 @@ class App extends Component {
         <ButtonToolbar>
           <Button 
             className="text-color-white" 
-            onClick={this.handleTipUpdate}> Add New Tips
-          </Button>
-          <Button onClick={()=>{this.setState({detailList : false, showUserTips: true})}}>
-            My Tips
+            onClick={this.handleTipUpdate}>Tip Update
           </Button>
         </ButtonToolbar>
       </Navbar>
       );
 
-      const viewData = (
-        // {/* the connect component queries our database and then passes the query
-        //result to the ListView function */} 
+      const list_view = (
         <Connect query={graphqlOperation(queries.listTipEntrys)}>
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
-            // return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
-            if(this.state.detailList) {
-              return  (
-                <div>
-                  <PositionOption position={this.handlePosition}/>
-                  <ViewTipInfo tipInfo={listTipEntrys.items} position={this.state.positionFilter} />
-                </div>
-                );
-            }
-            else  if(this.state.showUserTips) {
-              return  (
-                <div>
-                  <ViewUserTips user = {this.state.curr_user_username} tipInfo={listTipEntrys.items}/>
-                </div>
-                );
-            }
-            else {
-              return  (
-                <div>
-                  <ProcessOption process = {this.handleProcess}/>
-                  <ViewTipsAverage tipInfo={listTipEntrys.items} process = {this.state.processFilter} />
-                </div>);
-            }
+            return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
         }}
         </Connect>
       );
 
-      const mapData = (
-        <Connect query={graphqlOperation(queries.listTipEntrys)}>
-        {({ data: { listTipEntrys }, loading, error }) => {
-            if (error) return (<h3>Error</h3>);
-            if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
-            return (
-              <div>
-                <Map tip_info={listTipEntrys.items} />
-              </div>
-            )
-        }}
-        </Connect>
-      )
-
-
     return (
       <div className="App">
         <div id="home"> { home } </div>
-        <div className="Body">
-          {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
-          {/* {this.state.userProfile} */}
-          {this.state.showListView ?
-          <div id="listView">
-            <div>
-              <button type="primary" onClick={()=>{this.setState({detailList : false, showUserTips: false})}}>View Average Tip Data</button>
-              <button type="primary" onClick={()=>{this.setState({detailList : true, showUserTips: false})}}>View Detailed Tip Data</button>
-            </div> 
-            {viewData}
-          </div> : <div> {mapData} </div>}
-        </div>
+        {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
+        {/* the connect component queries our database and then passes the query
+          result to the ListView function */} 
+        {this.state.showListView ? <div> { list_view } </div> : <div> <Map /> </div>}
       </div>
     );
   }
