@@ -1,6 +1,6 @@
 import React from 'react';
 
- // View Component
+// View Component
 import ViewTipInfo from '././ViewTipInfo';
 import PositionOption from './PositionOption';
 import './ViewTipInfo.css';
@@ -9,7 +9,7 @@ import ProcessOption from '../ProcessTips/ProcessOption';
 import '../ProcessTips/ProcessTips.css';
 import ViewUserTips from '././UserTipInfo';
 
- class ViewTipInfoList extends React.Component {
+class ViewTipInfoList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,32 +18,32 @@ import ViewUserTips from '././UserTipInfo';
             positionFilter: "All Position",
         };
 
-         this.handleProcess = this.handleProcess.bind(this);
+        this.handleProcess = this.handleProcess.bind(this);
         this.handlePosition = this.handlePosition.bind(this);
     }
 
-     handleProcess = (event) => {
+    handleProcess = (event) => {
         this.setState({
           processFilter : event.target.value
         })
       }
 
-     handlePosition = (event) => {
+    handlePosition = (event) => {
         this.setState({
           positionFilter : event.target.value
         })
     }
 
-     render() {
+    render() {
 
-         const buttons = (
+        const buttons = (
             <div>
               <button type="primary" onClick={()=>{this.setState({detailList : false, showUserTips: false})}}>View Average Tip Data</button>
               <button type="primary" onClick={()=>{this.setState({detailList : true, showUserTips: false})}}>View Detailed Tip Data</button>
             </div> 
         )
 
-         if(this.state.detailList) {
+        if(this.state.detailList) {
             return  ( 
               <div>
                 {buttons}   
@@ -71,4 +71,4 @@ import ViewUserTips from '././UserTipInfo';
     };
 }
 
- export default ViewTipInfoList;
+export default ViewTipInfoList;
