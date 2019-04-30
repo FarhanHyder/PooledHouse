@@ -15,6 +15,7 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import Container from 'react-bootstrap/Container'
+import { Row, Col } from 'react-bootstrap'
 
 //for maps
 import styled from 'styled-components';
@@ -198,7 +199,7 @@ class App extends Component {
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
             return (
               <div>
-                <Map tip_info={listTipEntrys ? listTipEntrys.items : []} />
+                  <Map tip_info={listTipEntrys ? listTipEntrys.items : []} />
               </div>
             )
         }}
