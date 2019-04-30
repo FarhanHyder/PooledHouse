@@ -27,6 +27,7 @@ import ViewTipsAverage from './Components/ProcessTips/ProcessTips';
 import ProcessOption from './Components/ProcessTips/ProcessOption';
 import './Components/ProcessTips/ProcessTips.css';
 import ViewUserTips from './Components/ViewTipInfo/UserTipInfo';
+import ViewTipInfoList from './Components/ViewTipInfo/ViewTipInfoList';
 
 //aws imports
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
@@ -97,6 +98,7 @@ class App extends Component {
       processFilter : event.target.value
     })
   }
+
   handlePosition = (event) => {
     this.setState({
       positionFilter : event.target.value
@@ -154,35 +156,17 @@ class App extends Component {
       );
 
       const viewData = (
-        // {/* the connect component queries our database and then passes the query
-        //result to the ListView function */} 
+        //the connect component queries our database
         <Connect query={graphqlOperation(queries.listTipEntrys)}>
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
-            // return (<ViewTipInfo tipInfo={listTipEntrys.items} /> );
-            if(this.state.detailList) {
-              return  (
-                <div>
-                  <PositionOption position={this.handlePosition}/>
-                  <ViewTipInfo tipInfo={listTipEntrys.items} position={this.state.positionFilter} />
-                </div>
-                );
-            }
-            else if(this.state.showUserTips) {
-              return  (
-                <div>
-                  <ViewUserTips user = {this.state.curr_user_username} tipInfo={listTipEntrys.items}/>
-                </div>
-                );
-            }
-            else {
-              return  (
-                <div>
-                  <ProcessOption process = {this.handleProcess}/>
-                  <ViewTipsAverage tipInfo={listTipEntrys.items} process = {this.state.processFilter} />
-                </div>);
-            }
+            return (
+              <ViewTipInfoList 
+                user={this.state.curr_user_username} 
+                tip_info={listTipEntrys.items} 
+                showUserTips={this.state.showUserTips}/>
+            )
         }}
         </Connect>
       );
@@ -205,15 +189,7 @@ class App extends Component {
       <div className="App">
         <div id="home"> { home } </div>
         {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
-        {/* {this.state.userProfile} */}
-        {this.state.showListView ?
-          <div id="listView">
-            <div>
-              <button type="primary" onClick={()=>{this.setState({detailList : false, showUserTips: false})}}>View Average Tip Data</button>
-              <button type="primary" onClick={()=>{this.setState({detailList : true, showUserTips: false})}}>View Detailed Tip Data</button>
-            </div> 
-            {viewData}
-         </div> : <div> {mapData} </div>}
+        {this.state.showListView ? <div id="listView"> {viewData} </div> : <div> {mapData} </div>}
       </div>
     );
   }
