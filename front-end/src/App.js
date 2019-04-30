@@ -42,7 +42,6 @@ import * as subscriptions from './graphql/subscriptions'
 
 import logo from './images/logo.png'
 
-
 Amplify.configure(awsmobile);
 Amplify.configure(aws_config);
 
@@ -170,7 +169,7 @@ class App extends Component {
                 </div>
                 );
             }
-            else  if(this.state.showUserTips) {
+            else if(this.state.showUserTips) {
               return  (
                 <div>
                   <ViewUserTips user = {this.state.curr_user_username} tipInfo={listTipEntrys.items}/>
@@ -188,20 +187,19 @@ class App extends Component {
         </Connect>
       );
 
-      const mapData = (
+      let mapData = (
         <Connect query={graphqlOperation(queries.listTipEntrys)}>
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
             return (
               <div>
-                <Map tip_info={listTipEntrys.items} />
+                <Map tip_info={listTipEntrys ? listTipEntrys.items : []} />
               </div>
             )
         }}
         </Connect>
       )
-
 
     return (
       <div className="App">
