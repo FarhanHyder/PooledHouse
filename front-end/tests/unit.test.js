@@ -3,22 +3,32 @@
 const { averageTipsByBusiness } = require('../src/Components/ProcessTips/ProcessTips');
 
 test('Should return average per business', () => {
-  const average = 'test';//= averageTipsByBusiness([{
-//    'shift_length':
-// shift_time
-// shift_date
-// shift_position
-// takehome
-// business_name
-// business_street_address
-// business_city
-// business_state
-// business_zip
-//  }]);
-//  expect(average).toEqual({one: 1, two: 2});
 
-expect(average).toEqual('test');
+  const average = averageTipsByBusiness([
+  {
+    'shift_length': 5,
+    'shift_time': 'AM',
+    'shift_date': '02/03/2018',
+    'shift_position': 'Bartender',
+    'takehome': 200,
+    'business_name': 'Poolinos',
+    'business_street_address': '292 Bowery',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10012',
+    'neighborhood': 'Soho'
+  }]);
+
+  expect(average).toEqual({
+    'Poolinos': {
+      business_name: 'Poolinos',
+      business_street_address: '292 Bowery, New York, NY 10012',
+      tipsPerHour: 40,
+      totalHour: 5}
+    });
 });
+
+
 
 //const { ViewTipInfo } = require('../src/Components/ViewTipInfo/ViewTipInfo');
 
@@ -48,6 +58,6 @@ test('Should return a div with all tip info', () => {
   // const tip = ViewTipInfo({
   //   args: 'test'
   // });
-  const tip = 'test passed!!!'
-  expect(tip).toBe('test passed!!!');
+  const tip = 'tip info Components changed!!!';
+  expect(tip).toBe('tip info Components changed!!!');
 });
