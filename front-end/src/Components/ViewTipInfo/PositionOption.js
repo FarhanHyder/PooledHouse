@@ -19,7 +19,6 @@ const PositionOption = (props) => {
             </Form.Group>
         </Form>
       );
-
       return positionOption;
 }
 

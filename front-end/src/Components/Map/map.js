@@ -70,9 +70,8 @@ class Map extends React.Component {
       <div>
         <Container fluid='true'>
           <Form className="text-left filter">
-            <Row>
-              <Col>
-                <Form.Group controlID="day">
+            <Form.Row>
+                <Form.Group controlID="day" as={Col} md='4'>
                   <Form.Label>Day</Form.Label>
                     <Form.Control 
                       as='select' 
@@ -89,9 +88,7 @@ class Map extends React.Component {
                       <option>Sunday</option>
                     </Form.Control>
                 </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group conrolID="shift">
+                <Form.Group conrolID="shift" as={Col} md='4'>
                   <Form.Label>Shift</Form.Label>
                     <Form.Control
                       as='select'
@@ -103,9 +100,7 @@ class Map extends React.Component {
                       <option>PM</option>
                     </Form.Control>
                 </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group controlID="position">
+                <Form.Group controlID="position" as={Col} md='4'>
                   <Form.Label>Position</Form.Label>
                     <Form.Control
                       as='select'
@@ -120,18 +115,16 @@ class Map extends React.Component {
                       <option>Other</option>
                     </Form.Control>
                 </Form.Group>
-              </Col>
-              <Col>
-              <Form.Group>
-                <Form.Label></Form.Label>
-              <Button 
+              </Form.Row>
+              <Row>
+                <Col md='4'></Col>
+              <Button as={Col} md='4'
                 variant="primary" 
                 type="reset" 
                 onClick={this.handleReset}>Reset Filter
               </Button>
-              </Form.Group>
-              </Col>
-            </Row>
+              <Col md='4'></Col>
+              </Row>
           </Form>
           <ReactNYC
             mapboxAccessToken={mapboxAccessToken} // Required
