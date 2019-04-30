@@ -23,7 +23,7 @@ import styled from 'styled-components';
 import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
 import PositionOption from './Components/ViewTipInfo/PositionOption';
 import './Components/ViewTipInfo/ViewTipInfo.css';
-import ViewTipsAverage from './Components/ProcessTips/ProcessTips';
+import ViewTipsAverage from './Components/ProcessTips/ViewProcessedTips';
 import ProcessOption from './Components/ProcessTips/ProcessOption';
 import './Components/ProcessTips/ProcessTips.css';
 import ViewUserTips from './Components/ViewTipInfo/UserTipInfo';
@@ -206,16 +206,18 @@ class App extends Component {
     return (
       <div className="App">
         <div id="home"> { home } </div>
-        {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
-        {/* {this.state.userProfile} */}
-        {this.state.showListView ?
+        <div className="Body">
+          {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
+          {/* {this.state.userProfile} */}
+          {this.state.showListView ?
           <div id="listView">
             <div>
               <button type="primary" onClick={()=>{this.setState({detailList : false, showUserTips: false})}}>View Average Tip Data</button>
               <button type="primary" onClick={()=>{this.setState({detailList : true, showUserTips: false})}}>View Detailed Tip Data</button>
             </div> 
             {viewData}
-         </div> : <div> {mapData} </div>}
+          </div> : <div> {mapData} </div>}
+        </div>
       </div>
     );
   }
