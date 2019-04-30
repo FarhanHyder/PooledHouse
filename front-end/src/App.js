@@ -171,10 +171,10 @@ class App extends Component {
         </ButtonToolbar>
         
         <ButtonToolbar>
-          <Button onClick={()=>{this.setState({detailList : false, showUserTips: true}); this.handleTipUpdate()}}>
+          <Button id='ur_nav' onClick={()=>{this.setState({detailList : false, showUserTips: true}); this.handleTipUpdate()}}>
             My Tips
           </Button>
-          <Button onClick={this.handleSignOut}>
+          <Button id='ur_nav' onClick={this.handleSignOut}>
             Sign Out
           </Button>
         </ButtonToolbar>
