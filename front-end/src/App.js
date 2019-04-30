@@ -91,6 +91,7 @@ class App extends Component {
     this.setState({
       showListView: !this.state.showListView,
       showMapView: !this.state.showMapView,
+      showTipUpdate: false
     })
   }
   
