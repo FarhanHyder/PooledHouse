@@ -68,16 +68,52 @@ const averageTipsByBusinessDay = (tipsInfo) => {
     const businessTipsByday = {};
     tipsInfo.forEach(tips => {
         let businessName = tips.business_name;
-        let day = getDay(tips.shift_date);
+        let day = getDay(new Date(tips.shift_date));
         if (! businessTipsByday.hasOwnProperty(businessName)) {
             let avg = {
                         tipsPerHour: (tips.takehome / tips.shift_length),
                         totalHour: tips.shift_length,
                     };
+                    
+            businessTipsByday[businessName] = {
+                Saturday: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Sunday: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Monday: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Tuesday: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Wednesday: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Thursday: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Friday: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                }
+            }; 
+
             businessTipsByday[businessName][day] = avg;
             businessTipsByday[businessName].address = tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip;
         }
         else {
+            // if(!businessTipsByday[businessName].hasOwnProperty(day)) {
+
+
+            // }
             let hours = (businessTipsByday[businessName][day].totalHour + tips.shift_length);
             businessTipsByday[businessName][day].tipsPerHour = businessTipsByday[businessName][day].tipsPerHour * businessTipsByday[businessName][day].totalHour / hours + tips.takehome / hours;
             businessTipsByday[businessName].totalHour = hours;
