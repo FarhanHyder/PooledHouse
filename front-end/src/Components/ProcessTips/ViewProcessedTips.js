@@ -1,7 +1,9 @@
 // import all functions
 // display based on the functions
 import React from 'react';
-import {averageTipsByBusiness, averageTipsByBusinessDay} from './ProcessTips';
+
+
+const process = require('./ProcessTips');
 
 const ViewTipsAverage = (props) => {
     // user selects the view option
@@ -12,7 +14,7 @@ const ViewTipsAverage = (props) => {
     let tipsInfo = props.tipInfo;
     let view = [];
     if (props.process === "Business") {
-        const processedTips = averageTipsByBusiness(tipsInfo);
+        const processedTips = process.averageTipsByBusiness(tipsInfo);
         view = Object.keys(processedTips).map(tips => {
             return (
             <div className ="tipsByBusiness">
@@ -27,7 +29,7 @@ const ViewTipsAverage = (props) => {
     }
     
     else if (props.process === "Daily Average") {
-        const processedTips = averageTipsByBusinessDay(tipsInfo);
+        const processedTips = process.averageTipsByBusinessDay(tipsInfo);
         view = Object.keys(processedTips).map(bName => {
            console.log(bName);
            return (
@@ -65,6 +67,42 @@ const ViewTipsAverage = (props) => {
            </div>
        </div>)
 
+    }
+
+    else if (props.process === "Position"){
+        const processedTips = process.averageTipsByPosition(tipsInfo);
+        view = Object.keys(processedTips).map(bName => {
+           console.log(bName);
+           return (
+               <div>
+                  { console.log(processedTips[bName])}
+                   <div className="dailyTipsAvg">
+                       <div className="busTitle">{bName}</div>
+
+                       <div>{Number.parseFloat(processedTips[bName].Bartender.tipsPerHour).toFixed(2)}</div>
+                       <div>{Number.parseFloat(processedTips[bName].Server.tipsPerHour).toFixed(2)}</div>
+                       <div>{Number.parseFloat(processedTips[bName].Barback.tipsPerHour).toFixed(2)}</div>
+                       <div>{Number.parseFloat(processedTips[bName].Busser.tipsPerHour).toFixed(2)}</div>
+                       <div>{Number.parseFloat(processedTips[bName].Other.tipsPerHour).toFixed(2)}</div>
+                   </div>
+               </div>
+           );
+       });
+
+       view = (
+       <div>
+           <div className="dayName dailyTipsAvg">
+                <div>Business Name</div>
+                <div>Bartender</div>
+                <div>Server</div>
+                <div>Barback</div>
+                <div>Busser</div>
+                <div>Other</div>
+           </div>
+           <div>
+               {view}
+           </div>
+       </div>)
     }
 
     return view;
