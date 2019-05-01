@@ -1,4 +1,4 @@
-const { aTBNMasterParse } = require('../src/Components/Map/mapFunctions');
+const { aTBNMasterParse, averageTipsClean } = require('../src/Components/Map/mapFunctions');
 
 test('Should do unit test on aTBNMasterParse()', () => {
   const average = aTBNMasterParse([
@@ -54,4 +54,19 @@ test('Should do unit test on aTBNMasterParse()', () => {
       'totalHour': 6
     }
   });
+});
+
+
+test('Should do unit test on averageTipsClean()', () => {
+  const cleanedData = averageTipsClean([
+  {
+    'tipsPerHour': 37.319,
+    'neighborhood': 'Soho'
+  }]);
+  expect(cleanedData).toEqual([
+  {
+    'name': 'Soho',
+    'values': [{'label': 'Avg Hourly $', val: 37}],
+    'color': '#fc8d59'
+  }]);
 });
