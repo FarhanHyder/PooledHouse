@@ -26,7 +26,7 @@ const ViewTipsAverage = (props) => {
 
     }
     
-    else if (props.process === "Position") {
+    else if (props.process === "Daily Average") {
         const processedTips = averageTipsByBusinessDay(tipsInfo);
         view = Object.keys(processedTips).map(bName => {
            console.log(bName);
