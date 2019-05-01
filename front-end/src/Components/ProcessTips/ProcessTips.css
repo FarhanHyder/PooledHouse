@@ -7,3 +7,8 @@
     min-width: 500px;
    /* background-color: rgb(58, 61, 58); */ /*for night mode*/
 }
+
+.dailyTipsAvg {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
