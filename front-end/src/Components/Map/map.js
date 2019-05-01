@@ -3,7 +3,7 @@ import ReactNYC from 'react-nyc-choropleth';
 import { API, graphqlOperation } from "aws-amplify";
 import * as queries from '../../graphql/queries';
 import { getColor, averageTipsByNeighborhood, averageTipsClean, aTBNDayParse, aTBNMasterParse } from './mapFunctions';
-import { Form, Container, Col, Row, Button } from 'react-bootstrap'
+import { Form, Container, Col, Row, Button, Card } from 'react-bootstrap'
 
 class Map extends React.Component {
   constructor(props) {
@@ -43,6 +43,9 @@ class Map extends React.Component {
 */
   render() {
 
+    const window_height = window.innerHeight;
+    const window_width = window.innerWidth;
+
     const mapboxAccessToken = "pk.eyJ1IjoicG9vbGVkaG91c2UiLCJhIjoiY2p1aGg2N2o5MHozZTRkcDhrZDltMXp6dyJ9.SXu4dBf_bVC8Xlpy7WnYqQ"; //TODO: delete token before final deployment
     const mapboxType = "light";
     const map_position = [40.7831, -73.9712];
@@ -67,8 +70,9 @@ class Map extends React.Component {
     )
 
     return (
-      <div>
         <Container fluid='true'>
+        <Card bg='light'>
+          <Card.Body>
           <Form className="text-left filter">
             <Form.Row>
                 <Form.Group controlID="day" as={Col} md='4'>
@@ -118,7 +122,9 @@ class Map extends React.Component {
               </Form.Row>
               <Row>
                 <Col md='4'></Col>
-              <Button as={Col} md='4'
+              <Button 
+                as={Col} 
+                md='4'
                 variant="primary" 
                 type="reset" 
                 onClick={this.handleReset}>Reset Filter
@@ -126,10 +132,16 @@ class Map extends React.Component {
               <Col md='4'></Col>
               </Row>
           </Form>
+          </Card.Body>
+          </Card>
+          <Row>
+            <Col md='1'></Col>
+            <Col>
           <ReactNYC
             mapboxAccessToken={mapboxAccessToken} // Required
-            mapHeight="600px" // Required
-            mapWidth="100%"
+            //mapHeight="600px" // Required
+            mapHeight={window_height*.75}
+            mapWidth="90%"
             className="container"
             mapboxType={mapboxType}
             mapCenter={map_position}
@@ -143,15 +155,15 @@ class Map extends React.Component {
             neighborhoodHoverStyle={neighborhoodHoverStyle}
             excludeNeighborhoods={excludeNeighborhoods}
           />
+          </Col>
+          <Col md='1'></Col>
+          </Row>
         </Container>
-      </div>
     )
   }
 }
 
 export default Map;
-
-
 
 //note: following link has been to select 6 different layer of colors
 //       http://colorbrewer2.org/#type=diverging&scheme=RdYlGn&n=6
