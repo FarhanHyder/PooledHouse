@@ -4,7 +4,7 @@ import React from 'react';
 import ViewTipInfo from '././ViewTipInfo';
 import PositionOption from './PositionOption';
 import './ViewTipInfo.css';
-import ViewTipsAverage from '../ProcessTips/ProcessTips';
+import ViewTipsAverage from '../ProcessTips/ViewProcessedTips';
 import ProcessOption from '../ProcessTips/ProcessOption';
 import '../ProcessTips/ProcessTips.css';
 import ViewUserTips from '././UserTipInfo';
