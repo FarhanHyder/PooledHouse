@@ -219,7 +219,7 @@ test('Should return average tips by position', () => {
     'Poolinos': {
       'Bartender': {
         'tipsPerHour': 50,
-        'totalHour': 5
+        'totalHour': 10
       },
       'Server': {
         'tipsPerHour': 0,
@@ -237,8 +237,7 @@ test('Should return average tips by position', () => {
         'tipsPerHour': 0,
         'totalHour': 0
       },
-      'address': '292 Bowery, New York, NY 10012',
-      'totalHour': 10
+      'address': '292 Bowery, New York, NY 10012'
     },
     'Balthezer': {
       'Bartender': {
