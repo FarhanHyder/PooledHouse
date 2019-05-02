@@ -163,7 +163,7 @@ exports.averageTipsByPosition = (tipsInfo) => {
             // }
             let hours = (businessTipsByPos[businessName][pos].totalHour + tips.shift_length);
             businessTipsByPos[businessName][pos].tipsPerHour = businessTipsByPos[businessName][pos].tipsPerHour * businessTipsByPos[businessName][pos].totalHour / hours + tips.takehome / hours;
-            businessTipsByPos[businessName].totalHour = hours;
+            businessTipsByPos[businessName][pos].totalHour = hours;
         }
     });
     return businessTipsByPos;
