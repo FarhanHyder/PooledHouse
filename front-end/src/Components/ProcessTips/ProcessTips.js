@@ -64,7 +64,7 @@ const getDay = (date) => {
         return "Friday";
     }
     else if (day === 6) {
-        return "Sunday";
+        return "Saturday";
     }
 }
 
