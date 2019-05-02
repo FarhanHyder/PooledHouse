@@ -29,7 +29,7 @@ class ViewTipInfoList extends React.Component {
         this.handleProcess = this.handleProcess.bind(this);
         this.handlePosition = this.handlePosition.bind(this);
     }
-    /** @function handleProcess */
+    
     handleProcess = (event) => {
         this.setState({
           processFilter : event.target.value
