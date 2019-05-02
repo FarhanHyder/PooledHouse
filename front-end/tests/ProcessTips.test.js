@@ -100,7 +100,7 @@ test('Should return average tips by business day', () => {
       },
       'Tuesday': {
         'tipsPerHour': 50,
-        'totalHour': 5
+        'totalHour': 10
       },
       'Wednesday': {
         'tipsPerHour': 0,
@@ -123,7 +123,6 @@ test('Should return average tips by business day', () => {
         'totalHour': 0
       },
       'address': '292 Bowery, New York, NY 10012',
-      'totalHour': 10
     }
   });
 });
