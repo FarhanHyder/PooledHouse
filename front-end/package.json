@@ -33,6 +33,7 @@
   ],
   "devDependencies": {
     "jest": "^23.6.0",
+    "jsdoc": "^3.5.5",
     "puppeteer": "^1.14.0"
   }
 }

@@ -3,6 +3,7 @@
  * Average Tips. This menu allows you to select which  value you'd like to 
  * display average tip by.
  */
+
 import React from 'react';
 import {Form} from 'react-bootstrap';
 
