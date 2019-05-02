@@ -1,0 +1,1 @@
+// This will keep all the test to ProcessTips.js
