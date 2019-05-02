@@ -6,7 +6,7 @@ import PositionOption from './PositionOption';
 import './ViewTipInfo.css';
 import ViewTipsAverage from '../ProcessTips/ViewProcessedTips';
 import ProcessOption from '../ProcessTips/ProcessOption';
-import '../ProcessTips/ProcessTips.css';
+import '../ProcessTips/ViewProcessedTips.css';
 import ViewUserTips from '././UserTipInfo';
 
 class ViewTipInfoList extends React.Component {
