@@ -17,11 +17,12 @@
 // business_zip
 
 import React from 'react';
+import { all } from 'q';
 
-export const averageTipsByBusiness = (tipInfo) => {
+const averageTipsByBusiness = (tipsInfo) => {
     // let tipInfo = [...props.tipInfo];
-    const business = new Object();
-    tipInfo.forEach(tips => {
+    const business = {};
+    tipsInfo.forEach(tips => {
         let businessName = tips.business_name;
         if (! business.hasOwnProperty(businessName)) {
             business[businessName] = {business_name: businessName,
@@ -38,6 +39,89 @@ export const averageTipsByBusiness = (tipInfo) => {
     return business;
 }
 
+const getDay = (date) => {
+    let day = date.getDay();
+    if(day === 0) {
+        return "Sunday";
+    }
+    else if (day === 1) {
+        return "Monday";
+    }
+    else if (day === 2) {
+        return "Tuesday";
+    }
+    else if (day === 3) {
+        return "Wednesday"
+    }
+    else if (day === 4) {
+        return "Thursday";
+    }
+    else if (day === 5) {
+        return "Friday";
+    }
+    else if (day === 6) {
+        return "Sunday";
+    }
+}
+
+const averageTipsByBusinessDay = (tipsInfo) => {
+    const businessTipsByday = {};
+    tipsInfo.forEach(tips => {
+        let businessName = tips.business_name;
+        let day = getDay(new Date(tips.shift_date));
+        if (! businessTipsByday.hasOwnProperty(businessName)) {
+            let avg = {
+                        tipsPerHour: (tips.takehome / tips.shift_length),
+                        totalHour: tips.shift_length,
+                    };
+                    
+            businessTipsByday[businessName] = {
+                Saturday: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Sunday: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Monday: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Tuesday: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Wednesday: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Thursday: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Friday: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                }
+            }; 
+
+            businessTipsByday[businessName][day] = avg;
+            businessTipsByday[businessName].address = tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip;
+        }
+        else {
+            // if(!businessTipsByday[businessName].hasOwnProperty(day)) {
+
+
+            // }
+            let hours = (businessTipsByday[businessName][day].totalHour + tips.shift_length);
+            businessTipsByday[businessName][day].tipsPerHour = businessTipsByday[businessName][day].tipsPerHour * businessTipsByday[businessName][day].totalHour / hours + tips.takehome / hours;
+            businessTipsByday[businessName].totalHour = hours;
+        }
+    });
+    return businessTipsByday;
+}
+
 const averageTipsByPosition = (props) => {
 
 }
@@ -50,30 +134,4 @@ const averageTipsByPositionAndShift = (props) => {
 
 }
 
-const ViewTipsAverage = (props) => {
-    // user selects the view option
-    // function to process based on data called from above
-
-    // form to select filter type for average tips/hour
-
-    let tipsInfo = props.tipInfo;
-
-    let processedTips = [];
-    if (props.process === "Business") {
-        processedTips = averageTipsByBusiness(tipsInfo);
-    }
-    
-    let view = Object.keys(processedTips).map(tips => {
-        return (
-        <div className ="tipsByBusiness">
-            <div className="busTitle">{processedTips[tips].business_name}</div>
-            <div className="addr">{processedTips[tips].business_street_address}</div>
-            <div>Tips : ${Number.parseFloat(processedTips[tips].tipsPerHour).toFixed(2)}/Hour</div>
-        </div>);
-    });
-
-    // return view;
-    return view;
-}
-
-export default ViewTipsAverage;
+export {averageTipsByBusiness, averageTipsByBusinessDay};

@@ -48,7 +48,7 @@ const getLevel = (amount, max) =>{
 //this function takes db tipentry list and returns an object containing neighborhood name, avg tips/hour, total hours
 //deprecated
 const averageTipsByNeighborhood = (tip_info) => {
-    console.log(tip_info);
+//    console.log(tip_info);
     const neighborhoods = new Object();
     tip_info.forEach(entry => {
         let hoodName = entry.neighborhood;
@@ -69,7 +69,7 @@ const averageTipsByNeighborhood = (tip_info) => {
 //this function works just like averageTipsByNeighborhood, but filters by day of week.
 //deprecated
 const aTBNDayParse = (tip_info, day) => {
-    console.log(tip_info);
+//    console.log(tip_info);
     const neighborhoods = new Object();
     tip_info.forEach(entry => {
         let e_day = new Date(entry.shift_date).getDay();
@@ -93,7 +93,7 @@ const aTBNDayParse = (tip_info, day) => {
 
 //this works like the original averageTipByNeighborhood, but filters by day, shift, and position.
 exports.aTBNMasterParse = (tip_info, day, shift, position) => {
-    console.log(tip_info);
+//    console.log(tip_info);
     const neighborhoods = new Object();
     tip_info.forEach(entry => {
         let e_day = new Date(entry.shift_date).getDay();
@@ -118,6 +118,7 @@ exports.aTBNMasterParse = (tip_info, day, shift, position) => {
     return neighborhoods;
 }
 
+
 //takes the neighborhoods object returns by averageTipsByNeighborhood and returns an object for use by reactnyc component
 exports.averageTipsClean = (average_tips) => {
     let data = [];
@@ -127,7 +128,7 @@ exports.averageTipsClean = (average_tips) => {
       element.name = average_tips[entry].neighborhood;
       element.values = [];
       element.values.push({label: "Avg Hourly $", val: Math.floor(average_tips[entry].tipsPerHour)});
-      console.log(element.values[0].val);
+//      console.log(element.values[0].val);
       element.color = getColor(element.values[0].val);
       data.push(element);
     }
