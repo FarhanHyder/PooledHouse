@@ -7,6 +7,34 @@ export const sortTips = (tipInfo) => {
 
 }
 
+export const createBusinessTable =  (tipsInfo) => {
+    const business = {};
+    tipsInfo.forEach(tips => {
+        let businessName = tips.business_name;
+        if (! business.hasOwnProperty(businessName)) {
+            business[businessName] = [{
+                // business_name: businessName,
+                business_street_address: tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip, 
+                Position: tips.shift_position,
+                Tips : tips.takehome,
+                Hour : tips.shift_length,
+                Shift : tips.shift_time,
+                date : tips.shift_date}];
+        }
+        else {
+            business[businessName].push({
+                // business_name: businessName,
+                business_street_address: tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip, 
+                Position: tips.shift_position,
+                Tips : tips.takehome,
+                Hour : tips.shift_length,
+                Shift : tips.shift_time,
+                date : tips.shift_date
+            });
+        }
+    });
+    return business;
+}
 // output style
 // |Business Name |
 // |address |
@@ -20,6 +48,7 @@ const ViewTipInfo = (props) => {
     let filterdTipInfo = props.position !== "All Position"? props.tipInfo.filter(tips => tips.shift_position === props.position) : props.tipInfo;
     // TODO : sort all tips into object business name as key
     // 
+    console.log(createBusinessTable( filterdTipInfo));
     let tipInfo = filterdTipInfo.map( (tips, index) => {
         return (
             <div className="tipInfo">
