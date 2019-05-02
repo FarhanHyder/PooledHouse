@@ -169,11 +169,28 @@ exports.averageTipsByPosition = (tipsInfo) => {
     return businessTipsByPos;
 }
 
-exports.averageTipsByZipCode = (props) => {
+exports.averageTipsByZipCode = (tipsInfo) => {
+    const businessZip = {};
+    tipsInfo.forEach(tips => {
+        let zip = tips.business_zip;
+        if (! businessZip.hasOwnProperty(zip)) {
+            businessZip[zip] = {
+                business_count: 1,
+                tipsPerHour: (tips.takehome / tips.shift_length),
+                totalHour: tips.shift_length};
+        }
+        else {
+            let hours = (businessZip[zip].totalHour + tips.shift_length);
+            businessZip[zip].business_count += 1;
+            businessZip[zip].tipsPerHour = businessZip[zip].tipsPerHour * businessZip[zip].totalHour / hours + tips.takehome / hours;
+            businessZip[zip].totalHour = hours;
+        }
+    });
+    return businessZip;    
 
 }
 
-exports.averageTipsByPositionAndShift = (props) => {
+exports.averageTipsByPositionAndShift = (tipsInfo) => {
 
 }
 
