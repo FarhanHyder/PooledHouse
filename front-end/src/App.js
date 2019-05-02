@@ -52,14 +52,12 @@ class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      showHome: true,
       curr_user_username: '',
       // userProfile : "",
       showListView: false,
       showMapView: true,
       showMyTipsView: false,
       detailList: false,
-      showUserTips: false,
       processFilter: "Business",
       positionFilter: "All Position"
     }
@@ -91,15 +89,11 @@ class App extends Component {
 
   handleHomeView = () => {
     this.setState({
-      showHome: true,
       showSignUp: false,
-      showTipUpdate: false,
-      curr_user_username: '',
       // userProfile : "",
       showListView: false,
       showMapView: true,
       detailList: false,
-      showUserTips: false,
       processFilter: "Business",
       positionFilter: "All Position",
       showMyTipsView: false,
@@ -173,7 +167,7 @@ class App extends Component {
 
         <ButtonToolbar>
           <Button id='ur_nav' onClick={this.handleMyTipsView}>
-            My Tips
+          {this.state.curr_user_username}'s Tips
           </Button>
           <Button id='ur_nav' onClick={this.handleSignOut}>
             Sign Out
