@@ -10,7 +10,8 @@ const ProcessOption = (props) => {
               as='select'
               onChange = {(event)=>{props.process(event)}}>
                   <option>Business</option>
-                  <option>Positon</option>
+                  <option>Daily Average</option>
+                  <option>Position</option>
                   <option>Neighborhood</option>
                   <option>Highest Average Tips</option>
                   <option>Lowest Average Tips</option>
