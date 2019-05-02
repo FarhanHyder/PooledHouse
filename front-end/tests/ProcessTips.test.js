@@ -135,7 +135,7 @@ test('Should return average tips by business day', () => {
         'tipsPerHour': 0,
         'totalHour': 0
       },
-      'address': '292 Bowery, New York, NY 10012',
+      'address': '292 Bowery, New York, NY 10012'
     },
     'Balthezer': {
       'Monday': {
@@ -166,7 +166,101 @@ test('Should return average tips by business day', () => {
         'tipsPerHour': 0,
         'totalHour': 0
       },
-      'address': '80 Spring Street, New York, NY 10012',
+      'address': '80 Spring Street, New York, NY 10012'
+    }
+  });
+});
+
+
+test('Should return average tips by position', () => {
+  const averageByPosition = averageTipsByPosition([
+  {
+    'shift_length': 5,
+    'shift_time': 'PM',
+    'shift_date': '04/30/2019',
+    'shift_position': 'Bartender',
+    'takehome': 200,
+    'business_name': 'Poolinos',
+    'business_street_address': '292 Bowery',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10012',
+    'neighborhood': 'Soho'
+  },
+  {
+    'shift_length': 5,
+    'shift_time': 'PM',
+    'shift_date': '04/30/2019',
+    'shift_position': 'Bartender',
+    'takehome': 300,
+    'business_name': 'Poolinos',
+    'business_street_address': '292 Bowery',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10012',
+    'neighborhood': 'Soho'
+  },
+  {
+    'shift_length': 6,
+    'shift_time': 'PM',
+    'shift_date': '05/01/2019',
+    'shift_position': 'Server',
+    'takehome': 360,
+    'business_name': 'Balthezer',
+    'business_street_address': '80 Spring Street',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10012',
+    'neighborhood': 'The Standard'
+  }
+  ]);
+  expect(averageByPosition).toEqual({
+    'Poolinos': {
+      'Bartender': {
+        'tipsPerHour': 50,
+        'totalHour': 5
+      },
+      'Server': {
+        'tipsPerHour': 0,
+        'totalHour': 0
+      },
+      'Barback': {
+        'tipsPerHour': 0,
+        'totalHour': 0
+      },
+      'Busser': {
+        'tipsPerHour': 0,
+        'totalHour': 0
+      },
+      'Other': {
+        'tipsPerHour': 0,
+        'totalHour': 0
+      },
+      'address': '292 Bowery, New York, NY 10012',
+      'totalHour': 10
+    },
+    'Balthezer': {
+      'Bartender': {
+        'tipsPerHour': 0,
+        'totalHour': 0
+      },
+      'Server': {
+        'tipsPerHour': 60,
+        'totalHour': 6
+      },
+      'Barback': {
+        'tipsPerHour': 0,
+        'totalHour': 0
+      },
+      'Busser': {
+        'tipsPerHour': 0,
+        'totalHour': 0
+      },
+      'Other': {
+        'tipsPerHour': 0,
+        'totalHour': 0
+      },
+      'address': '80 Spring Street, New York, NY 10012'
     }
   });
 });
