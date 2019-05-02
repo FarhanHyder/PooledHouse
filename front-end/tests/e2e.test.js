@@ -32,3 +32,4 @@ test("Should return logged-in user's username", async () => {
 
   await browser.close();
 }, 20000);
+
