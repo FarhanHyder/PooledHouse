@@ -32,10 +32,10 @@ const getColor = (amount, max) =>{
 */
 
 const getColor = (amount) => {
-    if (amount < 100) return ORANGE;
-    if (amount < 200) return CRIMSON_RED;
-    if (amount < 300) return LIME_GREEN;
-    if (amount < 400) return PARAKEET_GREEN;
+    if (amount < 15) return ORANGE;
+    if (amount < 30) return CRIMSON_RED;
+    if (amount < 45) return LIME_GREEN;
+    if (amount < 60) return PARAKEET_GREEN;
     return EMERALD_GREEN;
 }
 
