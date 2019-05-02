@@ -38,13 +38,13 @@ const ViewTipsAverage = (props) => {
                    <div className="dailyTipsAvg">
                        <div className="busTitle">{bName}</div>
 
-                       <div>{Number.parseFloat(processedTips[bName].Saturday.tipsPerHour).toFixed(2)}</div>
-                       <div>{Number.parseFloat(processedTips[bName].Sunday.tipsPerHour).toFixed(2)}</div>
-                       <div>{Number.parseFloat(processedTips[bName].Monday.tipsPerHour).toFixed(2)}</div>
-                       <div>{Number.parseFloat(processedTips[bName].Tuesday.tipsPerHour).toFixed(2)}</div>
-                       <div>{Number.parseFloat(processedTips[bName].Wednesday.tipsPerHour).toFixed(2)}</div>
-                       <div>{Number.parseFloat(processedTips[bName].Thursday.tipsPerHour).toFixed(2)}</div>
-                       <div>{Number.parseFloat(processedTips[bName].Friday.tipsPerHour).toFixed(2)}</div>
+                       <div>${Number.parseFloat(processedTips[bName].Saturday.tipsPerHour).toFixed(2)} / Hour</div>
+                       <div>${Number.parseFloat(processedTips[bName].Sunday.tipsPerHour).toFixed(2)} / Hour</div>
+                       <div>${Number.parseFloat(processedTips[bName].Monday.tipsPerHour).toFixed(2)} / Hour</div>
+                       <div>${Number.parseFloat(processedTips[bName].Tuesday.tipsPerHour).toFixed(2)} / Hour</div>
+                       <div>${Number.parseFloat(processedTips[bName].Wednesday.tipsPerHour).toFixed(2)} / Hour</div>
+                       <div>${Number.parseFloat(processedTips[bName].Thursday.tipsPerHour).toFixed(2)} / Hour</div>
+                       <div>${Number.parseFloat(processedTips[bName].Friday.tipsPerHour).toFixed(2)} / Hour</div>
                    </div>
                </div>
            );
@@ -79,11 +79,11 @@ const ViewTipsAverage = (props) => {
                    <div className="dailyTipsAvg">
                        <div className="busTitle">{bName}</div>
 
-                       <div>{Number.parseFloat(processedTips[bName].Bartender.tipsPerHour).toFixed(2)}</div>
-                       <div>{Number.parseFloat(processedTips[bName].Server.tipsPerHour).toFixed(2)}</div>
-                       <div>{Number.parseFloat(processedTips[bName].Barback.tipsPerHour).toFixed(2)}</div>
-                       <div>{Number.parseFloat(processedTips[bName].Busser.tipsPerHour).toFixed(2)}</div>
-                       <div>{Number.parseFloat(processedTips[bName].Other.tipsPerHour).toFixed(2)}</div>
+                       <div>${Number.parseFloat(processedTips[bName].Bartender.tipsPerHour).toFixed(2)} / Hour</div>
+                       <div>${Number.parseFloat(processedTips[bName].Server.tipsPerHour).toFixed(2)} / Hour</div>
+                       <div>${Number.parseFloat(processedTips[bName].Barback.tipsPerHour).toFixed(2)} / Hour</div>
+                       <div>${Number.parseFloat(processedTips[bName].Busser.tipsPerHour).toFixed(2)} / Hour</div>
+                       <div>${Number.parseFloat(processedTips[bName].Other.tipsPerHour).toFixed(2)} / Hour</div>
                    </div>
                </div>
            );
@@ -116,7 +116,7 @@ const ViewTipsAverage = (props) => {
                     <div className="zipTipsAvg">
                         <div className="ZipCode">{zip}</div>
                         <div>{processedTips[zip].business_count}</div>
-                        <div>{Number.parseFloat(processedTips[zip].tipsPerHour).toFixed(2)}</div>
+                        <div>${Number.parseFloat(processedTips[zip].tipsPerHour).toFixed(2)} / Hour</div>
                     </div>
                 </div>
             );
