@@ -1,3 +1,10 @@
+/** ProcessTips component is designed to compute the average tips
+ * depending on which option the user selects to filter; by business,
+ * by day, by position, by zipcode, or by shift. This component is still
+ * unfinished.
+ */
+
+
 // data will be process here
 // filter all the data based on business name
 // take the average
