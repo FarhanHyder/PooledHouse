@@ -111,7 +111,8 @@ class App extends Component {
     this.setState({
       showMapView: true,
       showListView: false,
-      showMyTipsView: false
+      showMyTipsView: false,
+      showSearchView: false
     })
   }
 
@@ -119,7 +120,8 @@ class App extends Component {
     this.setState({
       showMapView: false,
       showListView: true,
-      showMyTipsView: false
+      showMyTipsView: false,
+      showSearchView: false
     })
   }
 
@@ -127,7 +129,8 @@ class App extends Component {
     this.setState({
       showMapView: false,
       showListView: false,
-      showMyTipsView: true
+      showMyTipsView: true,
+      showSearchView: false
     })
   }
 
