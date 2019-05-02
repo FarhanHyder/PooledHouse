@@ -311,7 +311,7 @@ test('Should return average tips by zip of the location', () => {
   ]);
   expect(averageByZipCode).toEqual({
     '10012': {
-      'business_count': 2,
+      'business_count': 1,
       'tipsPerHour': 50,
       'totalHour': 10
     },
