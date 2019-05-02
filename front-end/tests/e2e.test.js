@@ -24,6 +24,6 @@ test("Should return logged-in user's username", async () => {
 
   await page.waitFor(1000);
 
-  const userName = await page.$eval('div.Nav__navItem___VnHJi', el => el.textContent);
-  expect(userName).toBe('Hello shofi');
+  const userName = await page.$eval('button#ur_nav', el => el.textContent);
+  expect(userName).toBe("shofi's Tips");
 }, 100000);
