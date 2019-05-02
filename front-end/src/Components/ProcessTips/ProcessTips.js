@@ -113,7 +113,7 @@ exports.averageTipsByBusinessDay = (tipsInfo) => {
             // }
             let hours = (businessTipsByday[businessName][day].totalHour + tips.shift_length);
             businessTipsByday[businessName][day].tipsPerHour = businessTipsByday[businessName][day].tipsPerHour * businessTipsByday[businessName][day].totalHour / hours + tips.takehome / hours;
-            businessTipsByday[businessName].totalHour = hours;
+            businessTipsByday[businessName][day].totalHour = hours;
         }
     });
     return businessTipsByday;
