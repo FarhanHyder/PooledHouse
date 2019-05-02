@@ -1,5 +1,5 @@
 projects:
-  phAPI:
+  testappAPI:
     schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.js
@@ -10,7 +10,7 @@ projects:
         codeGenTarget: javascript
         generatedFileName: ''
         docsFilePath: src/graphql
-        graphQLApiId: 7podsgcaercurjuy6uvwupcxbm
+        graphQLApiId: le46hcst6faghfuxoq267ko36a
       endpoints:
         prod: >-
-          https://5ucyrblvtjgsjoicvya2z4zp24.appsync-api.us-east-1.amazonaws.com/graphql
+          https://uixxwl4lyncanhv36vkrdhxsxe.appsync-api.us-east-1.amazonaws.com/graphql
