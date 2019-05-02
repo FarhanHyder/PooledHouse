@@ -183,7 +183,8 @@ class App extends Component {
 
       const viewData = (
         //the connect component queries our database
-        <Connect query={graphqlOperation(queries.listTipEntrys)}>
+        <Connect query={graphqlOperation(queries.listTipEntrys)}
+                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}>
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
@@ -198,7 +199,8 @@ class App extends Component {
       );
 
       let mapData = (
-        <Connect query={graphqlOperation(queries.listTipEntrys)}>
+        <Connect query={graphqlOperation(queries.listTipEntrys)}
+                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}>
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
