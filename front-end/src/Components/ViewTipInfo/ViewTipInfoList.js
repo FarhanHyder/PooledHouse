@@ -14,7 +14,7 @@ import PositionOption from './PositionOption';
 import './ViewTipInfo.css';
 import ViewTipsAverage from '../ProcessTips/ViewProcessedTips';
 import ProcessOption from '../ProcessTips/ProcessOption';
-import '../ProcessTips/ProcessTips.css';
+import '../ProcessTips/ViewProcessedTips.css';
 import ViewUserTips from '././UserTipInfo';
 
 class ViewTipInfoList extends React.Component {
@@ -57,14 +57,6 @@ class ViewTipInfoList extends React.Component {
                 {buttons}   
                 <PositionOption position={this.handlePosition}/>
                 <ViewTipInfo tipInfo={this.props.tip_info} position={this.state.positionFilter} />
-              </div>
-              );
-          }
-          else if(this.props.showUserTips) {
-            return  (
-              <div>
-                {buttons}   
-                <ViewUserTips user = {this.props.user} tipInfo={this.props.tip_info}/>
               </div>
               );
           }

@@ -5,28 +5,28 @@ import './App.css';
 import SignUp from './SignUp/SignUp.js';
 import TipInfoForm from './Components/TipInfoForm/TipInfoForm';
 import Map from './Components/Map/map.js';  
+import Search from './Components/Search/Search';
 
 // react-bootstrap
-import Navbar from 'react-bootstrap/Navbar'
-import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
-import Button from 'react-bootstrap/Button'
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
-import ToggleButton from 'react-bootstrap/ToggleButton'
-import Container from 'react-bootstrap/Container'
-import { Row, Col } from 'react-bootstrap'
+import Navbar from 'react-bootstrap/Navbar';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
+import Container from 'react-bootstrap/Container';
+import { Row, Col } from 'react-bootstrap';
 
 //for maps
 import styled from 'styled-components';
 
 // View Component
-import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
-import PositionOption from './Components/ViewTipInfo/PositionOption';
-import './Components/ViewTipInfo/ViewTipInfo.css';
-import ViewTipsAverage from './Components/ProcessTips/ProcessTips';
-import ProcessOption from './Components/ProcessTips/ProcessOption';
-import './Components/ProcessTips/ProcessTips.css';
+// import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
+// import PositionOption from './Components/ViewTipInfo/PositionOption';
+// import './Components/ViewTipInfo/ViewTipInfo.css';
+// import './Components/ProcessTips/ViewProcessedTips.css';
 import ViewUserTips from './Components/ViewTipInfo/UserTipInfo';
 import ViewTipInfoList from './Components/ViewTipInfo/ViewTipInfoList';
 
@@ -53,46 +53,24 @@ class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      showHome: true,
-      showSignUp: false,
-      showTipUpdate: false,
       curr_user_username: '',
       // userProfile : "",
       showListView: false,
       showMapView: true,
+      showMyTipsView: false,
+      showSearchView: false,
       detailList: false,
-      showUserTips: false,
       processFilter: "Business",
       positionFilter: "All Position"
     }
 
-    this.handleSignUp = this.handleSignUp.bind(this);
-    this.handleTipUpdate = this.handleTipUpdate.bind(this);
-    this.handleChangeView = this.handleChangeView.bind(this);
     this.handleProcess = this.handleProcess.bind(this);
     this.handlePosition = this.handlePosition.bind(this);
-  }
-
-  handleSignUp = () => {
-    this.setState({
-      showHome: !this.state.showHome,
-      showSignUp: !this.state.showSignUp
-    });
-  }
-
-  handleTipUpdate = () => {
-    this.setState({
-      //showHome: !this.state.showHome,
-      showTipUpdate: !this.state.showTipUpdate,
-      showListView: !this.state.showListView
-    })
-  }
-
-  handleChangeView = () => {
-    this.setState({
-      showListView: !this.state.showListView,
-      showMapView: !this.state.showMapView,
-    })
+    this.handleMapView = this.handleMapView.bind(this);
+    this.handleListView = this.handleListView.bind(this);
+    this.handleMyTipsView = this.handleMyTipsView.bind(this);
+    this.handleSearchQueryChange = this.handleSearchQueryChange.bind(this);
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
   
   handleProcess =(event) => {
@@ -115,22 +93,61 @@ class App extends Component {
 
   handleHomeView = () => {
     this.setState({
-      showHome: true,
       showSignUp: false,
-      showTipUpdate: false,
-      curr_user_username: '',
       // userProfile : "",
       showListView: false,
       showMapView: true,
       detailList: false,
-      showUserTips: false,
       processFilter: "Business",
-      positionFilter: "All Position"
+      positionFilter: "All Position",
+      showMyTipsView: false,
+      search_query: ''
     })
   }
-  //this grabs username attribute from current user.  
-  //componentDidMount is executed after the webpage is rendered,
-  //allowing for the page to be reloaded with data from API calls?
+
+  /////////new stuff
+
+  handleMapView = () => {
+    this.setState({
+      showMapView: true,
+      showListView: false,
+      showMyTipsView: false
+    })
+  }
+
+  handleListView = () => {
+    this.setState({
+      showMapView: false,
+      showListView: true,
+      showMyTipsView: false
+    })
+  }
+
+  handleMyTipsView = () => {
+    this.setState({
+      showMapView: false,
+      showListView: false,
+      showMyTipsView: true
+    })
+  }
+
+  handleSearchQueryChange = (e) => {
+    this.setState({
+      search_query: e.target.value
+    })
+  }
+
+  handleSearchSubmit = () => {
+    this.setState({
+      showMapView: false,
+      showListView: false,
+      showMyTipsView: false,
+      showSearchView: true
+    })
+  }
+
+  /////////new stuff
+
 
   async componentDidMount() {
     let current_user = await Auth.currentAuthenticatedUser();
@@ -142,6 +159,9 @@ class App extends Component {
   }
 
   render() {
+
+    const search_query = this.state.search_query
+
     const home = (
       <Navbar className="bg-olive justify-content-between">
 
@@ -159,20 +179,20 @@ class App extends Component {
       </Navbar.Brand>
       
         <Form inline>
-          <FormControl type="text" placeholder="ex: upper manhattan" className="mr-sm" />
-          <Button type="submit" variant="outline-light"><span>{"\uD83D\uDD0D"}</span></Button>
+          <FormControl value={ search_query } type="text" 
+                       placeholder="ex: upper manhattan" className="mr-sm" 
+                       onChange={ this.handleSearchQueryChange } />
+          <Button variant="outline-light" onClick={ this.handleSearchSubmit }><span>{"\uD83D\uDD0D"}</span></Button>
         </Form>
 
+        <ButtonGroup>
+          <Button variant="warning" onClick={this.handleMapView}>Map</Button>
+          <Button variant="warning" onClick={this.handleListView}>List</Button>
+        </ButtonGroup>
+
         <ButtonToolbar>
-          <ToggleButtonGroup type="radio" name="options" defaultValue={1} onChange={this.handleChangeView}>
-            <ToggleButton value={1} variant="warning">Map View</ToggleButton>
-            <ToggleButton value={2} variant="warning">List View</ToggleButton>
-          </ToggleButtonGroup>
-        </ButtonToolbar>
-        
-        <ButtonToolbar>
-          <Button id='ur_nav' onClick={()=>{this.setState({detailList : false, showUserTips: true}); this.handleTipUpdate()}}>
-            My Tips
+          <Button id='ur_nav' onClick={this.handleMyTipsView}>
+          {this.state.curr_user_username}'s Tips
           </Button>
           <Button id='ur_nav' onClick={this.handleSignOut}>
             Sign Out
@@ -190,9 +210,7 @@ class App extends Component {
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
             return (
               <ViewTipInfoList 
-                user={this.state.curr_user_username} 
-                tip_info={listTipEntrys.items} 
-                showUserTips={this.state.showUserTips}/>
+                tip_info={listTipEntrys.items} />
             )
         }}
         </Connect>
@@ -213,11 +231,62 @@ class App extends Component {
         </Connect>
       )
 
+      const viewMyTips = (
+        <div>
+        <TipInfoForm />
+        <Connect query={graphqlOperation(queries.listTipEntrys)}
+                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}>
+        {({ data: { listTipEntrys }, loading, error }) => {
+            if (error) return (<h3>Error</h3>);
+            if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+            return (
+              <ViewUserTips 
+                tipInfo={listTipEntrys.items} 
+                user={this.state.curr_user_username}
+                />
+            )
+        }}
+        </Connect>
+        </div>
+      )
+
+      const viewSearch = (
+        <Connect query={graphqlOperation(queries.listTipEntrys)}
+                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}>
+        {({ data: { listTipEntrys }, loading, error }) => {
+          if (error) return (<h3>Error</h3>);
+          if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+          return (
+            <div>
+                <Search tip_info={listTipEntrys ? listTipEntrys.items : []} 
+                        search_query={this.state.search_query} />
+            </div>
+          )
+        }}
+        </Connect>
+      )
+
+    let multiView = '';
+
+    if (this.state.showMapView) {
+      multiView = mapData;
+    } else if (this.state.showListView) {
+      multiView = viewData;
+    } else if (this.state.showSearchView) {
+      multiView = viewSearch;
+    } else {
+      multiView = viewMyTips;
+    }
+
+        {/*
+        {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
+        {this.state.showListView ? <div id="listView"> {viewData} </div> : <div> {mapData} </div>}
+        */}
+
     return (
       <div className="App">
         <div id="home"> { home } </div>
-        {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
-        {this.state.showListView ? <div id="listView"> {viewData} </div> : <div> {mapData} </div>}
+        <div className="tipsView"> { multiView } </div>
       </div>
     );
   }

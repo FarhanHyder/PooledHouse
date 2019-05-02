@@ -32,10 +32,10 @@ const getColor = (amount, max) =>{
 */
 
 const getColor = (amount) => {
-    if (amount < 100) return ORANGE;
-    if (amount < 200) return CRIMSON_RED;
-    if (amount < 300) return LIME_GREEN;
-    if (amount < 400) return PARAKEET_GREEN;
+    if (amount < 15) return ORANGE;
+    if (amount < 30) return CRIMSON_RED;
+    if (amount < 45) return LIME_GREEN;
+    if (amount < 60) return PARAKEET_GREEN;
     return EMERALD_GREEN;
 }
 
@@ -128,11 +128,9 @@ exports.averageTipsClean = (average_tips) => {
       element.name = average_tips[entry].neighborhood;
       element.values = [];
       element.values.push({label: "Avg Hourly $", val: Math.floor(average_tips[entry].tipsPerHour)});
-//      console.log(element.values[0].val);
+      //console.log(element.values[0].val);
       element.color = getColor(element.values[0].val);
       data.push(element);
     }
     return data;
 }
-
-//export { getColor, averageTipsClean, aTBNMasterParse };
