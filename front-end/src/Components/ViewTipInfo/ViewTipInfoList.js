@@ -52,14 +52,6 @@ class ViewTipInfoList extends React.Component {
               </div>
               );
           }
-          else if(this.props.showUserTips) {
-            return  (
-              <div>
-                {buttons}   
-                <ViewUserTips user = {this.props.user} tipInfo={this.props.tip_info}/>
-              </div>
-              );
-          }
           else {
             return  (
               <div>
