@@ -1,7 +1,8 @@
 // This will keep all the test to ProcessTips.js
 
 
-const { averageTipsByBusiness, averageTipsByBusinessDay, averageTipsByPosition } = require('../src/Components/ProcessTips/ProcessTips');
+const { averageTipsByBusiness, averageTipsByBusinessDay, averageTipsByPosition, averageTipsByZipCode } 
+        = require('../src/Components/ProcessTips/ProcessTips');
 
 
 test('Should return average tips by business', () => {
@@ -63,7 +64,7 @@ test('Should return average tips by business', () => {
 });
 
 
-test('Should return average tips by business day', () => {
+test('Should return average tips by day of the week', () => {
   const averageByBusinessDay = averageTipsByBusinessDay([
   {
     'shift_length': 5,
@@ -261,6 +262,63 @@ test('Should return average tips by position', () => {
         'totalHour': 0
       },
       'address': '80 Spring Street, New York, NY 10012'
+    }
+  });
+});
+
+
+test('Should return average tips by zip of the location', () => {
+  const averageByZipCode = averageTipsByZipCode([
+  {
+    'shift_length': 5,
+    'shift_time': 'PM',
+    'shift_date': '04/30/2019',
+    'shift_position': 'Bartender',
+    'takehome': 200,
+    'business_name': 'Poolinos',
+    'business_street_address': '292 Bowery',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10012',
+    'neighborhood': 'Soho'
+  },
+  {
+    'shift_length': 5,
+    'shift_time': 'PM',
+    'shift_date': '04/30/2019',
+    'shift_position': 'Bartender',
+    'takehome': 300,
+    'business_name': 'Poolinos',
+    'business_street_address': '292 Bowery',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10012',
+    'neighborhood': 'Soho'
+  },
+  {
+    'shift_length': 6,
+    'shift_time': 'PM',
+    'shift_date': '05/01/2019',
+    'shift_position': 'Server',
+    'takehome': 360,
+    'business_name': 'Balthezer',
+    'business_street_address': '80 Spring Street',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10013',
+    'neighborhood': 'The Standard'
+  }
+  ]);
+  expect(averageByZipCode).toEqual({
+    '10012': {
+      'business_count': 2,
+      'tipsPerHour': 50,
+      'totalHour': 10
+    },
+    '10013': {
+      'business_count': 1,
+      'tipsPerHour': 60,
+      'totalHour': 6
     }
   });
 });
