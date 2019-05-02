@@ -12,7 +12,7 @@
 		}
 	},
 	"api": {
-		"pooledhouse": {
+		"phAPI": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {
