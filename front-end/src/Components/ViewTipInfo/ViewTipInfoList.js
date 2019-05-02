@@ -1,3 +1,11 @@
+/**
+ * ViewTipInfoList is a Component that is used for displaying either
+ * your average tip data or a detailed tip data across the whole database.
+ * It is currently being used in the My Tips profile page to display tipped
+ * data. 
+ * @summary This component shows either your tips or everyone's tips.
+ */
+
 import React from 'react';
 
 // View Component
@@ -21,7 +29,7 @@ class ViewTipInfoList extends React.Component {
         this.handleProcess = this.handleProcess.bind(this);
         this.handlePosition = this.handlePosition.bind(this);
     }
-
+    
     handleProcess = (event) => {
         this.setState({
           processFilter : event.target.value
