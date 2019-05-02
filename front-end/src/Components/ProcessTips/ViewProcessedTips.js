@@ -65,7 +65,7 @@ const ViewTipsAverage = (props) => {
            <div>
                {view}
            </div>
-       </div>)
+       </div>);
 
     }
 
@@ -102,7 +102,37 @@ const ViewTipsAverage = (props) => {
            <div>
                {view}
            </div>
-       </div>)
+       </div>);
+    }
+    else if (props.process === "Zip Code") {
+        const processedTips = process.averageTipsByZipCode(tipsInfo);
+        console.clear();
+        console.log(processedTips);
+        view = Object.keys(processedTips).map(zip => {
+            console.log(zip);
+            return (
+                <div>
+                   { console.log(processedTips[zip])}
+                    <div className="zipTipsAvg">
+                        <div className="ZipCode">{zip}</div>
+                        <div>{processedTips[zip].business_count}</div>
+                        <div>{Number.parseFloat(processedTips[zip].tipsPerHour).toFixed(2)}</div>
+                    </div>
+                </div>
+            );
+        });
+ 
+        view = (
+        <div>
+            <div className="zipAvgPanel zipTipsAvg">
+                 <div>Zip Code</div>
+                 <div>Total Business</div>
+                 <div>Average Tips</div>
+            </div>
+            <div>
+                {view}
+            </div>
+        </div>);
     }
 
     return view;
