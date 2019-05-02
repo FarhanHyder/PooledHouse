@@ -1,3 +1,4 @@
+
 const { averageTipsClean, aTBNMasterParse } = require('../src/Components/Map/mapFunctions');
 
 
@@ -11,7 +12,7 @@ test('Should do unit test on averageTipsClean()', () => {
   {
     'name': 'Soho',
     'values': [{'label': 'Avg Hourly $', val: 37}],
-    'color': '#fc8d59'
+    'color': '#d9ef8b'
   }]);
 });
 
