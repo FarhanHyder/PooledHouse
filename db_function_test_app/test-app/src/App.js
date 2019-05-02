@@ -38,10 +38,7 @@ class App extends Component {
       <div>
       <NameForm />
       <Connect query={graphqlOperation(queries.listPersons)}
-               subscription={graphqlOperation(subscriptions.onCreatePerson)}
-               onSubscriptionMsg={(prev, { onCreatePerson }) => {
-                console.log ( onCreatePerson );
-                return prev; }}>
+               subscription={graphqlOperation(subscriptions.onCreatePerson)}>
                 {({ data: { listPersons }, loading, error }) => {
                     if (error) return (<h3>Error</h3>);
                     if (loading || !listPersons) return (<h3>Loading...</h3>);
