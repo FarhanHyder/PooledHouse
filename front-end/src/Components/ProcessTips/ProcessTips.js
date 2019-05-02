@@ -23,10 +23,7 @@
 // business_state
 // business_zip
 
-import React from 'react';
-import { all } from 'q';
-
-const averageTipsByBusiness = (tipsInfo) => {
+exports.averageTipsByBusiness = (tipsInfo) => {
     // let tipInfo = [...props.tipInfo];
     const business = {};
     tipsInfo.forEach(tips => {
@@ -71,7 +68,7 @@ const getDay = (date) => {
     }
 }
 
-const averageTipsByBusinessDay = (tipsInfo) => {
+exports.averageTipsByBusinessDay = (tipsInfo) => {
     const businessTipsByday = {};
     tipsInfo.forEach(tips => {
         let businessName = tips.business_name;
@@ -123,22 +120,85 @@ const averageTipsByBusinessDay = (tipsInfo) => {
             // }
             let hours = (businessTipsByday[businessName][day].totalHour + tips.shift_length);
             businessTipsByday[businessName][day].tipsPerHour = businessTipsByday[businessName][day].tipsPerHour * businessTipsByday[businessName][day].totalHour / hours + tips.takehome / hours;
-            businessTipsByday[businessName].totalHour = hours;
+            businessTipsByday[businessName][day].totalHour = hours;
         }
     });
     return businessTipsByday;
 }
 
-const averageTipsByPosition = (props) => {
+exports.averageTipsByPosition = (tipsInfo) => {
+    const businessTipsByPos = {};
+    tipsInfo.forEach(tips => {
+        let businessName = tips.business_name;
+        let pos = tips.shift_position;
+        if (! businessTipsByPos.hasOwnProperty(businessName)) {
+            let avg = {
+                        tipsPerHour: (tips.takehome / tips.shift_length),
+                        totalHour: tips.shift_length,
+                    };
+                    
+            businessTipsByPos[businessName] = {
+                Bartender: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Server: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Barback: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Busser: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Other: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                }
+            }; 
+
+            businessTipsByPos[businessName][pos] = avg;
+            businessTipsByPos[businessName].address = tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip;
+        }
+        else {
+            // if(!businessTipsByday[businessName].hasOwnProperty(day)) {
+
+
+            // }
+            let hours = (businessTipsByPos[businessName][pos].totalHour + tips.shift_length);
+            businessTipsByPos[businessName][pos].tipsPerHour = businessTipsByPos[businessName][pos].tipsPerHour * businessTipsByPos[businessName][pos].totalHour / hours + tips.takehome / hours;
+            businessTipsByPos[businessName].totalHour = hours;
+        }
+    });
+    return businessTipsByPos;
+}
+
+exports.averageTipsByZipCode = (tipsInfo) => {
+    const businessZip = {};
+    tipsInfo.forEach(tips => {
+        let zip = tips.business_zip;
+        if (! businessZip.hasOwnProperty(zip)) {
+            businessZip[zip] = {
+                business_count: 1,
+                tipsPerHour: (tips.takehome / tips.shift_length),
+                totalHour: tips.shift_length};
+        }
+        else {
+            let hours = (businessZip[zip].totalHour + tips.shift_length);
+            businessZip[zip].business_count += 1;
+            businessZip[zip].tipsPerHour = businessZip[zip].tipsPerHour * businessZip[zip].totalHour / hours + tips.takehome / hours;
+            businessZip[zip].totalHour = hours;
+        }
+    });
+    return businessZip;    
 
 }
 
-const averageTipsByZipCode = (props) => {
+exports.averageTipsByPositionAndShift = (tipsInfo) => {
 
 }
 
-const averageTipsByPositionAndShift = (props) => {
-
-}
-
-export {averageTipsByBusiness, averageTipsByBusinessDay};
+// export {averageTipsByBusiness, averageTipsByBusinessDay, averageTipsByPosition};
