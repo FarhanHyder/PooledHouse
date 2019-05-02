@@ -15,6 +15,7 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import Container from 'react-bootstrap/Container'
+import { Row, Col } from 'react-bootstrap'
 
 //for maps
 import styled from 'styled-components';
@@ -91,7 +92,6 @@ class App extends Component {
     this.setState({
       showListView: !this.state.showListView,
       showMapView: !this.state.showMapView,
-      showTipUpdate: false
     })
   }
   
@@ -105,6 +105,12 @@ class App extends Component {
     this.setState({
       positionFilter : event.target.value
     })
+  }
+
+  handleSignOut = () => {
+    Auth.signOut()
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
   }
 
   handleHomeView = () => {
@@ -165,12 +171,11 @@ class App extends Component {
         </ButtonToolbar>
         
         <ButtonToolbar>
-          {/* <Button 
-            className="text-color-white" 
-            onClick={this.handleTipUpdate}> Add New Tips
-          </Button> */}
-          <Button onClick={()=>{this.setState({detailList: false, showUserTips: true}); this.handleTipUpdate()}}>
+          <Button id='ur_nav' onClick={()=>{this.setState({detailList : false, showUserTips: true}); this.handleTipUpdate()}}>
             My Tips
+          </Button>
+          <Button id='ur_nav' onClick={this.handleSignOut}>
+            Sign Out
           </Button>
         </ButtonToolbar>
       </Navbar>
@@ -199,7 +204,7 @@ class App extends Component {
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
             return (
               <div>
-                <Map tip_info={listTipEntrys ? listTipEntrys.items : []} />
+                  <Map tip_info={listTipEntrys ? listTipEntrys.items : []} />
               </div>
             )
         }}
@@ -216,4 +221,4 @@ class App extends Component {
   }
 }
 
-export default withAuthenticator(App, true);
+export default withAuthenticator(App);
