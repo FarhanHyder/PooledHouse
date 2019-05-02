@@ -1,6 +1,6 @@
 import React from 'react';
 import {Col, Row, Container} from 'react-bootstrap';
-import {Form, Button} from 'react-bootstrap';
+import {Table, Button} from 'react-bootstrap';
 
 import { searchParse } from './searchFunctions'
 
@@ -27,7 +27,31 @@ class Search extends React.Component {
                 <p>No results found.</p> 
             )
         } else {
-            return (null);
+            return (
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Business</th>
+                            <th>Neighborhood</th>
+                            <th>Hourly Avg $</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { Object.keys(raw_results).map(key => {
+                            return (
+                                <tr>
+                                    <td>{ raw_results[key].business }</td>
+                                    <td>{ raw_results[key].neighborhood }</td>
+                                    <td>{ Math.floor(raw_results[key].tipsPerHour) }</td>
+                                </tr>
+                            )
+                        }) }
+                    </tbody>
+                </Table>
+
+            );
         }
     }
 }
+
+export default Search;

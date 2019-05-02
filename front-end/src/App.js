@@ -5,6 +5,7 @@ import './App.css';
 import SignUp from './SignUp/SignUp.js';
 import TipInfoForm from './Components/TipInfoForm/TipInfoForm';
 import Map from './Components/Map/map.js';  
+import Search from './Components/Search/Search';
 
 // react-bootstrap
 import Navbar from 'react-bootstrap/Navbar';
@@ -181,7 +182,7 @@ class App extends Component {
           <FormControl value={ search_query } type="text" 
                        placeholder="ex: upper manhattan" className="mr-sm" 
                        onChange={ this.handleSearchQueryChange } />
-          <Button type="submit" variant="outline-light" onClick={ this.handleSearchSubmit }><span>{"\uD83D\uDD0D"}</span></Button>
+          <Button variant="outline-light" onClick={ this.handleSearchSubmit }><span>{"\uD83D\uDD0D"}</span></Button>
         </Form>
 
         <ButtonGroup>
@@ -249,12 +250,30 @@ class App extends Component {
         </div>
       )
 
+      const viewSearch = (
+        <Connect query={graphqlOperation(queries.listTipEntrys)}
+                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}>
+        {({ data: { listTipEntrys }, loading, error }) => {
+          if (error) return (<h3>Error</h3>);
+          if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+          return (
+            <div>
+                <Search tip_info={listTipEntrys ? listTipEntrys.items : []} 
+                        search_query={this.state.search_query} />
+            </div>
+          )
+        }}
+        </Connect>
+      )
+
     let multiView = '';
 
     if (this.state.showMapView) {
       multiView = mapData;
     } else if (this.state.showListView) {
       multiView = viewData;
+    } else if (this.state.showSearchView) {
+      multiView = viewSearch;
     } else {
       multiView = viewMyTips;
     }
