@@ -16,6 +16,18 @@ class Search extends React.Component {
 
     render() {
 
-        return (null);
+        const tip_info = this.props.tip_info;
+        const search_query = this.props.search_query;
+        const raw_results = searchParse(tip_info, search_query, 
+                                        this.state.day, this.state.shift, 
+                                        this.state.position);
+        
+        if (Object.keys(raw_results).length == 0) {
+            return (
+                <p>No results found.</p> 
+            )
+        } else {
+            return (null);
+        }
     }
 }

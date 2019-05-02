@@ -7,7 +7,7 @@ exports.searchParse = (tip_info, business_name_query, day, shift, position) => {
             if ((day == 'All' || e_day == day) && 
                 (shift == 'All' ||  entry.shift_time == shift) && 
                 (position == 'All' || entry.shift_position == position)) {
-                    if (entry.business_name.includes(business_name_query)) {
+                    if (entry.business_name.toLowerCase().includes(business_name_query.toLowerCase())) {
                         let business_name = entry.business_name;
                         if (! results.hasOwnProperty(business_name)) {
                             results[business_name] = {business: business_name,
