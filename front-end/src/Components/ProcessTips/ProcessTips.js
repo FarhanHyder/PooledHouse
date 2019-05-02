@@ -171,9 +171,12 @@ exports.averageTipsByPosition = (tipsInfo) => {
 
 exports.averageTipsByZipCode = (tipsInfo) => {
     const businessZip = {};
+    const ZipBusinessCount = {};
     tipsInfo.forEach(tips => {
         let zip = tips.business_zip;
         if (! businessZip.hasOwnProperty(zip)) {
+            ZipBusinessCount[zip] = new Set();
+            ZipBusinessCount[zip].add(tips.business_name);
             businessZip[zip] = {
                 business_count: 1,
                 tipsPerHour: (tips.takehome / tips.shift_length),
@@ -181,7 +184,8 @@ exports.averageTipsByZipCode = (tipsInfo) => {
         }
         else {
             let hours = (businessZip[zip].totalHour + tips.shift_length);
-            businessZip[zip].business_count += 1;
+            ZipBusinessCount[zip].add(tips.business_name);
+            businessZip[zip].business_count = ZipBusinessCount[zip].size;
             businessZip[zip].tipsPerHour = businessZip[zip].tipsPerHour * businessZip[zip].totalHour / hours + tips.takehome / hours;
             businessZip[zip].totalHour = hours;
         }
