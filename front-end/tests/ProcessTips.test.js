@@ -4,8 +4,7 @@
 const { averageTipsByBusiness } = require('../src/Components/ProcessTips/ProcessTips');
 
 
-
-test('Should return average per business', () => {
+test('Should return average tips by business', () => {
   const averagePerBusiness = averageTipsByBusiness([
   {
     'shift_length': 5,
