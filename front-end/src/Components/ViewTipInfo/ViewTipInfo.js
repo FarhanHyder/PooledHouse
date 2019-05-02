@@ -1,3 +1,8 @@
+/**
+ * This stateless component  is used in parallel with the ProcessTips component
+ * within the ViewTipInfoList. It is used to help display the users tips in the 
+ * profile page.
+ */
 import React from 'react';
 
 

@@ -5,6 +5,7 @@ import './App.css';
 import SignUp from './SignUp/SignUp.js';
 import TipInfoForm from './Components/TipInfoForm/TipInfoForm';
 import Map from './Components/Map/map.js';  
+import Search from './Components/Search/Search';
 
 // react-bootstrap
 import Navbar from 'react-bootstrap/Navbar';
@@ -52,14 +53,13 @@ class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      showHome: true,
       curr_user_username: '',
       // userProfile : "",
       showListView: false,
       showMapView: true,
       showMyTipsView: false,
+      showSearchView: false,
       detailList: false,
-      showUserTips: false,
       processFilter: "Business",
       positionFilter: "All Position"
     }
@@ -69,6 +69,8 @@ class App extends Component {
     this.handleMapView = this.handleMapView.bind(this);
     this.handleListView = this.handleListView.bind(this);
     this.handleMyTipsView = this.handleMyTipsView.bind(this);
+    this.handleSearchQueryChange = this.handleSearchQueryChange.bind(this);
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
   
   handleProcess =(event) => {
@@ -91,18 +93,15 @@ class App extends Component {
 
   handleHomeView = () => {
     this.setState({
-      showHome: true,
       showSignUp: false,
-      showTipUpdate: false,
-      curr_user_username: '',
       // userProfile : "",
       showListView: false,
       showMapView: true,
       detailList: false,
-      showUserTips: false,
       processFilter: "Business",
       positionFilter: "All Position",
       showMyTipsView: false,
+      search_query: ''
     })
   }
 
@@ -132,6 +131,21 @@ class App extends Component {
     })
   }
 
+  handleSearchQueryChange = (e) => {
+    this.setState({
+      search_query: e.target.value
+    })
+  }
+
+  handleSearchSubmit = () => {
+    this.setState({
+      showMapView: false,
+      showListView: false,
+      showMyTipsView: false,
+      showSearchView: true
+    })
+  }
+
   /////////new stuff
 
 
@@ -145,6 +159,9 @@ class App extends Component {
   }
 
   render() {
+
+    const search_query = this.state.search_query
+
     const home = (
       <Navbar className="bg-olive justify-content-between">
 
@@ -162,8 +179,10 @@ class App extends Component {
       </Navbar.Brand>
       
         <Form inline>
-          <FormControl type="text" placeholder="ex: upper manhattan" className="mr-sm" />
-          <Button type="submit" variant="outline-light"><span>{"\uD83D\uDD0D"}</span></Button>
+          <FormControl value={ search_query } type="text" 
+                       placeholder="ex: upper manhattan" className="mr-sm" 
+                       onChange={ this.handleSearchQueryChange } />
+          <Button variant="outline-light" onClick={ this.handleSearchSubmit }><span>{"\uD83D\uDD0D"}</span></Button>
         </Form>
 
         <ButtonGroup>
@@ -173,7 +192,7 @@ class App extends Component {
 
         <ButtonToolbar>
           <Button id='ur_nav' onClick={this.handleMyTipsView}>
-            My Tips
+          {this.state.curr_user_username}'s Tips
           </Button>
           <Button id='ur_nav' onClick={this.handleSignOut}>
             Sign Out
@@ -231,12 +250,30 @@ class App extends Component {
         </div>
       )
 
+      const viewSearch = (
+        <Connect query={graphqlOperation(queries.listTipEntrys)}
+                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}>
+        {({ data: { listTipEntrys }, loading, error }) => {
+          if (error) return (<h3>Error</h3>);
+          if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+          return (
+            <div>
+                <Search tip_info={listTipEntrys ? listTipEntrys.items : []} 
+                        search_query={this.state.search_query} />
+            </div>
+          )
+        }}
+        </Connect>
+      )
+
     let multiView = '';
 
     if (this.state.showMapView) {
       multiView = mapData;
     } else if (this.state.showListView) {
       multiView = viewData;
+    } else if (this.state.showSearchView) {
+      multiView = viewSearch;
     } else {
       multiView = viewMyTips;
     }
