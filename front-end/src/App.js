@@ -22,12 +22,10 @@ import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
 // View Component
-import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
-import PositionOption from './Components/ViewTipInfo/PositionOption';
-import './Components/ViewTipInfo/ViewTipInfo.css';
-import ViewTipsAverage from './Components/ProcessTips/ProcessTips';
-import ProcessOption from './Components/ProcessTips/ProcessOption';
-import './Components/ProcessTips/ProcessTips.css';
+// import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
+// import PositionOption from './Components/ViewTipInfo/PositionOption';
+// import './Components/ViewTipInfo/ViewTipInfo.css';
+// import './Components/ProcessTips/ViewProcessedTips.css';
 import ViewUserTips from './Components/ViewTipInfo/UserTipInfo';
 import ViewTipInfoList from './Components/ViewTipInfo/ViewTipInfoList';
 
@@ -251,7 +249,7 @@ class App extends Component {
     return (
       <div className="App">
         <div id="home"> { home } </div>
-        <div> { multiView } </div>
+        <div className="tipsView"> { multiView } </div>
       </div>
     );
   }
