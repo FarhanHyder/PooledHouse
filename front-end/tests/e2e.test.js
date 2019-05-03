@@ -5,15 +5,25 @@
 
 const puppeteer = require ('puppeteer');
 
+let browser;
+let page;
 
-test("Should return logged-in user's username", async () => {
-  const browser = await puppeteer.launch({
+// Launch Choromium browser and open page before running any tests
+beforeAll(async () => {
+  // Wait until a browser window opens up
+  browser = await puppeteer.launch({
     headless: false,
     slowMo: 80,
     args: ['--window-size=840,630']
   });
 
-  const page = await browser.newPage();
+  page = await browser.newPage();
+});
+
+
+// Test User Log-in
+test("Should return logged-in user's username", async () => {
+
   await page.goto('http://localhost:3000/');
 
   await page.click('input[name=username]');
@@ -26,10 +36,10 @@ test("Should return logged-in user's username", async () => {
 
   const userName = await page.$eval('button#ur_nav', el => el.textContent);
   expect(userName).toBe("shofi's Tips");
+}, 10000);
 
-  await page.click('button#ur_nav');
-  await page.waitFor(1000);
 
+// Close Chromium browser after all the E2E tests have run
+afterAll(async () => {
   await browser.close();
-}, 20000);
-
+});
