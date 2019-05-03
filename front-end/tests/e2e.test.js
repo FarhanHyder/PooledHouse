@@ -1,9 +1,8 @@
 // All end-to-end tests will reside here
+const puppeteer = require ('puppeteer');
 
 // Set timeout so that all tests have enough time to finish
 //jest.setTimeout(10000);
-
-const puppeteer = require ('puppeteer');
 
 let browser;
 let page;
@@ -14,7 +13,7 @@ beforeAll(async () => {
   browser = await puppeteer.launch({
     headless: false,
     slowMo: 80,
-    args: ['--window-size=840,630']
+    args: ['--window-size=800,650']
   });
 
   page = await browser.newPage();
@@ -39,8 +38,16 @@ test("Should return logged-in user's username", async () => {
 }, 10000);
 
 
-// Close Chromium browser after all the E2E tests have run
+// Test loading page onCLick 'User's Tip'
+test("Should test page loading onCLick 'User's Tip", async() => {
+  await page.click('button#ur_nav');
+  await page.waitFor(2000);
+  const formExist = await page.$eval('[type="submit"]', el => el.textContent);
+  expect(formExist).toBe('Add Tips');
+});
+
+
+// Close Chromium browser after all the E2E tests have finished running
 afterAll(async () => {
   await browser.close();
 });
-
