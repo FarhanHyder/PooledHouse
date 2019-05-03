@@ -43,3 +43,4 @@ test("Should return logged-in user's username", async () => {
 afterAll(async () => {
   await browser.close();
 });
+
