@@ -18,7 +18,7 @@ const ProcessOption = (props) => {
                   <option>Business</option>
                   <option>Daily Average</option>
                   <option>Position</option>
-                  <option>Zip Code</option>
+               
                   <option>Neighborhood</option>
                   <option>Highest Average Tips</option>
                   <option>Lowest Average Tips</option>
