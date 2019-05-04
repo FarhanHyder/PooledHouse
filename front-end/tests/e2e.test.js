@@ -39,12 +39,27 @@ test("Should return logged-in user's username", async () => {
 
 
 // Test loading page onCLick 'User's Tip'
-test("Should test page loading onCLick 'User's Tip", async() => {
+test("Should test 'page loading' onCLick 'User's Tip", async () => {
   await page.click('button#ur_nav');
   await page.waitFor(2000);
   const formExist = await page.$eval('[type="submit"]', el => el.textContent);
   expect(formExist).toBe('Add Tips');
 });
+
+
+// Test tip submit with no tip input'
+test("Should test tip submit with no tip inputs", async () => {
+  let testText;
+  page.on('dialog', async dialog => {
+    testText = dialog.message();
+    await page.waitFor(1000);
+    await dialog.dismiss();
+  });
+  await page.click('button[type="submit"');
+  await page.waitFor(1000);
+  expect(testText).toBe('tipentry failed');
+});
+
 
 
 // Close Chromium browser after all the E2E tests have finished running
