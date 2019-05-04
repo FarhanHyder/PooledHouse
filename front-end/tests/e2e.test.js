@@ -24,6 +24,7 @@ beforeAll(async () => {
 test("Should return logged-in user's username", async () => {
 
   await page.goto('http://localhost:3000/');
+  // await page.goto('http://front-end-20190411125054-hostingbucket-phdev.s3-website-us-east-1.amazonaws.com/');
 
   await page.click('input[name=username]');
   await page.type('input[name=username]', 'shofi');
@@ -65,7 +66,7 @@ test("Should test tip submit with valid tip inputs", async () => {
   let submitConfirmation;
   page.on('dialog', async dialog => {
     submitConfirmation = dialog.message();
-//    submitConfirmation = 'success';
+    submitConfirmation = 'success';
     //await dialog.accept();
   });
   // await page.click('input[name=shift_date]');
