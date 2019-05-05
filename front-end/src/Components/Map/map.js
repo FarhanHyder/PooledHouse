@@ -1,3 +1,7 @@
+/** Map component to link our data from the amplify backend 
+ * to our map feature on the main page. 
+ */
+
 import React from 'react';
 import ReactNYC from 'react-nyc-choropleth';
 import { API, graphqlOperation } from "aws-amplify";
