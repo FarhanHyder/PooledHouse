@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 
 //local imports
-import SignUp from './SignUp/SignUp.js';
 import TipInfoForm from './Components/TipInfoForm/TipInfoForm';
 import Map from './Components/Map/map.js';  
 import Search from './Components/Search/Search';
@@ -14,13 +13,6 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
-import ToggleButton from 'react-bootstrap/ToggleButton';
-import Container from 'react-bootstrap/Container';
-import { Row, Col } from 'react-bootstrap';
-
-//for maps
-import styled from 'styled-components';
 
 // View Component
 // import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
@@ -39,7 +31,6 @@ import aws_config from './aws-exports';
 
 //graphql related imports
 import * as queries from './graphql/queries'
-import * as mutations from './graphql/mutations'
 import * as subscriptions from './graphql/subscriptions'
 
 import logo from './images/logo.png'
@@ -105,8 +96,6 @@ class App extends Component {
     })
   }
 
-  /////////new stuff
-
   handleMapView = () => {
     this.setState({
       showMapView: true,
@@ -149,15 +138,13 @@ class App extends Component {
     })
   }
 
+  //updates db query with newly added items, used in subscriptions
   onNewTipEntry = (prevQuery, newData) => {
     let updatedQuery = Object.assign({}, prevQuery);
     updatedQuery.listTipEntrys.items = 
       prevQuery.listTipEntrys.items.concat([newData.onCreateTipEntry]);
       return updatedQuery;
   }
-
-  /////////new stuff
-
 
   async componentDidMount() {
     let current_user = await Auth.currentAuthenticatedUser();
