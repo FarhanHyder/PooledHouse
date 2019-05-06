@@ -149,6 +149,13 @@ class App extends Component {
     })
   }
 
+  onNewTipEntry = (prevQuery, newData) => {
+    let updatedQuery = Object.assign({}, prevQuery);
+    updatedQuery.listTipEntrys.items = 
+      prevQuery.listTipEntrys.items.concat([newData.onCreateTipEntry]);
+      return updatedQuery;
+  }
+
   /////////new stuff
 
 
@@ -207,7 +214,8 @@ class App extends Component {
       const viewData = (
         //the connect component queries our database
         <Connect query={graphqlOperation(queries.listTipEntrys)}
-                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}>
+                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}
+                 onSubscriptionMsg={this.onNewTipEntry}>
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
@@ -221,7 +229,8 @@ class App extends Component {
 
       let mapData = (
         <Connect query={graphqlOperation(queries.listTipEntrys)}
-                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}>
+                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}
+                 onSubscriptionMsg={this.onNewTipEntry}>
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
@@ -238,7 +247,8 @@ class App extends Component {
         <div>
         <TipInfoForm />
         <Connect query={graphqlOperation(queries.listTipEntrys)}
-                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}>
+                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}
+                 onSubscriptionMsg={this.onNewTipEntry}>
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
@@ -255,7 +265,8 @@ class App extends Component {
 
       const viewSearch = (
         <Connect query={graphqlOperation(queries.listTipEntrys)}
-                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}>
+                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}
+                 onSubscriptionMsg={this.onNewTipEntry}>
         {({ data: { listTipEntrys }, loading, error }) => {
           if (error) return (<h3>Error</h3>);
           if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
