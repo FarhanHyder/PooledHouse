@@ -1,0 +1,478 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TipInfoForm component snapshot test 1`] = `
+<div>
+  <div
+    className="container-fluid"
+  >
+    <form
+      className="text-left newTips"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col"
+        >
+          <div
+            className="form-group"
+            controlID="shift_date"
+          >
+            <label
+              className="form-label"
+            >
+              Shift Date
+            </label>
+            <input
+              className="form-control"
+              name="shift_date"
+              onChange={[Function]}
+              type="date"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="col"
+        >
+          <div
+            className="form-group"
+          >
+            <label
+              className="form-label"
+              htmlFor="shift_time"
+            >
+              Shift Time
+            </label>
+            <select
+              className="form-control"
+              id="shift_time"
+              name="shift_time"
+              onChange={[Function]}
+              value="AM"
+            >
+              <option>
+                AM
+              </option>
+              <option>
+                PM
+              </option>
+            </select>
+          </div>
+        </div>
+        <div
+          className="col"
+        >
+          <div
+            className="form-group"
+            controlID="shift_length"
+          >
+            <label
+              className="form-label"
+            >
+              Shift Length (hours)
+            </label>
+            <input
+              className="form-control"
+              name="shift_length"
+              onChange={[Function]}
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="col"
+        >
+          <div
+            className="form-group"
+            controlID="shift_position"
+          >
+            <label
+              className="form-label"
+            >
+              Position
+            </label>
+            <select
+              className="form-control"
+              name="shift_position"
+              onChange={[Function]}
+              value="Bartender"
+            >
+              <option>
+                Bartender
+              </option>
+              <option>
+                Server
+              </option>
+              <option>
+                Barback
+              </option>
+              <option>
+                Busser
+              </option>
+              <option>
+                Other
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col"
+        >
+          <div
+            className="form-group"
+            controlID="takehome"
+          >
+            <label
+              className="form-label"
+            >
+              Tip Takehome
+            </label>
+            <input
+              className="form-control"
+              name="takehome"
+              onChange={[Function]}
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="col"
+        >
+          <div
+            className="form-group"
+            controlID="business_name"
+          >
+            <label
+              className="form-label"
+            >
+              Business Name
+            </label>
+            <input
+              className="form-control"
+              name="business_name"
+              onChange={[Function]}
+              placeholder="i.e. Hot Jim's BBQ"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="col"
+        >
+          <div
+            className="form-group"
+            controlID="business_street_address"
+          >
+            <label
+              className="form-label"
+            >
+              Street Address
+            </label>
+            <input
+              className="form-control"
+              name="business_street_address"
+              onChange={[Function]}
+              placeholder="i.e. 123 E 9th St"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="col"
+        >
+          <div
+            className="form-group"
+            controlID="business_city"
+          >
+            <label
+              className="form-label"
+            >
+              City
+            </label>
+            <input
+              className="form-control"
+              name="business_city"
+              onChange={[Function]}
+              placeholder="i.e. New York City"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="col"
+        >
+          <div
+            className="form-group"
+            controlID="business_state"
+          >
+            <label
+              className="form-label"
+            >
+              State
+            </label>
+            <input
+              className="form-control"
+              name="business_state"
+              onChange={[Function]}
+              placeholder="i.e. NY"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="col"
+        >
+          <div
+            className="form-group"
+            controlID="business_zip"
+          >
+            <label
+              className="form-label"
+            >
+              Zipcode
+            </label>
+            <input
+              className="form-control"
+              name="business_zip"
+              onChange={[Function]}
+              placeholder="i.e. 11105"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="col"
+        >
+          <div
+            className="form-group"
+            controlID="neighborhood"
+          >
+            <label
+              className="form-label"
+            >
+              Neighborhood
+            </label>
+            <select
+              className="form-control"
+              name="neighborhood"
+              onChange={[Function]}
+              value=""
+            >
+              <option
+                value="Battery Park City"
+              >
+                Battery Park City
+              </option>
+              <option
+                value="Central Harlem"
+              >
+                Central Harlem
+              </option>
+              <option
+                value="Central Park"
+              >
+                Central Park
+              </option>
+              <option
+                value="Chelsea"
+              >
+                Chelsea
+              </option>
+              <option
+                value="Chinatown"
+              >
+                Chinatown
+              </option>
+              <option
+                value="City Hall Area"
+              >
+                City Hall Area
+              </option>
+              <option
+                value="East Village"
+              >
+                East Village
+              </option>
+              <option
+                value="Ellis Island"
+              >
+                Ellis Island
+              </option>
+              <option
+                value="Financial District"
+              >
+                Financial District
+              </option>
+              <option
+                value="Flatiron District"
+              >
+                Flatiron District
+              </option>
+              <option
+                value="Governors Island"
+              >
+                Governors Island
+              </option>
+              <option
+                value="Gramercy"
+              >
+                Gramercy
+              </option>
+              <option
+                value="Greenwich Village"
+              >
+                Greenwich Village
+              </option>
+              <option
+                value="Hamilton Heights"
+              >
+                Hamilton Heights
+              </option>
+              <option
+                value="Hell's Kitchen"
+              >
+                Hell's Kitchen
+              </option>
+              <option
+                value="Inwood"
+              >
+                Inwood
+              </option>
+              <option
+                value="Kips Bay"
+              >
+                Kips Bay
+              </option>
+              <option
+                value="Liberty Island"
+              >
+                Liberty Island
+              </option>
+              <option
+                value="Little Italy"
+              >
+                Little Italy
+              </option>
+              <option
+                value="Lower East Side"
+              >
+                Lower East Side
+              </option>
+              <option
+                value="Marble Hill"
+              >
+                Marble Hill
+              </option>
+              <option
+                value="Midtown East"
+              >
+                Midtown East
+              </option>
+              <option
+                value="Midtown West"
+              >
+                Midtown West
+              </option>
+              <option
+                value="Morningside Heights"
+              >
+                Morningside Heights
+              </option>
+              <option
+                value="Murray Hill"
+              >
+                Murray Hill
+              </option>
+              <option
+                value="NoHo"
+              >
+                NoHo
+              </option>
+              <option
+                value="Nolita"
+              >
+                Nolita
+              </option>
+              <option
+                value="Randall's Island"
+              >
+                Randall's Island
+              </option>
+              <option
+                value="Roosevelt Island"
+              >
+                Roosevelt Island
+              </option>
+              <option
+                value="SoHo"
+              >
+                SoHo
+              </option>
+              <option
+                value="Spanish Harlem"
+              >
+                Spanish Harlem
+              </option>
+              <option
+                value="Stuyvesant Town"
+              >
+                Stuyvesant Town
+              </option>
+              <option
+                value="Tribeca"
+              >
+                Tribeca
+              </option>
+              <option
+                value="Two Bridges"
+              >
+                Two Bridges
+              </option>
+              <option
+                value="Upper East Side"
+              >
+                Upper East Side
+              </option>
+              <option
+                value="Upper West Side"
+              >
+                Upper West Side
+              </option>
+              <option
+                value="Washington Heights"
+              >
+                Washington Heights
+              </option>
+              <option
+                value="West Village"
+              >
+                West Village
+              </option>
+            </select>
+            <button
+              className="btn btn-primary"
+              disabled={false}
+              onClick={[Function]}
+              type="submit"
+            >
+              Add Tips
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
