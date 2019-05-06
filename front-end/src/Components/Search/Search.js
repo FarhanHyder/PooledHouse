@@ -108,7 +108,7 @@ class Search extends React.Component {
             </Card>
         );
         
-        if (Object.keys(raw_results).length == 0) {
+        if (Object.keys(raw_results).length === 0) {
             return (
                 <Container fluid>
                 <div>
