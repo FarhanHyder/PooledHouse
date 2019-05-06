@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Description from './CompanyDescription';
 
 class ViewCompany extends Component {
     constructor(){
@@ -10,18 +11,34 @@ class ViewCompany extends Component {
             TipsHistory: false
         }
         this.companyViewHandler = this.companyViewHandler.bind(this);
+        this.descriptionViewHandler = this.descriptionViewHandler.bind(this);
     }
 
     companyViewHandler = () => {
-        this.setState({CompanyView : !this.state.CompanyView})
-    }
+        this.setState({CompanyView : !this.state.CompanyView});
+    };
+
+    descriptionViewHandler = () => {
+        this.setState({
+            Description: true,
+            TipsInfo: false,
+            TipsHistory: false
+        });
+    };
+
+
     render(){
         const Company = (
             <div>
-                <button type="primary" onClick={this.companyViewHandler}>Company Name</button>
-                <button>Description</button>
-                <button>Reported Tips</button>
-                <button>Tips History</button>
+                <div className="menu">
+                    <button type="primary" onClick={this.companyViewHandler}>Company Name</button>
+                    <button type="primary" onClick = {this.descriptionViewHandler}>Description</button>
+                    <button>Reported Tips</button>
+                    <button>Tips History</button>
+                </div>
+                <div>
+                    {this.state.Description? <Description/> : null}
+                </div>
             </div>
         );
 
