@@ -55,7 +55,9 @@ exports.averageTipsByBusinessByLocation = (tipsInfo) => {
                         tipsPerHour: (tips.takehome / tips.shift_length),
                         totalHour: tips.shift_length,
                     };
-
+            if(! businessTipsByLocations.hasOwnProperty(businessName)) {
+                businessTipsByLocations[businessName] = {};
+            }
             businessTipsByLocations[businessName][addr] = avg;
         }
         else {
@@ -219,6 +221,37 @@ exports.averageTipsByZipCode = (tipsInfo) => {
     });
     return businessZip;    
 
+}
+
+exports.createBusinessTable =  (tipsInfo) => {
+    const business = {};
+    tipsInfo.forEach(tips => {
+        let businessName = tips.business_name;
+        if (! business.hasOwnProperty(businessName)) {
+            business[businessName] = [{
+                // business_name: businessName,
+                business_street_address: tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip, 
+                Position: tips.shift_position,
+                Tips : tips.takehome,
+                Hour : tips.shift_length,
+                Shift : tips.shift_time,
+                Neighborhood: tips.neighborhood,
+                date : tips.shift_date}];
+        }
+        else {
+            business[businessName].push({
+                // business_name: businessName,
+                business_street_address: tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip, 
+                Position: tips.shift_position,
+                Tips : tips.takehome,
+                Hour : tips.shift_length,
+                Shift : tips.shift_time,
+                Neighborhood: tips.neighborhood,
+                date : tips.shift_date
+            });
+        }
+    });
+    return business;
 }
 
 exports.averageTipsByPositionAndShift = (tipsInfo) => {
