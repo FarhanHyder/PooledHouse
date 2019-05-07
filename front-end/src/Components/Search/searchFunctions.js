@@ -2,7 +2,11 @@
  * The searchFunctions.js file provides us with a function to help parse
  * our different database entries in the Search.js file. This function 
  * @namespace searchParse
- * @param {}
+ * @param {} tip_info
+ * @param {} business_name_query
+ * @param {} day
+ * @param {} shift
+ * @param {} position
  * @returns {}
  */
 exports.searchParse = (tip_info, business_name_query, day, shift, position) => {
