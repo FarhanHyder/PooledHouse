@@ -6,8 +6,7 @@
  * @summary This component shows either your tips or all tips.
  */
 
-import React from 'react';
-
+import React, { Component } from 'react'
 // View Component
 import ViewTipInfo from '././ViewTipInfo';
 import PositionOption from './PositionOption';
@@ -19,7 +18,12 @@ import ViewUserTips from '././UserTipInfo';
 import ViewCompany from './ViewCompany';
 
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+
+
+// import { Search, Grid, Header, Segment } from 'semantic-ui-react'
+
+const initialState = { isLoading: false, results: [], value: '' }
+
 
 const process = require('../ProcessTips/ProcessTips');
 
@@ -30,13 +34,20 @@ class ViewTipInfoList extends React.Component {
             detailList: false,
             processFilter: "Business",
             positionFilter: "All Position",
-            BusinessName: "",
-            processedTips: {}
+            companyView: false,
+            allBusiness: process.createBusinessTable(props.tip_info),
+            avgByBusiness : process.averageTipsByBusiness(props.tip_info),
+            avgByLocation: process.averageTipsByBusinessByLocation(props.tip_info),
+            avgByPosition: process.averageTipsByPosition(props.tip_info),
+            avgByDay: process.averageTipsByBusinessDay(props.tip_info),
+            avgByZip: process.averageTipsByZipCode(props.tip_info),
+            BusinessName: "Test",
+            SearchResults: Object.keys(process.createBusinessTable(props.tip_info)).sort()
         };
 
         this.handleProcess = this.handleProcess.bind(this);
         this.handlePosition = this.handlePosition.bind(this);
-        this.tipsProcessHandler = this.tipsProcessHandler.bind(this);
+        this.searchHandler = this.searchHandler.bind(this);
     }
     
     handleProcess = (event) => {
@@ -50,20 +61,27 @@ class ViewTipInfoList extends React.Component {
           positionFilter : event.target.value
         })
     }
-
-    tipsProcessHandler = (tipsInfo) => {
-      const newProcessedTips = this.state.processedTips;
-      newProcessedTips.averageTipsByBusiness = process.averageTipsByBusiness(tipsInfo);
-      console.log(newProcessedTips.averageTipsByBusiness);
+    
+    searchHandler = (tipsInfo, data) => {
+      let results = Object.keys(process.createBusinessTable(tipsInfo)).sort();
+      results = results.filter(name => name.toUpperCase().includes(data.toUpperCase()));
       this.setState({
-        processedTips: newProcessedTips
+        SearchResults: results,
+        companyView: false
       });
     }
 
+    viewHandler = (name) => {
+      this.setState({
+        BusinessName: name,
+        companyView: true
+      })
+    }
     render() {
-      const tipsInfo = this.props.tip_info.filter(tips => (tips.business_name.includes(this.state.BusinessName)));
+      const tipsInfo = this.props.tip_info;
+      // all processed value
+      const businessAvg = process.averageTipsByBusiness(tipsInfo);
       
-
       const buttons = (
           <div>
             <button type="primary" onClick={()=>{this.setState({detailList : false, showUserTips: false})}}>View Average Tip Data</button>
@@ -71,8 +89,16 @@ class ViewTipInfoList extends React.Component {
           </div> 
       )
 
-      // const BusinessTable = 
-    
+      const defaultView = this.state.SearchResults.map(company => {
+        return (
+        <div className ="tipsByBusiness">
+            <button type="primary" onClick>
+                <h2 className="busTitle">{this.state.avgByBusiness[company].business_name}</h2>
+                {/* <div className="addr">{avgByBusiness[tips].business_street_address}</div> */}
+                <div>Tips : ${Number.parseFloat(this.state.avgByBusiness[company].tipsPerHour).toFixed(2)}/Hour</div>
+            </button>    
+        </div>);
+    });
       // if(this.state.detailList) {
       //     return  ( 
       //       <div>
@@ -93,24 +119,29 @@ class ViewTipInfoList extends React.Component {
       return (
         <div>
           <div>
-          <Form className="text-left newcontact" onSubmit={this.addAddress}>
-            <Form.Group controlId="formAddress">
-
-            <div className="SearchBlock">
-              <Form.Label></Form.Label>
-              <Form.Control
-                type="text" 
-                placeholder="Search Company"
-                required
-                value={this.state.BusinessName}
-                onChange={(event) => this.setState({BusinessName: event.target.value})}/>
-            </div>
-            <Button variant="primary" type="submit">Search Icon</Button>
-          </Form.Group>
-          </Form>
+          <div className="filter-Business">
+            <form>
+              <fieldset className="form-group">
+                <input 
+                  type="text" 
+                  className="form-control form-control-lg" 
+                  placeholder="Search Company"
+                  onChange = {(event)=> {this.searchHandler(tipsInfo, event.target.value)}}
+                />
+              </fieldset>
+            </form>
+          {/* <List items={this.state.items}/> */}
           </div>
-          {/* {this.tipsProcessHandler(tipsInfo)} */}
-          <ViewCompany tipsInfo={tipsInfo} BusinessName = {this.state.BusinessName}/>
+          </div>
+          {console.log(this.state.SearchResults)}
+          {this.state.companyView? 
+            <ViewCompany 
+              tipsInfo={tipsInfo} 
+              BusinessName = {this.state.BusinessName}
+            /> :
+            defaultView
+          }
+          
         </div>
       )
   };
