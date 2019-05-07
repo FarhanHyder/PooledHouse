@@ -3,6 +3,7 @@
  * Average Tips. This menu allows you to select which  value you'd like to 
  * display average tip by.
  */
+
 import React from 'react';
 import {Form} from 'react-bootstrap';
 
@@ -17,7 +18,7 @@ const ProcessOption = (props) => {
                   <option>Business</option>
                   <option>Daily Average</option>
                   <option>Position</option>
-                  <option>Zip Code</option>
+               
                   <option>Neighborhood</option>
                   <option>Highest Average Tips</option>
                   <option>Lowest Average Tips</option>

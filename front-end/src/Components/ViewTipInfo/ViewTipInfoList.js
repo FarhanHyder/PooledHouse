@@ -3,7 +3,7 @@
  * your average tip data or a detailed tip data across the whole database.
  * It is currently being used in the My Tips profile page to display tipped
  * data. 
- * @summary This component shows either your tips or everyone's tips.
+ * @summary This component shows either your tips or all tips.
  */
 
 import React from 'react';

@@ -1,3 +1,9 @@
+/**
+ * Search component used in App.js to create a search feature
+ * in homepage. Mostly this component is used to link front end
+ * to our backend.
+ */
+
 import React from 'react';
 import {Col, Row, Container} from 'react-bootstrap';
 import {Table, Button, Card, Form} from 'react-bootstrap';
