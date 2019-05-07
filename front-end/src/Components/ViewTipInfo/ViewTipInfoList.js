@@ -18,6 +18,9 @@ import '../ProcessTips/ViewProcessedTips.css';
 import ViewUserTips from '././UserTipInfo';
 import ViewCompany from './ViewCompany';
 
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
 const process = require('../ProcessTips/ProcessTips');
 
 class ViewTipInfoList extends React.Component {
@@ -89,8 +92,25 @@ class ViewTipInfoList extends React.Component {
       //   }
       return (
         <div>
+          <div>
+          <Form className="text-left newcontact" onSubmit={this.addAddress}>
+            <Form.Group controlId="formAddress">
+
+            <div className="SearchBlock">
+              <Form.Label></Form.Label>
+              <Form.Control
+                type="text" 
+                placeholder="Search Company"
+                required
+                value={this.state.BusinessName}
+                onChange={(event) => this.setState({BusinessName: event.target.value})}/>
+            </div>
+            <Button variant="primary" type="submit">Search Icon</Button>
+          </Form.Group>
+          </Form>
+          </div>
           {/* {this.tipsProcessHandler(tipsInfo)} */}
-          <ViewCompany tipsInfo={tipsInfo}/>
+          <ViewCompany tipsInfo={tipsInfo} BusinessName = {this.state.BusinessName}/>
         </div>
       )
   };
