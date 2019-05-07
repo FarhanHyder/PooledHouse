@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import './ViewCompany.css';
 import Description from './CompanyDescription';
-
+import ReportedTips from './ReportedTips';
 import TipsHistory from './TipsHistory';
 
 const process = require('../ProcessTips/ProcessTips');
@@ -52,16 +53,23 @@ class ViewCompany extends Component {
         // const processedTips = process.averageTipsByBusiness(tipsInfo);
         // console.log(processedTips);
         const Company = (
-            <div>
+            <div className = "company">
                 <div className="menu">
-                    <button type="primary" onClick={this.companyViewHandler}>Company Name</button>
-                    <button type="primary" onClick = {this.descriptionViewHandler}>Description</button>
-                    <button type="primary" onClick = {this.tipsInfoViewHandler}>Full Reported Tips</button>
-                    <button type="primary" onClick = {this.tipsHistoryViewHandler}>Tips History</button>
+                    <div className="companyName">
+                        <button type="primary" onClick={this.companyViewHandler}>Here is the Company Name</button>
+                    </div>
+                    <div>
+                        <button type="primary" onClick = {this.descriptionViewHandler}>Description</button>
+                        <button type="primary" onClick = {this.tipsInfoViewHandler}>Full Reported Tips</button>
+                        <button type="primary" onClick = {this.tipsHistoryViewHandler}>Tips History</button>
+                    </div>
                 </div>
                 <div className="companyProfile">
-                    {this.state.Description? <Description business = {this.state.BusinessName}/> : null}
-                    {this.state.TipsHistory? <TipsHistory tipsInfo = {this.props.tipsInfo}/>: null}
+                    {
+                        this.state.Description?
+                        <Description business = {this.state.BusinessName}/> :
+                        (this.state.TipsInfo? <ReportedTips /> : <TipsHistory tipsInfo = {this.props.tipsInfo}/>)
+                    }
                 </div>
             </div>
         );
