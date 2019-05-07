@@ -1,4 +1,11 @@
-const { averageTipsClean, aTBNMasterParse } = require('../src/Components/Map/mapFunctions');
+
+const { getColor, averageTipsClean, aTBNMasterParse } = require('../src/Components/Map/mapFunctions');
+
+
+test('Should return the relevant color PARAKEET_GREEN', () => {
+  const color = getColor(51);
+  expect(color).toBe('#91cf60');
+})
 
 
 test('Should do unit test on averageTipsClean()', () => {
@@ -11,7 +18,7 @@ test('Should do unit test on averageTipsClean()', () => {
   {
     'name': 'Soho',
     'values': [{'label': 'Avg Hourly $', val: 37}],
-    'color': '#fc8d59'
+    'color': '#d9ef8b'
   }]);
 });
 

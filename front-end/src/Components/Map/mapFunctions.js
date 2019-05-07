@@ -134,3 +134,5 @@ exports.averageTipsClean = (average_tips) => {
     }
     return data;
 }
+
+exports.getColor = getColor;
