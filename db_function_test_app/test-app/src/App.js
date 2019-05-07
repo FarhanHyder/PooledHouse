@@ -23,6 +23,13 @@ class App extends Component {
     };
   }
 
+  onNewPerson = (prevQuery, newData) => {
+    let updatedQuery = Object.assign({}, prevQuery);
+    updatedQuery.listPersons.items = 
+      prevQuery.listPersons.items.concat([newData.onCreatePerson]);
+      return updatedQuery;
+  }
+
   render() {
 
     const ListView = ({ persons }) => (
@@ -38,7 +45,8 @@ class App extends Component {
       <div>
       <NameForm />
       <Connect query={graphqlOperation(queries.listPersons)}
-               subscription={graphqlOperation(subscriptions.onCreatePerson)}>
+               subscription={graphqlOperation(subscriptions.onCreatePerson)}
+               onSubscriptionMsg={this.onNewPerson}>
                 {({ data: { listPersons }, loading, error }) => {
                     if (error) return (<h3>Error</h3>);
                     if (loading || !listPersons) return (<h3>Loading...</h3>);
