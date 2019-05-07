@@ -233,7 +233,7 @@ class App extends Component {
         }}
         </Connect>
       )
-
+        let data =[];
       const viewMyTips = (
         <div>
         <TipInfoForm />
@@ -242,6 +242,8 @@ class App extends Component {
         {({ data: { listTipEntrys }, loading, error }) => {
             if (error) return (<h3>Error</h3>);
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+            console.clear()
+            console.log(listTipEntrys.items);
             return (
               <ViewUserTips 
                 tipInfo={listTipEntrys.items} 
