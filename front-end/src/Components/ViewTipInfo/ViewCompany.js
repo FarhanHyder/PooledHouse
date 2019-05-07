@@ -4,14 +4,11 @@ import Description from './CompanyDescription';
 import ReportedTips from './ReportedTips';
 import TipsHistory from './TipsHistory';
 
-const process = require('../ProcessTips/ProcessTips');
-
 class ViewCompany extends Component {
     constructor(props){
         super(props);
         this.state = {
-            BusinessName: "",
-            CompanyView: false,
+            BusinessName: props.BusinessName,
             Description: true,
             TipsInfo: false,
             TipsHistory: false,
@@ -56,7 +53,7 @@ class ViewCompany extends Component {
             <div className = "company">
                 <div className="menu">
                     <div className="companyName">
-                        <button type="primary" onClick={this.companyViewHandler}>Here is the Company Name</button>
+                        <button type="primary" onClick={this.companyViewHandler}>{this.state.BusinessName}</button>
                     </div>
                     <div>
                         <button type="primary" onClick = {this.descriptionViewHandler}>Description</button>
@@ -67,24 +64,22 @@ class ViewCompany extends Component {
                 <div className="companyProfile">
                     {
                         this.state.Description?
-                        <Description business = {this.state.BusinessName}/> :
-                        (this.state.TipsInfo? <ReportedTips /> : <TipsHistory tipsInfo = {this.props.tipsInfo}/>)
+                        <Description
+                            business = {this.state.BusinessName}
+                        /> :
+                        (this.state.TipsInfo?
+                        <ReportedTips
+                            
+                        /> : 
+                        <TipsHistory
+                            tipsInfo = {this.props.tipsHistory}
+                        />)
                     }
                 </div>
             </div>
         );
-
-        const AllCompanies = (
-        <div>
-            <button type="primary" onClick={this.companyViewHandler}><div>Company Name</div> <div>Reported Average Tips</div></button>
-        </div>
-        );
         
-        const view = (
-        <div>
-            {this.state.CompanyView? Company : AllCompanies}
-        </div>);
-        return view;
+        return Company;
     }
 }
 

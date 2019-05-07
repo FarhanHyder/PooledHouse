@@ -34,6 +34,8 @@ class ViewTipInfoList extends React.Component {
             detailList: false,
             processFilter: "Business",
             positionFilter: "All Position",
+            welcomeView: true,
+            searchView: false,
             companyView: false,
             allBusiness: process.createBusinessTable(props.tip_info),
             avgByBusiness : process.averageTipsByBusiness(props.tip_info),
@@ -48,6 +50,7 @@ class ViewTipInfoList extends React.Component {
         this.handleProcess = this.handleProcess.bind(this);
         this.handlePosition = this.handlePosition.bind(this);
         this.searchHandler = this.searchHandler.bind(this);
+        this.viewHandler = this.viewHandler.bind(this);
     }
     
     handleProcess = (event) => {
@@ -91,12 +94,11 @@ class ViewTipInfoList extends React.Component {
 
       const defaultView = this.state.SearchResults.map(company => {
         return (
-        <div className ="tipsByBusiness">
-            <button type="primary" onClick>
-                <h2 className="busTitle">{this.state.avgByBusiness[company].business_name}</h2>
-                {/* <div className="addr">{avgByBusiness[tips].business_street_address}</div> */}
-                <div>Tips : ${Number.parseFloat(this.state.avgByBusiness[company].tipsPerHour).toFixed(2)}/Hour</div>
-            </button>    
+        <div className ="avgTipsByBusiness tipsByBusiness">
+            <h3 className="busTitle">{this.state.avgByBusiness[company].business_name}</h3>
+            {/* <div className="addr">{avgByBusiness[tips].business_street_address}</div> */}
+            <div>Tips:${Number.parseFloat(this.state.avgByBusiness[company].tipsPerHour).toFixed(2)}/Hour</div>
+            <button type="primary" onClick = {()=> this.viewHandler(this.state.avgByBusiness[company].business_name)}>View details</button>    
         </div>);
     });
       // if(this.state.detailList) {
@@ -117,31 +119,31 @@ class ViewTipInfoList extends React.Component {
       //       </div>);
       //   }
       return (
-        <div>
+        <div className="ViewListCompany">
+          <div className="searchBar">
+            <div className="filter-Business">
+              <form>
+                <fieldset className="form-group">
+                  <input 
+                    type="text" 
+                    className="form-control form-control-lg" 
+                    placeholder="Search Company"
+                    onChange = {(event)=> {this.searchHandler(tipsInfo, event.target.value)}}
+                  />
+                </fieldset>
+              </form>
+            </div>
+          </div>
           <div>
-          <div className="filter-Business">
-            <form>
-              <fieldset className="form-group">
-                <input 
-                  type="text" 
-                  className="form-control form-control-lg" 
-                  placeholder="Search Company"
-                  onChange = {(event)=> {this.searchHandler(tipsInfo, event.target.value)}}
-                />
-              </fieldset>
-            </form>
-          {/* <List items={this.state.items}/> */}
-          </div>
-          </div>
-          {console.log(this.state.SearchResults)}
-          {this.state.companyView? 
-            <ViewCompany 
-              tipsInfo={tipsInfo} 
-              BusinessName = {this.state.BusinessName}
-            /> :
-            defaultView
-          }
-          
+            {this.state.companyView? 
+              <ViewCompany 
+                tipsInfo={tipsInfo} 
+                BusinessName = {this.state.BusinessName}
+                tipsHistory = {this.state.allBusiness[this.state.BusinessName]}
+              /> :
+              defaultView
+            }
+          </div>   
         </div>
       )
   };
