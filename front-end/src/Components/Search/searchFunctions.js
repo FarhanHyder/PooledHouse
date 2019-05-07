@@ -1,3 +1,10 @@
+/**
+ * The searchFunctions.js file provides us with a function to help parse
+ * our different database entries in the Search.js file. This function 
+ * @namespace searchParse
+ * @param {}
+ * @returns {}
+ */
 exports.searchParse = (tip_info, business_name_query, day, shift, position) => {
     //    console.log(tip_info);
         const results = new Object();
