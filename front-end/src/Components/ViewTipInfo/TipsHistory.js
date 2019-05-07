@@ -1,21 +1,22 @@
 import React from 'react';
+import './TipsHistory.css';
 
 const TipsHistory = (props) => {
     const tips = props.tipsInfo;
     let view =tips.map(tips => {
         return (
-            <div>
-                <div>{tips.business_street_address}</div>
-                <div>{tips.shift_position}</div>
-                <div>{tips.shift_time}</div>
-                <div>${Number.parseFloat(tips.takehome/tips.shift_length).toFixed(2)}</div>
+            <div className="tipsHistory">
+                <div>{tips.address}</div>
+                <div>{tips.position}</div>
+                <div>{tips.shift}</div>
+                <div>${Number.parseFloat(tips.tips/tips.hour).toFixed(2)}</div>
             </div>
         );
     });
 
     return (
         <div>
-            <div>
+            <div className="tipsHistory menu">
                 <div>Locations</div>
                 <div>Position</div>
                 <div>Shift</div>
