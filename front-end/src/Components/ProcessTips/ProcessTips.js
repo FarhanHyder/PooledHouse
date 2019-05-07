@@ -230,23 +230,23 @@ exports.createBusinessTable =  (tipsInfo) => {
         if (! business.hasOwnProperty(businessName)) {
             business[businessName] = [{
                 // business_name: businessName,
-                business_street_address: tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip, 
-                Position: tips.shift_position,
-                Tips : tips.takehome,
-                Hour : tips.shift_length,
-                Shift : tips.shift_time,
-                Neighborhood: tips.neighborhood,
+                address: tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip, 
+                position: tips.shift_position,
+                tips : tips.takehome,
+                hour : tips.shift_length,
+                shift : tips.shift_time,
+                neighborhood: tips.neighborhood,
                 date : tips.shift_date}];
         }
         else {
             business[businessName].push({
                 // business_name: businessName,
-                business_street_address: tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip, 
-                Position: tips.shift_position,
-                Tips : tips.takehome,
-                Hour : tips.shift_length,
-                Shift : tips.shift_time,
-                Neighborhood: tips.neighborhood,
+                address: tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip, 
+                position: tips.shift_position,
+                tips : tips.takehome,
+                hour : tips.shift_length,
+                shift : tips.shift_time,
+                neighborhood: tips.neighborhood,
                 date : tips.shift_date
             });
         }
