@@ -1,6 +1,7 @@
 /**
  * TipInfoForm is the form which users can enter their tipped data.
  * This component is used in App.js to help view the users tips.
+ * @namespace TipInfoForm
  */
 import React from 'react';
 import {Col, Row, Container} from 'react-bootstrap';
