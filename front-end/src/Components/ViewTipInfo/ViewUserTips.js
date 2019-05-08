@@ -9,6 +9,13 @@ import { Table, Container } from 'react-bootstrap';
 const ViewUserTips = (props) => {
     let userTips =  props.tipInfo.filter(tips => tips.user === props.user);
 
+    let tEntries=0, tTakeHome = 0, tHoursWorked=0;
+    Object.keys(userTips).map(key => {
+        tEntries += 1;
+        tTakeHome += userTips[key].takehome;
+        tHoursWorked += userTips[key].shift_length;
+    });
+
     
     let tipInfo = (
         <Container fluid>
@@ -23,6 +30,7 @@ const ViewUserTips = (props) => {
                         <th>Shift Length</th>
                         <th>Shift Time</th>
                         <th>Shift Date</th>
+                        <th>{tTakeHome}</th>
                     </tr>
                 </thead>
                 <tbody>

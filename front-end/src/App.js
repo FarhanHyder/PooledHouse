@@ -182,7 +182,7 @@ class App extends Component {
         <ButtonGroup>
           
           <DropdownButton as={ButtonGroup} title={welcomeMsg} id="bg-nested-dropdown">
-            <Dropdown.Item eventKey="tipsView" onClick={this.handleMyTipsView} >View My Tips</Dropdown.Item>
+            <Dropdown.Item eventKey="tipsView" onClick={this.handleMyTipsView} >Your Account</Dropdown.Item>
             <Dropdown.Item eventKey="signOut" onClick={this.handleSignOut}>Sign Out</Dropdown.Item>
           </DropdownButton>
         </ButtonGroup>
@@ -235,6 +235,8 @@ class App extends Component {
               <Connect query={graphqlOperation(queries.listTipEntrys)}
                         subscription={graphqlOperation(subscriptions.onCreateTipEntry)}
                         onSubscriptionMsg={this.onNewTipEntry}>
+
+                        
                 {({ data: { listTipEntrys }, loading, error }) => {
                     if (error) return (<h3>Error</h3>);
                     if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
