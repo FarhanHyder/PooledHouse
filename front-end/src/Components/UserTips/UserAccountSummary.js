@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Container, Card, CardGroup, CardDeck } from 'react-bootstrap';
+import {roundUp} from './UserAccountSummarFunctions';
 
 const UserAccountSummary = (props) => {
     let userTips =  props.tipInfo.filter(tips => tips.user === props.user);
@@ -12,7 +13,7 @@ const UserAccountSummary = (props) => {
         tHoursWorked += userTips[key].shift_length;
     });
 
-    const userAverage = tTakeHome/tHoursWorked;
+    const userAverage = roundUp((tTakeHome/tHoursWorked),2);
 
     
     let tipInfo = (
@@ -33,7 +34,7 @@ const UserAccountSummary = (props) => {
                     <Card.Header>Your Total Take Home</Card.Header>
                         <Card.Body>
                             <Card.Text>
-                                <h1>{tTakeHome}</h1>
+                                <h1>${tTakeHome}</h1>
                             </Card.Text>
                         </Card.Body>
                 </Card>
@@ -51,7 +52,7 @@ const UserAccountSummary = (props) => {
                     <Card.Header>Your Daily Average</Card.Header>
                         <Card.Body>
                             <Card.Text>
-                                <h1>{userAverage}</h1>
+                                <h1>${userAverage}</h1>
                             </Card.Text>
                         </Card.Body>
                 </Card>
