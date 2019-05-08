@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Table, Container } from 'react-bootstrap';
+import { Container, Card, CardGroup, CardDeck } from 'react-bootstrap';
 
 const UserAccountSummary = (props) => {
     let userTips =  props.tipInfo.filter(tips => tips.user === props.user);
@@ -12,11 +12,52 @@ const UserAccountSummary = (props) => {
         tHoursWorked += userTips[key].shift_length;
     });
 
+    const userAverage = tTakeHome/tHoursWorked;
+
     
     let tipInfo = (
         <Container fluid>
             <div>
-                Total Entries: 
+            <br></br>
+            <CardDeck>
+                <Card bg="secondary" text="white" style={{ width: '18rem' }}>
+                    <Card.Header>Your Total Entries</Card.Header>
+                        <Card.Body>
+                            <Card.Text>
+                                <h1>{tEntries}</h1>
+                            </Card.Text>
+                        </Card.Body>
+                </Card>
+
+                <Card bg="secondary" text="white" style={{ width: '18rem' }}>
+                    <Card.Header>Your Total Take Home</Card.Header>
+                        <Card.Body>
+                            <Card.Text>
+                                <h1>{tTakeHome}</h1>
+                            </Card.Text>
+                        </Card.Body>
+                </Card>
+
+                <Card bg="secondary" text="white" style={{ width: '18rem' }}>
+                    <Card.Header>Your Hours Worked</Card.Header>
+                        <Card.Body>
+                            <Card.Text>
+                                <h1>{tHoursWorked}</h1>
+                            </Card.Text>
+                        </Card.Body>
+                </Card>
+
+                <Card bg="secondary" text="white" style={{ width: '18rem' }}>
+                    <Card.Header>Your Daily Average</Card.Header>
+                        <Card.Body>
+                            <Card.Text>
+                                <h1>{userAverage}</h1>
+                            </Card.Text>
+                        </Card.Body>
+                </Card>
+
+            </CardDeck>
+
             </div>
         </Container>
     );
