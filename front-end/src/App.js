@@ -279,11 +279,6 @@ class App extends Component {
       multiView = viewMyTips;
     }
 
-        {/*
-        {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
-        {this.state.showListView ? <div id="listView"> {viewData} </div> : <div> {mapData} </div>}
-        */}
-
     return (
       <div className="App">
         <div id="home"> { home } </div>
