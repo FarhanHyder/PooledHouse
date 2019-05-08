@@ -10,7 +10,7 @@ import ViewUserTips from './Components/ViewTipInfo/ViewUserTips';
 import ViewTipInfoList from './Components/ViewTipInfo/ViewTipInfoList';
 
 // react-bootstrap
-import {Navbar,Form,FormControl,Button,ButtonToolbar,ButtonGroup,Tabs,Tab} from 'react-bootstrap';
+import {Navbar,Form,FormControl,Button,ButtonToolbar,ButtonGroup,DropdownButton,Dropdown,Tabs,Tab} from 'react-bootstrap';
 
 //aws imports
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
@@ -150,6 +150,7 @@ class App extends Component {
 
     const search_query = this.state.search_query
 
+    const welcomeMsg = "Hello, "+this.state.curr_user_username;
     const home = (
       <Navbar className="bg-olive justify-content-between">
 
@@ -178,20 +179,13 @@ class App extends Component {
           <Button variant="warning" onClick={this.handleListView}>List</Button>
         </ButtonGroup>
 
-        <ButtonToolbar>
-
-          <Button id='ur_nav' onClick={this.handleMyTipsView}>
-              My Account
-          </Button>
-
-          {/* <Button id='ur_nav' onClick={this.handleMyTipsView}>
-          {this.state.curr_user_username}'s Tips
-          </Button> */}
-
-          <Button id='ur_nav' onClick={this.handleSignOut}>
-            Sign Out
-          </Button>
-        </ButtonToolbar>
+        <ButtonGroup>
+          
+          <DropdownButton as={ButtonGroup} title={welcomeMsg} id="bg-nested-dropdown">
+            <Dropdown.Item eventKey="tipsView" onClick={this.handleMyTipsView} >View My Tips</Dropdown.Item>
+            <Dropdown.Item eventKey="signOut" onClick={this.handleSignOut}>Sign Out</Dropdown.Item>
+          </DropdownButton>
+        </ButtonGroup>
       </Navbar>
       );
 
@@ -228,14 +222,10 @@ class App extends Component {
       )
 
 
-      //FIXME: this need to be moved or changed
       const viewMyTips = (
         <div>
        <h1> {this.state.curr_user_username} </h1>
 
-      {/* userTipsTab: "viewMyTips", */}
-
-        
         <Tabs
           id="userTips"
           activeKey={this.state.userTipsTab}
