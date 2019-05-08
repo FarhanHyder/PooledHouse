@@ -8,6 +8,7 @@ import Map from './Components/Map/map.js';
 import Search from './Components/Search/Search';
 import ViewUserTips from './Components/ViewTipInfo/ViewUserTips';
 import ViewTipInfoList from './Components/ViewTipInfo/ViewTipInfoList';
+import UserAccountSummary from './Components/UserTips/UserAccountSummary';
 
 // react-bootstrap
 import {Navbar,Form,FormControl,Button,ButtonToolbar,ButtonGroup,DropdownButton,Dropdown,Tabs,Tab} from 'react-bootstrap';
@@ -231,12 +232,31 @@ class App extends Component {
           activeKey={this.state.userTipsTab}
           onSelect={userTipsTab => this.setState({ userTipsTab })}
         >
-          <Tab eventKey="viewMyTips" title="View My Tips">
+
+        <Tab eventKey="accountSummary" title="Your Tips Summary">
+            <Connect query={graphqlOperation(queries.listTipEntrys)}
+                      subscription={graphqlOperation(subscriptions.onCreateTipEntry)}
+                      onSubscriptionMsg={this.onNewTipEntry}>
+
+              {({ data: { listTipEntrys }, loading, error }) => {
+                  if (error) return (<h3>Error</h3>);
+                  if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+                  return (
+                    <UserAccountSummary 
+                      tipInfo={listTipEntrys.items} 
+                      user={this.state.curr_user_username}
+                      />
+                  )
+              }}
+              </Connect>
+          </Tab>
+
+          
+          <Tab eventKey="viewMyTips" title="All Your Entries">
               <Connect query={graphqlOperation(queries.listTipEntrys)}
                         subscription={graphqlOperation(subscriptions.onCreateTipEntry)}
                         onSubscriptionMsg={this.onNewTipEntry}>
 
-                        
                 {({ data: { listTipEntrys }, loading, error }) => {
                     if (error) return (<h3>Error</h3>);
                     if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
