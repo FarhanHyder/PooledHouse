@@ -1,3 +1,4 @@
+// react imports
 import React, { Component } from 'react';
 import './App.css';
 
@@ -5,37 +6,23 @@ import './App.css';
 import TipInfoForm from './Components/TipInfoForm/TipInfoForm';
 import Map from './Components/Map/map.js';  
 import Search from './Components/Search/Search';
-
-// react-bootstrap
-import Navbar from 'react-bootstrap/Navbar';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
-
-// View Component
-// import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
-// import PositionOption from './Components/ViewTipInfo/PositionOption';
-// import './Components/ViewTipInfo/ViewTipInfo.css';
-// import './Components/ProcessTips/ViewProcessedTips.css';
 import ViewUserTips from './Components/ViewTipInfo/ViewUserTips';
 import ViewTipInfoList from './Components/ViewTipInfo/ViewTipInfoList';
-// import UserTips from './Components/UserTips/UserTips';
+
+// react-bootstrap
+import {Navbar,Form,FormControl,Button,ButtonToolbar,ButtonGroup,Tabs,Tab} from 'react-bootstrap';
 
 //aws imports
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
 import awsmobile from './aws-exports';
-import { withAuthenticator } from 'aws-amplify-react';
-import { Connect } from 'aws-amplify-react';
+import { withAuthenticator, Connect } from 'aws-amplify-react';
 import aws_config from './aws-exports';
 
 //graphql related imports
 import * as queries from './graphql/queries'
 import * as subscriptions from './graphql/subscriptions'
 
+// logo
 import logo from './images/logo.png'
 
 Amplify.configure(awsmobile);
