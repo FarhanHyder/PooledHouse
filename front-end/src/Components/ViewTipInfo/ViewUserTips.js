@@ -35,7 +35,7 @@ const ViewUserTips = (props) => {
                                 <td>{ userTips[key].takehome }</td>
                                 <td>{ userTips[key].shift_length }</td>
                                 <td>{ userTips[key].shift_time }</td>
-                                <td>{ userTips[key].neighborhood }</td>
+                                <td>{ userTips[key].shift_date }</td>
                                 
                             </tr>
                         )
