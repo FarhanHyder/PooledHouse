@@ -9,27 +9,34 @@ import { Table, Container } from 'react-bootstrap';
 const ViewUserTips = (props) => {
     let userTips =  props.tipInfo.filter(tips => tips.user === props.user);
 
-    // let filterdUserTips = props.position !== "All Position"? userTips.filter(tips => tips.shift_position === props.position) : tipInfo;
     
     let tipInfo = (
         <Container fluid>
             <div>
-
             <Table>
                 <thead>
                     <tr>
                         <th>Business</th>
                         <th>Neighborhood</th>
-                        <th>Hourly Avg $</th>
+                        <th>Shift</th>
+                        <th>Takehome</th>
+                        <th>Shift Length</th>
+                        <th>Shift Time</th>
+                        <th>Shift Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     { Object.keys(userTips).map(key => {
                         return (
                             <tr>
-                                <td>{ userTips[key].business }</td>
+                                <td>{ userTips[key].business_name }</td>
                                 <td>{ userTips[key].neighborhood }</td>
-                                <td>{ Math.floor(userTips[key].tipsPerHour) }</td>
+                                <td>{ userTips[key].shift_position }</td>
+                                <td>{ userTips[key].takehome }</td>
+                                <td>{ userTips[key].shift_length }</td>
+                                <td>{ userTips[key].shift_time }</td>
+                                <td>{ userTips[key].neighborhood }</td>
+                                
                             </tr>
                         )
                     }) }
