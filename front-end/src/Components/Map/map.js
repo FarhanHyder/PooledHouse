@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import ReactNYC from 'react-nyc-choropleth';
+import ReactNYC from '../ReactNYC/ReactNYC';
 import { API, graphqlOperation } from "aws-amplify";
 import * as queries from '../../graphql/queries';
 import { getColor, averageTipsByNeighborhood, averageTipsClean, aTBNDayParse, aTBNMasterParse } from './mapFunctions';
