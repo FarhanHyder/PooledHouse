@@ -1,5 +1,5 @@
 /**
- * ViewTipInfoList is a Component that is used for displaying either
+ * @file ViewTipInfoList is a Component that is used for displaying either
  * your average tip data or a detailed tip data across the whole database.
  * It is currently being used in the My Tips profile page to display tipped
  * data. 
@@ -15,7 +15,7 @@ import './ViewTipInfo.css';
 import ViewTipsAverage from '../ProcessTips/ViewProcessedTips';
 import ProcessOption from '../ProcessTips/ProcessOption';
 import '../ProcessTips/ViewProcessedTips.css';
-import ViewUserTips from '././UserTipInfo';
+import ViewUserTips from './ViewUserTips';
 
 class ViewTipInfoList extends React.Component {
     constructor(props) {
