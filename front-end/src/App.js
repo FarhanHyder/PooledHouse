@@ -13,6 +13,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Tabs from 'react-bootstrap/Tabs';
 
 // View Component
 // import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
@@ -21,6 +22,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 // import './Components/ProcessTips/ViewProcessedTips.css';
 import ViewUserTips from './Components/ViewTipInfo/ViewUserTips';
 import ViewTipInfoList from './Components/ViewTipInfo/ViewTipInfoList';
+// import UserTips from './Components/UserTips/UserTips';
 
 //aws imports
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
@@ -188,9 +190,15 @@ class App extends Component {
         </ButtonGroup>
 
         <ButtonToolbar>
+
           <Button id='ur_nav' onClick={this.handleMyTipsView}>
-          {this.state.curr_user_username}'s Tips
+              My Account
           </Button>
+
+          {/* <Button id='ur_nav' onClick={this.handleMyTipsView}>
+          {this.state.curr_user_username}'s Tips
+          </Button> */}
+
           <Button id='ur_nav' onClick={this.handleSignOut}>
             Sign Out
           </Button>
@@ -230,8 +238,20 @@ class App extends Component {
         </Connect>
       )
 
+
+      //FIXME: this need to be moved or changed
       const viewMyTips = (
         <div>
+        hello world
+        
+        <Tabs
+          id="userTips"
+          activeKey={this.state.key}
+          onSelect={key => this.setState({ key })}
+        >
+
+        </Tabs>
+        
         <TipInfoForm />
         <Connect query={graphqlOperation(queries.listTipEntrys)}
                  subscription={graphqlOperation(subscriptions.onCreateTipEntry)}
