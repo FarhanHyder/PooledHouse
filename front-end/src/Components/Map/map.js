@@ -6,7 +6,7 @@ import React from 'react';
 import ReactNYC from '../ReactNYC/ReactNYC';
 import { API, graphqlOperation } from "aws-amplify";
 import * as queries from '../../graphql/queries';
-import { getColor, averageTipsByNeighborhood, averageTipsClean, aTBNDayParse, aTBNMasterParse } from './mapFunctions';
+import { latLongToHood, averageTipsClean, aTBNMasterParse, addrToLatLong } from './mapFunctions';
 import { Form, Container, Col, Row, Button, Card } from 'react-bootstrap'
 
 class Map extends React.Component {
@@ -42,7 +42,7 @@ class Map extends React.Component {
     const mapboxAccessToken = "pk.eyJ1IjoicG9vbGVkaG91c2UiLCJhIjoiY2p1aGg2N2o5MHozZTRkcDhrZDltMXp6dyJ9.SXu4dBf_bVC8Xlpy7WnYqQ"; //TODO: delete token before final deployment
     const mapboxType = "light";
     const map_position = [40.7831, -73.9712];
-    const zoom = 12;
+    const zoom = 11.25;
 
     const neighborhoodStyle = { weight: 1, opacity: 1, color: '#666', dashArray: '3', fillOpacity: 0.7 };
     const neighborhoodHoverStyle = { weight: 5, color: '#FFF', dashArray: '1', fillOpacity: 0.7 };
@@ -61,7 +61,7 @@ class Map extends React.Component {
         this.state.position
       )
     )
-
+    
     return (
         <Container fluid='true'>
         <Card bg='light'>

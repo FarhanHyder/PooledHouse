@@ -1,3 +1,5 @@
+import { cityData } from "../ReactNYC/nyc";
+
 const EMERALD_GREEN = "#1a9850";        // lvl (6/6)
 const PARAKEET_GREEN = "#91cf60";       // lvl (5/6)
 const LIME_GREEN = "#d9ef8b";           // lvl (4/6)
@@ -66,7 +68,7 @@ const aTBNDayParse = (tip_info, day) => {
 }
 
 //this works like the original averageTipByNeighborhood, but filters by day, shift, and position.
-exports.aTBNMasterParse = (tip_info, day, shift, position) => {
+export var aTBNMasterParse = (tip_info, day, shift, position) => {
 //    console.log(tip_info);
     const neighborhoods = new Object();
     tip_info.forEach(entry => {
@@ -94,7 +96,7 @@ exports.aTBNMasterParse = (tip_info, day, shift, position) => {
 
 
 //takes the neighborhoods object returns by averageTipsByNeighborhood and returns an object for use by reactnyc component
-exports.averageTipsClean = (average_tips) => {
+export var averageTipsClean = (average_tips) => {
     let data = [];
     let element = {};
     for (var entry in average_tips) {
@@ -109,4 +111,16 @@ exports.averageTipsClean = (average_tips) => {
     return data;
 }
 
-exports.getColor = getColor;
+export var latLongToHood = () => {
+    console.log(cityData.features[0].bbox);
+}
+
+export var addrToLatLong = (business_street_address, business_city, business_state, business_zip) => {
+    let clean_bsa;
+    let clean_bc;
+    let addr;
+    clean_bsa = business_street_address.replace(new RegExp(' ', 'g'), '+');
+    clean_bc = business_city.replace(new RegExp (' ', 'g'), '+');
+    addr = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + clean_bsa + ',+' + clean_bc + ',+' + business_state + ',+' + business_zip + '&key=YOUR_API_KEY';
+    //fetch('https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY')
+}
