@@ -4,6 +4,7 @@
  * @module TipInfoForm
  * @extends Component
  */
+
 import React from 'react';
 import {Col, Row, Container} from 'react-bootstrap';
 import {Form, Button} from 'react-bootstrap';

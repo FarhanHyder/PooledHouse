@@ -19,7 +19,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 // import PositionOption from './Components/ViewTipInfo/PositionOption';
 // import './Components/ViewTipInfo/ViewTipInfo.css';
 // import './Components/ProcessTips/ViewProcessedTips.css';
-import ViewUserTips from './Components/ViewTipInfo/UserTipInfo';
+import ViewUserTips from './Components/ViewTipInfo/ViewUserTips';
 import ViewTipInfoList from './Components/ViewTipInfo/ViewTipInfoList';
 
 //aws imports

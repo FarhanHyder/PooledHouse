@@ -1,7 +1,10 @@
+/**
+ * @file ViewUserTips component to display all the tips data by the userInfo
+ * @module ViewUserTips 
+ */
+
 import React from 'react';
 import { Table } from 'react-bootstrap';
-
-// component to display all the tips data by the userInfo
 
 const ViewUserTips = (props) => {
     let userTips =  props.tipInfo.filter(tips => tips.user === props.user);
