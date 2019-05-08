@@ -14,6 +14,7 @@ import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 
 // View Component
 // import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
@@ -53,6 +54,7 @@ class App extends Component {
       showMyTipsView: false,
       showSearchView: false,
       detailList: false,
+      userTipsTab: "viewMyTips",
       processFilter: "Business",
       positionFilter: "All Position"
     }
@@ -242,31 +244,39 @@ class App extends Component {
       //FIXME: this need to be moved or changed
       const viewMyTips = (
         <div>
-        hello world
+       <h1> {this.state.curr_user_username} </h1>
+
+      {/* userTipsTab: "viewMyTips", */}
+
         
         <Tabs
           id="userTips"
-          activeKey={this.state.key}
-          onSelect={key => this.setState({ key })}
+          activeKey={this.state.userTipsTab}
+          onSelect={userTipsTab => this.setState({ userTipsTab })}
         >
+          <Tab eventKey="viewMyTips" title="View My Tips">
+              <Connect query={graphqlOperation(queries.listTipEntrys)}
+                        subscription={graphqlOperation(subscriptions.onCreateTipEntry)}
+                        onSubscriptionMsg={this.onNewTipEntry}>
+                {({ data: { listTipEntrys }, loading, error }) => {
+                    if (error) return (<h3>Error</h3>);
+                    if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+                    return (
+                      <ViewUserTips 
+                        tipInfo={listTipEntrys.items} 
+                        user={this.state.curr_user_username}
+                        />
+                    )
+                }}
+                </Connect>
+            </Tab>
+
+            <Tab eventKey="addNewTips" title="Add New Tips">
+                 <TipInfoForm />
+            </Tab>
 
         </Tabs>
-        
-        <TipInfoForm />
-        <Connect query={graphqlOperation(queries.listTipEntrys)}
-                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}
-                 onSubscriptionMsg={this.onNewTipEntry}>
-        {({ data: { listTipEntrys }, loading, error }) => {
-            if (error) return (<h3>Error</h3>);
-            if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
-            return (
-              <ViewUserTips 
-                tipInfo={listTipEntrys.items} 
-                user={this.state.curr_user_username}
-                />
-            )
-        }}
-        </Connect>
+
         </div>
       )
 
