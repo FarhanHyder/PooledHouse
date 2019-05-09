@@ -68,7 +68,7 @@ const ViewTipsAverage = (props) => {
 
 
     }
-    const VieeBarChart = (
+    const ViewBarChart = (
            <div>
                {/* All bar char for these options */}
                <button>Average Daily Tips</button>
