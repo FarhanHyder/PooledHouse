@@ -14,7 +14,7 @@ import './ViewTipInfo.css';
 import ViewTipsAverage from '../ProcessTips/ViewProcessedTips';
 import ProcessOption from '../ProcessTips/ProcessOption';
 import '../ProcessTips/ViewProcessedTips.css';
-import ViewUserTips from '././UserTipInfo';
+import ViewUserTips from './ViewUserTipInfo';
 import ViewCompany from './ViewCompany';
 
 import Form from 'react-bootstrap/Form';

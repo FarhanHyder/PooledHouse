@@ -66,10 +66,11 @@ class ViewCompany extends Component {
                         this.state.Description?
                         <Description
                             business = {this.state.BusinessName}
+                            locations = {this.props.locations}
                         /> :
                         (this.state.TipsInfo?
                         <ReportedTips
-                            
+                            locations = {this.props.locations}
                         /> : 
                         <TipsHistory
                             tipsInfo = {this.props.tipsHistory}
