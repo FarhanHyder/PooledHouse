@@ -1,26 +1,27 @@
 import React from 'react';
-import './TipsHistory.css';
 
 const TipsHistory = (props) => {
     const tips = props.tipsInfo;
     let view =tips.map(tips => {
         return (
-            <div className="tipsHistory">
-                <div>{tips.address}</div>
-                <div>{tips.position}</div>
-                <div>{tips.shift}</div>
-                <div>${Number.parseFloat(tips.tips/tips.hour).toFixed(2)}</div>
+            <div className="row border border-primary rounded-lg">
+                <div className="col-4">{tips.address}</div>
+                <div className="col-2">{tips.position}</div>
+                <div className="col-2">{tips.shift}</div>
+                <div className="col-2">{tips.hour} Hours</div>
+                <div className="col-2">${tips.tips}</div>
             </div>
         );
     });
 
     return (
-        <div>
-            <div className="tipsHistory menu">
-                <div>Locations</div>
-                <div>Position</div>
-                <div>Shift</div>
-                <div>Tips</div>
+        <div className="container">
+            <div className="row border border-success rounded-lg">
+                <div className="col-4">Locations</div>
+                <div className="col-2">Position</div>
+                <div className="col-2">Shift</div>
+                <div className="col-2">Hours Worked</div>
+                <div className="col-2">Tips</div>
             </div>
             {view}
         </div>
