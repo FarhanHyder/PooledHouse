@@ -139,6 +139,7 @@ class ViewTipInfoList extends React.Component {
               <ViewCompany 
                 tipsInfo={tipsInfo} 
                 BusinessName = {this.state.BusinessName}
+                locations = {this.state.avgByLocation[this.state.BusinessName]}
                 tipsHistory = {this.state.allBusiness[this.state.BusinessName]}
               /> :
               defaultView
