@@ -17,7 +17,7 @@ import '../ProcessTips/ViewProcessedTips.css';
 import ViewUserTips from './ViewUserTipInfo';
 import ViewCompany from './ViewCompany';
 
-import Form from 'react-bootstrap/Form';
+import 'react-bootstrap';
 
 
 const process = require('../ProcessTips/ProcessTips');
@@ -89,46 +89,23 @@ class ViewTipInfoList extends React.Component {
 
       const defaultView = this.state.SearchResults.map(company => {
         return (
-        <div className ="avgTipsByBusiness tipsByBusiness">
-            <h3 className="busTitle">{this.state.avgByBusiness[company].business_name}</h3>
-            {/* <div className="addr">{avgByBusiness[tips].business_street_address}</div> */}
-            <div>Tips:${Number.parseFloat(this.state.avgByBusiness[company].tipsPerHour).toFixed(2)}/Hour</div>
-            <button type="primary" onClick = {()=> this.viewHandler(this.state.avgByBusiness[company].business_name)}>View details</button>    
+        <div className = "card avgTipsByBusiness bg-dark mb-3">
+            <h5 className="card-header text-left text-white bg-success mb-3">{this.state.avgByBusiness[company].business_name}</h5>
+            <div className="text-white text-right bg-dark mb-3">Average Tips: ${Number.parseFloat(this.state.avgByBusiness[company].tipsPerHour).toFixed(2)} / Hour</div>
+            <button type="button" class="btn btn-outline-info" onClick = {()=> this.viewHandler(this.state.avgByBusiness[company].business_name)}>View details</button>    
         </div>);
     });
-      // if(this.state.detailList) {
-      //     return  ( 
-      //       <div>
-      //         {buttons}   
-      //         <PositionOption position={this.handlePosition}/>
-      //         <ViewTipInfo tipInfo={this.props.tip_info} position={this.state.positionFilter} />
-      //       </div>
-      //       );
-      //   }
-      //   else {
-      //     return  (
-      //       <div>
-      //         {buttons}   
-      //         <ProcessOption process = {this.handleProcess}/>
-      //         <ViewTipsAverage tipInfo={this.props.tip_info} process = {this.state.processFilter} />
-      //       </div>);
-      //   }
+    
       return (
         <div className="ViewListCompany">
-          <div className="searchBar">
-            <div className="filter-Business">
-              <form>
-                <fieldset className="form-group">
-                  <input 
-                    type="text" 
-                    className="form-control form-control-lg" 
-                    placeholder="Search Company"
-                    onChange = {(event)=> {this.searchHandler(tipsInfo, event.target.value)}}
-                  />
-                </fieldset>
-              </form>
-            </div>
-          </div>
+          <nav class="navbar navbar-light bg-light">
+            <form class="form-inline" onSubmit={()=>{}}>
+              <input class="form-control mr-sm-2" type="search" placeholder="Search Company" aria-label="Search"
+                onChange = {(event)=> {this.searchHandler(tipsInfo, event.target.value)}}
+              />
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </nav>
           <div>
             {this.state.companyView? 
               <ViewCompany 
