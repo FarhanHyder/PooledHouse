@@ -1,7 +1,9 @@
 /**
- * Search component used in App.js to create a search feature
+ * @file Search component used in App.js to create a search feature
  * in homepage. Mostly this component is used to link front end
  * to our backend.
+ * @module Search
+ * @extends Component
  */
 
 import React from 'react';

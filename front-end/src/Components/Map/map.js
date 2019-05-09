@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import ReactNYC from 'react-nyc-choropleth';
+import ReactNYC from '../ReactNYC/ReactNYC';
 import { API, graphqlOperation } from "aws-amplify";
 import * as queries from '../../graphql/queries';
 import { getColor, averageTipsByNeighborhood, averageTipsClean, aTBNDayParse, aTBNMasterParse } from './mapFunctions';
@@ -33,18 +33,7 @@ class Map extends React.Component {
       }
     )
   }
-/*
-  async componentDidMount() {
-    try {
-      const tip_data = await API.graphql(graphqlOperation(queries.listTipEntrys));
-      console.log(tip_data);
-      this.setState( {tip_data: tip_data.items} )
-    } catch (err) {
-      console.log('could not get list', err);
-      alert("listtipentry failed");
-    }
-  };
-*/
+
   render() {
 
     const window_height = window.innerHeight;
