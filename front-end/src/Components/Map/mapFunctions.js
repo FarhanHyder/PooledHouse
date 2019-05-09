@@ -14,8 +14,8 @@ const HIGHEST = 200;        // FIXME: fetch this data from database
 /**
  * 
  * @param {number} amount 
- * @param {number} max
- * @return {string} color code
+ * @param {number} max 
+ * @return {string} - color code
  */
 /*
 const getColor = (amount, max) =>{

@@ -1,6 +1,8 @@
 /** 
  * Map component to link our data from the amplify backend 
  * to our map feature on the main page. 
+ * @class Map
+ * @extends Component
  */
 
 import React from 'react';

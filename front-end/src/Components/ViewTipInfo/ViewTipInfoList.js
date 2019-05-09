@@ -4,7 +4,9 @@
  * It is currently being used in the My Tips profile page to display tipped
  * data. 
  * @summary This component shows either your tips or all tips.
- */
+ * @module ViewTipInfoList
+ * @extends Component
+ * */
 
 import React from 'react';
 

@@ -1,3 +1,9 @@
+/**
+ * @file A simple front end page for user login 
+ * @module LoginPage
+ * @deprecated
+ */
+
 import React from 'react';
 import {Container, Row, Col, Button} from 'react-bootstrap';
 
