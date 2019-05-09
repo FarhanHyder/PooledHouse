@@ -4,8 +4,6 @@
 
 import React from 'react';
 import ReactNYC from '../ReactNYC/ReactNYC';
-import { API, graphqlOperation } from "aws-amplify";
-import * as queries from '../../graphql/queries';
 import { latLongToHood, averageTipsClean, aTBNMasterParse, addrToLatLong } from './mapFunctions';
 import { Form, Container, Col, Row, Button, Card } from 'react-bootstrap'
 

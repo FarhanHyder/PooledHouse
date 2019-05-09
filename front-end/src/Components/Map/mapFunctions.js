@@ -15,58 +15,6 @@ const getColor = (amount) => {
     return EMERALD_GREEN;
 }
 
-// pre: a number as a param
-// post: return an integer between [1,6]
-const getLevel = (amount, max) =>{
-    return Math.floor((amount*7)/max);
-}
-
-//this function takes db tipentry list and returns an object containing neighborhood name, avg tips/hour, total hours
-//deprecated
-const averageTipsByNeighborhood = (tip_info) => {
-//    console.log(tip_info);
-    const neighborhoods = new Object();
-    tip_info.forEach(entry => {
-        let hoodName = entry.neighborhood;
-        if (! neighborhoods.hasOwnProperty(hoodName)) {
-            neighborhoods[hoodName] = {neighborhood: hoodName,
-                                    tipsPerHour: (entry.takehome / entry.shift_length),
-                                    totalHour: entry.shift_length};
-        }
-        else {
-            let hours = (neighborhoods[hoodName].totalHour + entry.shift_length);
-            neighborhoods[hoodName].tipsPerHour = neighborhoods[hoodName].tipsPerHour * neighborhoods[hoodName].totalHour / hours + entry.takehome / hours;
-            neighborhoods[hoodName].totalHour = hours;
-        }
-    });
-    return neighborhoods;
-}
-
-//this function works just like averageTipsByNeighborhood, but filters by day of week.
-//deprecated
-const aTBNDayParse = (tip_info, day) => {
-//    console.log(tip_info);
-    const neighborhoods = new Object();
-    tip_info.forEach(entry => {
-        let e_day = new Date(entry.shift_date).getDay();
-        e_day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][e_day];
-        if (e_day == day) {
-            let hoodName = entry.neighborhood;
-            if (! neighborhoods.hasOwnProperty(hoodName)) {
-                neighborhoods[hoodName] = {neighborhood: hoodName,
-                                        tipsPerHour: (entry.takehome / entry.shift_length),
-                                        totalHour: entry.shift_length};
-            }
-            else {
-                let hours = (neighborhoods[hoodName].totalHour + entry.shift_length);
-                neighborhoods[hoodName].tipsPerHour = neighborhoods[hoodName].tipsPerHour * neighborhoods[hoodName].totalHour / hours + entry.takehome / hours;
-                neighborhoods[hoodName].totalHour = hours;
-            }
-        }
-    });
-    return neighborhoods;
-}
-
 //this works like the original averageTipByNeighborhood, but filters by day, shift, and position.
 export var aTBNMasterParse = (tip_info, day, shift, position) => {
 //    console.log(tip_info);
@@ -127,7 +75,6 @@ export var latLongToHood = (latlong) => {
     })*/
 }
 
-
 export var addrToLatLong = (business_street_address, business_city, business_state, business_zip, API_key) => {
     let clean_bsa;
     let clean_bc;
@@ -150,4 +97,3 @@ export var addrToLatLong = (business_street_address, business_city, business_sta
             }
         );
 }
-
