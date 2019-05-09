@@ -2,6 +2,8 @@ import React from 'react';
 import { Map, TileLayer, Tooltip, GeoJSON } from 'react-leaflet';
 import { cityData } from './nyc.js';
 
+//this code was pulled from the react-nyc-chloropleth package.
+
 class ReactNYC extends React.Component {
   constructor() {
     super();
