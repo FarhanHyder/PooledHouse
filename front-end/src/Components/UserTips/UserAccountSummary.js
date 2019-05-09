@@ -13,7 +13,11 @@ const UserAccountSummary = (props) => {
         tHoursWorked += userTips[key].shift_length;
     });
 
-    const userAverage = roundUp((tTakeHome/tHoursWorked),2);
+    const userAverage = 0;
+    if (tHoursWorked>0){
+        // avoiding dividing by zero
+        roundUp((tTakeHome/tHoursWorked),2)
+    }
 
     
     let tipInfo = (
