@@ -1,3 +1,10 @@
+/**
+ * @file UserTips allows for viewing the users previously entered tips
+ * and add new tips as well.
+ * @method UserTips
+ * @extends Component
+ */
+
 import React from 'react';
 import {Col, Row, Container} from 'react-bootstrap';
 import {Table, Button, Card, Form} from 'react-bootstrap';

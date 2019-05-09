@@ -11,6 +11,12 @@ const HIGHEST = 200;        // FIXME: fetch this data from database
 
 // pre: a number as a param
 // post: return color code
+/**
+ * 
+ * @param {number} amount 
+ * @param {number} max
+ * @return {string} color code
+ */
 /*
 const getColor = (amount, max) =>{
     const level = getLevel(amount, max);
