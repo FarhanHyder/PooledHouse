@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Container, Card, CardGroup, CardDeck } from 'react-bootstrap';
-import {roundUp} from './UserAccountSummarFunctions';
+import {roundUp} from './UserAccountSummaryFunctions';
 
 const UserAccountSummary = (props) => {
     let userTips =  props.tipInfo.filter(tips => tips.user === props.user);
