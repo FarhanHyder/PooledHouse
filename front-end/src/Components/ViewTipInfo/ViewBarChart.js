@@ -15,7 +15,7 @@ const ViewBarChart =(props) => {
 
     return (
       <div className="card">
-        <Chart chartType="BarChart" width="80%" height="300px" data={dailyTipInfo} />
+        <Chart chartType="BarChart" width="100%" height="300px" data={dailyTipInfo} />
       </div>
     );
 };

@@ -15,8 +15,8 @@ const TipsHistory = (props) => {
     });
 
     return (
-        <div className="container">
-            <div className="row border border-success rounded-lg">
+        <div className="card container">
+            <div className=" card-title row border border-success rounded-lg">
                 <div className="col-4">Locations</div>
                 <div className="col-2">Position</div>
                 <div className="col-2">Shift</div>

@@ -5,13 +5,6 @@
  */
 import React from 'react';
 
-
-// TODO: function sort 
-
-const sortTips = (tipInfo) => {
-
-}
-
 const createBusinessTable =  (tipsInfo) => {
     const business = {};
     tipsInfo.forEach(tips => {
@@ -42,12 +35,7 @@ const createBusinessTable =  (tipsInfo) => {
     });
     return business;
 }
-// output style
-// |Business Name |
-// |address |
-// |position name : Tips|
-// |position name : Tips|
-// .....
+
 const ViewTipInfo = (props) => {
 
     // must fix filtered output

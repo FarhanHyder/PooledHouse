@@ -13,7 +13,7 @@ import PositionOption from './PositionOption';
 import './ViewTipInfo.css';
 import ViewTipsAverage from '../ProcessTips/ViewProcessedTips';
 import ProcessOption from '../ProcessTips/ProcessOption';
-import '../ProcessTips/ViewProcessedTips.css';
+// import '../ProcessTips/ViewProcessedTips.css';
 import ViewUserTips from './ViewUserTipInfo';
 import ViewCompany from './ViewCompany';
 
@@ -32,13 +32,14 @@ class ViewTipInfoList extends React.Component {
             welcomeView: true,
             searchView: false,
             companyView: false,
+            tipsInfo: props.tip_info,
             allBusiness: process.createBusinessTable(props.tip_info),
             avgByBusiness : process.averageTipsByBusiness(props.tip_info),
             avgByLocation: process.averageTipsByBusinessByLocation(props.tip_info),
             avgByPosition: process.averageTipsByPosition(props.tip_info),
             avgByDay: process.averageTipsByBusinessDay(props.tip_info),
             avgByZip: process.averageTipsByZipCode(props.tip_info),
-            BusinessName: "Test",
+            BusinessName: "",
             SearchResults: Object.keys(process.createBusinessTable(props.tip_info)).sort()
         };
 
@@ -61,11 +62,12 @@ class ViewTipInfoList extends React.Component {
     }
     
     searchHandler = (tipsInfo, data) => {
-      let results = Object.keys(process.createBusinessTable(tipsInfo)).sort();
-      results = results.filter(name => name.toUpperCase().includes(data.toUpperCase()));
+      // let results = Object.keys(tipsInfo).sort();
+      let results = tipsInfo.filter(tips => tips.business_name.toUpperCase().includes(data.toUpperCase()));
       this.setState({
-        SearchResults: results,
-        companyView: false
+        SearchResults: Object.keys(process.createBusinessTable(results)).sort(),
+        companyView: false,
+        tipsInfo: results
       });
     }
 
@@ -75,45 +77,43 @@ class ViewTipInfoList extends React.Component {
         companyView: true
       })
     }
+
+
     render() {
-      const tipsInfo = this.props.tip_info;
-      // all processed value
-      const businessAvg = process.averageTipsByBusiness(tipsInfo);
-      
-      const buttons = (
-          <div>
-            <button type="primary" onClick={()=>{this.setState({detailList : false, showUserTips: false})}}>View Average Tip Data</button>
-            <button type="primary" onClick={()=>{this.setState({detailList : true, showUserTips: false})}}>View Detailed Tip Data</button>
-          </div> 
-      )
 
       const defaultView = this.state.SearchResults.map(company => {
         return (
         <div className = "card avgTipsByBusiness bg-dark mb-3">
-            <h5 className="card-header text-left text-white bg-success mb-3">{this.state.avgByBusiness[company].business_name}</h5>
-            <div className="text-white text-right bg-dark mb-3">Average Tips: ${Number.parseFloat(this.state.avgByBusiness[company].tipsPerHour).toFixed(2)} / Hour</div>
-            <button type="button" class="btn btn-outline-info" onClick = {()=> this.viewHandler(this.state.avgByBusiness[company].business_name)}>View details</button>    
+            <h5 className="card-header text-left text-white bg-success mb-3">{company}</h5>
+            <div className="text-white text-right bg-dark mb-3">Average Tips: ${Number.parseFloat(this.state.avgByBusiness[company].tipsPerHour.toFixed(2))} / Hour</div>
+            <button type="button" class="btn btn-outline-info" onClick = {()=> this.viewHandler(company)}>View details</button>    
         </div>);
     });
     
       return (
-        <div className="ViewListCompany">
+        <div className="container">
           <nav class="navbar navbar-light bg-light">
-            <form class="form-inline" onSubmit={()=>{}}>
+            <form class="form-inline" onSubmit={()=>{this.setState({companyView: false})}}>
               <input class="form-control mr-sm-2" type="search" placeholder="Search Company" aria-label="Search"
-                onChange = {(event)=> {this.searchHandler(tipsInfo, event.target.value)}}
+                onChange = {(event)=> {this.searchHandler(this.props.tip_info, event.target.value)}}
               />
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
           </nav>
-          <div>
-            {this.state.companyView? 
+          <div className="container">
+            {this.state.companyView?
+            <div className="card bg-white">
+              <h2 className="card-title text-white bg-success rounded-lg">{this.state.BusinessName}</h2>
+              <p className="text-right text-success">Average Tips ${Number.parseFloat(this.state.avgByBusiness[this.state.BusinessName].tipsPerHour.toFixed(2))}</p> 
               <ViewCompany 
-                tipsInfo={tipsInfo} 
+                tipsInfo={this.state.tipsInfo} 
                 BusinessName = {this.state.BusinessName}
                 locations = {this.state.avgByLocation[this.state.BusinessName]}
+                dailyTipsAvg = {this.state.avgByDay[this.state.BusinessName]}
                 tipsHistory = {this.state.allBusiness[this.state.BusinessName]}
-              /> :
+              />
+            </div>
+              :
               defaultView
             }
           </div>   
