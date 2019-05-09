@@ -111,9 +111,22 @@ export var averageTipsClean = (average_tips) => {
     return data;
 }
 
+
 export var latLongToHood = (latlong) => {
-    console.log(cityData.features[0].bbox);
+    let hood;
+    console.log(latlong[0]);
+    /*cityData.features.forEach((feature) => {
+        if (latlong.lat > feature.bbox[1] && 
+            latlong.long > feature.bbox[0] && 
+            latlong.lat < feature.bbox[3] && 
+            latlong.long < feature.bbox[2]) {
+                hood = feature.properties["lflt:label_text"];
+                console.log("Selected hood is:" + hood);
+                return hood;
+        }
+    })*/
 }
+
 
 export var addrToLatLong = (business_street_address, business_city, business_state, business_zip, API_key) => {
     let clean_bsa;
@@ -127,14 +140,14 @@ export var addrToLatLong = (business_street_address, business_city, business_sta
         .then(res => res.json())
         .then(
             (result) => {
-                console.log(result.results[0].geometry.location);
-                latlong = result.results[0].geometry.location;
+                latlong.push(result.results[0].geometry.location.lat);
+                latlong.push(result.results[0].geometry.location.lng);
+                latlong.push('x');
+                return latlong[2];
             },
             (error) => {
                 console.log(error);
             }
         );
-
-    return latlong;
-
 }
+
