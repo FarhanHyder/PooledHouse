@@ -4,22 +4,22 @@ import React from 'react';
 const Description = (props) => {
     const locations = Object.keys(props.locations).map(loc => {
         return (
-            <div>
-                <div>{loc}</div>
+            <div className="row border border-primary rounded-lg">
+                <div className="col-4">{loc}</div>
+                <div className="col-2">${Number.parseFloat(props.locations[loc].tipsPerHour).toFixed(2)} / Hour</div>  
             </div>
         )
     });
     
     const desc = (
-        <div>
-            <div>
-                <p>Reported Locations</p>
-                <div>
-                    {locations}
-                </div>
+        <div className="container">
+            <div className="row border border-success rounded-lg">
+                <div className="col-4">Company Locations</div>
+                <div className="col-2">Average Tips</div>
             </div>
-            <div>All Reported Position</div>
-            <div>Average tips for this Company</div>
+            {locations}
+            {/* <div>All Reported Position</div>
+            <div>Average tips for this Company</div> */}
         </div>
     );
     return desc;
