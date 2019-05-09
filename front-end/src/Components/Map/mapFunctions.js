@@ -111,16 +111,30 @@ export var averageTipsClean = (average_tips) => {
     return data;
 }
 
-export var latLongToHood = () => {
+export var latLongToHood = (latlong) => {
     console.log(cityData.features[0].bbox);
 }
 
-export var addrToLatLong = (business_street_address, business_city, business_state, business_zip) => {
+export var addrToLatLong = (business_street_address, business_city, business_state, business_zip, API_key) => {
     let clean_bsa;
     let clean_bc;
     let addr;
+    let latlong;
     clean_bsa = business_street_address.replace(new RegExp(' ', 'g'), '+');
     clean_bc = business_city.replace(new RegExp (' ', 'g'), '+');
-    addr = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + clean_bsa + ',+' + clean_bc + ',+' + business_state + ',+' + business_zip + '&key=YOUR_API_KEY';
-    //fetch('https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY')
+    addr = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + clean_bsa + ',+' + clean_bc + ',+' + business_state + ',+' + business_zip + '&key=' + API_key;
+    fetch(addr)
+        .then(res => res.json())
+        .then(
+            (result) => {
+                console.log(result.results[0].geometry.location);
+                latlong = result.results[0].geometry.location;
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+
+    return latlong;
+
 }

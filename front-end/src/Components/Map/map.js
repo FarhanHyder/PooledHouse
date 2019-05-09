@@ -61,7 +61,7 @@ class Map extends React.Component {
         this.state.position
       )
     )
-    
+  
     return (
         <Container fluid='true'>
         <Card bg='light'>
