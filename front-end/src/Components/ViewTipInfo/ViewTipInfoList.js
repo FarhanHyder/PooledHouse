@@ -20,11 +20,6 @@ import ViewCompany from './ViewCompany';
 import Form from 'react-bootstrap/Form';
 
 
-// import { Search, Grid, Header, Segment } from 'semantic-ui-react'
-
-const initialState = { isLoading: false, results: [], value: '' }
-
-
 const process = require('../ProcessTips/ProcessTips');
 
 class ViewTipInfoList extends React.Component {
