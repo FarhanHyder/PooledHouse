@@ -25,7 +25,7 @@ const getLevel = (amount, max) =>{
 //deprecated
 const averageTipsByNeighborhood = (tip_info) => {
 //    console.log(tip_info);
-    const neighborhoods = new Object();
+    const neighborhoods = {};
     tip_info.forEach(entry => {
         let hoodName = entry.neighborhood;
         if (! neighborhoods.hasOwnProperty(hoodName)) {
@@ -46,11 +46,11 @@ const averageTipsByNeighborhood = (tip_info) => {
 //deprecated
 const aTBNDayParse = (tip_info, day) => {
 //    console.log(tip_info);
-    const neighborhoods = new Object();
+    const neighborhoods = {};
     tip_info.forEach(entry => {
         let e_day = new Date(entry.shift_date).getDay();
         e_day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][e_day];
-        if (e_day == day) {
+        if (e_day === day) {
             let hoodName = entry.neighborhood;
             if (! neighborhoods.hasOwnProperty(hoodName)) {
                 neighborhoods[hoodName] = {neighborhood: hoodName,
@@ -70,13 +70,13 @@ const aTBNDayParse = (tip_info, day) => {
 //this works like the original averageTipByNeighborhood, but filters by day, shift, and position.
 export var aTBNMasterParse = (tip_info, day, shift, position) => {
 //    console.log(tip_info);
-    const neighborhoods = new Object();
+    const neighborhoods = {};
     tip_info.forEach(entry => {
         let e_day = new Date(entry.shift_date).getDay();
         e_day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][e_day];
-        if ((day == 'All' || e_day == day) && 
-            (shift == 'All' ||  entry.shift_time == shift) && 
-            (position == 'All' || entry.shift_position == position)) {
+        if ((day === 'All' || e_day === day) && 
+            (shift === 'All' ||  entry.shift_time === shift) && 
+            (position === 'All' || entry.shift_position === position)) {
 
                 let hoodName = entry.neighborhood;
                 if (! neighborhoods.hasOwnProperty(hoodName)) {
