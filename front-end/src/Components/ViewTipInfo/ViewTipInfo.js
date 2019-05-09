@@ -5,14 +5,7 @@
  */
 import React from 'react';
 
-
-// TODO: function sort 
-
-export const sortTips = (tipInfo) => {
-
-}
-
-export const createBusinessTable =  (tipsInfo) => {
+const createBusinessTable =  (tipsInfo) => {
     const business = {};
     tipsInfo.forEach(tips => {
         let businessName = tips.business_name;
@@ -24,6 +17,7 @@ export const createBusinessTable =  (tipsInfo) => {
                 Tips : tips.takehome,
                 Hour : tips.shift_length,
                 Shift : tips.shift_time,
+                Neighborhood: tips.neighborhood,
                 date : tips.shift_date}];
         }
         else {
@@ -34,27 +28,23 @@ export const createBusinessTable =  (tipsInfo) => {
                 Tips : tips.takehome,
                 Hour : tips.shift_length,
                 Shift : tips.shift_time,
+                Neighborhood: tips.neighborhood,
                 date : tips.shift_date
             });
         }
     });
     return business;
 }
-// output style
-// |Business Name |
-// |address |
-// |position name : Tips|
-// |position name : Tips|
-// .....
+
 const ViewTipInfo = (props) => {
 
     // must fix filtered output
 
-    let filterdTipInfo = props.position !== "All Position"? props.tipInfo.filter(tips => tips.shift_position === props.position) : props.tipInfo;
+    let filteredTipInfo = props.position !== "All Position"? props.tipInfo.filter(tips => tips.shift_position === props.position) : props.tipInfo;
     // TODO : sort all tips into object business name as key
     // 
-    console.log(createBusinessTable( filterdTipInfo));
-    let tipInfo = filterdTipInfo.map( (tips, index) => {
+    console.log(createBusinessTable( filteredTipInfo));
+    let tipInfo = filteredTipInfo.map( (tips, index) => {
         return (
             <div className="tipInfo">
                 <h2 className="busTitle">{tips.business_name}</h2>
