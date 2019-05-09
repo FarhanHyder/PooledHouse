@@ -1,4 +1,5 @@
-/** Map component to link our data from the amplify backend 
+/** 
+ * Map component to link our data from the amplify backend 
  * to our map feature on the main page. 
  */
 
@@ -96,7 +97,7 @@ class Map extends React.Component {
                       <option>Sunday</option>
                     </Form.Control>
                 </Form.Group>
-                <Form.Group conrolID="shift" as={Col} md='4'>
+                <Form.Group controlID="shift" as={Col} md='4'>
                   <Form.Label>Shift</Form.Label>
                     <Form.Control
                       as='select'
