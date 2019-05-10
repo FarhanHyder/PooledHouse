@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Map component snapshot test 1`] = `
+<map
+  props={
+    Object {
+      "business_city": "New York",
+      "business_name": "Poolinos",
+      "business_state": "NY",
+      "business_street_address": "292 Bowery",
+      "business_zip": "10012",
+      "neighborhood": "Soho",
+      "shift_date": "04/30/2019",
+      "shift_length": 5,
+      "shift_position": "Busser",
+      "shift_time": "PM",
+      "takehome": 87,
+    }
+  }
+/>
+`;

@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Description should render correct for multiple elements 1`] = `
+<div
+  className="container card"
+>
+  <div
+    className=" card-title row border border-success rounded-lg"
+  >
+    <div
+      className="col-4"
+    >
+      Company Locations
+    </div>
+    <div
+      className="col-2"
+    >
+      Average Tips
+    </div>
+  </div>
+  <div
+    className="row border border-primary rounded-lg"
+  >
+    <div
+      className="col-4"
+    >
+      Soho
+    </div>
+    <div
+      className="col-2"
+    >
+      $
+      12.89
+       / Hour
+    </div>
+  </div>
+  <div
+    className="row border border-primary rounded-lg"
+  >
+    <div
+      className="col-4"
+    >
+      Chelsea
+    </div>
+    <div
+      className="col-2"
+    >
+      $
+      13.54
+       / Hour
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Description should render correct for single element 1`] = `
+<div
+  className="container card"
+>
+  <div
+    className=" card-title row border border-success rounded-lg"
+  >
+    <div
+      className="col-4"
+    >
+      Company Locations
+    </div>
+    <div
+      className="col-2"
+    >
+      Average Tips
+    </div>
+  </div>
+  <div
+    className="row border border-primary rounded-lg"
+  >
+    <div
+      className="col-4"
+    >
+      Soho
+    </div>
+    <div
+      className="col-2"
+    >
+      $
+      12.89
+       / Hour
+    </div>
+  </div>
+</div>
+`;
