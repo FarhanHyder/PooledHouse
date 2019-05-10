@@ -10,7 +10,7 @@ import React, { Component } from 'react'
 // View Component
 import ViewTipInfo from '././ViewTipInfo';
 import PositionOption from './PositionOption';
-import './ViewTipInfo.css';
+//import './ViewTipInfo.css';
 import ViewTipsAverage from '../ProcessTips/ViewProcessedTips';
 import ProcessOption from '../ProcessTips/ProcessOption';
 // import '../ProcessTips/ViewProcessedTips.css';
