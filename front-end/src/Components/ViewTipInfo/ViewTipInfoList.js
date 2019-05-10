@@ -80,7 +80,7 @@ class ViewTipInfoList extends React.Component {
 
 
     render() {
-
+      
       const defaultView = this.state.SearchResults.map(company => {
         return (
         <div className = "card avgTipsByBusiness bg-dark mb-3">
@@ -93,7 +93,7 @@ class ViewTipInfoList extends React.Component {
       return (
         <div className="container">
           <nav class="navbar navbar-light bg-light">
-            <form class="form-inline" onSubmit={()=>{this.setState({companyView: false})}}>
+            <form class="form-inline" onSubmit={(event)=>{ event.preventDefault(); this.setState({companyView: false})}}>
               <input class="form-control mr-sm-2" type="search" placeholder="Search Company" aria-label="Search"
                 onChange = {(event)=> {this.searchHandler(this.props.tip_info, event.target.value)}}
               />
