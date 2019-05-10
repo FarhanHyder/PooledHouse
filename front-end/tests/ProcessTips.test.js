@@ -50,13 +50,15 @@ test('Should return average tips by business', () => {
   expect(averagePerBusiness).toEqual({
     'Poolinos': {
       'business_name': 'Poolinos',
-      'business_street_address': '292 Bowery, New York, NY 10012',
+      'business_street_address': new Set (
+        ['292 Bowery, New York, NY 10012']),
       'tipsPerHour': 50,
       'totalHour': 10
     },
     'Balthezer': {
       'business_name': 'Balthezer',
-      'business_street_address': '80 Spring Street, New York, NY 10012',
+      'business_street_address': new Set (
+        ['80 Spring Street, New York, NY 10012']),
       'tipsPerHour': 60,
       'totalHour': 6
     }
