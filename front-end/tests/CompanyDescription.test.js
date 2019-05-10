@@ -17,7 +17,8 @@ test('Description should render correct for single element', () => {
 
 
 test('Description should render correct for multiple elements', () => {
-  const thisProps = {'Soho': {
+  const thisProps = {
+    'Soho': {
     'tipsPerHour': 12.8888
   },
   'Chelsea': {
