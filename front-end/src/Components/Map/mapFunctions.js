@@ -151,3 +151,6 @@ export var addrToLatLong = (business_street_address, business_city, business_sta
         );
 }
 
+export var colorTest = getColor;
+export var levelTest = getLevel;
+export var averageTipsByNeighborhoodTest = averageTipsByNeighborhood;
