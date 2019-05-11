@@ -1,29 +1,45 @@
 import React from 'react';
+import Table from 'react-bootstrap/Table'
 
 const TipsHistory = (props) => {
     const tips = props.tipsInfo;
+    let num = 0;
     let view =tips.map(tips => {
         return (
-            <div className="row border border-primary rounded-lg">
-                <div className="col-4">{tips.address}</div>
-                <div className="col-2">{tips.position}</div>
-                <div className="col-2">{tips.shift}</div>
-                <div className="col-2">{tips.hour} Hours</div>
-                <div className="col-2">${tips.tips}</div>
-            </div>
+            // <div className="border border-primary rounded-lg">
+                // <Table striped bordered hover variant="dark">
+                    <tbody>
+                    <tr>
+                        <td>{num += 1}</td>
+                        <td>{tips.address}</td>
+                        <td>{tips.position}</td>
+                        <td>{tips.shift}</td>
+                        <td>{tips.hour} Hours</td>
+                        <td>${tips.tips}</td>
+                    </tr>
+                    </tbody>
+                // </Table>
+                
+            // </div>
         );
     });
 
     return (
-        <div className="card container">
-            <div className=" card-title row border border-success rounded-lg">
-                <div className="col-4">Locations</div>
-                <div className="col-2">Position</div>
-                <div className="col-2">Shift</div>
-                <div className="col-2">Hours Worked</div>
-                <div className="col-2">Tips</div>
-            </div>
-            {view}
+        <div className="card container border border-primary rounded-lg">
+            <Table striped bordered hover variant="dark">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Locations</th>
+                        <th>Position</th>
+                        <th>Shift</th>
+                        <th>Hours Worked</th>
+                        <th>Tips</th>
+                    </tr>
+                    </thead>
+                    {view}
+            </Table>
+            
         </div>
     );
 }
