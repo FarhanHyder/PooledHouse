@@ -18,7 +18,7 @@ import ViewUserTips from './ViewUserTipInfo';
 import ViewCompany from './ViewCompany';
 import WelcomePage from './WelcomePage';
 
-import 'react-bootstrap';
+import {Form, FormControl, Button} from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
 
 const process = require('../ProcessTips/ProcessTips');
@@ -120,24 +120,30 @@ class ViewTipInfoList extends React.Component {
             </form>
           </nav>
           <div className="container">
-          {/* <WelcomePage searchHandler = {this.searchHandler} tipsInfo = {this.props.tip_info}/> */}
+          
             {
               this.state.welcomeView? <WelcomePage searchHandler = {this.searchHandler} tipsInfo = {this.props.tip_info}/> :
               this.state.companyView?
               <div className="card bg-white">
-                <h2 className="card-title text-white bg-success rounded-lg">{this.state.BusinessName}</h2>
-                <p className="text-right text-success">Average Tips ${Number.parseFloat(this.state.avgByBusiness[this.state.BusinessName].tipsPerHour.toFixed(2))}</p>
+                <button button class="btn btn-outline-success my-2 my-sm-0" style={{width: '10rem'}} type="primary" onClick = {()=> {this.searchViewHandler(this.state.BusinessName)}} >See Company List</button>             
+                {/* <h2 className="card-title text-white bg-success rounded-lg">{this.state.BusinessName}</h2>
+                <p className="text-right text-success">Average Tips ${Number.parseFloat(this.state.avgByBusiness[this.state.BusinessName].tipsPerHour.toFixed(2))}</p> */}
                 <ViewCompany 
                   tipsInfo={this.state.tipsInfo} 
                   BusinessName = {this.state.BusinessName}
+                  avgByBusiness = {this.state.avgByBusiness[this.state.BusinessName]}
                   locations = {this.state.avgByLocation[this.state.BusinessName]}
                   dailyTipsAvg = {this.state.avgByDay[this.state.BusinessName]}
+                  avgByPosition = {this.state.avgByPosition[this.state.BusinessName]}
                   tipsHistory = {this.state.allBusiness[this.state.BusinessName]}
+
                 />
+                
               </div>
                 :
                 defaultView
             }
+            
           </div>   
         </div>
       )

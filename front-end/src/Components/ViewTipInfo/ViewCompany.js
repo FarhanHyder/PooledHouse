@@ -46,21 +46,22 @@ class ViewCompany extends Component {
     };
 
     render(){
-        // const tipsInfo = this.props.tipsInfo.filter(tips => (tips.business_name.includes(this.state.BusinessName)));
-        // const processedTips = process.averageTipsByBusiness(tipsInfo);
-        // console.log(processedTips);
         const Company = (
-            <div className = "row">
+            <div className = "">
                 {/* <div className="card"> */}
-                    <div className="col-2 position-left">
-                        <div className="btn-group-vertical">
+                <div className="position-left">
+                    <h2 className="card-title text-white bg-success rounded-lg">{this.state.BusinessName}</h2>
+                    <div className = "row">
+                        <div className="col-6 btn-group">
                             <button type="button" class="btn btn-info" onClick = {this.descriptionViewHandler}>Description</button>
                             <button type="button" class="btn btn-dark" onClick = {this.tipsInfoViewHandler}>Tips Information</button>
                             <button type="button" class="btn btn-secondary" onClick = {this.tipsHistoryViewHandler}>Tips History</button>
                         </div>
+                        <p className=" col-4 text-success position-right">Average Tips ${Number.parseFloat(this.props.avgByBusiness.tipsPerHour.toFixed(2))}</p>
                     </div>
+                </div>
                {/* </div> */}
-                <div className="col-9">
+                <div className="row">
                     {
                         this.state.ViewDescription?
                         <Description
@@ -72,7 +73,9 @@ class ViewCompany extends Component {
                             business = {this.state.BusinessName}
                             locations = {this.props.locations}
                             dailyTipsAvg = {this.props.dailyTipsAvg}
+                            avgByPosition = {this.props.avgByPosition}
                         /> : 
+                        
                         <TipsHistory
                             tipsInfo = {this.props.tipsHistory}
                         />)

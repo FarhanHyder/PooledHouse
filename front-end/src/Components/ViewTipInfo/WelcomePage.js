@@ -48,14 +48,15 @@ class WelcomePage extends React.Component {
             </Navbar>
             </>; */}
           
-          <Card bg="info" text="white" style={{ width: '18rem' }}>
-            <Card.Header>Header</Card.Header>
+          <Card bg="info" text="white" style={{  }}>
+            <Card.Header>Welcome to Pooled House</Card.Header>
             <Card.Body>
-              <Card.Title>Welcome to Pooled House</Card.Title>
+              <Card.Title>Search company</Card.Title>
               <Card.Text>
                 You can find all tips information about any company.
                 Enter the name of the company in the search box to see the reported tips.
               </Card.Text>
+              <Form></Form>
             </Card.Body>
           </Card>
         </div>
