@@ -1,21 +1,37 @@
 import React from "react";
 import Chart from "react-google-charts";
 
-const ViewBarChart =(props) => {
-	const dailyTipInfo = [
-		["Day", "Daily Average Tips", {role: "style"}],
-		["Sunday", Number.parseFloat(props.dailyTipsAvg.Sunday.tipsPerHour.toFixed(2)), "color: gray"],
-		["Monday", Number.parseFloat(props.dailyTipsAvg.Monday.tipsPerHour.toFixed(2)), "color: gray"],
-		["Tuesday", Number.parseFloat(props.dailyTipsAvg.Tuesday.tipsPerHour.toFixed(2)), "color: gray"],
-		["Wednesday", Number.parseFloat(props.dailyTipsAvg.Wednesday.tipsPerHour.toFixed(2)), "color: gray"],
-		["Thursday", Number.parseFloat(props.dailyTipsAvg.Thursday.tipsPerHour.toFixed(2)), "color: gray"],
-		["Friday", Number.parseFloat(props.dailyTipsAvg.Friday.tipsPerHour.toFixed(2)), "color: gray"],
-		["Saturday", Number.parseFloat(props.dailyTipsAvg.Saturday.tipsPerHour.toFixed(2)), "color: gray"]
+const avgByDay = (avgTips) => {
+	return [
+		["Day", "Average Tips", {role: "style"}],
+		["Sunday", Number.parseFloat(avgTips.Sunday.tipsPerHour.toFixed(2)), "color: gray"],
+		["Monday", Number.parseFloat(avgTips.Monday.tipsPerHour.toFixed(2)), "color: gray"],
+		["Tuesday", Number.parseFloat(avgTips.Tuesday.tipsPerHour.toFixed(2)), "color: gray"],
+		["Wednesday", Number.parseFloat(avgTips.Wednesday.tipsPerHour.toFixed(2)), "color: gray"],
+		["Thursday", Number.parseFloat(avgTips.Thursday.tipsPerHour.toFixed(2)), "color: gray"],
+		["Friday", Number.parseFloat(avgTips.Friday.tipsPerHour.toFixed(2)), "color: gray"],
+		["Saturday", Number.parseFloat(avgTips.Saturday.tipsPerHour.toFixed(2)), "color: gray"]
 	]
+}
 
+const avgByPosition = (avgTips) => {
+	return [
+		["Position", "Average Tips", {role: "style"}],
+		["Bartender", Number.parseFloat(avgTips.Bartender.tipsPerHour.toFixed(2)), "color: gray"],
+		["Server", Number.parseFloat(avgTips.Server.tipsPerHour.toFixed(2)), "color: gray"],
+		["Barback", Number.parseFloat(avgTips.Barback.tipsPerHour.toFixed(2)), "color: gray"],
+		["Busser", Number.parseFloat(avgTips.Busser.tipsPerHour.toFixed(2)), "color: gray"],
+		["Other", Number.parseFloat(avgTips.Other.tipsPerHour.toFixed(2)), "color: gray"],
+	]
+}
+
+const ViewBarChart =(props) => {
+	const dailyData = avgByDay(props.dailyTipsAvg);
+	const positionData = avgByPosition(props.avgByPosition);
     return (
       <div className="card">
-        <Chart chartType="BarChart" width="100%" height="300px" data={dailyTipInfo} />
+				<h3 className="card-title bg-secondary">Average Daily Tips</h3>
+        <Chart chartType="BarChart" width="100%" height="300px" data={positionData} />
       </div>
     );
 };
