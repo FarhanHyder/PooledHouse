@@ -55,10 +55,8 @@ body {
   margin: 5px 5px 5px 5px;
 }
 
-/* .tipsView {
-    width: 100vw;
-    height: 700px;
-    overflow:auto;
-    background:#fff;
-    position: fixed;
-} */
+#home {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
