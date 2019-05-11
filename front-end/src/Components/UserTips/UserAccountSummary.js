@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Container, Card, CardGroup, CardDeck } from 'react-bootstrap';
-import {roundUp} from './UserAccountSummarFunctions';
+import {roundUp} from './UserAccountSummaryFunctions';
 
 const UserAccountSummary = (props) => {
     let userTips =  props.tipInfo.filter(tips => tips.user === props.user);
@@ -13,7 +13,11 @@ const UserAccountSummary = (props) => {
         tHoursWorked += userTips[key].shift_length;
     });
 
-    const userAverage = roundUp((tTakeHome/tHoursWorked),2);
+    let userAverage = 0;
+    if (tHoursWorked>0){
+        // avoiding dividing by zero
+        userAverage = roundUp((tTakeHome/tHoursWorked),2)
+    }
 
     
     let tipInfo = (

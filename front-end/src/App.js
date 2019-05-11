@@ -177,7 +177,7 @@ class App extends Component {
 
         <ButtonGroup>
           <Button variant="warning" onClick={this.handleMapView}>Map</Button>
-          <Button variant="warning" onClick={this.handleListView}>List</Button>
+          <Button id='list' variant="warning" onClick={this.handleListView}>List</Button>
         </ButtonGroup>
 
         <ButtonGroup>
