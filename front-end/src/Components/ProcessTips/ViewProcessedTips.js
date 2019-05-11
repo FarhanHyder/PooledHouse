@@ -2,6 +2,7 @@
  * @file ViewProcessedTips calls the ViewTipsAverage component to take the 
  * information from the database and compute the average tips based
  * on filter preferences.
+ * @return view
  */
 // import all functions
 // display based on the functions

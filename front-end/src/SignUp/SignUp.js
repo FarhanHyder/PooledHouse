@@ -1,3 +1,9 @@
+/**
+ * @class SignUp
+ * A component designed to create a signup form for new uers
+ * @deprecated
+ * @extends Component
+ */
 import React, { Component } from 'react';
 import './SignUp.css';
 import '../App.css';
@@ -10,7 +16,7 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 
 
-class SighUp extends Component {
+class SignUp extends Component {
   constructor(props) {
     super(props);
 
@@ -57,4 +63,4 @@ class SighUp extends Component {
   }
 }
 
-export default SighUp;
+export default SignUp;
