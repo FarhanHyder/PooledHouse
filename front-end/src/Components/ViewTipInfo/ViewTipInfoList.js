@@ -16,9 +16,10 @@ import ProcessOption from '../ProcessTips/ProcessOption';
 // import '../ProcessTips/ViewProcessedTips.css';
 import ViewUserTips from './ViewUserTipInfo';
 import ViewCompany from './ViewCompany';
+import WelcomePage from './WelcomePage';
 
 import 'react-bootstrap';
-
+import Carousel from 'react-bootstrap/Carousel';
 
 const process = require('../ProcessTips/ProcessTips');
 
@@ -66,6 +67,8 @@ class ViewTipInfoList extends React.Component {
       let results = tipsInfo.filter(tips => tips.business_name.toUpperCase().includes(data.toUpperCase()));
       this.setState({
         SearchResults: Object.keys(process.createBusinessTable(results)).sort(),
+        defaultView: true,
+        welcomeView: false,
         companyView: false,
         tipsInfo: results
       });
@@ -78,22 +81,38 @@ class ViewTipInfoList extends React.Component {
       })
     }
 
+    searchViewHandler = (name) => {
+      this.setState({
+        BusinessName: name,
+        companyView: false,
+        searchView: true,
+        welcomeView: false
+      })
+    }
+    companyViewHandler = (name) => {
+      this.setState({
+        BusinessName: name,
+        companyView: true,
+        searchView: false,
+        welcomeView: false
+      })
+    }
+
 
     render() {
-      
       const defaultView = this.state.SearchResults.map(company => {
         return (
         <div className = "card avgTipsByBusiness bg-dark mb-3">
             <h5 className="card-header text-left text-white bg-success mb-3">{company}</h5>
             <div className="text-white text-right bg-dark mb-3">Average Tips: ${Number.parseFloat(this.state.avgByBusiness[company].tipsPerHour.toFixed(2))} / Hour</div>
-            <button type="button" class="btn btn-outline-info" onClick = {()=> this.viewHandler(company)}>View details</button>    
+            <button type="button" class="btn btn-outline-info" onClick = {()=> this.companyViewHandler(company)}>View details</button>    
         </div>);
     });
     
       return (
         <div className="container">
           <nav class="navbar navbar-light bg-light">
-            <form class="form-inline" onSubmit={(event)=>{ event.preventDefault(); this.setState({companyView: false})}}>
+            <form class="form-inline" onSubmit={(event)=>{ event.preventDefault(); }}>
               <input class="form-control mr-sm-2" type="search" placeholder="Search Company" aria-label="Search"
                 onChange = {(event)=> {this.searchHandler(this.props.tip_info, event.target.value)}}
               />
@@ -101,20 +120,23 @@ class ViewTipInfoList extends React.Component {
             </form>
           </nav>
           <div className="container">
-            {this.state.companyView?
-            <div className="card bg-white">
-              <h2 className="card-title text-white bg-success rounded-lg">{this.state.BusinessName}</h2>
-              <p className="text-right text-success">Average Tips ${Number.parseFloat(this.state.avgByBusiness[this.state.BusinessName].tipsPerHour.toFixed(2))}</p> 
-              <ViewCompany 
-                tipsInfo={this.state.tipsInfo} 
-                BusinessName = {this.state.BusinessName}
-                locations = {this.state.avgByLocation[this.state.BusinessName]}
-                dailyTipsAvg = {this.state.avgByDay[this.state.BusinessName]}
-                tipsHistory = {this.state.allBusiness[this.state.BusinessName]}
-              />
-            </div>
-              :
-              defaultView
+          {/* <WelcomePage searchHandler = {this.searchHandler} tipsInfo = {this.props.tip_info}/> */}
+            {
+              this.state.welcomeView? <WelcomePage searchHandler = {this.searchHandler} tipsInfo = {this.props.tip_info}/> :
+              this.state.companyView?
+              <div className="card bg-white">
+                <h2 className="card-title text-white bg-success rounded-lg">{this.state.BusinessName}</h2>
+                <p className="text-right text-success">Average Tips ${Number.parseFloat(this.state.avgByBusiness[this.state.BusinessName].tipsPerHour.toFixed(2))}</p>
+                <ViewCompany 
+                  tipsInfo={this.state.tipsInfo} 
+                  BusinessName = {this.state.BusinessName}
+                  locations = {this.state.avgByLocation[this.state.BusinessName]}
+                  dailyTipsAvg = {this.state.avgByDay[this.state.BusinessName]}
+                  tipsHistory = {this.state.allBusiness[this.state.BusinessName]}
+                />
+              </div>
+                :
+                defaultView
             }
           </div>   
         </div>
