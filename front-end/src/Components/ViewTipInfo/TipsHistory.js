@@ -6,28 +6,23 @@ const TipsHistory = (props) => {
     let num = 0;
     let view =tips.map(tips => {
         return (
-            // <div className="border border-primary rounded-lg">
-                // <Table striped bordered hover variant="dark">
-                    <tbody>
-                    <tr>
-                        <td>{num += 1}</td>
-                        <td>{tips.address}</td>
-                        <td>{tips.position}</td>
-                        <td>{tips.shift}</td>
-                        <td>{tips.hour} Hours</td>
-                        <td>${tips.tips}</td>
-                    </tr>
-                    </tbody>
-                // </Table>
-                
-            // </div>
+            <tbody key = {num + tips.address}>
+            <tr>
+                <td>{num += 1}</td>
+                <td>{tips.address}</td>
+                <td>{tips.position}</td>
+                <td>{tips.shift}</td>
+                <td>{tips.hour} Hours</td>
+                <td>${tips.tips}</td>
+            </tr>
+            </tbody>
         );
     });
 
     return (
         <div className="card container border border-primary rounded-lg">
-            <Table striped bordered hover variant="dark">
-                    <thead>
+            <Table striped bordered hover responsive="sm" variant="dark">
+                    <thead className="bg-secondary">
                     <tr>
                         <th>#</th>
                         <th>Locations</th>
