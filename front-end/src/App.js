@@ -222,61 +222,46 @@ class App extends Component {
         </Connect>
       )
 
-
       const viewMyTips = (
-        <div>
-       <h1> {this.state.curr_user_username} </h1>
 
-        <Tabs
-          id="userTips"
-          activeKey={this.state.userTipsTab}
-          onSelect={userTipsTab => this.setState({ userTipsTab })}
-        >
-
-        <Tab eventKey="accountSummary" title="Your Tips Summary">
-            <Connect query={graphqlOperation(queries.listTipEntrys)}
-                      subscription={graphqlOperation(subscriptions.onCreateTipEntry)}
-                      onSubscriptionMsg={this.onNewTipEntry}>
-
-              {({ data: { listTipEntrys }, loading, error }) => {
-                  if (error) return (<h3>Error</h3>);
-                  if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
-                  return (
+        <Connect query={graphqlOperation(queries.listTipEntrys)}
+                 subscription={graphqlOperation(subscriptions.onCreateTipEntry)}
+                 onSubscriptionMsg={this.onNewTipEntry}>
+        {({ data: { listTipEntrys }, loading, error }) => {
+            if (error) return (<h3>Error</h3>);
+            if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
+            return (
+              <div>
+                <h1> {this.state.curr_user_username} </h1>
+                <Tabs
+                  id="userTips"
+                  activeKey={this.state.userTipsTab}
+                  onSelect={userTipsTab => this.setState({ userTipsTab })}
+                >           
+                  <Tab eventKey="accountSummary" title="Your Tips Summary">
                     <UserAccountSummary 
                       tipInfo={listTipEntrys.items} 
                       user={this.state.curr_user_username}
-                      />
-                  )
-              }}
-              </Connect>
-          </Tab>
+                    />
+                  </Tab>
 
-          
-          <Tab eventKey="viewMyTips" title="All Your Entries">
-              <Connect query={graphqlOperation(queries.listTipEntrys)}
-                        subscription={graphqlOperation(subscriptions.onCreateTipEntry)}
-                        onSubscriptionMsg={this.onNewTipEntry}>
+  
+                  <Tab eventKey="viewMyTips" title="All Your Entries">
+                    <ViewUserTips 
+                      tipInfo={listTipEntrys.items} 
+                      user={this.state.curr_user_username}
+                    />
+                  </Tab>
 
-                {({ data: { listTipEntrys }, loading, error }) => {
-                    if (error) return (<h3>Error</h3>);
-                    if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
-                    return (
-                      <ViewUserTips 
-                        tipInfo={listTipEntrys.items} 
-                        user={this.state.curr_user_username}
-                        />
-                    )
-                }}
-                </Connect>
-            </Tab>
+                  <Tab eventKey="addNewTips" title="Add New Tips">
+                    <TipInfoForm />
+                  </Tab>
 
-            <Tab eventKey="addNewTips" title="Add New Tips">
-                 <TipInfoForm />
-            </Tab>
-
-        </Tabs>
-
-        </div>
+                </Tabs>
+              </div>
+            )
+        }}
+        </Connect>
       )
 
       const viewSearch = (
