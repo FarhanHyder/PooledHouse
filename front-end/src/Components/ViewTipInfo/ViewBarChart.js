@@ -25,6 +25,24 @@ const avgByPosition = (avgTips) => {
 	]
 }
 
+const avgByZipCode = (avgTips) => {
+	return [
+		["Zip Code", "Average Tips", {role: "style"}],
+	]
+}
+
+const avgByNeighborhood = (avgTips) => {
+	return [
+		["Neighborhood", "Average Tips", {role: "style"}],
+	]
+}
+
+const avgByShift = (avgTips) => {
+	return [
+		["Work Shift", "Average Tips", {role: "style"}],
+	]
+}
+
 const ViewBarChart =(props) => {
 	let data = [];
 	let title = "";
@@ -35,6 +53,18 @@ const ViewBarChart =(props) => {
 	else if (props.chartOption === "day") {
 		data = avgByDay(props.dailyTipsAvg);
 		title = "Average Daily Tips";
+	}
+	else if (props.chartOption === "shift") {
+		data = avgByShift(props.dailyTipsAvg);
+		title = "Average Tips By Shift";
+	}
+	else if (props.chartOption === "zip") {
+		data = avgByZipCode(props.dailyTipsAvg);
+		title = "Average Tips By Zip";
+	}
+	else if (props.chartOption === "neighborhood") {
+		data = avgByNeighborhood(props.dailyTipsAvg);
+		title = "Average Tips Neighborhood";
 	}
     return (
       <div className="card">

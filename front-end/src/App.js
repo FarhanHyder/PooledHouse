@@ -9,6 +9,7 @@ import Search from './Components/Search/Search';
 import ViewUserTips from './Components/ViewTipInfo/ViewUserTips';
 import ViewTipInfoList from './Components/ViewTipInfo/ViewTipInfoList';
 import UserAccountSummary from './Components/UserTips/UserAccountSummary';
+import WelcomePage from './Components/ViewTipInfo/WelcomePage';
 
 // react-bootstrap
 import {Navbar,Nav, Form,FormControl,Button,ButtonToolbar,ButtonGroup,DropdownButton,Dropdown,Tabs,Tab} from 'react-bootstrap';
@@ -37,8 +38,9 @@ class App extends Component {
     this.state = {
       curr_user_username: '',
       // userProfile : "",
+      welcomeView: true,
       showListView: false,
-      showMapView: true,
+      showMapView: false,
       showMyTipsView: false,
       showSearchView: false,
       detailList: false,
@@ -66,17 +68,19 @@ class App extends Component {
     this.setState({
       showSignUp: false,
       // userProfile : "",
+      welcomeView: true,
       addTips: false,
       showListView: false,
-      showMapView: true,
-      detailList: false,
+      showMapView: false,
       showMyTipsView: false,
       search_query: ''
     })
+    // window.location.reload();
   }
 
   handleMapView = () => {
     this.setState({
+      welcomeView: false,
       addTips: false,
       showMapView: true,
       showListView: false,
@@ -87,6 +91,7 @@ class App extends Component {
 
   handleListView = () => {
     this.setState({
+      welcomeView: false,
       addTips: false,
       showMapView: false,
       showListView: true,
@@ -97,6 +102,7 @@ class App extends Component {
 
   handleMyTipsView = () => {
     this.setState({
+      welcomeView: false,
       addTips: false,
       showMapView: false,
       showListView: false,
@@ -107,6 +113,7 @@ class App extends Component {
 
   handleAddTips = () => {
     this.setState({
+      welcomeView: false,
       addTips: true,
       showMapView: false,
       showListView: false,
@@ -123,6 +130,7 @@ class App extends Component {
 
   handleSearchSubmit = () => {
     this.setState({
+      welcomeView: false,
       addTips: false,
       showMapView: false,
       showListView: false,
@@ -150,62 +158,13 @@ class App extends Component {
 
   render() {
 
-    const search_query = this.state.search_query
+    const search_query = this.state.search_query;
 
-    const welcomeMsg = "Hello, "+this.state.curr_user_username;
-    // const home = (
-    //   <Navbar className="bg-olive justify-content-between">
-
-    //   <Navbar.Brand>
-    //     <a href='#' onClick={this.handleHomeView}>
-    //     <img 
-    //     src={ logo }
-    //     width="200"
-    //     height="64"
-    //     className="d-inline-block align-top"
-    //     alt="Pooled House logo"
-    //     />
-    //     </a>
-
-    //   </Navbar.Brand>
-      
-    //     <Form inline>
-    //       <FormControl value={ search_query } type="text" 
-    //                    placeholder="ex: upper manhattan" className="mr-sm" 
-    //                    onChange={ this.handleSearchQueryChange } />
-    //       <Button variant="outline-light" onClick={ this.handleSearchSubmit }><span>{"\uD83D\uDD0D"}</span></Button>
-    //     </Form>
-
-    //     <ButtonGroup>
-    //       <Button variant="warning" onClick={this.handleMapView}>Map</Button>
-    //       <Button id='list' variant="warning" onClick={this.handleListView}>List</Button>
-    //     </ButtonGroup>
-
-    //     <ButtonGroup>
-          
-    //       <DropdownButton as={ButtonGroup} title={welcomeMsg} id="bg-nested-dropdown">
-    //         <Dropdown.Item eventKey="tipsView" onClick={this.handleMyTipsView} >Your Account</Dropdown.Item>
-    //         <Dropdown.Item eventKey="signOut" onClick={this.handleSignOut}>Sign Out</Dropdown.Item>
-    //       </DropdownButton>
-    //     </ButtonGroup>
-    //   </Navbar>
-    //   );
-    //   <Navbar.Brand>
-    //     <a href='#' onClick={this.handleHomeView}>
-    //     <img 
-    //     src={ logo }
-    //     width="200"
-    //     height="64"
-    //     className="d-inline-block align-top"
-    //     alt="Pooled House logo"
-    //     />
-    //     </a>
-
-    //   </Navbar.Brand>
-    
     const TopPanel = (
-      <Navbar bg="primary" sticky="top" z-index = '9999' variant="dark">
-        <Navbar.Brand href="#home">Pooled House</Navbar.Brand>
+      <Navbar bg="success" sticky="top" z-index = '9999' variant="dark">
+        <Navbar.Brand>
+          <a href='#home' onClick={this.handleHomeView}> <img src={ logo } width="120" className="d-inline-block align-top"alt="Pooled House logo"/></a>
+        </Navbar.Brand>
         
         <Nav className="mr-auto">
           <Nav.Link href="#home" onClick = {this.handleHomeView} >Home</Nav.Link>
@@ -333,8 +292,9 @@ class App extends Component {
       )
 
     let multiView = '';
-
-    if (this.state.showMapView) {
+    if (this.state.welcomeView){
+      multiView = <WelcomePage/>
+    } else if (this.state.showMapView) {
       multiView = mapData;
     } else if (this.state.showListView) {
       multiView = viewData;
@@ -349,7 +309,6 @@ class App extends Component {
     return (
       <div className="App">
         <div id="home"> { TopPanel} </div>
-        {/* <div id="home"> { home } </div> */}
         <div className="tipsView"> { multiView } </div>
       </div>
     );

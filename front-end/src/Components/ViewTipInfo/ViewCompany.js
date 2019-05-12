@@ -62,7 +62,7 @@ class ViewCompany extends Component {
                             <button type="button" class="btn btn-dark" onClick = {this.tipsInfoViewHandler}>Tips Information</button>
                             <button type="button" class="btn btn-secondary" onClick = {this.tipsHistoryViewHandler}>Tips History</button>
                         </div>
-                        <p className=" col-4 text-success position-right">Average Tips ${Number.parseFloat(this.props.avgByBusiness.tipsPerHour.toFixed(2))}</p>
+                        <h5 className=" text-right col-6 text-success position-right">Average Tips ${Number.parseFloat(this.props.avgByBusiness.tipsPerHour.toFixed(2))}</h5>
                     </div>
                 </div>
                {/* </div> */}
