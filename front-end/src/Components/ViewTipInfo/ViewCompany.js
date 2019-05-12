@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Description from './CompanyDescription';
-import ReportedTips from './ReportedTips';
-import TipsHistory from './TipsHistory';
-const process = require('../ProcessTips/ProcessTips');
+import ViewReportedTips from './ViewReportedTips';
+import ViewTipsHistory from './ViewTipsHistory';
+
 
 class ViewCompany extends Component {
     constructor(props){
@@ -47,7 +47,7 @@ class ViewCompany extends Component {
 
     render(){
         const Company = (
-            <div className = "">
+            <div className = "container">
                 {/* <div className="card"> */}
                 <div className="position-left">
                     <h2 className="card-title text-white bg-success rounded-lg">{this.state.BusinessName}</h2>
@@ -69,14 +69,14 @@ class ViewCompany extends Component {
                             locations = {this.props.locations}
                         /> :
                         (this.state.ViewTipsInfo?
-                        <ReportedTips
+                        <ViewReportedTips
                             business = {this.state.BusinessName}
                             locations = {this.props.locations}
                             dailyTipsAvg = {this.props.dailyTipsAvg}
                             avgByPosition = {this.props.avgByPosition}
                         /> : 
                         
-                        <TipsHistory
+                        <ViewTipsHistory
                             tipsInfo = {this.props.tipsHistory}
                         />)
                     }

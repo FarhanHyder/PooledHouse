@@ -18,7 +18,7 @@ import ViewUserTips from './ViewUserTipInfo';
 import ViewCompany from './ViewCompany';
 import WelcomePage from './WelcomePage';
 
-import {Form, FormControl, Button} from 'react-bootstrap';
+import {Form, FormControl, Button, ButtonGroup, ButtonToolbar} from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
 
 const process = require('../ProcessTips/ProcessTips');
@@ -44,22 +44,11 @@ class ViewTipInfoList extends React.Component {
             SearchResults: Object.keys(process.createBusinessTable(props.tip_info)).sort()
         };
 
-        this.handleProcess = this.handleProcess.bind(this);
-        this.handlePosition = this.handlePosition.bind(this);
         this.searchHandler = this.searchHandler.bind(this);
-        this.viewHandler = this.viewHandler.bind(this);
-    }
-    
-    handleProcess = (event) => {
-        this.setState({
-          processFilter : event.target.value
-        })
-      }
-
-    handlePosition = (event) => {
-        this.setState({
-          positionFilter : event.target.value
-        })
+        this.welcomeViewHandler = this.welcomeViewHandler.bind(this);
+        this.searchViewHandler = this.searchViewHandler.bind(this);
+        this.companyViewHandler = this.companyViewHandler.bind(this);
+        // this.viewHandler = this.viewHandler.bind(this);
     }
     
     searchHandler = (tipsInfo, data) => {
@@ -74,10 +63,12 @@ class ViewTipInfoList extends React.Component {
       });
     }
 
-    viewHandler = (name) => {
+    welcomeViewHandler = (name) => {
       this.setState({
         BusinessName: name,
-        companyView: true
+        companyView: false,
+        searchView: false,
+        welcomeView: true
       })
     }
 
@@ -119,15 +110,16 @@ class ViewTipInfoList extends React.Component {
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
           </nav>
-          <div className="container">
-          
+          <div className="">
             {
               this.state.welcomeView? <WelcomePage searchHandler = {this.searchHandler} tipsInfo = {this.props.tip_info}/> :
               this.state.companyView?
               <div className="card bg-white">
-                <button button class="btn btn-outline-success my-2 my-sm-0" style={{width: '10rem'}} type="primary" onClick = {()=> {this.searchViewHandler(this.state.BusinessName)}} >See Company List</button>             
-                {/* <h2 className="card-title text-white bg-success rounded-lg">{this.state.BusinessName}</h2>
-                <p className="text-right text-success">Average Tips ${Number.parseFloat(this.state.avgByBusiness[this.state.BusinessName].tipsPerHour.toFixed(2))}</p> */}
+                <ButtonToolbar pullRight className="row">
+                  <div className = "col-8"></div>
+                  <ButtonGroup className="col-2" aria-label="First group"><Button variant="primary" onClick ={()=> {this.welcomeViewHandler(this.state.BusinessName)}}>Back</Button></ButtonGroup>
+                  <ButtonGroup className="col-2" aria-label="Second group"><Button variant="secondary" onClick = {()=> {this.searchViewHandler(this.state.BusinessName)}}>Search results</Button></ButtonGroup>
+                </ButtonToolbar>          
                 <ViewCompany 
                   tipsInfo={this.state.tipsInfo} 
                   BusinessName = {this.state.BusinessName}
