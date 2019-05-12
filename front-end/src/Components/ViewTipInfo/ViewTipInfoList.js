@@ -103,7 +103,7 @@ class ViewTipInfoList extends React.Component {
       return (
         <div className="container">
           <nav class="navbar navbar-light bg-light">
-            <form class="form-inline" onSubmit={(event)=>{ event.preventDefault(); }}>
+            <form class="form-inline" onSubmit={(event)=>{ event.preventDefault(); this.searchViewHandler(this.state.BusinessName)}}>
               <input class="form-control mr-sm-2" type="search" placeholder="Search Company" aria-label="Search"
                 onChange = {(event)=> {this.searchHandler(this.props.tip_info, event.target.value)}}
               />
@@ -116,9 +116,9 @@ class ViewTipInfoList extends React.Component {
               this.state.companyView?
               <div className="card bg-white">
                 <ButtonToolbar pullRight className="row">
-                  <div className = "col-8"></div>
-                  <ButtonGroup className="col-2" aria-label="First group"><Button variant="primary" onClick ={()=> {this.welcomeViewHandler(this.state.BusinessName)}}>Back</Button></ButtonGroup>
+                  <div className = "col-9"></div>
                   <ButtonGroup className="col-2" aria-label="Second group"><Button variant="secondary" onClick = {()=> {this.searchViewHandler(this.state.BusinessName)}}>Search results</Button></ButtonGroup>
+                  <ButtonGroup className="col-1" aria-label="First group"><Button variant="primary" onClick ={()=> {this.welcomeViewHandler(this.state.BusinessName)}}>Back</Button></ButtonGroup>
                 </ButtonToolbar>          
                 <ViewCompany 
                   tipsInfo={this.state.tipsInfo} 
