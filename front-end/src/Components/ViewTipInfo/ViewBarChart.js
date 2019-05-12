@@ -26,12 +26,20 @@ const avgByPosition = (avgTips) => {
 }
 
 const ViewBarChart =(props) => {
-	const dailyData = avgByDay(props.dailyTipsAvg);
-	const positionData = avgByPosition(props.avgByPosition);
+	let data = [];
+	let title = "";
+	if(props.chartOption === "position") {
+		data = avgByPosition(props.avgByPosition);
+		title = "Average Tips By Position";
+	}
+	else if (props.chartOption === "day") {
+		data = avgByDay(props.dailyTipsAvg);
+		title = "Average Daily Tips";
+	}
     return (
       <div className="card">
-				<h3 className="card-title bg-secondary">Average Daily Tips</h3>
-        <Chart chartType="BarChart" width="100%" height="300px" data={positionData} />
+				<h3 className="card-title bg-secondary">{title}</h3>
+        <Chart chartType="BarChart" width="100%" height="300px" data={data} />
       </div>
     );
 };
