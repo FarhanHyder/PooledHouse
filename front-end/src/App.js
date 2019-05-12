@@ -9,6 +9,7 @@ import Search from './Components/Search/Search';
 import ViewUserTips from './Components/ViewTipInfo/ViewUserTips';
 import ViewTipInfoList from './Components/ViewTipInfo/ViewTipInfoList';
 import UserAccountSummary from './Components/UserTips/UserAccountSummary';
+import TopPanel from './Components/ViewTipInfo/TopPanel';
 
 // react-bootstrap
 import {Navbar,Form,FormControl,Button,ButtonToolbar,ButtonGroup,DropdownButton,Dropdown,Tabs,Tab} from 'react-bootstrap';
@@ -310,6 +311,15 @@ class App extends Component {
 
     return (
       <div className="App">
+        {/* try using this and making default view to list instead of map. Intro page will ask the user to click on map view to see map */}
+        {/* <TopPanel id = "home"
+          home = {this.handleHomeView}
+          mapView = {this.handleMapView}
+          companyView = {this.handleListView}
+          user = {this.state.curr_user_username}
+          myTips = {this.handleMyTipsView}
+          signOut = {this.handleSignOut}
+          /> */}
         <div id="home"> { home } </div>
         <div className="tipsView"> { multiView } </div>
       </div>
