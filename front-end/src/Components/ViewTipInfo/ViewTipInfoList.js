@@ -18,7 +18,7 @@ import ViewUserTips from './ViewUserTipInfo';
 import ViewCompany from './ViewCompany';
 import WelcomePage from './WelcomePage';
 
-import {Form, FormControl, Button, ButtonGroup, ButtonToolbar} from 'react-bootstrap';
+import {Card, Form, FormControl, Button, ButtonGroup, ButtonToolbar} from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
 
 const process = require('../ProcessTips/ProcessTips');
@@ -85,6 +85,32 @@ class ViewTipInfoList extends React.Component {
 
 
     render() {
+      const companyIntroPage = (
+        <div>
+          <br></br>
+          <Card bg="info" text="white">
+          <Card.Header>
+          <nav class="navbar navbar-light">
+              <form class="form-inline" onSubmit={(event)=>{ event.preventDefault(); this.searchViewHandler(this.state.BusinessName)}}>
+                <input class="form-control mr-sm-2" type="search" placeholder= "Search Company" aria-label="Search"
+                  onChange = {(event)=> {this.searchHandler(this.props.tip_info, event.target.value)}}
+                />
+                <button class="btn btn-outline-success my-2 my-sm-0 bg-white" type="submit">Search</button>
+              </form>
+            </nav>
+          </Card.Header>
+          <Card.Body>
+            <Card.Title>Search company</Card.Title>
+            <Card.Text>
+              You can find all tips information about any company.
+              Enter the name of the company in the search box to see the reported tips.
+            </Card.Text>
+            
+          </Card.Body>
+        </Card>
+      </div>
+      );
+
       const defaultView = this.state.SearchResults.map(company => {
         return (
         <div className = "card avgTipsByBusiness bg-dark mb-3">
@@ -96,18 +122,20 @@ class ViewTipInfoList extends React.Component {
     
       return (
         <div className="container">
-          <nav class="navbar navbar-light bg-light">
-            <form class="form-inline" onSubmit={(event)=>{ event.preventDefault(); this.searchViewHandler(this.state.BusinessName)}}>
-              <input class="form-control mr-sm-2" type="search" placeholder="Search Company" aria-label="Search"
-                onChange = {(event)=> {this.searchHandler(this.props.tip_info, event.target.value)}}
-              />
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-          </nav>
+          
           <div className="">
             {
-              this.state.welcomeView? <WelcomePage searchHandler = {this.searchHandler} tipsInfo = {this.props.tip_info}/> :
-              this.state.companyView?
+              this.state.welcomeView? companyIntroPage :
+              <div>
+              <nav class="navbar navbar-light bg-light">
+                <form class="form-inline" onSubmit={(event)=>{ event.preventDefault(); this.searchViewHandler(this.state.BusinessName)}}>
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search Company" aria-label="Search"
+                    onChange = {(event)=> {this.searchHandler(this.props.tip_info, event.target.value)}}
+                  />
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </nav>
+              {this.state.companyView?
               <div className="card bg-white">
                 <ButtonToolbar pullRight className="row">
                   <div className = "col-9"></div>
@@ -123,8 +151,9 @@ class ViewTipInfoList extends React.Component {
               </div>
                 :
                 defaultView
+              }
+            </div>
             }
-            
           </div>   
         </div>
       )

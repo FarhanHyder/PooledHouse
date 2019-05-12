@@ -25,7 +25,8 @@ class WelcomePage extends React.Component {
       const { index, direction } = this.state;
   
       return (
-          <div className = "container, fluid">     
+          <div className = "container fluid">
+          <br></br>
           <Card bg="info" text="white" style={{  }}>
             <Card.Header>Welcome to Pooled House</Card.Header>
             <Card.Body>
