@@ -1,3 +1,4 @@
+// react imports
 import React, { Component } from 'react';
 import './App.css';
 
@@ -5,34 +6,24 @@ import './App.css';
 import TipInfoForm from './Components/TipInfoForm/TipInfoForm';
 import Map from './Components/Map/map.js';  
 import Search from './Components/Search/Search';
-
-// react-bootstrap
-import Navbar from 'react-bootstrap/Navbar';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-
-// View Component
-// import ViewTipInfo from './Components/ViewTipInfo/ViewTipInfo';
-// import PositionOption from './Components/ViewTipInfo/PositionOption';
-// import './Components/ViewTipInfo/ViewTipInfo.css';
-// import './Components/ProcessTips/ViewProcessedTips.css';
 import ViewUserTips from './Components/ViewTipInfo/ViewUserTips';
 import ViewTipInfoList from './Components/ViewTipInfo/ViewTipInfoList';
+import UserAccountSummary from './Components/UserTips/UserAccountSummary';
+
+// react-bootstrap
+import {Navbar,Form,FormControl,Button,ButtonToolbar,ButtonGroup,DropdownButton,Dropdown,Tabs,Tab} from 'react-bootstrap';
 
 //aws imports
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
 import awsmobile from './aws-exports';
-import { withAuthenticator } from 'aws-amplify-react';
-import { Connect } from 'aws-amplify-react';
+import { withAuthenticator, Connect } from 'aws-amplify-react';
 import aws_config from './aws-exports';
 
 //graphql related imports
 import * as queries from './graphql/queries'
 import * as subscriptions from './graphql/subscriptions'
 
+// logo
 import logo from './images/logo.png'
 
 Amplify.configure(awsmobile);
@@ -51,6 +42,7 @@ class App extends Component {
       showMyTipsView: false,
       showSearchView: false,
       detailList: false,
+      userTipsTab: "viewMyTips",
       processFilter: "Business",
       positionFilter: "All Position"
     }
@@ -159,6 +151,7 @@ class App extends Component {
 
     const search_query = this.state.search_query
 
+    const welcomeMsg = "Hello, "+this.state.curr_user_username;
     const home = (
       <Navbar className="bg-olive justify-content-between">
 
@@ -184,17 +177,16 @@ class App extends Component {
 
         <ButtonGroup>
           <Button variant="warning" onClick={this.handleMapView}>Map</Button>
-          <Button variant="warning" onClick={this.handleListView}>List</Button>
+          <Button id='list' variant="warning" onClick={this.handleListView}>List</Button>
         </ButtonGroup>
 
-        <ButtonToolbar>
-          <Button id='ur_nav' onClick={this.handleMyTipsView}>
-          {this.state.curr_user_username}'s Tips
-          </Button>
-          <Button id='ur_nav' onClick={this.handleSignOut}>
-            Sign Out
-          </Button>
-        </ButtonToolbar>
+        <ButtonGroup>
+          
+          <DropdownButton as={ButtonGroup} title={welcomeMsg} id="bg-nested-dropdown">
+            <Dropdown.Item eventKey="tipsView" onClick={this.handleMyTipsView} >Your Account</Dropdown.Item>
+            <Dropdown.Item eventKey="signOut" onClick={this.handleSignOut}>Sign Out</Dropdown.Item>
+          </DropdownButton>
+        </ButtonGroup>
       </Navbar>
       );
 
@@ -231,8 +223,7 @@ class App extends Component {
       )
 
       const viewMyTips = (
-        <div>
-        <TipInfoForm />
+
         <Connect query={graphqlOperation(queries.listTipEntrys)}
                  subscription={graphqlOperation(subscriptions.onCreateTipEntry)}
                  onSubscriptionMsg={this.onNewTipEntry}>
@@ -240,14 +231,37 @@ class App extends Component {
             if (error) return (<h3>Error</h3>);
             if (loading || !listTipEntrys) return (<h3>Loading...</h3>);
             return (
-              <ViewUserTips 
-                tipInfo={listTipEntrys.items} 
-                user={this.state.curr_user_username}
-                />
+              <div>
+                <h1> {this.state.curr_user_username} </h1>
+                <Tabs
+                  id="userTips"
+                  activeKey={this.state.userTipsTab}
+                  onSelect={userTipsTab => this.setState({ userTipsTab })}
+                >           
+                  <Tab eventKey="accountSummary" title="Your Tips Summary">
+                    <UserAccountSummary 
+                      tipInfo={listTipEntrys.items} 
+                      user={this.state.curr_user_username}
+                    />
+                  </Tab>
+
+  
+                  <Tab eventKey="viewMyTips" title="All Your Entries">
+                    <ViewUserTips 
+                      tipInfo={listTipEntrys.items} 
+                      user={this.state.curr_user_username}
+                    />
+                  </Tab>
+
+                  <Tab eventKey="addNewTips" title="Add New Tips">
+                    <TipInfoForm />
+                  </Tab>
+
+                </Tabs>
+              </div>
             )
         }}
         </Connect>
-        </div>
       )
 
       const viewSearch = (
@@ -278,11 +292,6 @@ class App extends Component {
     } else {
       multiView = viewMyTips;
     }
-
-        {/*
-        {this.state.showTipUpdate ? <TipInfoForm handler={this.handleTipUpdate}/> : null }
-        {this.state.showListView ? <div id="listView"> {viewData} </div> : <div> {mapData} </div>}
-        */}
 
     return (
       <div className="App">
