@@ -7,7 +7,7 @@ const TopPanel = (props) => {
       <Navbar.Brand href="#home">Pooled House</Navbar.Brand>
       <Nav className="mr-auto">
         <Nav.Link href="#home" onClick = {props.home} >Home</Nav.Link>
-        <Nav.Link href="#company" onClick = {props.companyView}>View Companies</Nav.Link>
+        <Nav.Link href="#company" onClick = {props.companyView}>Companies</Nav.Link>
         <Nav.Link href="#map" onClick = {props.mapView}>See Map</Nav.Link>
       </Nav>
       <Dropdown>
@@ -15,7 +15,7 @@ const TopPanel = (props) => {
           {props.user}
         </Dropdown.Toggle>
         <Dropdown.Menu >
-          <Dropdown.Item href="#/action-1" onClick >Add New Tips</Dropdown.Item>
+          <Dropdown.Item href="#/action-1" onClick ={props.addNewTips}>Add Tips</Dropdown.Item>
           <Dropdown.Item href="#/action-2" onClick = {props.myTips}>My Tips</Dropdown.Item>
           <Dropdown.Item href="#/action-3" onClick = {props.signOut}>Sign out</Dropdown.Item>
         </Dropdown.Menu>

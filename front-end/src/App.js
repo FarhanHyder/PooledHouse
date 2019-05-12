@@ -9,10 +9,9 @@ import Search from './Components/Search/Search';
 import ViewUserTips from './Components/ViewTipInfo/ViewUserTips';
 import ViewTipInfoList from './Components/ViewTipInfo/ViewTipInfoList';
 import UserAccountSummary from './Components/UserTips/UserAccountSummary';
-import TopPanel from './Components/ViewTipInfo/TopPanel';
 
 // react-bootstrap
-import {Navbar,Form,FormControl,Button,ButtonToolbar,ButtonGroup,DropdownButton,Dropdown,Tabs,Tab} from 'react-bootstrap';
+import {Navbar,Nav, Form,FormControl,Button,ButtonToolbar,ButtonGroup,DropdownButton,Dropdown,Tabs,Tab} from 'react-bootstrap';
 
 //aws imports
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
@@ -43,32 +42,20 @@ class App extends Component {
       showMyTipsView: false,
       showSearchView: false,
       detailList: false,
+      addTips: false,
       userTipsTab: "viewMyTips",
       processFilter: "Business",
       positionFilter: "All Position"
     }
 
-    this.handleProcess = this.handleProcess.bind(this);
-    this.handlePosition = this.handlePosition.bind(this);
     this.handleMapView = this.handleMapView.bind(this);
     this.handleListView = this.handleListView.bind(this);
     this.handleMyTipsView = this.handleMyTipsView.bind(this);
+    this.handleAddTips = this.handleAddTips.bind(this);
     this.handleSearchQueryChange = this.handleSearchQueryChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
   
-  handleProcess =(event) => {
-    this.setState({
-      processFilter : event.target.value
-    })
-  }
-
-  handlePosition = (event) => {
-    this.setState({
-      positionFilter : event.target.value
-    })
-  }
-
   handleSignOut = () => {
     Auth.signOut()
     .then(data => console.log(data))
@@ -79,11 +66,10 @@ class App extends Component {
     this.setState({
       showSignUp: false,
       // userProfile : "",
+      addTips: false,
       showListView: false,
       showMapView: true,
       detailList: false,
-      processFilter: "Business",
-      positionFilter: "All Position",
       showMyTipsView: false,
       search_query: ''
     })
@@ -91,6 +77,7 @@ class App extends Component {
 
   handleMapView = () => {
     this.setState({
+      addTips: false,
       showMapView: true,
       showListView: false,
       showMyTipsView: false,
@@ -100,6 +87,7 @@ class App extends Component {
 
   handleListView = () => {
     this.setState({
+      addTips: false,
       showMapView: false,
       showListView: true,
       showMyTipsView: false,
@@ -109,9 +97,20 @@ class App extends Component {
 
   handleMyTipsView = () => {
     this.setState({
+      addTips: false,
       showMapView: false,
       showListView: false,
       showMyTipsView: true,
+      showSearchView: false
+    })
+  }
+
+  handleAddTips = () => {
+    this.setState({
+      addTips: true,
+      showMapView: false,
+      showListView: false,
+      showMyTipsView: false,
       showSearchView: false
     })
   }
@@ -124,6 +123,7 @@ class App extends Component {
 
   handleSearchSubmit = () => {
     this.setState({
+      addTips: false,
       showMapView: false,
       showListView: false,
       showMyTipsView: false,
@@ -153,43 +153,78 @@ class App extends Component {
     const search_query = this.state.search_query
 
     const welcomeMsg = "Hello, "+this.state.curr_user_username;
-    const home = (
-      <Navbar className="bg-olive justify-content-between">
+    // const home = (
+    //   <Navbar className="bg-olive justify-content-between">
 
-      <Navbar.Brand>
-        <a href='#' onClick={this.handleHomeView}>
-        <img 
-        src={ logo }
-        width="200"
-        height="64"
-        className="d-inline-block align-top"
-        alt="Pooled House logo"
-        />
-        </a>
+    //   <Navbar.Brand>
+    //     <a href='#' onClick={this.handleHomeView}>
+    //     <img 
+    //     src={ logo }
+    //     width="200"
+    //     height="64"
+    //     className="d-inline-block align-top"
+    //     alt="Pooled House logo"
+    //     />
+    //     </a>
 
-      </Navbar.Brand>
+    //   </Navbar.Brand>
       
-        <Form inline>
-          <FormControl value={ search_query } type="text" 
-                       placeholder="ex: upper manhattan" className="mr-sm" 
-                       onChange={ this.handleSearchQueryChange } />
-          <Button variant="outline-light" onClick={ this.handleSearchSubmit }><span>{"\uD83D\uDD0D"}</span></Button>
-        </Form>
+    //     <Form inline>
+    //       <FormControl value={ search_query } type="text" 
+    //                    placeholder="ex: upper manhattan" className="mr-sm" 
+    //                    onChange={ this.handleSearchQueryChange } />
+    //       <Button variant="outline-light" onClick={ this.handleSearchSubmit }><span>{"\uD83D\uDD0D"}</span></Button>
+    //     </Form>
 
-        <ButtonGroup>
-          <Button variant="warning" onClick={this.handleMapView}>Map</Button>
-          <Button id='list' variant="warning" onClick={this.handleListView}>List</Button>
-        </ButtonGroup>
+    //     <ButtonGroup>
+    //       <Button variant="warning" onClick={this.handleMapView}>Map</Button>
+    //       <Button id='list' variant="warning" onClick={this.handleListView}>List</Button>
+    //     </ButtonGroup>
 
-        <ButtonGroup>
+    //     <ButtonGroup>
           
-          <DropdownButton as={ButtonGroup} title={welcomeMsg} id="bg-nested-dropdown">
-            <Dropdown.Item eventKey="tipsView" onClick={this.handleMyTipsView} >Your Account</Dropdown.Item>
-            <Dropdown.Item eventKey="signOut" onClick={this.handleSignOut}>Sign Out</Dropdown.Item>
-          </DropdownButton>
-        </ButtonGroup>
+    //       <DropdownButton as={ButtonGroup} title={welcomeMsg} id="bg-nested-dropdown">
+    //         <Dropdown.Item eventKey="tipsView" onClick={this.handleMyTipsView} >Your Account</Dropdown.Item>
+    //         <Dropdown.Item eventKey="signOut" onClick={this.handleSignOut}>Sign Out</Dropdown.Item>
+    //       </DropdownButton>
+    //     </ButtonGroup>
+    //   </Navbar>
+    //   );
+    //   <Navbar.Brand>
+    //     <a href='#' onClick={this.handleHomeView}>
+    //     <img 
+    //     src={ logo }
+    //     width="200"
+    //     height="64"
+    //     className="d-inline-block align-top"
+    //     alt="Pooled House logo"
+    //     />
+    //     </a>
+
+    //   </Navbar.Brand>
+    
+    const TopPanel = (
+      <Navbar bg="primary" sticky="top" z-index = '9999' variant="dark">
+        <Navbar.Brand href="#home">Pooled House</Navbar.Brand>
+        
+        <Nav className="mr-auto">
+          <Nav.Link href="#home" onClick = {this.handleHomeView} >Home</Nav.Link>
+          <Nav.Link href="#company" onClick = {this.handleListView}>Companies</Nav.Link>
+          <Nav.Link href="#map" onClick = {this.handleMapView}>See Map</Nav.Link>
+        </Nav>
+        <Dropdown>
+          <Dropdown.Toggle variant="info" id="dropdown-button-drop-left">
+          {this.state.curr_user_username}
+          </Dropdown.Toggle>
+          <Dropdown.Menu >
+            <Dropdown.Item href="#/action-1" onClick = {this.handleAddTips}>Add Tips</Dropdown.Item>
+            <Dropdown.Item href="#/action-2" onClick = {this.handleMyTipsView}>My Tips</Dropdown.Item>
+            <Dropdown.Item href="#/action-3" onClick = {this.handleSignOut}>Sign out</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        
       </Navbar>
-      );
+    );
 
       const viewData = (
         //the connect component queries our database
@@ -278,7 +313,7 @@ class App extends Component {
         </Tabs>
 
         </div>
-      )
+      );
 
       const viewSearch = (
         <Connect query={graphqlOperation(queries.listTipEntrys)}
@@ -305,22 +340,16 @@ class App extends Component {
       multiView = viewData;
     } else if (this.state.showSearchView) {
       multiView = viewSearch;
+    } else if (this.state.addTips) {
+      multiView = <TipInfoForm />;
     } else {
       multiView = viewMyTips;
     }
 
     return (
       <div className="App">
-        {/* try using this and making default view to list instead of map. Intro page will ask the user to click on map view to see map */}
-        {/* <TopPanel id = "home"
-          home = {this.handleHomeView}
-          mapView = {this.handleMapView}
-          companyView = {this.handleListView}
-          user = {this.state.curr_user_username}
-          myTips = {this.handleMyTipsView}
-          signOut = {this.handleSignOut}
-          /> */}
-        <div id="home"> { home } </div>
+        <div id="home"> { TopPanel} </div>
+        {/* <div id="home"> { home } </div> */}
         <div className="tipsView"> { multiView } </div>
       </div>
     );
