@@ -34,12 +34,7 @@ class ViewTipInfoList extends React.Component {
             searchView: false,
             companyView: false,
             tipsInfo: props.tip_info,
-            allBusiness: process.createBusinessTable(props.tip_info),
             avgByBusiness : process.averageTipsByBusiness(props.tip_info),
-            avgByLocation: process.averageTipsByBusinessByLocation(props.tip_info),
-            avgByPosition: process.averageTipsByPosition(props.tip_info),
-            avgByDay: process.averageTipsByBusinessDay(props.tip_info),
-            avgByZip: process.averageTipsByZipCode(props.tip_info),
             BusinessName: "",
             SearchResults: Object.keys(process.createBusinessTable(props.tip_info)).sort()
         };
@@ -48,7 +43,6 @@ class ViewTipInfoList extends React.Component {
         this.welcomeViewHandler = this.welcomeViewHandler.bind(this);
         this.searchViewHandler = this.searchViewHandler.bind(this);
         this.companyViewHandler = this.companyViewHandler.bind(this);
-        // this.viewHandler = this.viewHandler.bind(this);
     }
     
     searchHandler = (tipsInfo, data) => {
@@ -124,11 +118,6 @@ class ViewTipInfoList extends React.Component {
                   tipsInfo={this.state.tipsInfo} 
                   BusinessName = {this.state.BusinessName}
                   avgByBusiness = {this.state.avgByBusiness[this.state.BusinessName]}
-                  locations = {this.state.avgByLocation[this.state.BusinessName]}
-                  dailyTipsAvg = {this.state.avgByDay[this.state.BusinessName]}
-                  avgByPosition = {this.state.avgByPosition[this.state.BusinessName]}
-                  tipsHistory = {this.state.allBusiness[this.state.BusinessName]}
-
                 />
                 
               </div>

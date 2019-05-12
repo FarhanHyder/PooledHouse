@@ -2,7 +2,7 @@ import React from 'react';
 import Table from 'react-bootstrap/Table'
 
 const TipsHistory = (props) => {
-    const tips = props.tipsInfo;
+    const tips = props.tipsHistory;
     let num = 0;
     let view =tips.map(tips => {
         return (
@@ -30,6 +30,7 @@ const TipsHistory = (props) => {
                         <th>Shift</th>
                         <th>Hours Worked</th>
                         <th>Tips</th>
+                        {/* <th>Tips in This Zip Code area</th> */}
                     </tr>
                     </thead>
                     {view}

@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import Description from './CompanyDescription';
 import ViewReportedTips from './ViewReportedTips';
 import ViewTipsHistory from './ViewTipsHistory';
-
+const process = require('../ProcessTips/ProcessTips');
 
 class ViewCompany extends Component {
     constructor(props){
         super(props);
         this.state = {
-            BusinessName: props.BusinessName,
+            BusinessName: this.props.BusinessName,
+            allBusiness: process.createBusinessTable(this.props.tipsInfo),
+            avgByLocation: process.averageTipsByBusinessByLocation(this.props.tipsInfo),
+            avgByPosition: process.averageTipsByPosition(this.props.tipsInfo),
+            avgByDay: process.averageTipsByBusinessDay(this.props.tipsInfo),
+            avgByZip: process.averageTipsByZipCode(this.props.tipsInfo),
             ViewDescription: true,
             ViewTipsInfo: false,
             ViewTipsHistory: false,
@@ -66,18 +71,19 @@ class ViewCompany extends Component {
                         this.state.ViewDescription?
                         <Description
                             business = {this.state.BusinessName}
-                            locations = {this.props.locations}
+                            locations = {this.state.avgByLocation[this.state.BusinessName]}
                         /> :
                         (this.state.ViewTipsInfo?
                         <ViewReportedTips
                             business = {this.state.BusinessName}
-                            locations = {this.props.locations}
-                            dailyTipsAvg = {this.props.dailyTipsAvg}
-                            avgByPosition = {this.props.avgByPosition}
+                            locations = {this.state.avgByLocation[this.state.BusinessName]}
+                            dailyTipsAvg = {this.state.avgByDay[this.state.BusinessName]}
+                            avgByPosition = {this.state.avgByPosition[this.state.BusinessName]}
+                           
                         /> : 
                         
                         <ViewTipsHistory
-                            tipsInfo = {this.props.tipsHistory}
+                            tipsHistory = {this.state.allBusiness[this.state.BusinessName]}
                         />)
                     }
                 </div>
