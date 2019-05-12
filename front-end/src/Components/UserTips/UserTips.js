@@ -7,11 +7,6 @@ import * as subscriptions from './graphql/subscriptions'
 import ViewUserTips from './Components/ViewTipInfo/ViewUserTips';
 
 
-
-
-
-
-
 const UserTips = (props) => {
 
     const userTips = (
