@@ -39,7 +39,17 @@ const avgByNeighborhood = (avgTips) => {
 
 const avgByShift = (avgTips) => {
 	return [
-		["Work Shift", "Average Tips", {role: "style"}],
+		["Shift Position", "Average Tips", {role: "style"}],
+		["AM Bartender", Number.parseFloat(avgTips.AM.Bartender.tipsPerHour.toFixed(2)), "stroke-color: #25754D; stroke-width: 4; fill-color: #311B92"],
+		["PM Bartender", Number.parseFloat(avgTips.PM.Bartender.tipsPerHour.toFixed(2)), "stroke-color: #25754D; stroke-width: 4; fill-color: #311B92"],
+		["AM Server", Number.parseFloat(avgTips.AM.Server.tipsPerHour.toFixed(2)), "stroke-color: #00ABDA; stroke-width: 4; fill-color: #2196F3"],
+		["PM Server", Number.parseFloat(avgTips.PM.Server.tipsPerHour.toFixed(2)), "stroke-color: #00ABDA; stroke-width: 4; fill-color: #2196F3"],
+		["AM Barback", Number.parseFloat(avgTips.AM.Barback.tipsPerHour.toFixed(2)), "stroke-color: #47DE2A; stroke-width: 4; fill-color: #455A64"],
+		["PM Barback", Number.parseFloat(avgTips.PM.Barback.tipsPerHour.toFixed(2)), "stroke-color: #47DE2A; stroke-width: 4; fill-color: #455A64"],
+		["AM Busser", Number.parseFloat(avgTips.AM.Busser.tipsPerHour.toFixed(2)), "stroke-color: #E4E2A2; stroke-width: 4; fill-color: #4DD0E1"],
+		["PM Busser", Number.parseFloat(avgTips.PM.Busser.tipsPerHour.toFixed(2)), "stroke-color: #E4E2A2; stroke-width: 4; fill-color: #4DD0E1"],
+		["AM Other", Number.parseFloat(avgTips.AM.Other.tipsPerHour.toFixed(2)), "stroke-color: #B02ADE; stroke-width: 4; fill-color: #3E2723"],
+		["AM Other", Number.parseFloat(avgTips.PM.Other.tipsPerHour.toFixed(2)), "stroke-color: #B02ADE; stroke-width: 4; fill-color: #3E2723"],
 	]
 }
 
@@ -55,7 +65,7 @@ const ViewBarChart =(props) => {
 		title = "Average Daily Tips";
 	}
 	else if (props.chartOption === "shift") {
-		data = avgByShift(props.dailyTipsAvg);
+		data = avgByShift(props.avgByPosShift);
 		title = "Average Tips By Shift";
 	}
 	else if (props.chartOption === "zip") {
@@ -63,7 +73,7 @@ const ViewBarChart =(props) => {
 		title = "Average Tips By Zip";
 	}
 	else if (props.chartOption === "neighborhood") {
-		data = avgByNeighborhood(props.dailyTipsAvg);
+		data = avgByNeighborhood(props.avgByPosShift);
 		title = "Average Tips Neighborhood";
 	}
     return (

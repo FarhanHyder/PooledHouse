@@ -410,29 +410,11 @@ exports.averageTipsByPositionAndShift = (tipsInfo) => {
                         totalHour: tips.shift_length,
                     };
             
-            let positions = {
-                Bartender: {
-                    tipsPerHour: 0,
-                    totalHour: 0,
-                },
-                Server: {
-                    tipsPerHour: 0,
-                    totalHour: 0,
-                },
-                Barback: {
-                    tipsPerHour: 0,
-                    totalHour: 0,
-                },
-                Busser: {
-                    tipsPerHour: 0,
-                    totalHour: 0,
-                },
-                Other: {
-                    tipsPerHour: 0,
-                    totalHour: 0,
-                }
-            }; 
-            businessTipsByPosShift[businessName] = {AM: positions, PM: positions};
+            businessTipsByPosShift[businessName] = {
+            AM: {Bartender: { tipsPerHour: 0,totalHour: 0 }, Server: { tipsPerHour: 0, totalHour: 0}, Barback: {tipsPerHour: 0,totalHour: 0}, Busser: {tipsPerHour: 0,totalHour: 0},Other: {tipsPerHour: 0,totalHour: 0}},
+            PM: {Bartender: { tipsPerHour: 0,totalHour: 0 }, Server: { tipsPerHour: 0, totalHour: 0}, Barback: {tipsPerHour: 0,totalHour: 0}, Busser: {tipsPerHour: 0,totalHour: 0},Other: {tipsPerHour: 0,totalHour: 0}},
+            };
+
             businessTipsByPosShift[businessName][shift][pos] = avg;
             businessTipsByPosShift[businessName].address = tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip;
         }

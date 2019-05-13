@@ -26,7 +26,7 @@ class ViewReportedTips extends React.Component {
                     </div>
                     <br></br>
                 </div>
-                <div className="row">
+                <div className="row fluid">
                     <div className="col-4">
                         {this.state.chartOption === "position"?
                             <Table striped bordered hover responsive="sm" variant="dark">
@@ -101,28 +101,81 @@ class ViewReportedTips extends React.Component {
                                 </tbody>
                             </Table>
                         : null}
-
-                        {/* <div>Average Tips in this Zip Code: $ / Hours</div>
-                        <div>Average in this neighborhood</div>
-                        <div>Average Tips for different Position</div> */}
+                        {this.state.chartOption === "shift"?
+                            <Table striped bordered hover responsive="sm" variant="dark">
+                                <thead className="bg-secondary">
+                                <tr>
+                                    <th>Position</th>
+                                    <th>Shift</th>
+                                    <th>Hourly Tips</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Bartender</td>
+                                    <td>AM</td>
+                                    <td>${Number.parseFloat(this.props.avgByPosShift.AM.Bartender.tipsPerHour.toFixed(2))}</td>
+                                </tr>
+                                <tr>
+                                    <td>Bartender</td>
+                                    <td>PM</td>
+                                    <td>${Number.parseFloat(this.props.avgByPosShift.PM.Bartender.tipsPerHour.toFixed(2))}</td>
+                                </tr>
+                                <tr>
+                                    <td>Server</td>
+                                    <td>AM</td>
+                                    <td>${Number.parseFloat(this.props.avgByPosShift.AM.Server.tipsPerHour.toFixed(2))}</td>
+                                </tr>
+                                <tr>
+                                    <td>Server</td>
+                                    <td>PM</td>
+                                    <td>${Number.parseFloat(this.props.avgByPosShift.PM.Server.tipsPerHour.toFixed(2))}</td>
+                                </tr>
+                                <tr>
+                                    <td>Barback</td>
+                                    <td>AM</td>
+                                    <td>${Number.parseFloat(this.props.avgByPosShift.AM.Barback.tipsPerHour.toFixed(2))}</td>
+                                </tr>
+                                <tr>
+                                    <td>Barback</td>
+                                    <td>PM</td>
+                                    <td>${Number.parseFloat(this.props.avgByPosShift.PM.Barback.tipsPerHour.toFixed(2))}</td>
+                                </tr>
+                                <tr>
+                                    <td>Busser</td>
+                                    <td>AM</td>
+                                    <td>${Number.parseFloat(this.props.avgByPosShift.AM.Busser.tipsPerHour.toFixed(2))}</td>
+                                </tr>
+                                <tr>
+                                    <td>Busser</td>
+                                    <td>PM</td>
+                                    <td>${Number.parseFloat(this.props.avgByPosShift.PM.Busser.tipsPerHour.toFixed(2))}</td>
+                                </tr>
+                                <tr>
+                                    <td>Other</td>
+                                    <td>AM</td>
+                                    <td>${Number.parseFloat(this.props.avgByPosShift.AM.Other.tipsPerHour.toFixed(2))}</td>
+                                </tr>
+                                <tr>
+                                    <td>Other</td>
+                                    <td>PM</td>
+                                    <td>${Number.parseFloat(this.props.avgByPosShift.PM.Other.tipsPerHour.toFixed(2))}</td>
+                                </tr>
+                                </tbody>
+                            </Table>
+                        : null}
+                        
                     </div>
                     <div className="col-8">
                     <ViewBarChart
                         chartOption = {this.state.chartOption}
                         avgByDay = {this.props.avgByDay}
                         avgByPosition = {this.props.avgByPosition}
+                        avgByPosShift = {this.props.avgByPosShift}
                     />
                     </div>
                 
                 </div>
-                {/* <div className="">
-                    <ViewBarChart
-                        chartOption = {this.state.chartOption}
-                        avgByDay = {this.props.avgByDay}
-                        avgByPosition = {this.props.avgByPosition}
-                    />
-                </div> */}
-                
             </div>
         );
         return view;
