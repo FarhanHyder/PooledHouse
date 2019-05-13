@@ -90,12 +90,12 @@ class ViewTipInfoList extends React.Component {
           <br></br>
           <Card bg="info" text="white">
           <Card.Header>
-          <nav class="navbar navbar-light">
-              <form class="form-inline" onSubmit={(event)=>{ event.preventDefault(); this.searchViewHandler(this.state.BusinessName)}}>
-                <input class="form-control mr-sm-2" type="search" placeholder= "Search Company" aria-label="Search"
+          <nav className="navbar navbar-light">
+              <form className="form-inline" onSubmit={(event)=>{ event.preventDefault(); this.searchViewHandler(this.state.BusinessName)}}>
+                <input className="form-control mr-sm-2" type="search" placeholder= "Search Company" aria-label="Search"
                   onChange = {(event)=> {this.searchHandler(this.props.tip_info, event.target.value)}}
                 />
-                <button class="btn btn-outline-success my-2 my-sm-0 bg-white" type="submit">Search</button>
+                <button className="btn btn-outline-success my-2 my-sm-0 bg-white" type="submit">Search</button>
               </form>
             </nav>
           </Card.Header>
@@ -113,10 +113,10 @@ class ViewTipInfoList extends React.Component {
 
       const defaultView = this.state.SearchResults.map(company => {
         return (
-        <div className = "card avgTipsByBusiness bg-dark mb-3">
+        <div className = "card avgTipsByBusiness bg-dark mb-3" key = {company}>
             <h5 className="card-header text-left text-white bg-success mb-3">{company}</h5>
             <div className="text-white text-right bg-dark mb-3">Average Tips: ${Number.parseFloat(this.state.avgByBusiness[company].tipsPerHour.toFixed(2))} / Hour</div>
-            <button type="button" class="btn btn-outline-info" onClick = {()=> this.companyViewHandler(company)}>View details</button>    
+            <button type="button" className="btn btn-outline-info" onClick = {()=> this.companyViewHandler(company)}>View details</button>    
         </div>);
     });
     
@@ -127,17 +127,17 @@ class ViewTipInfoList extends React.Component {
             {
               this.state.welcomeView? companyIntroPage :
               <div>
-              <nav class="navbar navbar-light bg-light">
-                <form class="form-inline" onSubmit={(event)=>{ event.preventDefault(); this.searchViewHandler(this.state.BusinessName)}}>
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search Company" aria-label="Search"
+              <nav className="navbar navbar-light bg-light">
+                <form className="form-inline" onSubmit={(event)=>{ event.preventDefault(); this.searchViewHandler(this.state.BusinessName)}}>
+                  <input className="form-control mr-sm-2" type="search" placeholder="Search Company" aria-label="Search"
                     onChange = {(event)=> {this.searchHandler(this.props.tip_info, event.target.value)}}
                   />
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
               </nav>
               {this.state.companyView?
               <div className="card bg-white">
-                <ButtonToolbar pullRight className="row">
+                <ButtonToolbar className="row">
                   <div className = "col-9"></div>
                   <ButtonGroup className="col-2" aria-label="Second group"><Button variant="secondary" onClick = {()=> {this.searchViewHandler(this.state.BusinessName)}}>Search results</Button></ButtonGroup>
                   <ButtonGroup className="col-1" aria-label="First group"><Button variant="primary" onClick ={()=> {this.welcomeViewHandler(this.state.BusinessName)}}>Back</Button></ButtonGroup>

@@ -17,11 +17,11 @@ class ViewReportedTips extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-2 btn-group-vertical position-left">
-                        <button type="button" class="btn btn-dark active" onClick ={()=>{this.setState({chartOption: "position"})}} >Tips By Position</button>
-                        <button type="button" class="btn btn-dark" onClick ={()=>{this.setState({chartOption: "day"})}} >Tips By Day</button>
-                        <button type="button" class="btn btn-dark" onClick ={()=>{this.setState({chartOption: "zip"})}} >Tips By Zip Code</button>
-                        <button type="button" class="btn btn-dark" onClick ={()=>{this.setState({chartOption: "neighborhood"})}} >Tips By neighborhood</button>
-                        <button type="button" class="btn btn-dark" onClick ={()=>{this.setState({chartOption: "shift"})}} >Tips By Shift</button>
+                        <button type="button" className="btn btn-dark active" onClick ={()=>{this.setState({chartOption: "position"})}} >Tips By Position</button>
+                        <button type="button" className="btn btn-dark" onClick ={()=>{this.setState({chartOption: "day"})}} >Tips By Day</button>
+                        <button type="button" className="btn btn-dark" onClick ={()=>{this.setState({chartOption: "zip"})}} >Tips By Zip Code</button>
+                        <button type="button" className="btn btn-dark" onClick ={()=>{this.setState({chartOption: "neighborhood"})}} >Tips By neighborhood</button>
+                        <button type="button" className="btn btn-dark" onClick ={()=>{this.setState({chartOption: "shift"})}} >Tips By Shift</button>
                     </div>
                     <div className="col-10 card">
                         {this.state.chartOption === "position"?
@@ -35,6 +35,7 @@ class ViewReportedTips extends React.Component {
                                     <th>Other</th>
                                 </tr>
                                 </thead>
+                                <tbody>
                                 <tr>
                                     <td>{Number.parseFloat(this.props.avgByPosition.Bartender.tipsPerHour.toFixed(2))}</td>
                                     <td>{Number.parseFloat(this.props.avgByPosition.Server.tipsPerHour.toFixed(2))}</td>
@@ -42,6 +43,7 @@ class ViewReportedTips extends React.Component {
                                     <td>{Number.parseFloat(this.props.avgByPosition.Busser.tipsPerHour.toFixed(2))}</td>
                                     <td>{Number.parseFloat(this.props.avgByPosition.Other.tipsPerHour.toFixed(2))}</td>
                                 </tr>
+                                </tbody>
                             </Table>
                         : null}
                         <div>Average Tips in this Zip Code: $ / Hours</div>

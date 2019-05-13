@@ -58,9 +58,9 @@ class ViewCompany extends Component {
                     <h2 className="card-title text-white bg-success rounded-lg">{this.state.BusinessName}</h2>
                     <div className = "row">
                         <div className="col-6 btn-group">
-                            <button type="button" class="btn btn-info" onClick = {this.descriptionViewHandler}>Description</button>
-                            <button type="button" class="btn btn-dark" onClick = {this.tipsInfoViewHandler}>Tips Information</button>
-                            <button type="button" class="btn btn-secondary" onClick = {this.tipsHistoryViewHandler}>Tips History</button>
+                            <button type="button" className="btn btn-info" onClick = {this.descriptionViewHandler}>Description</button>
+                            <button type="button" className="btn btn-dark" onClick = {this.tipsInfoViewHandler}>Tips Information</button>
+                            <button type="button" className="btn btn-secondary" onClick = {this.tipsHistoryViewHandler}>Tips History</button>
                         </div>
                         <h5 className=" text-right col-6 text-success position-right">Average Tips ${Number.parseFloat(this.props.avgByBusiness.tipsPerHour.toFixed(2))}</h5>
                     </div>
@@ -72,6 +72,7 @@ class ViewCompany extends Component {
                         <Description
                             business = {this.state.BusinessName}
                             locations = {this.state.avgByLocation[this.state.BusinessName]}
+                            avgByZip = {this.state.avgByZip}
                         /> :
                         (this.state.ViewTipsInfo?
                         <ViewReportedTips

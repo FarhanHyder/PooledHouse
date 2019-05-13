@@ -10,6 +10,7 @@ const Description = (props) => {
                 <td>{num += 1}</td>
                 <td>{loc}</td>
                 <td>${Number.parseFloat(props.locations[loc].tipsPerHour.toFixed(2))} / Hour</td>
+                <td>${Number.parseFloat(props.avgByZip[loc.slice(-5)].tipsPerHour.toFixed(2))} / Hour</td>
             </tr>
             </tbody>
         )
@@ -23,6 +24,7 @@ const Description = (props) => {
                     <th>#</th>
                     <th>Company Locations</th>
                     <th>Average Reported Tips</th>
+                    <th>Tips in This Zip Code area</th>
                 </tr>
                 </thead>
                 {locations}

@@ -30,7 +30,6 @@ const TipsHistory = (props) => {
                         <th>Shift</th>
                         <th>Hours Worked</th>
                         <th>Tips</th>
-                        {/* <th>Tips in This Zip Code area</th> */}
                     </tr>
                     </thead>
                     {view}
