@@ -7,46 +7,6 @@ const CRIMSON_RED = "#d73027";          // lvl (3/6)
 const ORANGE = "#fc8d59";               // lvl (2/6)
 const NAVAJO_WHITE = "#fee08b";         // lvl (1/6)
 
-<<<<<<< HEAD
-
-const AVERAGE_ALL = 110;    // FIXME: fetch this data from database
-const HIGHEST = 200;        // FIXME: fetch this data from database
-
-// pre: a number as a param
-// post: return color code
-/**
- * 
- * @param {number} amount 
- * @param {number} max 
- * @return {string} - color code
- */
-/*
-const getColor = (amount, max) =>{
-    const level = getLevel(amount, max);
-    switch(level){
-        case 7:
-            return EMERALD_GREEN;
-        case 6:
-            return PARAKEET_GREEN;
-        case 5:
-            return LIME_GREEN;
-        case 4:
-            return CRIMSON_RED;
-        case 3:
-            return ORANGE; 
-        default:
-            return NAVAJO_WHITE;
-    }
-}
-*/
-
-/**
- * Set the color of the map tiles based on the average tips for that neighborhood
- * @param {number} amount 
- * @return {string}
- */
-=======
->>>>>>> upstream/master
 const getColor = (amount) => {
     if (amount < 15) return ORANGE;
     if (amount < 30) return CRIMSON_RED;
@@ -55,16 +15,6 @@ const getColor = (amount) => {
     return EMERALD_GREEN;
 }
 
-<<<<<<< HEAD
-/**
- * Computes the average tip by neighborhood and filters by day, shift and position
- * @param {object} tip_info
- * @param {string} day
- * @param {string} shift
- * @param {string} position
- */
-exports.aTBNMasterParse = (tip_info, day, shift, position) => {
-=======
 // pre: a number as a param
 // post: return an integer between [1,6]
 const getLevel = (amount, max) =>{
@@ -119,7 +69,6 @@ const aTBNDayParse = (tip_info, day) => {
 
 //this works like the original averageTipByNeighborhood, but filters by day, shift, and position.
 export var aTBNMasterParse = (tip_info, day, shift, position) => {
->>>>>>> upstream/master
 //    console.log(tip_info);
     const neighborhoods = {};
     tip_info.forEach(entry => {
@@ -146,17 +95,8 @@ export var aTBNMasterParse = (tip_info, day, shift, position) => {
 }
 
 
-<<<<<<< HEAD
-/**
- * takes the neighborhoods object returns by averageTipsByNeighborhood 
- * and returns an object for use by reactnyc component
- * @param {object} average_tips 
- */
-exports.averageTipsClean = (average_tips) => {
-=======
 //takes the neighborhoods object returns by averageTipsByNeighborhood and returns an object for use by reactnyc component
 export var averageTipsClean = (average_tips) => {
->>>>>>> upstream/master
     let data = [];
     let element = {};
     for (var entry in average_tips) {
