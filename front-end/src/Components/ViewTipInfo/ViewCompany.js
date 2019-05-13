@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import Description from './CompanyDescription';
-import ReportedTips from './ReportedTips';
-import TipsHistory from './TipsHistory';
+import ViewReportedTips from './ViewReportedTips';
+import ViewTipsHistory from './ViewTipsHistory';
 const process = require('../ProcessTips/ProcessTips');
 
 class ViewCompany extends Component {
     constructor(props){
         super(props);
         this.state = {
-            BusinessName: props.BusinessName,
+            BusinessName: this.props.BusinessName,
+            allBusiness: process.createBusinessTable(this.props.tipsInfo),
+            avgByLocation: process.averageTipsByBusinessByLocation(this.props.tipsInfo),
+            avgByPosition: process.averageTipsByPosition(this.props.tipsInfo),
+            avgByDay: process.averageTipsByBusinessDay(this.props.tipsInfo),
+            avgByZip: process.averageTipsByZipCode(this.props.tipsInfo),
             ViewDescription: true,
             ViewTipsInfo: false,
             ViewTipsHistory: false,
@@ -46,35 +51,40 @@ class ViewCompany extends Component {
     };
 
     render(){
-        // const tipsInfo = this.props.tipsInfo.filter(tips => (tips.business_name.includes(this.state.BusinessName)));
-        // const processedTips = process.averageTipsByBusiness(tipsInfo);
-        // console.log(processedTips);
         const Company = (
-            <div className = "row">
+            <div className = "container">
                 {/* <div className="card"> */}
-                    <div className="col-2 position-left">
-                        <div className="btn-group-vertical">
-                            <button type="button" class="btn btn-info" onClick = {this.descriptionViewHandler}>Description</button>
-                            <button type="button" class="btn btn-dark" onClick = {this.tipsInfoViewHandler}>Tips Information</button>
-                            <button type="button" class="btn btn-secondary" onClick = {this.tipsHistoryViewHandler}>Tips History</button>
+                <div className="position-left">
+                    <h2 className="card-title text-white bg-success rounded-lg">{this.state.BusinessName}</h2>
+                    <div className = "row">
+                        <div className="col-6 btn-group">
+                            <button type="button" className="btn btn-info" onClick = {this.descriptionViewHandler}>Description</button>
+                            <button type="button" className="btn btn-dark" onClick = {this.tipsInfoViewHandler}>Tips Information</button>
+                            <button type="button" className="btn btn-secondary" onClick = {this.tipsHistoryViewHandler}>Tips History</button>
                         </div>
+                        <h5 className=" text-right col-6 text-success position-right">Average Tips ${Number.parseFloat(this.props.avgByBusiness.tipsPerHour.toFixed(2))}</h5>
                     </div>
+                </div>
                {/* </div> */}
-                <div className="col-9">
+                <div className="row">
                     {
                         this.state.ViewDescription?
                         <Description
                             business = {this.state.BusinessName}
-                            locations = {this.props.locations}
+                            locations = {this.state.avgByLocation[this.state.BusinessName]}
+                            avgByZip = {this.state.avgByZip}
                         /> :
                         (this.state.ViewTipsInfo?
-                        <ReportedTips
+                        <ViewReportedTips
                             business = {this.state.BusinessName}
-                            locations = {this.props.locations}
-                            dailyTipsAvg = {this.props.dailyTipsAvg}
+                            locations = {this.state.avgByLocation[this.state.BusinessName]}
+                            avgByDay = {this.state.avgByDay[this.state.BusinessName]}
+                            avgByPosition = {this.state.avgByPosition[this.state.BusinessName]}
+                           
                         /> : 
-                        <TipsHistory
-                            tipsInfo = {this.props.tipsHistory}
+                        
+                        <ViewTipsHistory
+                            tipsHistory = {this.state.allBusiness[this.state.BusinessName]}
                         />)
                     }
                 </div>
