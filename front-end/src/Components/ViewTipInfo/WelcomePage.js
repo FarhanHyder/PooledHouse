@@ -52,7 +52,7 @@ class WelcomePage extends React.Component {
               <Form></Form>
             </Card.Body>
           </Card>
-          <br></br>
+          {/* <br></br>
           <Card bg="info" text="white" style={{  }}>
             <Card.Header>See Companies in Map</Card.Header>
             <Card.Body>
@@ -63,7 +63,7 @@ class WelcomePage extends React.Component {
               </Card.Text>
               <Form></Form>
             </Card.Body>
-          </Card>
+          </Card> */}
         </div>
       );
     }

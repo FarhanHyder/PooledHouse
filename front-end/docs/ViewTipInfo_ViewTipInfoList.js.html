@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: ViewTipInfo/ViewTipInfoList.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ViewTipInfo/ViewTipInfoList.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * ViewTipInfoList is a Component that is used for displaying either
+ * your average tip data or a detailed tip data across the whole database.
+ * It is currently being used in the My Tips profile page to display tipped
+ * data. 
+ * @summary This component shows either your tips or all tips.
+ * @module ViewTipInfoList
+ * @extends Component
+ * */
+
+import React, { Component } from 'react'
+// View Component
+import ViewTipInfo from '././ViewTipInfo';
+import PositionOption from './PositionOption';
+//import './ViewTipInfo.css';
+import ViewTipsAverage from '../ProcessTips/ViewProcessedTips';
+import ProcessOption from '../ProcessTips/ProcessOption';
+// import '../ProcessTips/ViewProcessedTips.css';
+import ViewUserTips from './ViewUserTipInfo';
+import ViewCompany from './ViewCompany';
+import WelcomePage from './WelcomePage';
+
+import {Card, Form, FormControl, Button, ButtonGroup, ButtonToolbar} from 'react-bootstrap';
+import Carousel from 'react-bootstrap/Carousel';
+
+const process = require('../ProcessTips/ProcessTips');
+
+class ViewTipInfoList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            detailList: false,
+            processFilter: "Business",
+            positionFilter: "All Position",
+            welcomeView: true,
+            searchView: false,
+            companyView: false,
+            tipsInfo: props.tip_info,
+            avgByBusiness : process.averageTipsByBusiness(props.tip_info),
+            BusinessName: "",
+            SearchResults: Object.keys(process.createBusinessTable(props.tip_info)).sort()
+        };
+
+        this.searchHandler = this.searchHandler.bind(this);
+        this.welcomeViewHandler = this.welcomeViewHandler.bind(this);
+        this.searchViewHandler = this.searchViewHandler.bind(this);
+        this.companyViewHandler = this.companyViewHandler.bind(this);
+    }
+    
+    searchHandler = (tipsInfo, data) => {
+      // let results = Object.keys(tipsInfo).sort();
+      let results = tipsInfo.filter(tips => tips.business_name.toUpperCase().includes(data.toUpperCase()));
+      this.setState({
+        SearchResults: Object.keys(process.createBusinessTable(results)).sort(),
+        defaultView: true,
+        welcomeView: false,
+        companyView: false,
+        tipsInfo: results
+      });
+    }
+
+    welcomeViewHandler = (name) => {
+      this.setState({
+        BusinessName: name,
+        companyView: false,
+        searchView: false,
+        welcomeView: true
+      })
+    }
+
+    searchViewHandler = (name) => {
+      this.setState({
+        BusinessName: name,
+        companyView: false,
+        searchView: true,
+        welcomeView: false
+      })
+    }
+    companyViewHandler = (name) => {
+      this.setState({
+        BusinessName: name,
+        companyView: true,
+        searchView: false,
+        welcomeView: false
+      })
+    }
+
+
+    render() {
+      const companyIntroPage = (
+        &lt;div>
+          &lt;br>&lt;/br>
+          &lt;Card bg="info" text="white">
+          &lt;Card.Header>
+          &lt;nav className="navbar navbar-light">
+              &lt;form className="form-inline" onSubmit={(event)=>{ event.preventDefault(); this.searchViewHandler(this.state.BusinessName)}}>
+                &lt;input className="form-control mr-sm-2" type="search" placeholder= "Search Company" aria-label="Search"
+                  onChange = {(event)=> {this.searchHandler(this.props.tip_info, event.target.value)}}
+                />
+                &lt;button className="btn btn-outline-success my-2 my-sm-0 bg-white" type="submit">Search&lt;/button>
+              &lt;/form>
+            &lt;/nav>
+          &lt;/Card.Header>
+          &lt;Card.Body>
+            &lt;Card.Title>Search company&lt;/Card.Title>
+            &lt;Card.Text>
+              You can find all tips information about any company.
+              Enter the name of the company in the search box to see the reported tips.
+            &lt;/Card.Text>
+            
+          &lt;/Card.Body>
+        &lt;/Card>
+      &lt;/div>
+      );
+
+      const defaultView = this.state.SearchResults.map(company => {
+        return (
+        &lt;div className = "card avgTipsByBusiness bg-dark mb-3" key = {company}>
+            &lt;h5 className="card-header text-left text-white bg-success mb-3">{company}&lt;/h5>
+            &lt;div className="text-white text-right bg-dark mb-3">Average Tips: ${Number.parseFloat(this.state.avgByBusiness[company].tipsPerHour.toFixed(2))} / Hour&lt;/div>
+            &lt;button type="button" className="btn btn-outline-info" onClick = {()=> this.companyViewHandler(company)}>View details&lt;/button>    
+        &lt;/div>);
+    });
+    
+      return (
+        &lt;div className="container">
+          
+          &lt;div className="">
+            {
+              this.state.welcomeView? companyIntroPage :
+              &lt;div>
+              &lt;nav className="navbar navbar-light bg-light">
+                &lt;form className="form-inline" onSubmit={(event)=>{ event.preventDefault(); this.searchViewHandler(this.state.BusinessName)}}>
+                  &lt;input className="form-control mr-sm-2" type="search" placeholder="Search Company" aria-label="Search"
+                    onChange = {(event)=> {this.searchHandler(this.props.tip_info, event.target.value)}}
+                  />
+                  &lt;button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search&lt;/button>
+                &lt;/form>
+              &lt;/nav>
+              {this.state.companyView?
+              &lt;div className="card bg-white">
+                &lt;ButtonToolbar className="row">
+                  &lt;div className = "col-9">&lt;/div>
+                  &lt;ButtonGroup className="col-2" aria-label="Second group">&lt;Button variant="secondary" onClick = {()=> {this.searchViewHandler(this.state.BusinessName)}}>Search results&lt;/Button>&lt;/ButtonGroup>
+                  &lt;ButtonGroup className="col-1" aria-label="First group">&lt;Button variant="primary" onClick ={()=> {this.welcomeViewHandler(this.state.BusinessName)}}>Back&lt;/Button>&lt;/ButtonGroup>
+                &lt;/ButtonToolbar>          
+                &lt;ViewCompany 
+                  tipsInfo={this.state.tipsInfo} 
+                  BusinessName = {this.state.BusinessName}
+                  avgByBusiness = {this.state.avgByBusiness[this.state.BusinessName]}
+                />
+                
+              &lt;/div>
+                :
+                defaultView
+              }
+            &lt;/div>
+            }
+          &lt;/div>   
+        &lt;/div>
+      )
+  };
+}
+
+export default ViewTipInfoList;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-PositionOption.html">PositionOption</a></li><li><a href="module-Search.html">Search</a></li><li><a href="module-TipInfoForm.html">TipInfoForm</a></li><li><a href="module-ViewTipInfoList.html">ViewTipInfoList</a></li><li><a href="module-ViewUserTips.html">ViewUserTips</a></li></ul><h3>Classes</h3><ul><li><a href="Map.html">Map</a></li><li><a href="ViewCompany.html">ViewCompany</a></li><li><a href="ViewReportedTips.html">ViewReportedTips</a></li></ul><h3>Global</h3><ul><li><a href="global.html#avgByDay">avgByDay</a></li><li><a href="global.html#UserTips">UserTips</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Mon May 13 2019 16:11:30 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
