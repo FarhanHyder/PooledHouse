@@ -1,3 +1,6 @@
+/**
+ * @class TipsHistory shows the history of a users entered tips.
+ */
 import React from 'react';
 import Table from 'react-bootstrap/Table'
 

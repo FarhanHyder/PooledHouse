@@ -1,6 +1,10 @@
 import React from "react";
 import Chart from "react-google-charts";
 
+/**
+ * @const avgByDay
+ * @param {number} avgTips
+ */
 const avgByDay = (avgTips) => {
 	return [
 		["Day", "Average Tips", {role: "style"}],
