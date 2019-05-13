@@ -1,7 +1,7 @@
 /**
  * @file UserTips allows for viewing the users previously entered tips
  * and add new tips as well.
- * @method UserTips
+ * @class UserTips
  * @extends Component
  */
 

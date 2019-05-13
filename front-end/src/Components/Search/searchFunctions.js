@@ -1,7 +1,7 @@
 /**
  * @fileOverview The searchFunctions.js file provides us with a function to help parse
  * our different database entries in the Search.js file. This function 
- * @file searchParse
+ * @class searchParse
  * @param {Object} tip_info Array of information from our tips database
  * @param {String} business_name_query The name of the business being searched
  * @param {String} day The day of the entry

@@ -1,5 +1,5 @@
 /**
- * ProcessOptions component is used to create a dropdown menu for displaying
+ * @class ProcessOptions component is used to create a dropdown menu for displaying
  * Average Tips. This menu allows you to select which  value you'd like to 
  * display average tip by.
  * @return ProcessOption

@@ -3,7 +3,7 @@ import Chart from "react-google-charts";
 
 /**
  * @const avgByDay
- * @param {number} avgTips
+ * @param {object} avgTips
  */
 const avgByDay = (avgTips) => {
 	return [
@@ -18,6 +18,10 @@ const avgByDay = (avgTips) => {
 	]
 }
 
+/** 
+ * @const avgByPosition
+ * @param {object} avgTips
+ */
 const avgByPosition = (avgTips) => {
 	return [
 		["Position", "Average Tips", {role: "style"}],
@@ -29,24 +33,39 @@ const avgByPosition = (avgTips) => {
 	]
 }
 
+/**
+ * @const avgByZipCode
+ * @param {object} avgTips
+ */
 const avgByZipCode = (avgTips) => {
 	return [
 		["Zip Code", "Average Tips", {role: "style"}],
 	]
 }
 
+/**
+ * @const avgByNeighborhood
+ * @param {object} avgTips
+ */
 const avgByNeighborhood = (avgTips) => {
 	return [
 		["Neighborhood", "Average Tips", {role: "style"}],
 	]
 }
 
+/**
+ * @const avgByShift
+ * @param {object} avgTips
+ */
 const avgByShift = (avgTips) => {
 	return [
 		["Work Shift", "Average Tips", {role: "style"}],
 	]
 }
 
+/**
+ * @const ViewBarChart
+ */
 const ViewBarChart =(props) => {
 	let data = [];
 	let title = "";

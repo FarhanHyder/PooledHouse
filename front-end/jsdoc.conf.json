@@ -1,6 +1,8 @@
 {
     "source": {
-        "include": ["./src/Components/Map/map.js",
+        "include": [
+            "./src/index.js",
+            "./src/Components/Map/map.js",
             "./src/Components/Map/mapFunctions.js",
             "./src/Components/Map/nycChoropleth.js",
             "./src/Components/ProcessTips/ProcessOption.js",
