@@ -1,5 +1,5 @@
 /** 
- * @class WelcomePage
+ * @class WelcomePage a generally welcome page with "about me" section.
  * @extends Component
  */
 import React from 'react';
@@ -32,7 +32,7 @@ class WelcomePage extends React.Component {
           <div className = "container fluid">
           <br></br>
           <Card bg="info" text="white" style={{  }}>
-            <Card.Header>Welcome to Pooled House</Card.Header>
+            <Card.Header>WELCOME TO POOLED HOUSE</Card.Header>
             <Card.Body>
               {/* <Card.Title>Search company</Card.Title>
               <Card.Text>
@@ -42,12 +42,12 @@ class WelcomePage extends React.Component {
               <Card.Title>A social income tracker for restaurant industry professionals
 </Card.Title>
               <Card.Text>
-                Pooled House allows restaurant industry professionals to share information about their
-                tip earnings with other professionals. The app allows users to keep track of their income,
-                and share with it with others to help workers gain better insight to where the most money
-                is made across their city.
+              Pooled House allows servers, bartenders, and bussers to access a collaborative pool of tip data, 
+              organized by date, time (AM or PM) and location in the NYC-Manhattan area. 
+              
+              Pooled House allows workers to better evaluate the financial viability of current or future 
+              employers.
 
-                Search by location or business to see where the most money is made. 
               </Card.Text>
               <Form></Form>
             </Card.Body>
