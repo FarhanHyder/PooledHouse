@@ -1,48 +1,29 @@
 import React from 'react';
-import Navbar from 'react-bootstrap/Navbar'
-import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
-import Button from 'react-bootstrap/Button'
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
-import ToggleButton from 'react-bootstrap/ToggleButton'
+import {Navbar, Nav, FormControl, Form, Button, Dropdown} from 'react-bootstrap';
 
-const TopPanel =(props) => {
-    const panel = (
-    <div>
-        <Navbar className="bg-olive justify-content-between">
-  
-            <Navbar.Brand>
-            <img src={ logo } width="200" height="64" className="d-inline-block align-top" alt="Pooled House logo"/>
-            </Navbar.Brand>
-            
-            <Form inline>
-                <FormControl type="text" placeholder="ex: upper manhattan" className="mr-sm" />
-                <Button type="submit" variant="outline-light"><span>{"\uD83D\uDD0D"}</span></Button>
-            </Form>
-    
-            <ButtonToolbar>
-            <ToggleButtonGroup type="radio" name="options" defaultValue={1} onChange={props.handleChangeView}>
-                <ToggleButton value={1} variant="warning">List View</ToggleButton>
-                <ToggleButton value={2} variant="warning">Map View</ToggleButton>
-            </ToggleButtonGroup>
-            </ButtonToolbar>
-            
-            <ButtonToolbar>
-            <Button 
-                className="text-color-white" 
-                onClick={this.handleTipUpdate}
-                > Add New Tips
-            </Button>
-            <Button onClick={props.handleMyUserTips}>
-                My Tips
-            </Button>
-            </ButtonToolbar>
-        </Navbar>
-    </div>
-    );
-    
-    return panel;
+const TopPanel = (props) => {
+  const view = (
+    <Navbar bg="primary" sticky="top" z-index = '9999' variant="dark">
+      <Navbar.Brand href="#home">Pooled House</Navbar.Brand>
+      <Nav className="mr-auto">
+        <Nav.Link href="#home" onClick = {props.home} >Home</Nav.Link>
+        <Nav.Link href="#company" onClick = {props.companyView}>Companies</Nav.Link>
+        <Nav.Link href="#map" onClick = {props.mapView}>See Map</Nav.Link>
+      </Nav>
+      <Dropdown>
+        <Dropdown.Toggle variant="info" id="dropdown-button-drop-left">
+          {props.user}
+        </Dropdown.Toggle>
+        <Dropdown.Menu >
+          <Dropdown.Item href="#/action-1" onClick ={props.addNewTips}>Add Tips</Dropdown.Item>
+          <Dropdown.Item href="#/action-2" onClick = {props.myTips}>My Tips</Dropdown.Item>
+          <Dropdown.Item href="#/action-3" onClick = {props.signOut}>Sign out</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+      
+    </Navbar>
+  );
+  return view;
 }
 
-export default TopPanel
+export default TopPanel;

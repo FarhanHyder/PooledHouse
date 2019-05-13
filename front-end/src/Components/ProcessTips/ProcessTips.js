@@ -137,12 +137,13 @@ exports.averageTipsByBusinessDay = (tipsInfo) => {
             }; 
 
             businessTipsByday[businessName][day] = avg;
-            businessTipsByday[businessName].address = tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip;
+            businessTipsByday[businessName].address = new Set([tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip]);
         }
         else {
             let hours = (businessTipsByday[businessName][day].totalHour + tips.shift_length);
             businessTipsByday[businessName][day].tipsPerHour = businessTipsByday[businessName][day].tipsPerHour * businessTipsByday[businessName][day].totalHour / hours + tips.takehome / hours;
             businessTipsByday[businessName][day].totalHour = hours;
+            businessTipsByday[businessName].address.add(tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip);
         }
     });
     return businessTipsByday;
