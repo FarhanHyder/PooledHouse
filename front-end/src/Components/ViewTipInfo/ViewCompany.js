@@ -14,6 +14,7 @@ class ViewCompany extends Component {
             avgByPosition: process.averageTipsByPosition(this.props.tipsInfo),
             avgByDay: process.averageTipsByBusinessDay(this.props.tipsInfo),
             avgByZip: process.averageTipsByZipCode(this.props.tipsInfo),
+            avgByPosShift: process.averageTipsByPositionAndShift(this.props.tipsInfo),
             ViewDescription: true,
             ViewTipsInfo: false,
             ViewTipsHistory: false,
@@ -80,7 +81,7 @@ class ViewCompany extends Component {
                             locations = {this.state.avgByLocation[this.state.BusinessName]}
                             avgByDay = {this.state.avgByDay[this.state.BusinessName]}
                             avgByPosition = {this.state.avgByPosition[this.state.BusinessName]}
-                           
+                            avgByPosShift = {this.state.avgByPosShift[this.state.BusinessName]}
                         /> : 
                         
                         <ViewTipsHistory
