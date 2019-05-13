@@ -127,7 +127,6 @@ export var latLongToHood = (latlong) => {
     })*/
 }
 
-
 export var addrToLatLong = (business_street_address, business_city, business_state, business_zip, API_key) => {
     let clean_bsa;
     let clean_bc;
