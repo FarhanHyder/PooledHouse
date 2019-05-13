@@ -4,24 +4,24 @@ import Chart from "react-google-charts";
 const avgByDay = (avgTips) => {
 	return [
 		["Day", "Average Tips", {role: "style"}],
-		["Sunday", Number.parseFloat(avgTips.Sunday.tipsPerHour.toFixed(2)), "color: gray"],
-		["Monday", Number.parseFloat(avgTips.Monday.tipsPerHour.toFixed(2)), "color: gray"],
-		["Tuesday", Number.parseFloat(avgTips.Tuesday.tipsPerHour.toFixed(2)), "color: gray"],
-		["Wednesday", Number.parseFloat(avgTips.Wednesday.tipsPerHour.toFixed(2)), "color: gray"],
-		["Thursday", Number.parseFloat(avgTips.Thursday.tipsPerHour.toFixed(2)), "color: gray"],
-		["Friday", Number.parseFloat(avgTips.Friday.tipsPerHour.toFixed(2)), "color: gray"],
-		["Saturday", Number.parseFloat(avgTips.Saturday.tipsPerHour.toFixed(2)), "color: gray"]
+		["Sunday", Number.parseFloat(avgTips.Sunday.tipsPerHour.toFixed(2)), "stroke-color: #25754D; stroke-width: 4; fill-color: #311B92"],
+		["Monday", Number.parseFloat(avgTips.Monday.tipsPerHour.toFixed(2)), "stroke-color: #00ABDA; stroke-width: 4; fill-color: #2196F3"],
+		["Tuesday", Number.parseFloat(avgTips.Tuesday.tipsPerHour.toFixed(2)), "stroke-color: #2A57DE; stroke-width: 4; fill-color: #689F38"],
+		["Wednesday", Number.parseFloat(avgTips.Wednesday.tipsPerHour.toFixed(2)), "stroke-color: #B02ADE; stroke-width: 4; fill-color: #3E2723"],
+		["Thursday", Number.parseFloat(avgTips.Thursday.tipsPerHour.toFixed(2)), "stroke-color: #47DE2A; stroke-width: 4; fill-color: #455A64"],
+		["Friday", Number.parseFloat(avgTips.Friday.tipsPerHour.toFixed(2)), "stroke-color: #E4E2A2; stroke-width: 4; fill-color: #4DD0E1"],
+		["Saturday", Number.parseFloat(avgTips.Saturday.tipsPerHour.toFixed(2)), "stroke-color: #FFA56D; stroke-width: 4; fill-color: #388E3C"]
 	]
 }
 
 const avgByPosition = (avgTips) => {
 	return [
 		["Position", "Average Tips", {role: "style"}],
-		["Bartender", Number.parseFloat(avgTips.Bartender.tipsPerHour.toFixed(2)), "color: gray"],
-		["Server", Number.parseFloat(avgTips.Server.tipsPerHour.toFixed(2)), "color: gray"],
-		["Barback", Number.parseFloat(avgTips.Barback.tipsPerHour.toFixed(2)), "color: gray"],
-		["Busser", Number.parseFloat(avgTips.Busser.tipsPerHour.toFixed(2)), "color: gray"],
-		["Other", Number.parseFloat(avgTips.Other.tipsPerHour.toFixed(2)), "color: gray"],
+		["Bartender", Number.parseFloat(avgTips.Bartender.tipsPerHour.toFixed(2)), "stroke-color: #25754D; stroke-width: 4; fill-color: #311B92"],
+		["Server", Number.parseFloat(avgTips.Server.tipsPerHour.toFixed(2)), "stroke-color: #00ABDA; stroke-width: 4; fill-color: #2196F3"],
+		["Barback", Number.parseFloat(avgTips.Barback.tipsPerHour.toFixed(2)), "stroke-color: #47DE2A; stroke-width: 4; fill-color: #455A64"],
+		["Busser", Number.parseFloat(avgTips.Busser.tipsPerHour.toFixed(2)), "stroke-color: #E4E2A2; stroke-width: 4; fill-color: #4DD0E1"],
+		["Other", Number.parseFloat(avgTips.Other.tipsPerHour.toFixed(2)), "stroke-color: #B02ADE; stroke-width: 4; fill-color: #3E2723"],
 	]
 }
 
@@ -51,7 +51,7 @@ const ViewBarChart =(props) => {
 		title = "Average Tips By Position";
 	}
 	else if (props.chartOption === "day") {
-		data = avgByDay(props.dailyTipsAvg);
+		data = avgByDay(props.avgByDay);
 		title = "Average Daily Tips";
 	}
 	else if (props.chartOption === "shift") {

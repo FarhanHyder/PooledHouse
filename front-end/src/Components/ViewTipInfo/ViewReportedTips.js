@@ -46,6 +46,34 @@ class ViewReportedTips extends React.Component {
                                 </tbody>
                             </Table>
                         : null}
+                        
+                        {this.state.chartOption === "day"?
+                            <Table striped bordered hover responsive="sm" variant="dark">
+                                <thead className="bg-secondary">
+                                <tr>
+                                    <th>Saturday</th>
+                                    <th>Sunday</th>
+                                    <th>Monday</th>
+                                    <th>Tuesday</th>
+                                    <th>Wednesday</th>
+                                    <th>Thursday</th>
+                                    <th>Friday</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>{Number.parseFloat(this.props.avgByDay.Saturday.tipsPerHour.toFixed(2))}</td>
+                                    <td>{Number.parseFloat(this.props.avgByDay.Sunday.tipsPerHour.toFixed(2))}</td>
+                                    <td>{Number.parseFloat(this.props.avgByDay.Monday.tipsPerHour.toFixed(2))}</td>
+                                    <td>{Number.parseFloat(this.props.avgByDay.Tuesday.tipsPerHour.toFixed(2))}</td>
+                                    <td>{Number.parseFloat(this.props.avgByDay.Wednesday.tipsPerHour.toFixed(2))}</td>
+                                    <td>{Number.parseFloat(this.props.avgByDay.Thursday.tipsPerHour.toFixed(2))}</td>
+                                    <td>{Number.parseFloat(this.props.avgByDay.Friday.tipsPerHour.toFixed(2))}</td>
+                                </tr>
+                                </tbody>
+                            </Table>
+                        : null}
+
                         <div>Average Tips in this Zip Code: $ / Hours</div>
                         <div>Average in this neighborhood</div>
                         <div>Average Tips for different Position</div>
@@ -55,7 +83,7 @@ class ViewReportedTips extends React.Component {
                 <div className="">
                     <ViewBarChart
                         chartOption = {this.state.chartOption}
-                        dailyTipsAvg = {this.props.dailyTipsAvg}
+                        avgByDay = {this.props.avgByDay}
                         avgByPosition = {this.props.avgByPosition}
                     />
                 </div>

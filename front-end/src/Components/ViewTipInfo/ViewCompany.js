@@ -78,7 +78,7 @@ class ViewCompany extends Component {
                         <ViewReportedTips
                             business = {this.state.BusinessName}
                             locations = {this.state.avgByLocation[this.state.BusinessName]}
-                            dailyTipsAvg = {this.state.avgByDay[this.state.BusinessName]}
+                            avgByDay = {this.state.avgByDay[this.state.BusinessName]}
                             avgByPosition = {this.state.avgByPosition[this.state.BusinessName]}
                            
                         /> : 
