@@ -17,12 +17,12 @@ class ViewReportedTips extends React.Component {
             <div className="container">
                 <div className="card">
                     <br></br>
-                    <div className="row btn-group position-left">
+                    <div className="row btn-group">
                         <button type="button" className="btn btn-dark" onClick ={()=>{this.setState({chartOption: "position"})}} >Tips By Position</button>
                         <button type="button" className="btn btn-dark" onClick ={()=>{this.setState({chartOption: "day"})}} >Tips By Day</button>
-                        <button type="button" className="btn btn-dark" onClick ={()=>{this.setState({chartOption: "zip"})}} >Tips By Zip Code</button>
-                        <button type="button" className="btn btn-dark" onClick ={()=>{this.setState({chartOption: "neighborhood"})}} >Tips By neighborhood</button>
-                        <button type="button" className="btn btn-dark" onClick ={()=>{this.setState({chartOption: "shift"})}} >Tips By Shift</button>
+                        {/* <button type="button" className="btn btn-dark" onClick ={()=>{this.setState({chartOption: "zip"})}} >Tips By Zip Code</button> */}
+                        {/* <button type="button" className="btn btn-dark" onClick ={()=>{this.setState({chartOption: "neighborhood"})}} >Tips By neighborhood</button> */}
+                        <button type="button" className="btn btn-dark" onClick ={()=>{this.setState({chartOption: "shift"})}} >Tips By Shift And Position</button>
                     </div>
                     <br></br>
                 </div>

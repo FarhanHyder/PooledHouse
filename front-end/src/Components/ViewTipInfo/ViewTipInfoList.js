@@ -88,9 +88,10 @@ class ViewTipInfoList extends React.Component {
       const companyIntroPage = (
         <div>
           <br></br>
-          <Card bg="info" text="white">
-          <Card.Header>
-          <nav className="navbar navbar-light">
+          <Card className="text-center" bg="success" text="white">
+          <Card.Header >
+            <nav className="navbar navbar-light">
+            <h2>Search A Company</h2>
               <form className="form-inline" onSubmit={(event)=>{ event.preventDefault(); this.searchViewHandler(this.state.BusinessName)}}>
                 <input className="form-control mr-sm-2" type="search" placeholder= "Search Company" aria-label="Search"
                   onChange = {(event)=> {this.searchHandler(this.props.tip_info, event.target.value)}}
@@ -100,10 +101,9 @@ class ViewTipInfoList extends React.Component {
             </nav>
           </Card.Header>
           <Card.Body>
-            <Card.Title>Search company</Card.Title>
+            <Card.Title>Find information About Tips and Bonuses</Card.Title>
             <Card.Text>
-              You can find all tips information about any company.
-              Enter the name of the company in the search box to see the reported tips.
+              Type the name of the Company to see complete information
             </Card.Text>
             
           </Card.Body>
@@ -127,21 +127,20 @@ class ViewTipInfoList extends React.Component {
             {
               this.state.welcomeView? companyIntroPage :
               <div>
-              <nav className="navbar navbar-light bg-light">
+              <nav className="container navbar navbar-light bg-secondary">
                 <form className="form-inline" onSubmit={(event)=>{ event.preventDefault(); this.searchViewHandler(this.state.BusinessName)}}>
                   <input className="form-control mr-sm-2" type="search" placeholder="Search Company" aria-label="Search"
                     onChange = {(event)=> {this.searchHandler(this.props.tip_info, event.target.value)}}
                   />
                   <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
+                <ButtonToolbar>
+                  <ButtonGroup aria-label="Second group"><Button variant="success" onClick = {()=> {this.searchViewHandler(this.state.BusinessName)}}>Search results</Button></ButtonGroup>
+                  <ButtonGroup  aria-label="First group"><Button variant="primary" onClick ={()=> {this.welcomeViewHandler(this.state.BusinessName)}}>Back</Button></ButtonGroup>
+                </ButtonToolbar>
               </nav>
               {this.state.companyView?
-              <div className="card bg-white">
-                <ButtonToolbar className="row">
-                  <div className = "col-9"></div>
-                  <ButtonGroup className="col-2" aria-label="Second group"><Button variant="secondary" onClick = {()=> {this.searchViewHandler(this.state.BusinessName)}}>Search results</Button></ButtonGroup>
-                  <ButtonGroup className="col-1" aria-label="First group"><Button variant="primary" onClick ={()=> {this.welcomeViewHandler(this.state.BusinessName)}}>Back</Button></ButtonGroup>
-                </ButtonToolbar>          
+              <div className=" bg-white">
                 <ViewCompany 
                   tipsInfo={this.state.tipsInfo} 
                   BusinessName = {this.state.BusinessName}

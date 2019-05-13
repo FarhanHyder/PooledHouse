@@ -24,18 +24,26 @@ const avgByPosition = (avgTips) => {
 		["Other", Number.parseFloat(avgTips.Other.tipsPerHour.toFixed(2)), "stroke-color: #B02ADE; stroke-width: 4; fill-color: #3E2723"],
 	]
 }
+/**
+ * TODO: optional. will do it time allows
+ * @param {*} avgTips 
+ */
+// const avgByZipCode = (avgTips) => {
+// 	return [
+// 		["Zip Code", "Average Tips", {role: "style"}],
+// 	]
+// }
 
-const avgByZipCode = (avgTips) => {
-	return [
-		["Zip Code", "Average Tips", {role: "style"}],
-	]
-}
+/**
+ * this is optional: TODO if time allows
+ * @param {*} avgTips 
+ */
 
-const avgByNeighborhood = (avgTips) => {
-	return [
-		["Neighborhood", "Average Tips", {role: "style"}],
-	]
-}
+// const avgByNeighborhood = (avgTips) => {
+// 	return [
+// 		["Neighborhood", "Average Tips", {role: "style"}],
+// 	]
+// }
 
 const avgByShift = (avgTips) => {
 	return [
@@ -68,14 +76,14 @@ const ViewBarChart =(props) => {
 		data = avgByShift(props.avgByPosShift);
 		title = "Average Tips By Shift";
 	}
-	else if (props.chartOption === "zip") {
-		data = avgByZipCode(props.dailyTipsAvg);
-		title = "Average Tips By Zip";
-	}
-	else if (props.chartOption === "neighborhood") {
-		data = avgByNeighborhood(props.avgByPosShift);
-		title = "Average Tips Neighborhood";
-	}
+	// else if (props.chartOption === "zip") {
+	// 	data = avgByZipCode(props.dailyTipsAvg);
+	// 	title = "Average Tips By Zip";
+	// }
+	// else if (props.chartOption === "neighborhood") {
+	// 	data = avgByNeighborhood(props.avgByNeighborhood);
+	// 	title = "Average Tips Neighborhood";
+	// }
     return (
       <div className="card">
 				<h3 className="card-title bg-secondary">{title}</h3>
