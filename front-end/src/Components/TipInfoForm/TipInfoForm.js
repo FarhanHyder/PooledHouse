@@ -54,13 +54,10 @@ class TipInfoForm extends React.Component {
             business_zip: this.state.business_zip,
             neighborhood: this.state.neighborhood,
         }
-        console.log(t_e);
         try {
             await API.graphql(graphqlOperation(mutations.createTipEntry, {input: t_e}));
-            console.log(t_e);
             alert("Success!");
             this.setState({
-                user: '',
                 shift_length: '',
                 shift_time: 'AM',
                 shift_date: '',
