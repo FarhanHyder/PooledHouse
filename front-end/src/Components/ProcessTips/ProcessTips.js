@@ -383,8 +383,66 @@ exports.createBusinessTable =  (tipsInfo) => {
     return business;
 }
 
-exports.averageTipsByPositionAndShift = (tipsInfo) => {
+/**
+ * @function createBusinessTable
+ * @param {array} tipsInfo - an array of all the tips entry
+ * @returns {object} businessTipsByPosShift - an object with businessName as the key and another object for each work shift as the value
+ * 
+ * businessTipsByPosShift =  {
+ *          businessName: {
+ *              AM: { {positionName: {tipsPerHour: , totalHour: } }, {...}, ... }
+ *              PM: { {positionName: {tipsPerHour: , totalHour: } }, {...}, ... }
+ *              address: adr of business
+ *              }
+ *  }
+ */
 
+exports.averageTipsByPositionAndShift = (tipsInfo) => {
+    const businessTipsByPosShift = {};
+    tipsInfo.forEach(tips => {
+        let businessName = tips.business_name;
+        let pos = tips.shift_position;
+        let shift = tips.shift_time;
+        if (! businessTipsByPosShift.hasOwnProperty(businessName)) {
+            businessTipsByPosShift[businessName] = {};
+            let avg = {
+                        tipsPerHour: (tips.takehome / tips.shift_length),
+                        totalHour: tips.shift_length,
+                    };
+            
+            let positions = {
+                Bartender: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Server: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Barback: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Busser: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                },
+                Other: {
+                    tipsPerHour: 0,
+                    totalHour: 0,
+                }
+            }; 
+            businessTipsByPosShift[businessName] = {AM: positions, PM: positions};
+            businessTipsByPosShift[businessName][shift][pos] = avg;
+            businessTipsByPosShift[businessName].address = tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip;
+        }
+        else {
+            let hours = (businessTipsByPosShift[businessName][shift][pos].totalHour + tips.shift_length);
+            businessTipsByPosShift[businessName][shift][pos].tipsPerHour = businessTipsByPosShift[businessName][tips.shift_time][pos].tipsPerHour * businessTipsByPosShift[businessName][tips.shift_time][pos].totalHour / hours + tips.takehome / hours;
+            businessTipsByPosShift[businessName][shift][pos].totalHour = hours;
+        }
+    });
+    return businessTipsByPosShift;
 }
 
 // export {averageTipsByBusiness, averageTipsByBusinessDay, averageTipsByPosition};
