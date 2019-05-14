@@ -3,7 +3,7 @@
  * When the user clicks "View Detailed Tip Data", this component will
  * become available so that the user can select which position they
  * would like to search for.
- * @module PositionOption
+ * @class PositionOption
  */
 import React from 'react';
 import {Form} from 'react-bootstrap';

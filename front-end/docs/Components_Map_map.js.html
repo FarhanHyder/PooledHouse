@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/Map/map.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/Map/map.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** 
+ * Map component to link our data from the amplify backend 
+ * to our map feature on the main page. 
+ * @class Map
+ * @extends Component
+ */
+
+import React from 'react';
+import ReactNYC from '../ReactNYC/ReactNYC';
+import { latLongToHood, averageTipsClean, aTBNMasterParse, addrToLatLong } from './mapFunctions';
+import { Form, Container, Col, Row, Button, Card } from 'react-bootstrap'
+
+class Map extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      day: 'All',
+      shift: 'All',
+      position: 'All',
+    }
+  }
+
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+    console.log(this.state.day);
+  }
+
+  handleReset = () => {
+    this.setState(
+      { 
+        day: 'All',
+        shift: 'All',
+        position: 'All'
+      }
+    )
+  }
+
+  render() {
+
+    const window_height = window.innerHeight;
+    const window_width = window.innerWidth;
+
+    const mapboxAccessToken = "pk.eyJ1IjoicG9vbGVkaG91c2UiLCJhIjoiY2p1aGg2N2o5MHozZTRkcDhrZDltMXp6dyJ9.SXu4dBf_bVC8Xlpy7WnYqQ"; //TODO: delete token before final deployment
+    const mapboxType = "light";
+    const map_position = [40.7831, -73.9712];
+    const zoom = 11.25;
+
+    const neighborhoodStyle = { weight: 1, opacity: 1, color: '#666', dashArray: '3', fillOpacity: 0.7 };
+    const neighborhoodHoverStyle = { weight: 5, color: '#FFF', dashArray: '1', fillOpacity: 0.7 };
+    const excludeNeighborhoods = ["Liberty Island", "Ellis Island"];
+
+    let data = '';
+    const day = this.state.day;
+    const shift = this.state.shift;
+    const position = this.state.position;
+
+    data = averageTipsClean(
+      aTBNMasterParse(
+        this.props.tip_info, 
+        this.state.day, 
+        this.state.shift, 
+        this.state.position
+      )
+    )
+  
+    return (
+        &lt;Container fluid='true'>
+        &lt;Card bg='light'>
+          &lt;Card.Body>
+          &lt;Form className="text-left filter">
+            &lt;Form.Row>
+                &lt;Form.Group controlID="day" as={Col} md='4'>
+                  &lt;Form.Label>Day&lt;/Form.Label>
+                    &lt;Form.Control 
+                      as='select' 
+                      name="day" 
+                      value={day}
+                      onChange={this.handleChange}>
+                      &lt;option>All&lt;/option>
+                      &lt;option>Monday&lt;/option>
+                      &lt;option>Tuesday&lt;/option>
+                      &lt;option>Wednesday&lt;/option>
+                      &lt;option>Thursday&lt;/option>
+                      &lt;option>Friday&lt;/option>
+                      &lt;option>Saturday&lt;/option>
+                      &lt;option>Sunday&lt;/option>
+                    &lt;/Form.Control>
+                &lt;/Form.Group>
+                &lt;Form.Group controlID="shift" as={Col} md='4'>
+                  &lt;Form.Label>Shift&lt;/Form.Label>
+                    &lt;Form.Control
+                      as='select'
+                      name='shift'
+                      value={shift}
+                      onChange={this.handleChange}>
+                      &lt;option>All&lt;/option>
+                      &lt;option>AM&lt;/option>
+                      &lt;option>PM&lt;/option>
+                    &lt;/Form.Control>
+                &lt;/Form.Group>
+                &lt;Form.Group controlID="position" as={Col} md='4'>
+                  &lt;Form.Label>Position&lt;/Form.Label>
+                    &lt;Form.Control
+                      as='select'
+                      name='position'
+                      value={position}
+                      onChange={this.handleChange}>
+                      &lt;option>All&lt;/option>
+                      &lt;option>Bartender&lt;/option>
+                      &lt;option>Server&lt;/option>
+                      &lt;option>Host&lt;/option>
+                      &lt;option>Busser&lt;/option>
+                      &lt;option>Other&lt;/option>
+                    &lt;/Form.Control>
+                &lt;/Form.Group>
+              &lt;/Form.Row>
+              &lt;Row>
+                &lt;Col md='4'>&lt;/Col>
+              &lt;Button 
+                as={Col} 
+                md='4'
+                variant="primary" 
+                type="reset" 
+                onClick={this.handleReset}>Reset Filter
+              &lt;/Button>
+              &lt;Col md='4'>&lt;/Col>
+              &lt;/Row>
+          &lt;/Form>
+          &lt;/Card.Body>
+          &lt;/Card>
+          &lt;Row>
+            &lt;Col md='1'>&lt;/Col>
+            &lt;Col>
+          &lt;ReactNYC
+            mapboxAccessToken={mapboxAccessToken} // Required
+            //mapHeight="600px" // Required
+            mapHeight={window_height*.75}
+            mapWidth="90%"
+            className="container"
+            mapboxType={mapboxType}
+            mapCenter={map_position}
+            mapZoom={zoom}
+            mapScrollZoom={false}
+            neighborhoodOn={true}
+            tooltip={true}
+            tooltipSticky={false}
+            data={data}
+            neighborhoodStyle={neighborhoodStyle}
+            neighborhoodHoverStyle={neighborhoodHoverStyle}
+            excludeNeighborhoods={excludeNeighborhoods}
+          />
+          &lt;/Col>
+          &lt;Col md='1'>&lt;/Col>
+          &lt;/Row>
+        &lt;/Container>
+    )
+  }
+}
+
+export default Map;
+
+//note: following link has been to select 6 different layer of colors
+//       http://colorbrewer2.org/#type=diverging&amp;scheme=RdYlGn&amp;n=6</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Map.html">Map</a></li><li><a href="PositionOption.html">PositionOption</a></li><li><a href="Search.html">Search</a></li><li><a href="searchParse.html">searchParse</a></li><li><a href="TipInfoForm.html">TipInfoForm</a></li><li><a href="UserTips.html">UserTips</a></li><li><a href="ViewCompany.html">ViewCompany</a></li><li><a href="ViewReportedTips.html">ViewReportedTips</a></li><li><a href="ViewTipInfoList.html">ViewTipInfoList</a></li><li><a href="ViewUserTips.html">ViewUserTips</a></li></ul><h3>Global</h3><ul><li><a href="global.html#avgByDay">avgByDay</a></li><li><a href="global.html#avgByNeighborhood">avgByNeighborhood</a></li><li><a href="global.html#avgByPosition">avgByPosition</a></li><li><a href="global.html#avgByShift">avgByShift</a></li><li><a href="global.html#avgByZipCode">avgByZipCode</a></li><li><a href="global.html#ViewBarChart">ViewBarChart</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Mon May 13 2019 17:51:58 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

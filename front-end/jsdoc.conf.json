@@ -1,0 +1,37 @@
+{
+    "source": {
+        "include": [
+            "./src/index.js",
+            "./src/Components/Map/map.js",
+            "./src/Components/Map/mapFunctions.js",
+            "./src/Components/Map/nycChoropleth.js",
+            "./src/Components/ProcessTips/ProcessOption.js",
+            "./src/Components/ProcessTips/ProcessTips.js",
+            "./src/Components/ProcessTips/ViewProcessedTips.js",
+            "./src/Components/ReactNYC/nyc.js",
+            "./src/Components/ReactNYC/ReactNYC.js",
+            "./src/Components/Search/Search.js",
+            "./src/Components/Search/searchFunctions.js",
+            "./src/Components/TipInfoForm/TipInfoForm.js",
+            "./src/Components/UserTips/UserAccountSummary.js",
+            "./src/Components/UserTips/UserAccountSummaryFunctions.js",
+            "./src/Components/UserTips/UserTips.js",
+            "./src/Components/ViewTipInfo/CompanyDescription.js",
+            "./src/Components/ViewTipInfo/PositionOption.js",
+            "./src/Components/ViewTipInfo/TopPanel.js",
+            "./src/Components/ViewTipInfo/ViewBarChart.js",
+            "./src/Components/ViewTipInfo/ViewCompany.js",
+            "./src/Components/ViewTipInfo/ViewReportedTips.js",
+            "./src/Components/ViewTipInfo/ViewTipInfo.js",
+            "./src/Components/ViewTipInfo/ViewTipInfoList.js",
+            "./src/Components/ViewTipInfo/ViewTipsHistory.js",
+            "./src/Components/ViewTipInfo/ViewUserTipInfo.js",
+            "./src/Components/ViewTipInfo/ViewUserTips.js",
+            "./src/Components/ViewTipInfo/WelcomePage.js"
+        ]
+    },
+    "opts" : {
+        "destination" : "./docs"
+    }
+
+}

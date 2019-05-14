@@ -1,3 +1,7 @@
+/**
+ * @class ViewCompany
+ * @extends Component
+ */
 import React, { Component } from 'react';
 import Description from './CompanyDescription';
 import ViewReportedTips from './ViewReportedTips';

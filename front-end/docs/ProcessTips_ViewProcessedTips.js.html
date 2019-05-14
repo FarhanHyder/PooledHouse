@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: ProcessTips/ViewProcessedTips.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ProcessTips/ViewProcessedTips.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file ViewProcessedTips calls the ViewTipsAverage component to take the 
+ * information from the database and compute the average tips based
+ * on filter preferences.
+ * @return view
+ */
+// import all functions
+// display based on the functions
+import React from 'react';
+
+
+const process = require('./ProcessTips');
+
+const ViewTipsAverage = (props) => {
+    // user selects the view option
+    // function to process based on data called from above
+
+    // form to select filter type for average tips/hour
+
+    let tipsInfo = props.tipInfo;
+    let view = [];
+    if (props.process === "Business") {
+        const processedTips = process.averageTipsByBusiness(tipsInfo);
+        view = Object.keys(processedTips).map(tips => {
+            return (
+            &lt;div className ="tipsByBusiness">
+                &lt;div>
+                    &lt;h2 className="busTitle">{processedTips[tips].business_name}&lt;/h2>
+                    &lt;div className="addr">{processedTips[tips].business_street_address}&lt;/div>
+                &lt;/div>
+                &lt;div>Tips : ${Number.parseFloat(processedTips[tips].tipsPerHour).toFixed(2)}/Hour&lt;/div>
+            &lt;/div>);
+        });
+
+    }
+    
+    else if (props.process === "Daily Average") {
+        const processedTips = process.averageTipsByBusinessDay(tipsInfo);
+        view = Object.keys(processedTips).map(bName => {
+           console.log(bName);
+           return (
+               &lt;div>
+                  { console.log(processedTips[bName])}
+                   &lt;div className="dailyTipsAvg">
+                       &lt;div className="busTitle">{bName}&lt;/div>
+
+                       &lt;div>${Number.parseFloat(processedTips[bName].Saturday.tipsPerHour).toFixed(2)} / Hour&lt;/div>
+                       &lt;div>${Number.parseFloat(processedTips[bName].Sunday.tipsPerHour).toFixed(2)} / Hour&lt;/div>
+                       &lt;div>${Number.parseFloat(processedTips[bName].Monday.tipsPerHour).toFixed(2)} / Hour&lt;/div>
+                       &lt;div>${Number.parseFloat(processedTips[bName].Tuesday.tipsPerHour).toFixed(2)} / Hour&lt;/div>
+                       &lt;div>${Number.parseFloat(processedTips[bName].Wednesday.tipsPerHour).toFixed(2)} / Hour&lt;/div>
+                       &lt;div>${Number.parseFloat(processedTips[bName].Thursday.tipsPerHour).toFixed(2)} / Hour&lt;/div>
+                       &lt;div>${Number.parseFloat(processedTips[bName].Friday.tipsPerHour).toFixed(2)} / Hour&lt;/div>
+                   &lt;/div>
+               &lt;/div>
+           );
+       });
+
+       view = (
+       &lt;div>
+           &lt;div className="dayName dailyTipsAvg">
+                &lt;div>Business Name&lt;/div>
+                &lt;div>Saturday&lt;/div>
+                &lt;div>Sunday&lt;/div>
+                &lt;div>Monday&lt;/div>
+                &lt;div>Tuesday&lt;/div>
+                &lt;div>Wednesday&lt;/div>
+                &lt;div>Thursday&lt;/div>
+                &lt;div>Friday&lt;/div>
+           &lt;/div>
+           &lt;div>
+               {view}
+           &lt;/div>
+       &lt;/div>);
+
+    }
+
+    else if (props.process === "Position"){
+        const processedTips = process.averageTipsByPosition(tipsInfo);
+        view = Object.keys(processedTips).map(bName => {
+           console.log(bName);
+           return (
+               &lt;div>
+                  { console.log(processedTips[bName])}
+                   &lt;div className="dailyTipsAvg">
+                       &lt;div className="busTitle">{bName}&lt;/div>
+
+                       &lt;div>${Number.parseFloat(processedTips[bName].Bartender.tipsPerHour).toFixed(2)} / Hour&lt;/div>
+                       &lt;div>${Number.parseFloat(processedTips[bName].Server.tipsPerHour).toFixed(2)} / Hour&lt;/div>
+                       &lt;div>${Number.parseFloat(processedTips[bName].Barback.tipsPerHour).toFixed(2)} / Hour&lt;/div>
+                       &lt;div>${Number.parseFloat(processedTips[bName].Busser.tipsPerHour).toFixed(2)} / Hour&lt;/div>
+                       &lt;div>${Number.parseFloat(processedTips[bName].Other.tipsPerHour).toFixed(2)} / Hour&lt;/div>
+                   &lt;/div>
+               &lt;/div>
+           );
+       });
+
+       view = (
+       &lt;div>
+           &lt;div className="dayName dailyTipsAvg">
+                &lt;div>Business Name&lt;/div>
+                &lt;div>Bartender&lt;/div>
+                &lt;div>Server&lt;/div>
+                &lt;div>Barback&lt;/div>
+                &lt;div>Busser&lt;/div>
+                &lt;div>Other&lt;/div>
+           &lt;/div>
+           &lt;div>
+               {view}
+           &lt;/div>
+       &lt;/div>);
+    }
+    else if (props.process === "Zip Code") {
+        const processedTips = process.averageTipsByZipCode(tipsInfo);
+        console.clear();
+        console.log(processedTips);
+        view = Object.keys(processedTips).map(zip => {
+            console.log(zip);
+            return (
+                &lt;div>
+                   { console.log(processedTips[zip])}
+                    &lt;div className="zipTipsAvg">
+                        &lt;div className="ZipCode">{zip}&lt;/div>
+                        &lt;div>{processedTips[zip].business_count}&lt;/div>
+                        &lt;div>${Number.parseFloat(processedTips[zip].tipsPerHour).toFixed(2)} / Hour&lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            );
+        });
+ 
+        view = (
+        &lt;div>
+            &lt;div className="zipAvgPanel zipTipsAvg">
+                 &lt;div>Zip Code&lt;/div>
+                 &lt;div>Total Business&lt;/div>
+                 &lt;div>Average Tips&lt;/div>
+            &lt;/div>
+            &lt;div>
+                {view}
+            &lt;/div>
+        &lt;/div>);
+    }
+
+    return view;
+}
+
+export default ViewTipsAverage;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-PositionOption.html">PositionOption</a></li><li><a href="module-Search.html">Search</a></li><li><a href="module-TipInfoForm.html">TipInfoForm</a></li><li><a href="module-ViewTipInfoList.html">ViewTipInfoList</a></li><li><a href="module-ViewUserTips.html">ViewUserTips</a></li></ul><h3>Classes</h3><ul><li><a href="Map.html">Map</a></li><li><a href="ViewCompany.html">ViewCompany</a></li><li><a href="ViewReportedTips.html">ViewReportedTips</a></li></ul><h3>Global</h3><ul><li><a href="global.html#avgByDay">avgByDay</a></li><li><a href="global.html#avgByNeighborhood">avgByNeighborhood</a></li><li><a href="global.html#avgByPosition">avgByPosition</a></li><li><a href="global.html#avgByShift">avgByShift</a></li><li><a href="global.html#avgByZipCode">avgByZipCode</a></li><li><a href="global.html#UserTips">UserTips</a></li><li><a href="global.html#ViewBarChart">ViewBarChart</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Mon May 13 2019 17:26:11 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

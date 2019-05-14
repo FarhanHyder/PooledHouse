@@ -22,7 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest --watchAll --coverage",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate-docs": "node_modules/.bin/jsdoc --configure jsdoc.conf.json",
+    "generate-docs-dev": "node_modules/.bin/jsdoc --configure jsdoc.conf.json --private --destination ./docs-dev"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,7 +38,6 @@
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
-    "babel-jest": "^23.6.0",
     "jest": "^23.6.0",
     "jsdoc": "^3.6.1",
     "puppeteer": "^1.14.0",

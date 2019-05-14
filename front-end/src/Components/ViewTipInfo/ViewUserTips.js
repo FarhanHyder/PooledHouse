@@ -1,6 +1,6 @@
 /**
  * @file ViewUserTips component to display all the tips data by the userInfo
- * @module ViewUserTips 
+ * @class ViewUserTips 
  */
 
 import React from 'react';
