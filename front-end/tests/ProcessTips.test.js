@@ -67,6 +67,65 @@ test('averageTipsByBusiness should return average tips per business', () => {
 });
 
 
+test('averageTipsByBusinessByLocation should return average tips by business per location', () => {
+  const averagePerBusiness = averageTipsByBusinessByLocation([
+  {
+    'shift_length': 5,
+    'shift_time': 'PM',
+    'shift_date': '04/30/2019',
+    'shift_position': 'Busser',
+    'takehome': 87,
+    'business_name': 'Poolinos',
+    'business_street_address': '292 Bowery',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10012',
+    'neighborhood': 'Soho'
+  },
+  {
+    'shift_length': 6,
+    'shift_time': 'PM',
+    'shift_date': '05/02/2019',
+    'shift_position': 'Busser',
+    'takehome': 93,
+    'business_name': 'Poolinos',
+    'business_street_address': '292 Bowery',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10012',
+    'neighborhood': 'Soho'
+  },
+  {
+    'shift_length': 6,
+    'shift_time': 'PM',
+    'shift_date': '05/01/2019',
+    'shift_position': 'Bartender',
+    'takehome': 360,
+    'business_name': 'Balthezer',
+    'business_street_address': '80 Spring Street',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10013',
+    'neighborhood': 'Chelsea'
+  }]);
+
+expect(averagePerBusiness).toEqual({
+    Poolinos: {
+      '292 Bowery, New York, NY 10012': {
+        tipsPerHour: 16.363636363636363,
+        totalHour: 11
+      }
+    },
+    Balthezer: {
+      '80 Spring Street, New York, NY 10013': {
+        tipsPerHour: 60,
+        totalHour: 6
+      }
+    }
+  });
+});
+
+
 // test('getDay should return the third day of the week; Wednesday', () => {
 //   const day = getDayTest(new Date('May 08, 2019 23:15:30'));
 //   expect(day).toBe('Wednesday');
