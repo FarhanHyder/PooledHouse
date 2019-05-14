@@ -1,3 +1,11 @@
+/**
+ * @file Pooled House - A social income tracker for restaurant industry professionals
+ * @author Farhan Hyder 
+ * @author Carlton Welch
+ * @author Bashir Ahamed
+ * @author Ian M Fraser
+ * @author Shofiqur Rahman
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';

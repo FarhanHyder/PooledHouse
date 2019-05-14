@@ -1,3 +1,7 @@
+/**
+ * @class ViewUserTips helps with displaying the tips the user has searched for.
+ */
+
 import React from 'react';
 import { Table } from 'react-bootstrap';
 
