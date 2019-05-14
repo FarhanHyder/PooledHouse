@@ -1,11 +1,11 @@
 // This will keep all the test to ProcessTips.js
 
 
-const { averageTipsByBusiness, averageTipsByBusinessDay, averageTipsByPosition, averageTipsByZipCode } 
+const { averageTipsByBusiness, averageTipsByBusinessByLocation, averageTipsByBusinessDay, averageTipsByPosition, averageTipsByZipCode, createBusinessTable }
         = require('../src/Components/ProcessTips/ProcessTips');
 
 
-test('Should return average tips by business', () => {
+test('averageTipsByBusiness should return average tips per business', () => {
   const averagePerBusiness = averageTipsByBusiness([
   {
     'shift_length': 5,
@@ -47,6 +47,7 @@ test('Should return average tips by business', () => {
     'neighborhood': 'The Standard'
   }
   ]);
+
   expect(averagePerBusiness).toEqual({
     'Poolinos': {
       'business_name': 'Poolinos',
@@ -66,7 +67,13 @@ test('Should return average tips by business', () => {
 });
 
 
-test('Should return average tips by day of the week', () => {
+// test('getDay should return the third day of the week; Wednesday', () => {
+//   const day = getDayTest(new Date('May 08, 2019 23:15:30'));
+//   expect(day).toBe('Wednesday');
+// });
+
+
+test('averageTipsByBusinessDay should return average tips by day of the week', () => {
   const averageByBusinessDay = averageTipsByBusinessDay([
   {
     'shift_length': 5,
@@ -108,6 +115,7 @@ test('Should return average tips by day of the week', () => {
     'neighborhood': 'The Standard'
   }
   ]);
+
   expect(averageByBusinessDay).toEqual({
     'Poolinos': {
       'Monday': {
@@ -138,7 +146,7 @@ test('Should return average tips by day of the week', () => {
         'tipsPerHour': 0,
         'totalHour': 0
       },
-      'address': '292 Bowery, New York, NY 10012'
+      'address': new Set (['292 Bowery, New York, NY 10012'])
     },
     'Balthezer': {
       'Monday': {
@@ -169,13 +177,13 @@ test('Should return average tips by day of the week', () => {
         'tipsPerHour': 0,
         'totalHour': 0
       },
-      'address': '80 Spring Street, New York, NY 10012'
+      'address': new Set (['80 Spring Street, New York, NY 10012'])
     }
   });
 });
 
 
-test('Should return average tips by position', () => {
+test('averageTipsByPosition should return average tips by position', () => {
   const averageByPosition = averageTipsByPosition([
   {
     'shift_length': 5,
@@ -217,6 +225,7 @@ test('Should return average tips by position', () => {
     'neighborhood': 'The Standard'
   }
   ]);
+
   expect(averageByPosition).toEqual({
     'Poolinos': {
       'Bartender': {
@@ -268,7 +277,7 @@ test('Should return average tips by position', () => {
 });
 
 
-test('Should return average tips by zip of the location', () => {
+test('averageTipsByZipCode should return average tips by zip of the location', () => {
   const averageByZipCode = averageTipsByZipCode([
   {
     'shift_length': 5,
@@ -310,6 +319,7 @@ test('Should return average tips by zip of the location', () => {
     'neighborhood': 'The Standard'
   }
   ]);
+
   expect(averageByZipCode).toEqual({
     '10012': {
       'business_count': 1,

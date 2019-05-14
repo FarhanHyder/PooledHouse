@@ -4,53 +4,58 @@ exports[`TipInfoForm should render correct for multiple elements 1`] = `
 <div
   className="container"
 >
-  <nav
-    class="navbar navbar-light bg-light"
-  >
-    <form
-      class="form-inline"
-      onSubmit={[Function]}
-    >
-      <input
-        aria-label="Search"
-        class="form-control mr-sm-2"
-        onChange={[Function]}
-        placeholder="Search Company"
-        type="search"
-      />
-      <button
-        class="btn btn-outline-success my-2 my-sm-0"
-        type="submit"
-      >
-        Search
-      </button>
-    </form>
-  </nav>
   <div
-    className="container"
+    className=""
   >
-    <div
-      className="card avgTipsByBusiness bg-dark mb-3"
-    >
-      <h5
-        className="card-header text-left text-white bg-success mb-3"
-      >
-        Poolinos
-      </h5>
+    <div>
+      <br />
       <div
-        className="text-white text-right bg-dark mb-3"
+        className="text-center card bg-success text-white"
       >
-        Average Tips: $
-        16.36
-         / Hour
+        <div
+          className="card-header"
+        >
+          <nav
+            className="navbar navbar-light"
+          >
+            <h2>
+              Search A Company
+            </h2>
+            <form
+              className="form-inline"
+              onSubmit={[Function]}
+            >
+              <input
+                aria-label="Search"
+                className="form-control mr-sm-2"
+                onChange={[Function]}
+                placeholder="Search Company"
+                type="search"
+              />
+              <button
+                className="btn btn-outline-success my-2 my-sm-0 bg-white"
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+          </nav>
+        </div>
+        <div
+          className="card-body"
+        >
+          <div
+            className="card-title h5"
+          >
+            Find information About Tips and Bonuses
+          </div>
+          <p
+            className="card-text"
+          >
+            Type the name of the Company to see complete information
+          </p>
+        </div>
       </div>
-      <button
-        class="btn btn-outline-info"
-        onClick={[Function]}
-        type="button"
-      >
-        View details
-      </button>
     </div>
   </div>
 </div>
@@ -60,53 +65,58 @@ exports[`TipInfoForm should render correct for single element 1`] = `
 <div
   className="container"
 >
-  <nav
-    class="navbar navbar-light bg-light"
-  >
-    <form
-      class="form-inline"
-      onSubmit={[Function]}
-    >
-      <input
-        aria-label="Search"
-        class="form-control mr-sm-2"
-        onChange={[Function]}
-        placeholder="Search Company"
-        type="search"
-      />
-      <button
-        class="btn btn-outline-success my-2 my-sm-0"
-        type="submit"
-      >
-        Search
-      </button>
-    </form>
-  </nav>
   <div
-    className="container"
+    className=""
   >
-    <div
-      className="card avgTipsByBusiness bg-dark mb-3"
-    >
-      <h5
-        className="card-header text-left text-white bg-success mb-3"
-      >
-        Poolinos
-      </h5>
+    <div>
+      <br />
       <div
-        className="text-white text-right bg-dark mb-3"
+        className="text-center card bg-success text-white"
       >
-        Average Tips: $
-        17.4
-         / Hour
+        <div
+          className="card-header"
+        >
+          <nav
+            className="navbar navbar-light"
+          >
+            <h2>
+              Search A Company
+            </h2>
+            <form
+              className="form-inline"
+              onSubmit={[Function]}
+            >
+              <input
+                aria-label="Search"
+                className="form-control mr-sm-2"
+                onChange={[Function]}
+                placeholder="Search Company"
+                type="search"
+              />
+              <button
+                className="btn btn-outline-success my-2 my-sm-0 bg-white"
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+          </nav>
+        </div>
+        <div
+          className="card-body"
+        >
+          <div
+            className="card-title h5"
+          >
+            Find information About Tips and Bonuses
+          </div>
+          <p
+            className="card-text"
+          >
+            Type the name of the Company to see complete information
+          </p>
+        </div>
       </div>
-      <button
-        class="btn btn-outline-info"
-        onClick={[Function]}
-        type="button"
-      >
-        View details
-      </button>
     </div>
   </div>
 </div>

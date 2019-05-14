@@ -2,141 +2,150 @@
 
 exports[`TipsHistory should render correct for multiple elements 1`] = `
 <div
-  className="card container"
+  className="card container border border-primary rounded-lg"
 >
   <div
-    className=" card-title row border border-success rounded-lg"
+    className="table-responsive-sm"
   >
-    <div
-      className="col-4"
+    <table
+      className="table table-dark table-striped table-bordered table-hover"
     >
-      Locations
-    </div>
-    <div
-      className="col-2"
-    >
-      Position
-    </div>
-    <div
-      className="col-2"
-    >
-      Shift
-    </div>
-    <div
-      className="col-2"
-    >
-      Hours Worked
-    </div>
-    <div
-      className="col-2"
-    >
-      Tips
-    </div>
-  </div>
-  <div
-    className="row border border-primary rounded-lg"
-  >
-    <div
-      className="col-4"
-    />
-    <div
-      className="col-2"
-    />
-    <div
-      className="col-2"
-    />
-    <div
-      className="col-2"
-    >
-       Hours
-    </div>
-    <div
-      className="col-2"
-    >
-      $
-    </div>
-  </div>
-  <div
-    className="row border border-primary rounded-lg"
-  >
-    <div
-      className="col-4"
-    />
-    <div
-      className="col-2"
-    />
-    <div
-      className="col-2"
-    />
-    <div
-      className="col-2"
-    >
-       Hours
-    </div>
-    <div
-      className="col-2"
-    >
-      $
-    </div>
+      <thead
+        className="bg-secondary"
+      >
+        <tr>
+          <th>
+            #
+          </th>
+          <th>
+            Locations
+          </th>
+          <th>
+            Position
+          </th>
+          <th>
+            Shift
+          </th>
+          <th>
+            Hours Worked
+          </th>
+          <th>
+            Tips
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            292 Bowery, New York, NY 10012
+          </td>
+          <td>
+            Busser
+          </td>
+          <td>
+            PM
+          </td>
+          <td>
+            5
+             Hours
+          </td>
+          <td>
+            $
+            87
+          </td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td>
+            2
+          </td>
+          <td>
+            292 Bowery, New York, NY 10012
+          </td>
+          <td>
+            Busser
+          </td>
+          <td>
+            PM
+          </td>
+          <td>
+            6
+             Hours
+          </td>
+          <td>
+            $
+            93
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 `;
 
 exports[`TipsHistory should render correct for single element 1`] = `
 <div
-  className="card container"
+  className="card container border border-primary rounded-lg"
 >
   <div
-    className=" card-title row border border-success rounded-lg"
+    className="table-responsive-sm"
   >
-    <div
-      className="col-4"
+    <table
+      className="table table-dark table-striped table-bordered table-hover"
     >
-      Locations
-    </div>
-    <div
-      className="col-2"
-    >
-      Position
-    </div>
-    <div
-      className="col-2"
-    >
-      Shift
-    </div>
-    <div
-      className="col-2"
-    >
-      Hours Worked
-    </div>
-    <div
-      className="col-2"
-    >
-      Tips
-    </div>
-  </div>
-  <div
-    className="row border border-primary rounded-lg"
-  >
-    <div
-      className="col-4"
-    />
-    <div
-      className="col-2"
-    />
-    <div
-      className="col-2"
-    />
-    <div
-      className="col-2"
-    >
-       Hours
-    </div>
-    <div
-      className="col-2"
-    >
-      $
-    </div>
+      <thead
+        className="bg-secondary"
+      >
+        <tr>
+          <th>
+            #
+          </th>
+          <th>
+            Locations
+          </th>
+          <th>
+            Position
+          </th>
+          <th>
+            Shift
+          </th>
+          <th>
+            Hours Worked
+          </th>
+          <th>
+            Tips
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            292 Bowery, New York, NY 10012
+          </td>
+          <td>
+            Busser
+          </td>
+          <td>
+            PM
+          </td>
+          <td>
+            5
+             Hours
+          </td>
+          <td>
+            $
+            87
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 `;

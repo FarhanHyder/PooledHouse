@@ -1,91 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Description should render correct for multiple elements 1`] = `
-<div
-  className="container card"
->
-  <div
-    className=" card-title row border border-success rounded-lg"
-  >
-    <div
-      className="col-4"
-    >
-      Company Locations
-    </div>
-    <div
-      className="col-2"
-    >
-      Average Tips
-    </div>
-  </div>
-  <div
-    className="row border border-primary rounded-lg"
-  >
-    <div
-      className="col-4"
-    >
-      Soho
-    </div>
-    <div
-      className="col-2"
-    >
-      $
-      12.89
-       / Hour
-    </div>
-  </div>
-  <div
-    className="row border border-primary rounded-lg"
-  >
-    <div
-      className="col-4"
-    >
-      Chelsea
-    </div>
-    <div
-      className="col-2"
-    >
-      $
-      13.54
-       / Hour
-    </div>
-  </div>
-</div>
-`;
-
 exports[`Description should render correct for single element 1`] = `
 <div
   className="container card"
 >
   <div
-    className=" card-title row border border-success rounded-lg"
+    className="table-responsive-sm"
   >
-    <div
-      className="col-4"
+    <table
+      className="table table-dark table-striped table-bordered table-hover"
     >
-      Company Locations
-    </div>
-    <div
-      className="col-2"
-    >
-      Average Tips
-    </div>
-  </div>
-  <div
-    className="row border border-primary rounded-lg"
-  >
-    <div
-      className="col-4"
-    >
-      Soho
-    </div>
-    <div
-      className="col-2"
-    >
-      $
-      12.89
-       / Hour
-    </div>
+      <thead
+        className="bg-info"
+      >
+        <tr>
+          <th>
+            #
+          </th>
+          <th>
+            Company Locations
+          </th>
+          <th>
+            Average Reported Tips
+          </th>
+          <th>
+            Tips in This Zip Code area
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            282 Bowery, New York, NY 10012
+          </td>
+          <td>
+            $
+            12.89
+             / Hour
+          </td>
+          <td>
+            $
+            12.89
+             / Hour
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 `;

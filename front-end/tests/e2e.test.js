@@ -23,8 +23,9 @@ beforeAll(async () => {
 // Test User Log-in
 test("Should return logged-in user's username", async () => {
 
-  await page.goto('http://localhost:3000/');
-  // await page.goto('http://front-end-20190411125054-hostingbucket-phdev.s3-website-us-east-1.amazonaws.com/');
+  // await page.goto('http://localhost:3000/');
+  // Hosted on AWS S3
+  await page.goto('http://front-end-20190514013450-hostingbucket-phdev.s3-website-us-east-1.amazonaws.com/');
 
   await page.click('input[name=username]');
   await page.type('input[name=username]', 'shofi');
@@ -34,19 +35,18 @@ test("Should return logged-in user's username", async () => {
 
   await page.waitFor(1000);
 
-  const userName = await page.$eval('#bg-nested-dropdown', el => el.textContent);
-  expect(userName).toBe("Hello, shofi");
+  const userName = await page.$eval('#dropdown-button-drop-left', el => el.textContent);
+  expect(userName).toBe('shofi');
 }, 10000);
 
 
-
-// Test loading tips onCLick 'User's Tip'
-test("Should test 'page loading' onCLick list", async () => {
-  await page.click('#list');
-  await page.waitFor(500);
-  const businessName = await page.$eval('h5', el => el.textContent);
-  expect(businessName).toBe("Dad's Hot Sauces");
-});
+// // Test loading tips onCLick 'User's Tip'
+// test("Should test 'page loading' onCLick list", async () => {
+//   await page.click('#list');
+//   await page.waitFor(500);
+//   const businessName = await page.$eval('h5', el => el.textContent);
+//   expect(businessName).toBe("Dad's Hot Sauces");
+// });
 
 
 
