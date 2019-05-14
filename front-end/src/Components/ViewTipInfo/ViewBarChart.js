@@ -53,6 +53,16 @@ const avgByNeighborhood = (avgTips) => {
 	]
 }
 
+ /* this is optional: TODO if time allows
+ * @param {*} avgTips 
+ */
+
+// const avgByNeighborhood = (avgTips) => {
+// 	return [
+// 		["Neighborhood", "Average Tips", {role: "style"}],
+// 	]
+// }
+
 /**
  * @const avgByShift
  * @param {object} avgTips
