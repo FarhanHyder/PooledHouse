@@ -333,3 +333,82 @@ test('averageTipsByZipCode should return average tips by zip of the location', (
     }
   });
 });
+
+
+test('createBusinessTable should return a table with average tips by business', () => {
+  const averagePerBusiness = createBusinessTable([
+  {
+    'shift_length': 5,
+    'shift_time': 'PM',
+    'shift_date': '04/30/2019',
+    'shift_position': 'Busser',
+    'takehome': 87,
+    'business_name': 'Poolinos',
+    'business_street_address': '292 Bowery',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10012',
+    'neighborhood': 'Soho'
+  },
+  {
+    'shift_length': 6,
+    'shift_time': 'PM',
+    'shift_date': '05/02/2019',
+    'shift_position': 'Busser',
+    'takehome': 93,
+    'business_name': 'Poolinos',
+    'business_street_address': '292 Bowery',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10012',
+    'neighborhood': 'Soho'
+  },
+  {
+    'shift_length': 6,
+    'shift_time': 'PM',
+    'shift_date': '05/01/2019',
+    'shift_position': 'Bartender',
+    'takehome': 360,
+    'business_name': 'Balthezer',
+    'business_street_address': '80 Spring Street',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10013',
+    'neighborhood': 'Chelsea'
+  }
+  ]);
+
+  expect(averagePerBusiness).toEqual({
+    Poolinos: [
+      {
+        address: '292 Bowery, New York, NY 10012',
+        position: 'Busser',
+        tips: 87,
+        hour: 5,
+        shift: 'PM',
+        neighborhood: 'Soho',
+        date: '04/30/2019'
+      },
+      {
+        address: '292 Bowery, New York, NY 10012',
+        position: 'Busser',
+        tips: 93,
+        hour: 6,
+        shift: 'PM',
+        neighborhood: 'Soho',
+        date: '05/02/2019'
+      }
+    ],
+    Balthezer: [
+      {
+        address: '80 Spring Street, New York, NY 10013',
+        position: 'Bartender',
+        tips: 360,
+        hour: 6,
+        shift: 'PM',
+        neighborhood: 'Chelsea',
+        date: '05/01/2019'
+      }
+    ]
+  });
+});
