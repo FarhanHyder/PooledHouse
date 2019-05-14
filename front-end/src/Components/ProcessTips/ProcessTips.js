@@ -23,6 +23,18 @@
 // business_state
 // business_zip
 
+/**
+ * @function averageTipsByBusiness
+ * @param {array} tipsInfo - an array of all the tips entry
+ * @returns {object} business - an object with business name as the key
+ * another object with business name, address, average hourly tips and total hours reported as the value
+ * business = 
+ *  {businessName : {business_name: businessName, 
+ *                  business_street_address: A set of address,
+ *                  tipsPerHour: hourly tips,
+ *                  totalHour: total reported hours for businessName}
+ *  }
+ */
 exports.averageTipsByBusiness = (tipsInfo) => {
     // let tipInfo = [...props.tipInfo];
     const business = {};
@@ -44,6 +56,18 @@ exports.averageTipsByBusiness = (tipsInfo) => {
     });
     return business;
 }
+
+/**
+ * @function averageTipsByBusinessByLocation
+ * @param {array} tipsInfo - an array of all the tips entry
+ * @returns {object} businessTipsByLocations - an object with business name as the key
+ * another object with business name, address, average hourly tips and total hours reported as the value
+ *  businessTipsByLocations = 
+ *  {businessName : {addr : {tipsPerHour: hourly tips,
+ *                          totalHour: total reported hours for business address}
+ *                  }
+ *  }
+ */
 
 exports.averageTipsByBusinessByLocation = (tipsInfo) => {
     const businessTipsByLocations = {};
@@ -68,7 +92,11 @@ exports.averageTipsByBusinessByLocation = (tipsInfo) => {
     });
     return businessTipsByLocations;
 }
-
+/**
+ * @function getDay
+ * @param {date object} date 
+ * @returns name of the day for the date object
+ */
 const getDay = (date) => {
     let day = date.getDay();
     if(day === 0) {
@@ -93,6 +121,46 @@ const getDay = (date) => {
         return "Saturday";
     }
 }
+
+/** 
+ * @function averageTipsByBusinessDay
+ * @param {array} tipsInfo - an array of all the tips entry
+ * @returns {object} businessTipsByday - an object with business name as the key
+ * and another object  with (all the days as key and average tips as value) as the value
+ *  businessTipsByday = 
+ *  {businessName : {
+ *               Saturday: {
+ *                  tipsPerHour: average hourly tips for this day,
+ *                 totalHour: total reported hour for this day
+ *               },
+ *               Sunday: {
+ *                   tipsPerHour: average hourly tips for this day,
+ *                   totalHour: total reported hour for this day
+ *               },
+ *               Monday: {
+ *                   tipsPerHour: average hourly tips for this day,
+ *                   totalHour: total reported hour for this day
+ *               },
+ *               Tuesday: {
+ *                   tipsPerHour: average hourly tips for this day,
+ *                   totalHour: total reported hour for this day
+ *               },
+ *               Wednesday: {
+ *                   tipsPerHour: average hourly tips for this day,
+ *                   totalHour: total reported hour for this day
+ *               },
+ *               Thursday: {
+ *                   tipsPerHour: average hourly tips for this day,
+ *                   totalHour: total reported hour for this day
+ *               },
+ *               Friday: {
+ *                   tipsPerHour: average hourly tips for this day,
+ *                   totalHour: total reported hour for this day
+ *               }
+ *               address : set of all reported business address for this business
+ *           }
+ *  }
+ */
 
 exports.averageTipsByBusinessDay = (tipsInfo) => {
     const businessTipsByday = {};
@@ -149,6 +217,41 @@ exports.averageTipsByBusinessDay = (tipsInfo) => {
     return businessTipsByday;
 }
 
+
+/**
+ * @function averageTipsByPosition
+ * @param {array} tipsInfo - an array of all the tips entry
+ * @returns {object} businessTipsByPos - an object with business name as the key
+ * and another object with (all the position as key and average tips as value) as the value
+ * 
+ *  businessTipsByPos = 
+ *  {businessName : {
+ *               Bartender: {
+ *                 tipsPerHour: average hourly tips for this position,
+ *                 totalHour: total reported hour for this position
+ *               },
+ *               Server: {
+ *                   tipsPerHour: average hourly tips for this position,
+ *                   totalHour: total reported hour for this position
+ *               },
+ *               Barback: {
+ *                   tipsPerHour: average hourly tips for this position,
+ *                   totalHour: total reported hour for this position
+ *               },
+ *               Busser: {
+ *                   tipsPerHour: average hourly tips for this position,
+ *                   totalHour: total reported hour for this position
+ *               },
+ *               Other: {
+ *                   tipsPerHour: average hourly tips for this position,
+ *                   totalHour: total reported hour for this position
+ *               },
+ *    
+ *               address : set of all reported business address for this business
+ *           }
+ *  }
+ */
+
 exports.averageTipsByPosition = (tipsInfo) => {
     const businessTipsByPos = {};
     tipsInfo.forEach(tips => {
@@ -199,6 +302,19 @@ exports.averageTipsByPosition = (tipsInfo) => {
     return businessTipsByPos;
 }
 
+/**
+ * @function averageTipsByZipCode
+ * @param {array} tipsInfo - an array of all the tips entry
+ * @returns {object} businessZip - an object with zip code as the key
+ * another object with average hourly tips and total hours reported as the value and total number business in this zip code
+ * businessZip = 
+ *             {zip : {
+ *                  business_count : number of business,
+ *                  tipsPerHour: hourly tips,
+ *                  totalHour: total reported hours for businessName}
+ *  }
+ */
+
 exports.averageTipsByZipCode = (tipsInfo) => {
     const businessZip = {};
     const ZipBusinessCount = {};
@@ -223,6 +339,18 @@ exports.averageTipsByZipCode = (tipsInfo) => {
     return businessZip;    
 
 }
+
+/**
+ * @function createBusinessTable
+ * @param {array} tipsInfo - an array of all the tips entry
+ * @returns {object} business - an object with businessName as the key and an array of all reported tips info for that business
+ * 
+ * business =  {
+ *          businessName: [
+ *                          {address: , position: , tips: , hour: , shift: , neighborhood: , date: }, {...}
+ *                      ]
+ *  }
+ */
 
 exports.createBusinessTable =  (tipsInfo) => {
     const business = {};
@@ -255,8 +383,48 @@ exports.createBusinessTable =  (tipsInfo) => {
     return business;
 }
 
-exports.averageTipsByPositionAndShift = (tipsInfo) => {
+/**
+ * @function createBusinessTable
+ * @param {array} tipsInfo - an array of all the tips entry
+ * @returns {object} businessTipsByPosShift - an object with businessName as the key and another object for each work shift as the value
+ * 
+ * businessTipsByPosShift =  {
+ *          businessName: {
+ *              AM: { {positionName: {tipsPerHour: , totalHour: } }, {...}, ... }
+ *              PM: { {positionName: {tipsPerHour: , totalHour: } }, {...}, ... }
+ *              address: adr of business
+ *              }
+ *  }
+ */
 
+exports.averageTipsByPositionAndShift = (tipsInfo) => {
+    const businessTipsByPosShift = {};
+    tipsInfo.forEach(tips => {
+        let businessName = tips.business_name;
+        let pos = tips.shift_position;
+        let shift = tips.shift_time;
+        if (! businessTipsByPosShift.hasOwnProperty(businessName)) {
+            businessTipsByPosShift[businessName] = {};
+            let avg = {
+                        tipsPerHour: (tips.takehome / tips.shift_length),
+                        totalHour: tips.shift_length,
+                    };
+            
+            businessTipsByPosShift[businessName] = {
+            AM: {Bartender: { tipsPerHour: 0,totalHour: 0 }, Server: { tipsPerHour: 0, totalHour: 0}, Barback: {tipsPerHour: 0,totalHour: 0}, Busser: {tipsPerHour: 0,totalHour: 0},Other: {tipsPerHour: 0,totalHour: 0}},
+            PM: {Bartender: { tipsPerHour: 0,totalHour: 0 }, Server: { tipsPerHour: 0, totalHour: 0}, Barback: {tipsPerHour: 0,totalHour: 0}, Busser: {tipsPerHour: 0,totalHour: 0},Other: {tipsPerHour: 0,totalHour: 0}},
+            };
+
+            businessTipsByPosShift[businessName][shift][pos] = avg;
+            businessTipsByPosShift[businessName].address = tips.business_street_address + ", " + tips.business_city + ", " + tips.business_state + " " + tips.business_zip;
+        }
+        else {
+            let hours = (businessTipsByPosShift[businessName][shift][pos].totalHour + tips.shift_length);
+            businessTipsByPosShift[businessName][shift][pos].tipsPerHour = businessTipsByPosShift[businessName][tips.shift_time][pos].tipsPerHour * businessTipsByPosShift[businessName][tips.shift_time][pos].totalHour / hours + tips.takehome / hours;
+            businessTipsByPosShift[businessName][shift][pos].totalHour = hours;
+        }
+    });
+    return businessTipsByPosShift;
 }
 
 // export {averageTipsByBusiness, averageTipsByBusinessDay, averageTipsByPosition};
