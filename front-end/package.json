@@ -21,7 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --watchAll --coverage --coverageDirectory=output/testCoverage",
+    "test": "jest --watchAll --coverage",
     "eject": "react-scripts eject",
     "generate-docs": "node_modules/.bin/jsdoc --configure jsdoc.conf.json",
     "generate-docs-dev": "node_modules/.bin/jsdoc --configure jsdoc.conf.json --private --destination ./docs-dev"
