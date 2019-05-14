@@ -2,88 +2,103 @@
 
 exports[`ViewCompany component renders correct for multiple elements 1`] = `
 <div
-  className="row"
+  className="container"
 >
   <div
-    className="col-2 position-left"
+    className="position-left"
   >
-    <div
-      className="btn-group-vertical"
+    <h2
+      className="card-title text-white bg-success rounded-lg"
     >
-      <button
-        class="btn btn-info"
-        onClick={[Function]}
-        type="button"
+      Poolinos
+    </h2>
+    <div
+      className="row"
+    >
+      <div
+        className="col-6 btn-group"
       >
-        Description
-      </button>
-      <button
-        class="btn btn-dark"
-        onClick={[Function]}
-        type="button"
+        <button
+          className="btn btn-info"
+          onClick={[Function]}
+          type="button"
+        >
+          Description
+        </button>
+        <button
+          className="btn btn-dark"
+          onClick={[Function]}
+          type="button"
+        >
+          Tips Information
+        </button>
+        <button
+          className="btn btn-secondary"
+          onClick={[Function]}
+          type="button"
+        >
+          Tips History
+        </button>
+      </div>
+      <h5
+        className=" text-right col-6 text-success position-right"
       >
-        Tips Information
-      </button>
-      <button
-        class="btn btn-secondary"
-        onClick={[Function]}
-        type="button"
-      >
-        Tips History
-      </button>
+        Average Tips $
+        12.89
+      </h5>
     </div>
   </div>
   <div
-    className="col-9"
+    className="row"
   >
     <div
       className="container card"
     >
       <div
-        className=" card-title row border border-success rounded-lg"
+        className="table-responsive-sm"
       >
-        <div
-          className="col-4"
+        <table
+          className="table table-dark table-striped table-bordered table-hover"
         >
-          Company Locations
-        </div>
-        <div
-          className="col-2"
-        >
-          Average Tips
-        </div>
-      </div>
-      <div
-        className="row border border-primary rounded-lg"
-      >
-        <div
-          className="col-4"
-        >
-          Soho
-        </div>
-        <div
-          className="col-2"
-        >
-          $
-          12.89
-           / Hour
-        </div>
-      </div>
-      <div
-        className="row border border-primary rounded-lg"
-      >
-        <div
-          className="col-4"
-        >
-          Chelsea
-        </div>
-        <div
-          className="col-2"
-        >
-          $
-          13.54
-           / Hour
-        </div>
+          <thead
+            className="bg-info"
+          >
+            <tr>
+              <th>
+                #
+              </th>
+              <th>
+                Company Locations
+              </th>
+              <th>
+                Average Reported Tips
+              </th>
+              <th>
+                Tips in This Zip Code area
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                1
+              </td>
+              <td>
+                292 Bowery, New York, NY 10012
+              </td>
+              <td>
+                $
+                16.36
+                 / Hour
+              </td>
+              <td>
+                $
+                16.36
+                 / Hour
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -92,72 +107,103 @@ exports[`ViewCompany component renders correct for multiple elements 1`] = `
 
 exports[`ViewCompany component renders correct for single element 1`] = `
 <div
-  className="row"
+  className="container"
 >
   <div
-    className="col-2 position-left"
+    className="position-left"
   >
-    <div
-      className="btn-group-vertical"
+    <h2
+      className="card-title text-white bg-success rounded-lg"
     >
-      <button
-        class="btn btn-info"
-        onClick={[Function]}
-        type="button"
+      Poolinos
+    </h2>
+    <div
+      className="row"
+    >
+      <div
+        className="col-6 btn-group"
       >
-        Description
-      </button>
-      <button
-        class="btn btn-dark"
-        onClick={[Function]}
-        type="button"
+        <button
+          className="btn btn-info"
+          onClick={[Function]}
+          type="button"
+        >
+          Description
+        </button>
+        <button
+          className="btn btn-dark"
+          onClick={[Function]}
+          type="button"
+        >
+          Tips Information
+        </button>
+        <button
+          className="btn btn-secondary"
+          onClick={[Function]}
+          type="button"
+        >
+          Tips History
+        </button>
+      </div>
+      <h5
+        className=" text-right col-6 text-success position-right"
       >
-        Tips Information
-      </button>
-      <button
-        class="btn btn-secondary"
-        onClick={[Function]}
-        type="button"
-      >
-        Tips History
-      </button>
+        Average Tips $
+        12.89
+      </h5>
     </div>
   </div>
   <div
-    className="col-9"
+    className="row"
   >
     <div
       className="container card"
     >
       <div
-        className=" card-title row border border-success rounded-lg"
+        className="table-responsive-sm"
       >
-        <div
-          className="col-4"
+        <table
+          className="table table-dark table-striped table-bordered table-hover"
         >
-          Company Locations
-        </div>
-        <div
-          className="col-2"
-        >
-          Average Tips
-        </div>
-      </div>
-      <div
-        className="row border border-primary rounded-lg"
-      >
-        <div
-          className="col-4"
-        >
-          Soho
-        </div>
-        <div
-          className="col-2"
-        >
-          $
-          12.89
-           / Hour
-        </div>
+          <thead
+            className="bg-info"
+          >
+            <tr>
+              <th>
+                #
+              </th>
+              <th>
+                Company Locations
+              </th>
+              <th>
+                Average Reported Tips
+              </th>
+              <th>
+                Tips in This Zip Code area
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                1
+              </td>
+              <td>
+                292 Bowery, New York, NY 10012
+              </td>
+              <td>
+                $
+                17.4
+                 / Hour
+              </td>
+              <td>
+                $
+                17.4
+                 / Hour
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

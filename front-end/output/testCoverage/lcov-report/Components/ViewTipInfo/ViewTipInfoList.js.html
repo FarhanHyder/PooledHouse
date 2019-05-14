@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for Components/ViewTipInfo/ViewTipInfoList.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">Components/ViewTipInfo</a> ViewTipInfoList.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">42.31% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>11/26</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">47.83% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>11/23</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * ViewTipInfoList is a Component that is used for displaying either
+ * your average tip data or a detailed tip data across the whole database.
+ * It is currently being used in the My Tips profile page to display tipped
+ * data. 
+ * @summary This component shows either your tips or all tips.
+ * @class ViewTipInfoList
+ * @extends Component
+ * */
+&nbsp;
+import React, { Component } from 'react'
+// View Component
+import ViewTipInfo from '././ViewTipInfo';
+import PositionOption from './PositionOption';
+//import './ViewTipInfo.css';
+import ViewTipsAverage from '../ProcessTips/ViewProcessedTips';
+import ProcessOption from '../ProcessTips/ProcessOption';
+// import '../ProcessTips/ViewProcessedTips.css';
+import ViewUserTips from './ViewUserTipInfo';
+import ViewCompany from './ViewCompany';
+import WelcomePage from './WelcomePage';
+&nbsp;
+import {Card, Form, FormControl, Button, ButtonGroup, ButtonToolbar} from 'react-bootstrap';
+import Carousel from 'react-bootstrap/Carousel';
+&nbsp;
+const process = require('../ProcessTips/ProcessTips');
+&nbsp;
+class ViewTipInfoList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            detailList: false,
+            processFilter: "Business",
+            positionFilter: "All Position",
+            welcomeView: true,
+            searchView: false,
+            companyView: false,
+            tipsInfo: props.tip_info,
+            avgByBusiness : process.averageTipsByBusiness(props.tip_info),
+            BusinessName: "",
+            SearchResults: Object.keys(process.createBusinessTable(props.tip_info)).sort()
+        };
+&nbsp;
+        this.searchHandler = this.searchHandler.bind(this);
+        this.welcomeViewHandler = this.welcomeViewHandler.bind(this);
+        this.searchViewHandler = this.searchViewHandler.bind(this);
+        this.companyViewHandler = this.companyViewHandler.bind(this);
+    }
+    
+    searchHandler = <span class="fstat-no" title="function not covered" >(t</span>ipsInfo, data) =&gt; {
+      // let results = Object.keys(tipsInfo).sort();
+      let results = <span class="cstat-no" title="statement not covered" >tipsInfo.filter(<span class="fstat-no" title="function not covered" >ti</span>ps =&gt; <span class="cstat-no" title="statement not covered" >tips.business_name.toUpperCase().includes(data.toUpperCase()))</span>;</span>
+<span class="cstat-no" title="statement not covered" >      this.setState({</span>
+        SearchResults: Object.keys(process.createBusinessTable(results)).sort(),
+        defaultView: true,
+        welcomeView: false,
+        companyView: false,
+        tipsInfo: results
+      });
+    }
+&nbsp;
+    welcomeViewHandler = <span class="fstat-no" title="function not covered" >(n</span>ame) =&gt; {
+<span class="cstat-no" title="statement not covered" >      this.setState({</span>
+        BusinessName: name,
+        companyView: false,
+        searchView: false,
+        welcomeView: true
+      })
+    }
+&nbsp;
+    searchViewHandler = <span class="fstat-no" title="function not covered" >(n</span>ame) =&gt; {
+<span class="cstat-no" title="statement not covered" >      this.setState({</span>
+        BusinessName: name,
+        companyView: false,
+        searchView: true,
+        welcomeView: false
+      })
+    }
+    companyViewHandler = <span class="fstat-no" title="function not covered" >(n</span>ame) =&gt; {
+<span class="cstat-no" title="statement not covered" >      this.setState({</span>
+        BusinessName: name,
+        companyView: true,
+        searchView: false,
+        welcomeView: false
+      })
+    }
+&nbsp;
+&nbsp;
+    render() {
+      const companyIntroPage = (
+        &lt;div&gt;
+          &lt;br&gt;&lt;/br&gt;
+          &lt;Card className="text-center" bg="success" text="white"&gt;
+          &lt;Card.Header &gt;
+            &lt;nav className="navbar navbar-light"&gt;
+            &lt;h2&gt;Search A Company&lt;/h2&gt;
+              &lt;form className="form-inline" onSubmit={<span class="fstat-no" title="function not covered" >(e</span>vent)=&gt;{ <span class="cstat-no" title="statement not covered" >event.preventDefault(); <span class="cstat-no" title="statement not covered" ></span>this.searchViewHandler(this.state.BusinessName)}</span>}&gt;
+                &lt;input className="form-control mr-sm-2" type="search" placeholder= "Search Company" aria-label="Search"
+                  onChange = {<span class="fstat-no" title="function not covered" >(e</span>vent)=&gt; {<span class="cstat-no" title="statement not covered" >this.searchHandler(this.props.tip_info, event.target.value)}</span>}
+                /&gt;
+                &lt;button className="btn btn-outline-success my-2 my-sm-0 bg-white" type="submit"&gt;Search&lt;/button&gt;
+              &lt;/form&gt;
+            &lt;/nav&gt;
+          &lt;/Card.Header&gt;
+          &lt;Card.Body&gt;
+            &lt;Card.Title&gt;Find information About Tips and Bonuses&lt;/Card.Title&gt;
+            &lt;Card.Text&gt;
+              Type the name of the Company to see complete information
+            &lt;/Card.Text&gt;
+            
+          &lt;/Card.Body&gt;
+        &lt;/Card&gt;
+      &lt;/div&gt;
+      );
+&nbsp;
+      const defaultView = this.state.SearchResults.map(company =&gt; {
+        return (
+        &lt;div className = "card avgTipsByBusiness bg-dark mb-3" key = {company}&gt;
+            &lt;h5 className="card-header text-left text-white bg-success mb-3"&gt;{company}&lt;/h5&gt;
+            &lt;div className="text-white text-right bg-dark mb-3"&gt;Average Tips: ${Number.parseFloat(this.state.avgByBusiness[company].tipsPerHour.toFixed(2))} / Hour&lt;/div&gt;
+            &lt;button type="button" className="btn btn-outline-info" onClick = {<span class="fstat-no" title="function not covered" >()</span>=&gt; <span class="cstat-no" title="statement not covered" >this.companyViewHandler(company)}</span>&gt;View details&lt;/button&gt;    
+        &lt;/div&gt;);
+    });
+    
+      return (
+        &lt;div className="container"&gt;
+          
+          &lt;div className=""&gt;
+            {
+              this.state.welcomeView? companyIntroPage :
+<span class="branch-1 cbranch-no" title="branch not covered" >              &lt;div&gt;</span>
+              &lt;nav className="container navbar navbar-light bg-secondary"&gt;
+                &lt;form className="form-inline" onSubmit={<span class="fstat-no" title="function not covered" >(e</span>vent)=&gt;{ <span class="cstat-no" title="statement not covered" >event.preventDefault(); <span class="cstat-no" title="statement not covered" ></span>this.searchViewHandler(this.state.BusinessName)}</span>}&gt;
+                  &lt;input className="form-control mr-sm-2" type="search" placeholder="Search Company" aria-label="Search"
+                    onChange = {<span class="fstat-no" title="function not covered" >(e</span>vent)=&gt; {<span class="cstat-no" title="statement not covered" >this.searchHandler(this.props.tip_info, event.target.value)}</span>}
+                  /&gt;
+                  &lt;button className="btn btn-outline-success my-2 my-sm-0" type="submit"&gt;Search&lt;/button&gt;
+                &lt;/form&gt;
+                &lt;ButtonToolbar&gt;
+                  &lt;ButtonGroup aria-label="Second group"&gt;&lt;Button variant="success" onClick = {<span class="fstat-no" title="function not covered" >()</span>=&gt; {<span class="cstat-no" title="statement not covered" >this.searchViewHandler(this.state.BusinessName)}</span>}&gt;Search results&lt;/Button&gt;&lt;/ButtonGroup&gt;
+                  &lt;ButtonGroup  aria-label="First group"&gt;&lt;Button variant="primary" onClick ={<span class="fstat-no" title="function not covered" >()</span>=&gt; {<span class="cstat-no" title="statement not covered" >this.welcomeViewHandler(this.state.BusinessName)}</span>}&gt;Back&lt;/Button&gt;&lt;/ButtonGroup&gt;
+                &lt;/ButtonToolbar&gt;
+              &lt;/nav&gt;
+              {this.state.companyView?
+              &lt;div className=" bg-white"&gt;
+                &lt;ViewCompany 
+                  tipsInfo={this.state.tipsInfo} 
+                  BusinessName = {this.state.BusinessName}
+                  avgByBusiness = {this.state.avgByBusiness[this.state.BusinessName]}
+                /&gt;
+                
+              &lt;/div&gt;
+                :
+                defaultView
+              }
+            &lt;/div&gt;
+            }
+          &lt;/div&gt;   
+        &lt;/div&gt;
+      )
+  };
+}
+&nbsp;
+export default ViewTipInfoList;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue May 14 2019 13:05:39 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

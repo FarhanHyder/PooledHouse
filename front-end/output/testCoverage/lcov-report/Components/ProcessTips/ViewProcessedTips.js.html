@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for Components/ProcessTips/ViewProcessedTips.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">Components/ProcessTips</a> ViewProcessedTips.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.9% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/29</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.9% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/29</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * @class ViewProcessedTips calls the ViewTipsAverage component to take the 
+ * information from the database and compute the average tips based
+ * on filter preferences.
+ * @return view
+ */
+// import all functions
+// display based on the functions
+import React from 'react';
+&nbsp;
+&nbsp;
+const process = require('./ProcessTips');
+&nbsp;
+const ViewTipsAverage = <span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; {
+    // user selects the view option
+    // function to process based on data called from above
+&nbsp;
+    // form to select filter type for average tips/hour
+&nbsp;
+    let tipsInfo = <span class="cstat-no" title="statement not covered" >props.tipInfo;</span>
+    let view = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >    if (props.process === "Business") {</span>
+        const processedTips = <span class="cstat-no" title="statement not covered" >process.averageTipsByBusiness(tipsInfo);</span>
+<span class="cstat-no" title="statement not covered" >        view = Object.keys(processedTips).map(<span class="fstat-no" title="function not covered" >ti</span>ps =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            return (</span>
+            &lt;div className ="tipsByBusiness"&gt;
+                &lt;div&gt;
+                    &lt;h2 className="busTitle"&gt;{processedTips[tips].business_name}&lt;/h2&gt;
+                    &lt;div className="addr"&gt;{processedTips[tips].business_street_address}&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div&gt;Tips : ${Number.parseFloat(processedTips[tips].tipsPerHour).toFixed(2)}/Hour&lt;/div&gt;
+            &lt;/div&gt;);
+        });
+&nbsp;
+    }
+    
+    else <span class="cstat-no" title="statement not covered" >if (props.process === "Daily Average") {</span>
+        const processedTips = <span class="cstat-no" title="statement not covered" >process.averageTipsByBusinessDay(tipsInfo);</span>
+<span class="cstat-no" title="statement not covered" >        view = Object.keys(processedTips).map(<span class="fstat-no" title="function not covered" >bN</span>ame =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >           console.log(bName);</span>
+<span class="cstat-no" title="statement not covered" >           return (</span>
+               &lt;div&gt;
+                  { console.log(processedTips[bName])}
+                   &lt;div className="dailyTipsAvg"&gt;
+                       &lt;div className="busTitle"&gt;{bName}&lt;/div&gt;
+&nbsp;
+                       &lt;div&gt;${Number.parseFloat(processedTips[bName].Saturday.tipsPerHour).toFixed(2)} / Hour&lt;/div&gt;
+                       &lt;div&gt;${Number.parseFloat(processedTips[bName].Sunday.tipsPerHour).toFixed(2)} / Hour&lt;/div&gt;
+                       &lt;div&gt;${Number.parseFloat(processedTips[bName].Monday.tipsPerHour).toFixed(2)} / Hour&lt;/div&gt;
+                       &lt;div&gt;${Number.parseFloat(processedTips[bName].Tuesday.tipsPerHour).toFixed(2)} / Hour&lt;/div&gt;
+                       &lt;div&gt;${Number.parseFloat(processedTips[bName].Wednesday.tipsPerHour).toFixed(2)} / Hour&lt;/div&gt;
+                       &lt;div&gt;${Number.parseFloat(processedTips[bName].Thursday.tipsPerHour).toFixed(2)} / Hour&lt;/div&gt;
+                       &lt;div&gt;${Number.parseFloat(processedTips[bName].Friday.tipsPerHour).toFixed(2)} / Hour&lt;/div&gt;
+                   &lt;/div&gt;
+               &lt;/div&gt;
+           );
+       });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >       view = (</span>
+       &lt;div&gt;
+           &lt;div className="dayName dailyTipsAvg"&gt;
+                &lt;div&gt;Business Name&lt;/div&gt;
+                &lt;div&gt;Saturday&lt;/div&gt;
+                &lt;div&gt;Sunday&lt;/div&gt;
+                &lt;div&gt;Monday&lt;/div&gt;
+                &lt;div&gt;Tuesday&lt;/div&gt;
+                &lt;div&gt;Wednesday&lt;/div&gt;
+                &lt;div&gt;Thursday&lt;/div&gt;
+                &lt;div&gt;Friday&lt;/div&gt;
+           &lt;/div&gt;
+           &lt;div&gt;
+               {view}
+           &lt;/div&gt;
+       &lt;/div&gt;);
+&nbsp;
+    }
+&nbsp;
+    else <span class="cstat-no" title="statement not covered" >if (props.process === "Position"){</span>
+        const processedTips = <span class="cstat-no" title="statement not covered" >process.averageTipsByPosition(tipsInfo);</span>
+<span class="cstat-no" title="statement not covered" >        view = Object.keys(processedTips).map(<span class="fstat-no" title="function not covered" >bN</span>ame =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >           console.log(bName);</span>
+<span class="cstat-no" title="statement not covered" >           return (</span>
+               &lt;div&gt;
+                  { console.log(processedTips[bName])}
+                   &lt;div className="dailyTipsAvg"&gt;
+                       &lt;div className="busTitle"&gt;{bName}&lt;/div&gt;
+&nbsp;
+                       &lt;div&gt;${Number.parseFloat(processedTips[bName].Bartender.tipsPerHour).toFixed(2)} / Hour&lt;/div&gt;
+                       &lt;div&gt;${Number.parseFloat(processedTips[bName].Server.tipsPerHour).toFixed(2)} / Hour&lt;/div&gt;
+                       &lt;div&gt;${Number.parseFloat(processedTips[bName].Barback.tipsPerHour).toFixed(2)} / Hour&lt;/div&gt;
+                       &lt;div&gt;${Number.parseFloat(processedTips[bName].Busser.tipsPerHour).toFixed(2)} / Hour&lt;/div&gt;
+                       &lt;div&gt;${Number.parseFloat(processedTips[bName].Other.tipsPerHour).toFixed(2)} / Hour&lt;/div&gt;
+                   &lt;/div&gt;
+               &lt;/div&gt;
+           );
+       });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >       view = (</span>
+       &lt;div&gt;
+           &lt;div className="dayName dailyTipsAvg"&gt;
+                &lt;div&gt;Business Name&lt;/div&gt;
+                &lt;div&gt;Bartender&lt;/div&gt;
+                &lt;div&gt;Server&lt;/div&gt;
+                &lt;div&gt;Barback&lt;/div&gt;
+                &lt;div&gt;Busser&lt;/div&gt;
+                &lt;div&gt;Other&lt;/div&gt;
+           &lt;/div&gt;
+           &lt;div&gt;
+               {view}
+           &lt;/div&gt;
+       &lt;/div&gt;);
+    }
+    else <span class="cstat-no" title="statement not covered" >if (props.process === "Zip Code") {</span>
+        const processedTips = <span class="cstat-no" title="statement not covered" >process.averageTipsByZipCode(tipsInfo);</span>
+<span class="cstat-no" title="statement not covered" >        console.clear();</span>
+<span class="cstat-no" title="statement not covered" >        console.log(processedTips);</span>
+<span class="cstat-no" title="statement not covered" >        view = Object.keys(processedTips).map(<span class="fstat-no" title="function not covered" >zi</span>p =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            console.log(zip);</span>
+<span class="cstat-no" title="statement not covered" >            return (</span>
+                &lt;div&gt;
+                   { console.log(processedTips[zip])}
+                    &lt;div className="zipTipsAvg"&gt;
+                        &lt;div className="ZipCode"&gt;{zip}&lt;/div&gt;
+                        &lt;div&gt;{processedTips[zip].business_count}&lt;/div&gt;
+                        &lt;div&gt;${Number.parseFloat(processedTips[zip].tipsPerHour).toFixed(2)} / Hour&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            );
+        });
+ 
+<span class="cstat-no" title="statement not covered" >        view = (</span>
+        &lt;div&gt;
+            &lt;div className="zipAvgPanel zipTipsAvg"&gt;
+                 &lt;div&gt;Zip Code&lt;/div&gt;
+                 &lt;div&gt;Total Business&lt;/div&gt;
+                 &lt;div&gt;Average Tips&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+                {view}
+            &lt;/div&gt;
+        &lt;/div&gt;);
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return view;</span>
+}
+&nbsp;
+export default ViewTipsAverage;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue May 14 2019 13:05:39 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

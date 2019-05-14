@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for Components/Map/mapFunctions.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">Components/Map</a> mapFunctions.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">69.14% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>56/81</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">66.67% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>16/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>7/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">70.13% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>54/77</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span></td><td class="text"><pre class="prettyprint lang-js">import { cityData } from "../ReactNYC/nyc";
+&nbsp;
+const EMERALD_GREEN = "#1a9850";        // lvl (6/6)
+const PARAKEET_GREEN = "#91cf60";       // lvl (5/6)
+const LIME_GREEN = "#d9ef8b";           // lvl (4/6)
+const CRIMSON_RED = "#d73027";          // lvl (3/6)
+const ORANGE = "#fc8d59";               // lvl (2/6)
+const NAVAJO_WHITE = "#fee08b";         // lvl (1/6)
+&nbsp;
+const getColor = (amount) =&gt; {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (amount &lt; 15) <span class="cstat-no" title="statement not covered" >return ORANGE;</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (amount &lt; 30) <span class="cstat-no" title="statement not covered" >return CRIMSON_RED;</span>
+    if (amount &lt; 45) return LIME_GREEN;
+    if (amount &lt; 60) return PARAKEET_GREEN;
+    return EMERALD_GREEN;
+}
+&nbsp;
+// pre: a number as a param
+// post: return an integer between [1,6]
+const getLevel = (amount, max) =&gt;{
+    return Math.floor((amount*7)/max);
+}
+&nbsp;
+//this function takes db tipentry list and returns an object containing neighborhood name, avg tips/hour, total hours
+//deprecated
+const averageTipsByNeighborhood = (tip_info) =&gt; {
+//    console.log(tip_info);
+    const neighborhoods = {};
+    tip_info.forEach(entry =&gt; {
+        let hoodName = entry.neighborhood;
+        if (! neighborhoods.hasOwnProperty(hoodName)) {
+            neighborhoods[hoodName] = {neighborhood: hoodName,
+                                    tipsPerHour: (entry.takehome / entry.shift_length),
+                                    totalHour: entry.shift_length};
+        }
+        else {
+            let hours = (neighborhoods[hoodName].totalHour + entry.shift_length);
+            neighborhoods[hoodName].tipsPerHour = neighborhoods[hoodName].tipsPerHour * neighborhoods[hoodName].totalHour / hours + entry.takehome / hours;
+            neighborhoods[hoodName].totalHour = hours;
+        }
+    });
+    return neighborhoods;
+}
+&nbsp;
+//this function works just like averageTipsByNeighborhood, but filters by day of week.
+//deprecated
+const aTBNDayParse = <span class="fstat-no" title="function not covered" >(t</span>ip_info, day) =&gt; {
+//    console.log(tip_info);
+    const neighborhoods = <span class="cstat-no" title="statement not covered" >{};</span>
+<span class="cstat-no" title="statement not covered" >    tip_info.forEach(<span class="fstat-no" title="function not covered" >en</span>try =&gt; {</span>
+        let e_day = <span class="cstat-no" title="statement not covered" >new Date(entry.shift_date).getDay();</span>
+<span class="cstat-no" title="statement not covered" >        e_day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][e_day];</span>
+<span class="cstat-no" title="statement not covered" >        if (e_day === day) {</span>
+            let hoodName = <span class="cstat-no" title="statement not covered" >entry.neighborhood;</span>
+<span class="cstat-no" title="statement not covered" >            if (! neighborhoods.hasOwnProperty(hoodName)) {</span>
+<span class="cstat-no" title="statement not covered" >                neighborhoods[hoodName] = {neighborhood: hoodName,</span>
+                                        tipsPerHour: (entry.takehome / entry.shift_length),
+                                        totalHour: entry.shift_length};
+            }
+            else {
+                let hours = (<span class="cstat-no" title="statement not covered" >neighborhoods[hoodName].totalHour + entry.shift_length)</span>;
+<span class="cstat-no" title="statement not covered" >                neighborhoods[hoodName].tipsPerHour = neighborhoods[hoodName].tipsPerHour * neighborhoods[hoodName].totalHour / hours + entry.takehome / hours;</span>
+<span class="cstat-no" title="statement not covered" >                neighborhoods[hoodName].totalHour = hours;</span>
+            }
+        }
+    });
+<span class="cstat-no" title="statement not covered" >    return neighborhoods;</span>
+}
+&nbsp;
+//this works like the original averageTipByNeighborhood, but filters by day, shift, and position.
+export var aTBNMasterParse = (tip_info, day, shift, position) =&gt; {
+//    console.log(tip_info);
+    const neighborhoods = {};
+    tip_info.forEach(entry =&gt; {
+        let e_day = new Date(entry.shift_date).getDay();
+        e_day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][e_day];
+        <span class="missing-if-branch" title="else path not taken" >E</span>if ((day === 'All' || <span class="branch-1 cbranch-no" title="branch not covered" >e_day === day)</span> &amp;&amp; 
+            (shift === 'All' ||  entry.shift_time === shift) &amp;&amp; 
+            (position === 'All' || entry.shift_position === position)) {
+&nbsp;
+                let hoodName = entry.neighborhood;
+                if (! neighborhoods.hasOwnProperty(hoodName)) {
+                    neighborhoods[hoodName] = {neighborhood: hoodName,
+                                            tipsPerHour: (entry.takehome / entry.shift_length),
+                                            totalHour: entry.shift_length};
+                }
+                else {
+                    let hours = (neighborhoods[hoodName].totalHour + entry.shift_length);
+                    neighborhoods[hoodName].tipsPerHour = neighborhoods[hoodName].tipsPerHour * neighborhoods[hoodName].totalHour / hours + entry.takehome / hours;
+                    neighborhoods[hoodName].totalHour = hours;
+                }
+        }
+    });
+    return neighborhoods;
+}
+&nbsp;
+&nbsp;
+//takes the neighborhoods object returns by averageTipsByNeighborhood and returns an object for use by reactnyc component
+export var averageTipsClean = (average_tips) =&gt; {
+    let data = [];
+    let element = {};
+    for (var entry in average_tips) {
+      element = {};
+      element.name = average_tips[entry].neighborhood;
+      element.values = [];
+      element.values.push({label: "Avg Hourly $", val: Math.floor(average_tips[entry].tipsPerHour)});
+      //console.log(element.values[0].val);
+      element.color = getColor(element.values[0].val);
+      data.push(element);
+    }
+    return data;
+}
+&nbsp;
+&nbsp;
+export var latLongToHood = <span class="fstat-no" title="function not covered" >(l</span>atlong) =&gt; {
+    let hood;
+<span class="cstat-no" title="statement not covered" >    console.log(latlong[0]);</span>
+    /*cityData.features.forEach((feature) =&gt; {
+        if (latlong.lat &gt; feature.bbox[1] &amp;&amp; 
+            latlong.long &gt; feature.bbox[0] &amp;&amp; 
+            latlong.lat &lt; feature.bbox[3] &amp;&amp; 
+            latlong.long &lt; feature.bbox[2]) {
+                hood = feature.properties["lflt:label_text"];
+                console.log("Selected hood is:" + hood);
+                return hood;
+        }
+    })*/
+}
+&nbsp;
+export var addrToLatLong = <span class="fstat-no" title="function not covered" >(b</span>usiness_street_address, business_city, business_state, business_zip, API_key) =&gt; {
+    let clean_bsa;
+    let clean_bc;
+    let addr;
+    let latlong;
+<span class="cstat-no" title="statement not covered" >    clean_bsa = business_street_address.replace(new RegExp(' ', 'g'), '+');</span>
+<span class="cstat-no" title="statement not covered" >    clean_bc = business_city.replace(new RegExp (' ', 'g'), '+');</span>
+<span class="cstat-no" title="statement not covered" >    addr = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + clean_bsa + ',+' + clean_bc + ',+' + business_state + ',+' + business_zip + '&amp;key=' + API_key;</span>
+<span class="cstat-no" title="statement not covered" >    fetch(addr)</span>
+        .then(<span class="fstat-no" title="function not covered" >re</span>s =&gt; <span class="cstat-no" title="statement not covered" >res.json())</span>
+        .then(
+<span class="fstat-no" title="function not covered" >            (r</span>esult) =&gt; {
+<span class="cstat-no" title="statement not covered" >                latlong.push(result.results[0].geometry.location.lat);</span>
+<span class="cstat-no" title="statement not covered" >                latlong.push(result.results[0].geometry.location.lng);</span>
+<span class="cstat-no" title="statement not covered" >                latlong.push('x');</span>
+<span class="cstat-no" title="statement not covered" >                return latlong[2];</span>
+            },
+<span class="fstat-no" title="function not covered" >            (e</span>rror) =&gt; {
+<span class="cstat-no" title="statement not covered" >                console.log(error);</span>
+            }
+        );
+}
+&nbsp;
+export var colorTest = getColor;
+export var levelTest = getLevel;
+export var averageTipsByNeighborhoodTest = averageTipsByNeighborhood;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue May 14 2019 13:05:39 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

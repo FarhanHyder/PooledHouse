@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Report should render correct for single element 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="card"
+  >
+    <br />
+    <div
+      className="row btn-group"
+    >
+      <button
+        className="btn btn-dark"
+        onClick={[Function]}
+        type="button"
+      >
+        Tips By Position
+      </button>
+      <button
+        className="btn btn-dark"
+        onClick={[Function]}
+        type="button"
+      >
+        Tips By Day
+      </button>
+      <button
+        className="btn btn-dark"
+        onClick={[Function]}
+        type="button"
+      >
+        Tips By Shift And Position
+      </button>
+    </div>
+    <br />
+  </div>
+  <div
+    className="row fluid"
+  >
+    <div
+      className="col-4"
+    >
+      <div
+        className="table-responsive-sm"
+      >
+        <table
+          className="table table-dark table-striped table-bordered table-hover"
+        >
+          <thead
+            className="bg-secondary"
+          >
+            <tr>
+              <th>
+                Position
+              </th>
+              <th>
+                Hourly Tips
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                Bartender
+              </td>
+              <td>
+                $
+                12.89
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Server
+              </td>
+              <td>
+                $
+                12.89
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Barback
+              </td>
+              <td>
+                $
+                12.89
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Busser
+              </td>
+              <td>
+                $
+                12.89
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Other
+              </td>
+              <td>
+                $
+                12.89
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div
+      className="col-8"
+    >
+      <div
+        className="card"
+      >
+        <h3
+          className="card-title bg-secondary"
+        >
+          Average Tips By Position
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
+`;

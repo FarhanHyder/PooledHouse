@@ -1,11 +1,11 @@
 // This will keep all the test to ProcessTips.js
 
 
-const { averageTipsByBusiness, averageTipsByBusinessDay, averageTipsByPosition, averageTipsByZipCode } 
+const { averageTipsByBusiness, averageTipsByBusinessByLocation, averageTipsByBusinessDay, averageTipsByPosition, averageTipsByZipCode, createBusinessTable }
         = require('../src/Components/ProcessTips/ProcessTips');
 
 
-test('Should return average tips by business', () => {
+test('averageTipsByBusiness should return average tips per business', () => {
   const averagePerBusiness = averageTipsByBusiness([
   {
     'shift_length': 5,
@@ -47,6 +47,7 @@ test('Should return average tips by business', () => {
     'neighborhood': 'The Standard'
   }
   ]);
+
   expect(averagePerBusiness).toEqual({
     'Poolinos': {
       'business_name': 'Poolinos',
@@ -66,7 +67,72 @@ test('Should return average tips by business', () => {
 });
 
 
-test('Should return average tips by day of the week', () => {
+test('averageTipsByBusinessByLocation should return average tips by business per location', () => {
+  const averagePerBusiness = averageTipsByBusinessByLocation([
+  {
+    'shift_length': 5,
+    'shift_time': 'PM',
+    'shift_date': '04/30/2019',
+    'shift_position': 'Busser',
+    'takehome': 87,
+    'business_name': 'Poolinos',
+    'business_street_address': '292 Bowery',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10012',
+    'neighborhood': 'Soho'
+  },
+  {
+    'shift_length': 6,
+    'shift_time': 'PM',
+    'shift_date': '05/02/2019',
+    'shift_position': 'Busser',
+    'takehome': 93,
+    'business_name': 'Poolinos',
+    'business_street_address': '292 Bowery',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10012',
+    'neighborhood': 'Soho'
+  },
+  {
+    'shift_length': 6,
+    'shift_time': 'PM',
+    'shift_date': '05/01/2019',
+    'shift_position': 'Bartender',
+    'takehome': 360,
+    'business_name': 'Balthezer',
+    'business_street_address': '80 Spring Street',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10013',
+    'neighborhood': 'Chelsea'
+  }]);
+
+expect(averagePerBusiness).toEqual({
+    Poolinos: {
+      '292 Bowery, New York, NY 10012': {
+        tipsPerHour: 16.363636363636363,
+        totalHour: 11
+      }
+    },
+    Balthezer: {
+      '80 Spring Street, New York, NY 10013': {
+        tipsPerHour: 60,
+        totalHour: 6
+      }
+    }
+  });
+});
+
+
+// test('getDay should return the third day of the week; Wednesday', () => {
+//   const day = getDayTest(new Date('May 08, 2019 23:15:30'));
+//   expect(day).toBe('Wednesday');
+// });
+
+
+test('averageTipsByBusinessDay should return average tips by day of the week', () => {
   const averageByBusinessDay = averageTipsByBusinessDay([
   {
     'shift_length': 5,
@@ -108,6 +174,7 @@ test('Should return average tips by day of the week', () => {
     'neighborhood': 'The Standard'
   }
   ]);
+
   expect(averageByBusinessDay).toEqual({
     'Poolinos': {
       'Monday': {
@@ -138,7 +205,7 @@ test('Should return average tips by day of the week', () => {
         'tipsPerHour': 0,
         'totalHour': 0
       },
-      'address': '292 Bowery, New York, NY 10012'
+      'address': new Set (['292 Bowery, New York, NY 10012'])
     },
     'Balthezer': {
       'Monday': {
@@ -169,13 +236,13 @@ test('Should return average tips by day of the week', () => {
         'tipsPerHour': 0,
         'totalHour': 0
       },
-      'address': '80 Spring Street, New York, NY 10012'
+      'address': new Set (['80 Spring Street, New York, NY 10012'])
     }
   });
 });
 
 
-test('Should return average tips by position', () => {
+test('averageTipsByPosition should return average tips by position', () => {
   const averageByPosition = averageTipsByPosition([
   {
     'shift_length': 5,
@@ -217,6 +284,7 @@ test('Should return average tips by position', () => {
     'neighborhood': 'The Standard'
   }
   ]);
+
   expect(averageByPosition).toEqual({
     'Poolinos': {
       'Bartender': {
@@ -268,7 +336,7 @@ test('Should return average tips by position', () => {
 });
 
 
-test('Should return average tips by zip of the location', () => {
+test('averageTipsByZipCode should return average tips by zip of the location', () => {
   const averageByZipCode = averageTipsByZipCode([
   {
     'shift_length': 5,
@@ -310,6 +378,7 @@ test('Should return average tips by zip of the location', () => {
     'neighborhood': 'The Standard'
   }
   ]);
+
   expect(averageByZipCode).toEqual({
     '10012': {
       'business_count': 1,
@@ -321,5 +390,84 @@ test('Should return average tips by zip of the location', () => {
       'tipsPerHour': 60,
       'totalHour': 6
     }
+  });
+});
+
+
+test('createBusinessTable should return a table with average tips by business', () => {
+  const averagePerBusiness = createBusinessTable([
+  {
+    'shift_length': 5,
+    'shift_time': 'PM',
+    'shift_date': '04/30/2019',
+    'shift_position': 'Busser',
+    'takehome': 87,
+    'business_name': 'Poolinos',
+    'business_street_address': '292 Bowery',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10012',
+    'neighborhood': 'Soho'
+  },
+  {
+    'shift_length': 6,
+    'shift_time': 'PM',
+    'shift_date': '05/02/2019',
+    'shift_position': 'Busser',
+    'takehome': 93,
+    'business_name': 'Poolinos',
+    'business_street_address': '292 Bowery',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10012',
+    'neighborhood': 'Soho'
+  },
+  {
+    'shift_length': 6,
+    'shift_time': 'PM',
+    'shift_date': '05/01/2019',
+    'shift_position': 'Bartender',
+    'takehome': 360,
+    'business_name': 'Balthezer',
+    'business_street_address': '80 Spring Street',
+    'business_city': 'New York',
+    'business_state': 'NY',
+    'business_zip': '10013',
+    'neighborhood': 'Chelsea'
+  }
+  ]);
+
+  expect(averagePerBusiness).toEqual({
+    Poolinos: [
+      {
+        address: '292 Bowery, New York, NY 10012',
+        position: 'Busser',
+        tips: 87,
+        hour: 5,
+        shift: 'PM',
+        neighborhood: 'Soho',
+        date: '04/30/2019'
+      },
+      {
+        address: '292 Bowery, New York, NY 10012',
+        position: 'Busser',
+        tips: 93,
+        hour: 6,
+        shift: 'PM',
+        neighborhood: 'Soho',
+        date: '05/02/2019'
+      }
+    ],
+    Balthezer: [
+      {
+        address: '80 Spring Street, New York, NY 10013',
+        position: 'Bartender',
+        tips: 360,
+        hour: 6,
+        shift: 'PM',
+        neighborhood: 'Chelsea',
+        date: '05/01/2019'
+      }
+    ]
   });
 });

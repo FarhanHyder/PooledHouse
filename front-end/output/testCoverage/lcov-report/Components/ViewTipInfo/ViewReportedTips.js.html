@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for Components/ViewTipInfo/ViewReportedTips.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">Components/ViewTipInfo</a> ViewReportedTips.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.14% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>4/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>3/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">40% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.14% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>4/7</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * @class ViewReportedTips
+ * @extends Component
+ */
+// import all functions
+// display based on the functions
+import React from 'react';
+import ViewBarChart from './ViewBarChart';
+import Table from 'react-bootstrap/Table';
+&nbsp;
+class ViewReportedTips extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            chartOption: "position"
+        }
+    }
+&nbsp;
+    render() {
+        const view = (
+            &lt;div className="container"&gt;
+                &lt;div className="card"&gt;
+                    &lt;br&gt;&lt;/br&gt;
+                    &lt;div className="row btn-group"&gt;
+                        &lt;button type="button" className="btn btn-dark" onClick ={<span class="fstat-no" title="function not covered" >()</span>=&gt;{<span class="cstat-no" title="statement not covered" >this.setState({chartOption: "position"})}</span>} &gt;Tips By Position&lt;/button&gt;
+                        &lt;button type="button" className="btn btn-dark" onClick ={<span class="fstat-no" title="function not covered" >()</span>=&gt;{<span class="cstat-no" title="statement not covered" >this.setState({chartOption: "day"})}</span>} &gt;Tips By Day&lt;/button&gt;
+                        {/* &lt;button type="button" className="btn btn-dark" onClick ={()=&gt;{this.setState({chartOption: "zip"})}} &gt;Tips By Zip Code&lt;/button&gt; */}
+                        {/* &lt;button type="button" className="btn btn-dark" onClick ={()=&gt;{this.setState({chartOption: "neighborhood"})}} &gt;Tips By neighborhood&lt;/button&gt; */}
+                        &lt;button type="button" className="btn btn-dark" onClick ={<span class="fstat-no" title="function not covered" >()</span>=&gt;{<span class="cstat-no" title="statement not covered" >this.setState({chartOption: "shift"})}</span>} &gt;Tips By Shift And Position&lt;/button&gt;
+                    &lt;/div&gt;
+                    &lt;br&gt;&lt;/br&gt;
+                &lt;/div&gt;
+                &lt;div className="row fluid"&gt;
+                    &lt;div className="col-4"&gt;
+                        {this.state.chartOption === "position"?
+                            &lt;Table striped bordered hover responsive="sm" variant="dark"&gt;
+                                &lt;thead className="bg-secondary"&gt;
+                                &lt;tr&gt;
+                                    &lt;th&gt;Position&lt;/th&gt;
+                                    &lt;th&gt;Hourly Tips&lt;/th&gt;
+                                &lt;/tr&gt;
+                                &lt;/thead&gt;
+                                &lt;tbody&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Bartender&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByPosition.Bartender.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Server&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByPosition.Server.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Barback&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByPosition.Barback.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Busser&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByPosition.Busser.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Other&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByPosition.Other.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;/tbody&gt;
+                            &lt;/Table&gt;
+                        : <span class="branch-1 cbranch-no" title="branch not covered" >null}</span>
+                        
+                        {this.state.chartOption === "day"?
+<span class="branch-0 cbranch-no" title="branch not covered" >                            &lt;Table striped bordered hover responsive="sm" variant="dark"&gt;</span>
+                                &lt;thead className="bg-secondary"&gt;
+                                &lt;tr&gt;
+                                    &lt;th&gt;Day&lt;/th&gt;
+                                    &lt;th&gt;Hourly Tips&lt;/th&gt;
+                                &lt;/tr&gt;
+                                &lt;/thead&gt;
+                                &lt;tbody&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Saturday&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByDay.Saturday.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Sunday&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByDay.Sunday.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Monday&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByDay.Monday.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Tuesday&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByDay.Tuesday.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Wednesday&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByDay.Wednesday.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Thursday&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByDay.Thursday.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Friday&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByDay.Friday.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;/tbody&gt;
+                            &lt;/Table&gt;
+                        : null}
+                        {this.state.chartOption === "shift"?
+<span class="branch-0 cbranch-no" title="branch not covered" >                            &lt;Table striped bordered hover responsive="sm" variant="dark"&gt;</span>
+                                &lt;thead className="bg-secondary"&gt;
+                                &lt;tr&gt;
+                                    &lt;th&gt;Position&lt;/th&gt;
+                                    &lt;th&gt;Shift&lt;/th&gt;
+                                    &lt;th&gt;Hourly Tips&lt;/th&gt;
+                                &lt;/tr&gt;
+                                &lt;/thead&gt;
+                                &lt;tbody&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Bartender&lt;/td&gt;
+                                    &lt;td&gt;AM&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByPosShift.AM.Bartender.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Bartender&lt;/td&gt;
+                                    &lt;td&gt;PM&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByPosShift.PM.Bartender.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Server&lt;/td&gt;
+                                    &lt;td&gt;AM&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByPosShift.AM.Server.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Server&lt;/td&gt;
+                                    &lt;td&gt;PM&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByPosShift.PM.Server.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Barback&lt;/td&gt;
+                                    &lt;td&gt;AM&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByPosShift.AM.Barback.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Barback&lt;/td&gt;
+                                    &lt;td&gt;PM&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByPosShift.PM.Barback.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Busser&lt;/td&gt;
+                                    &lt;td&gt;AM&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByPosShift.AM.Busser.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Busser&lt;/td&gt;
+                                    &lt;td&gt;PM&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByPosShift.PM.Busser.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Other&lt;/td&gt;
+                                    &lt;td&gt;AM&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByPosShift.AM.Other.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Other&lt;/td&gt;
+                                    &lt;td&gt;PM&lt;/td&gt;
+                                    &lt;td&gt;${Number.parseFloat(this.props.avgByPosShift.PM.Other.tipsPerHour.toFixed(2))}&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;/tbody&gt;
+                            &lt;/Table&gt;
+                        : null}
+                        
+                    &lt;/div&gt;
+                    &lt;div className="col-8"&gt;
+                    &lt;ViewBarChart
+                        chartOption = {this.state.chartOption}
+                        avgByDay = {this.props.avgByDay}
+                        avgByPosition = {this.props.avgByPosition}
+                        avgByPosShift = {this.props.avgByPosShift}
+                    /&gt;
+                    &lt;/div&gt;
+                
+                &lt;/div&gt;
+            &lt;/div&gt;
+        );
+        return view;
+    }
+}
+&nbsp;
+export default ViewReportedTips;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue May 14 2019 13:05:39 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
