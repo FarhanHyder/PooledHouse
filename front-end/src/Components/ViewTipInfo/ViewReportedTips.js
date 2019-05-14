@@ -1,3 +1,7 @@
+/**
+ * @class ViewReportedTips
+ * @extends Component
+ */
 // import all functions
 // display based on the functions
 import React from 'react';

@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: TipInfoForm/TipInfoForm.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: TipInfoForm/TipInfoForm.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @file TipInfoForm is the form which users can enter their tipped data.
  * This component is used in App.js to help view the users tips.
  * @class TipInfoForm
@@ -54,10 +82,13 @@ class TipInfoForm extends React.Component {
             business_zip: this.state.business_zip,
             neighborhood: this.state.neighborhood,
         }
+        console.log(t_e);
         try {
             await API.graphql(graphqlOperation(mutations.createTipEntry, {input: t_e}));
+            console.log(t_e);
             alert("Success!");
             this.setState({
+                user: '',
                 shift_length: '',
                 shift_time: 'AM',
                 shift_date: '',
@@ -117,161 +148,184 @@ class TipInfoForm extends React.Component {
             } = this.state;
 
         return (
-            <div>
-        <Container fluid='true'>
-            <Form className="text-left newTips">
-                <Row>
-                    <Col>
-                        <Form.Group controlID="shift_date">
-                                <Form.Label>Shift Date</Form.Label>
-                                <Form.Control
+            &lt;div>
+        &lt;Container fluid='true'>
+            &lt;Form className="text-left newTips">
+                &lt;Row>
+                    &lt;Col>
+                        &lt;Form.Group controlID="shift_date">
+                                &lt;Form.Label>Shift Date&lt;/Form.Label>
+                                &lt;Form.Control
                                     type='date'
                                     name="shift_date"
                                     value={shift_date}
                                     onChange={this.handleChange}
                                 />
-                            </Form.Group> 
-                    </Col>
-                    <Col>
-                        <Form.Group controlId="shift_time">
-                            <Form.Label>Shift Time</Form.Label>
-                            <Form.Control 
+                            &lt;/Form.Group> 
+                    &lt;/Col>
+                    &lt;Col>
+                        &lt;Form.Group controlId="shift_time">
+                            &lt;Form.Label>Shift Time&lt;/Form.Label>
+                            &lt;Form.Control 
                                     as='select' 
                                     name="shift_time" 
                                     value={shift_time}
                                     onChange={this.handleChange}>
-                                    <option>AM</option>
-                                    <option>PM</option>
-                                </Form.Control>
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Form.Group controlID="shift_length">
-                            <Form.Label>Shift Length (hours)</Form.Label>
-                            <Form.Control
+                                    &lt;option>AM&lt;/option>
+                                    &lt;option>PM&lt;/option>
+                                &lt;/Form.Control>
+                        &lt;/Form.Group>
+                    &lt;/Col>
+                    &lt;Col>
+                        &lt;Form.Group controlID="shift_length">
+                            &lt;Form.Label>Shift Length (hours)&lt;/Form.Label>
+                            &lt;Form.Control
                                 type='number'
                                 name="shift_length"
                                 value={shift_length}
                                 onChange={this.handleChange}
                             />
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Form.Group controlID="shift_position">
-                                <Form.Label>Position</Form.Label>
-                                <Form.Control 
+                        &lt;/Form.Group>
+                    &lt;/Col>
+                    &lt;Col>
+                        &lt;Form.Group controlID="shift_position">
+                                &lt;Form.Label>Position&lt;/Form.Label>
+                                &lt;Form.Control 
                                     as='select' 
                                     name="shift_position" 
                                     value={shift_position}
                                     onChange={this.handleChange}>
-                                    <option>Bartender</option>
-                                    <option>Server</option>
-                                    <option>Barback</option>
-                                    <option>Busser</option>
-                                    <option>Other</option>
-                                </Form.Control>
-                        </Form.Group>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Form.Group controlID="takehome">
-                            <Form.Label>Tip Takehome</Form.Label>
-                            <Form.Control
+                                    &lt;option>Bartender&lt;/option>
+                                    &lt;option>Server&lt;/option>
+                                    &lt;option>Barback&lt;/option>
+                                    &lt;option>Busser&lt;/option>
+                                    &lt;option>Other&lt;/option>
+                                &lt;/Form.Control>
+                        &lt;/Form.Group>
+                    &lt;/Col>
+                &lt;/Row>
+                &lt;Row>
+                    &lt;Col>
+                        &lt;Form.Group controlID="takehome">
+                            &lt;Form.Label>Tip Takehome&lt;/Form.Label>
+                            &lt;Form.Control
                                 type='number'
                                 name="takehome"
                                 value={takehome}
                                 onChange={this.handleChange}
                             />
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Form.Group controlID="business_name">
-                            <Form.Label>Business Name</Form.Label>
-                            <Form.Control
+                        &lt;/Form.Group>
+                    &lt;/Col>
+                    &lt;Col>
+                        &lt;Form.Group controlID="business_name">
+                            &lt;Form.Label>Business Name&lt;/Form.Label>
+                            &lt;Form.Control
                                 type='text'
                                 placeholder="i.e. Hot Jim's BBQ"
                                 name="business_name"
                                 value={business_name}
                                 onChange={this.handleChange}
                             />
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Form.Group controlID="business_street_address">
-                            <Form.Label>Street Address</Form.Label>
-                            <Form.Control
+                        &lt;/Form.Group>
+                    &lt;/Col>
+                    &lt;Col>
+                        &lt;Form.Group controlID="business_street_address">
+                            &lt;Form.Label>Street Address&lt;/Form.Label>
+                            &lt;Form.Control
                                 type='text'
                                 placeholder="i.e. 123 E 9th St"
                                 name="business_street_address"
                                 value={business_street_address}
                                 onChange={this.handleChange}
                             />
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Form.Group controlID="business_city">
-                            <Form.Label>City</Form.Label>
-                            <Form.Control
+                        &lt;/Form.Group>
+                    &lt;/Col>
+                    &lt;Col>
+                        &lt;Form.Group controlID="business_city">
+                            &lt;Form.Label>City&lt;/Form.Label>
+                            &lt;Form.Control
                                 type='text'
                                 placeholder="i.e. New York City"
                                 name="business_city"
                                 value={business_city}
                                 onChange={this.handleChange}
                             />
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Form.Group controlID="business_state">
-                            <Form.Label>State</Form.Label>
-                            <Form.Control
+                        &lt;/Form.Group>
+                    &lt;/Col>
+                    &lt;Col>
+                        &lt;Form.Group controlID="business_state">
+                            &lt;Form.Label>State&lt;/Form.Label>
+                            &lt;Form.Control
                                 type='text'
                                 placeholder="i.e. NY"
                                 name="business_state"
                                 value={business_state}
                                 onChange={this.handleChange}
                             />
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Form.Group controlID="business_zip">
-                            <Form.Label>Zipcode</Form.Label>
-                            <Form.Control
+                        &lt;/Form.Group>
+                    &lt;/Col>
+                    &lt;Col>
+                        &lt;Form.Group controlID="business_zip">
+                            &lt;Form.Label>Zipcode&lt;/Form.Label>
+                            &lt;Form.Control
                                 type='text'
                                 placeholder="i.e. 11105"
                                 name="business_zip"
                                 value={business_zip}
                                 onChange={this.handleChange}
                             />
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Form.Group controlID="neighborhood">
-                                <Form.Label>Neighborhood</Form.Label>
-                                <Form.Control 
+                        &lt;/Form.Group>
+                    &lt;/Col>
+                    &lt;Col>
+                        &lt;Form.Group controlID="neighborhood">
+                                &lt;Form.Label>Neighborhood&lt;/Form.Label>
+                                &lt;Form.Control 
                                     as='select' 
                                     name="neighborhood" 
                                     value={neighborhood}
                                     onChange={this.handleChange}>
                                     { neighborhoods.map((neighborhood, index) => {
                                         return (
-                                            <option key={index} value={neighborhood}>{neighborhood}</option>
+                                            &lt;option key={index} value={neighborhood}>{neighborhood}&lt;/option>
                                         )
                                     })}
-                                </Form.Control>
-                                <Button 
+                                &lt;/Form.Control>
+                                &lt;Button 
                                 variant="primary" 
                                 type="submit" 
                                 onClick={(ev) => this.handleSubmit(ev)}>Add Tips
-                                </Button>
-                        </Form.Group>
-                    </Col>
-                </Row>
-            </Form>
-        </Container>
-        </div>
+                                &lt;/Button>
+                        &lt;/Form.Group>
+                    &lt;/Col>
+                &lt;/Row>
+            &lt;/Form>
+        &lt;/Container>
+        &lt;/div>
         );
     }
 }
 
 export default TipInfoForm;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Map.html">Map</a></li><li><a href="PositionOption.html">PositionOption</a></li><li><a href="Search.html">Search</a></li><li><a href="searchParse.html">searchParse</a></li><li><a href="TipInfoForm.html">TipInfoForm</a></li><li><a href="UserTips.html">UserTips</a></li><li><a href="ViewCompany.html">ViewCompany</a></li><li><a href="ViewReportedTips.html">ViewReportedTips</a></li><li><a href="ViewTipInfoList.html">ViewTipInfoList</a></li><li><a href="ViewUserTips.html">ViewUserTips</a></li></ul><h3>Global</h3><ul><li><a href="global.html#avgByDay">avgByDay</a></li><li><a href="global.html#avgByNeighborhood">avgByNeighborhood</a></li><li><a href="global.html#avgByPosition">avgByPosition</a></li><li><a href="global.html#avgByShift">avgByShift</a></li><li><a href="global.html#avgByZipCode">avgByZipCode</a></li><li><a href="global.html#ViewBarChart">ViewBarChart</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.2</a> on Mon May 13 2019 17:50:49 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

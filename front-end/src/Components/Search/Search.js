@@ -1,8 +1,8 @@
 /**
- * @file Search component used in App.js to create a search feature
+ * Search component used in App.js to create a search feature
  * in homepage. Mostly this component is used to link front end
  * to our backend.
- * @module Search
+ * @class Search
  * @extends Component
  */
 

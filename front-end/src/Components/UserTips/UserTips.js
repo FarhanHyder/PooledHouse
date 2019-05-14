@@ -1,3 +1,10 @@
+/**
+ * @file UserTips allows for viewing the users previously entered tips
+ * and add new tips as well.
+ * @class UserTips
+ * @extends Component
+ */
+
 import React from 'react';
 import TipInfoForm from './Components/TipInfoForm/TipInfoForm';
 import { Connect } from 'aws-amplify-react';
