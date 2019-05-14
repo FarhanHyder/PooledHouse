@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for Components/ViewTipInfo/ViewBarChart.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">Components/ViewTipInfo</a> ViewBarChart.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.89% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>11/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">16.67% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.89% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>11/19</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
+import Chart from "react-google-charts";
+&nbsp;
+const avgByDay = <span class="fstat-no" title="function not covered" >(a</span>vgTips) =&gt; {
+<span class="cstat-no" title="statement not covered" >	return [</span>
+		["Day", "Average Tips", {role: "style"}],
+		["Sunday", Number.parseFloat(avgTips.Sunday.tipsPerHour.toFixed(2)), "stroke-color: #25754D; stroke-width: 4; fill-color: #311B92"],
+		["Monday", Number.parseFloat(avgTips.Monday.tipsPerHour.toFixed(2)), "stroke-color: #00ABDA; stroke-width: 4; fill-color: #2196F3"],
+		["Tuesday", Number.parseFloat(avgTips.Tuesday.tipsPerHour.toFixed(2)), "stroke-color: #2A57DE; stroke-width: 4; fill-color: #689F38"],
+		["Wednesday", Number.parseFloat(avgTips.Wednesday.tipsPerHour.toFixed(2)), "stroke-color: #B02ADE; stroke-width: 4; fill-color: #3E2723"],
+		["Thursday", Number.parseFloat(avgTips.Thursday.tipsPerHour.toFixed(2)), "stroke-color: #47DE2A; stroke-width: 4; fill-color: #455A64"],
+		["Friday", Number.parseFloat(avgTips.Friday.tipsPerHour.toFixed(2)), "stroke-color: #E4E2A2; stroke-width: 4; fill-color: #4DD0E1"],
+		["Saturday", Number.parseFloat(avgTips.Saturday.tipsPerHour.toFixed(2)), "stroke-color: #FFA56D; stroke-width: 4; fill-color: #388E3C"]
+	]
+}
+&nbsp;
+const avgByPosition = (avgTips) =&gt; {
+	return [
+		["Position", "Average Tips", {role: "style"}],
+		["Bartender", Number.parseFloat(avgTips.Bartender.tipsPerHour.toFixed(2)), "stroke-color: #25754D; stroke-width: 4; fill-color: #311B92"],
+		["Server", Number.parseFloat(avgTips.Server.tipsPerHour.toFixed(2)), "stroke-color: #00ABDA; stroke-width: 4; fill-color: #2196F3"],
+		["Barback", Number.parseFloat(avgTips.Barback.tipsPerHour.toFixed(2)), "stroke-color: #47DE2A; stroke-width: 4; fill-color: #455A64"],
+		["Busser", Number.parseFloat(avgTips.Busser.tipsPerHour.toFixed(2)), "stroke-color: #E4E2A2; stroke-width: 4; fill-color: #4DD0E1"],
+		["Other", Number.parseFloat(avgTips.Other.tipsPerHour.toFixed(2)), "stroke-color: #B02ADE; stroke-width: 4; fill-color: #3E2723"],
+	]
+}
+/**
+ * TODO: optional. will do it time allows
+ * @param {*} avgTips 
+ */
+// const avgByZipCode = (avgTips) =&gt; {
+// 	return [
+// 		["Zip Code", "Average Tips", {role: "style"}],
+// 	]
+// }
+&nbsp;
+/**
+ * this is optional: TODO if time allows
+ * @param {*} avgTips 
+ */
+&nbsp;
+// const avgByNeighborhood = (avgTips) =&gt; {
+// 	return [
+// 		["Neighborhood", "Average Tips", {role: "style"}],
+// 	]
+// }
+&nbsp;
+const avgByShift = <span class="fstat-no" title="function not covered" >(a</span>vgTips) =&gt; {
+<span class="cstat-no" title="statement not covered" >	return [</span>
+		["Shift Position", "Average Tips", {role: "style"}],
+		["AM Bartender", Number.parseFloat(avgTips.AM.Bartender.tipsPerHour.toFixed(2)), "stroke-color: #25754D; stroke-width: 4; fill-color: #311B92"],
+		["PM Bartender", Number.parseFloat(avgTips.PM.Bartender.tipsPerHour.toFixed(2)), "stroke-color: #25754D; stroke-width: 4; fill-color: #311B92"],
+		["AM Server", Number.parseFloat(avgTips.AM.Server.tipsPerHour.toFixed(2)), "stroke-color: #00ABDA; stroke-width: 4; fill-color: #2196F3"],
+		["PM Server", Number.parseFloat(avgTips.PM.Server.tipsPerHour.toFixed(2)), "stroke-color: #00ABDA; stroke-width: 4; fill-color: #2196F3"],
+		["AM Barback", Number.parseFloat(avgTips.AM.Barback.tipsPerHour.toFixed(2)), "stroke-color: #47DE2A; stroke-width: 4; fill-color: #455A64"],
+		["PM Barback", Number.parseFloat(avgTips.PM.Barback.tipsPerHour.toFixed(2)), "stroke-color: #47DE2A; stroke-width: 4; fill-color: #455A64"],
+		["AM Busser", Number.parseFloat(avgTips.AM.Busser.tipsPerHour.toFixed(2)), "stroke-color: #E4E2A2; stroke-width: 4; fill-color: #4DD0E1"],
+		["PM Busser", Number.parseFloat(avgTips.PM.Busser.tipsPerHour.toFixed(2)), "stroke-color: #E4E2A2; stroke-width: 4; fill-color: #4DD0E1"],
+		["AM Other", Number.parseFloat(avgTips.AM.Other.tipsPerHour.toFixed(2)), "stroke-color: #B02ADE; stroke-width: 4; fill-color: #3E2723"],
+		["AM Other", Number.parseFloat(avgTips.PM.Other.tipsPerHour.toFixed(2)), "stroke-color: #B02ADE; stroke-width: 4; fill-color: #3E2723"],
+	]
+}
+&nbsp;
+const ViewBarChart =(props) =&gt; {
+	let data = [];
+	let title = "";
+	<span class="missing-if-branch" title="else path not taken" >E</span>if(props.chartOption === "position") {
+		data = avgByPosition(props.avgByPosition);
+		title = "Average Tips By Position";
+	}
+	else <span class="cstat-no" title="statement not covered" >if (props.chartOption === "day") {</span>
+<span class="cstat-no" title="statement not covered" >		data = avgByDay(props.avgByDay);</span>
+<span class="cstat-no" title="statement not covered" >		title = "Average Daily Tips";</span>
+	}
+	else <span class="cstat-no" title="statement not covered" >if (props.chartOption === "shift") {</span>
+<span class="cstat-no" title="statement not covered" >		data = avgByShift(props.avgByPosShift);</span>
+<span class="cstat-no" title="statement not covered" >		title = "Average Tips By Shift";</span>
+	}
+	// else if (props.chartOption === "zip") {
+	// 	data = avgByZipCode(props.dailyTipsAvg);
+	// 	title = "Average Tips By Zip";
+	// }
+	// else if (props.chartOption === "neighborhood") {
+	// 	data = avgByNeighborhood(props.avgByNeighborhood);
+	// 	title = "Average Tips Neighborhood";
+	// }
+    return (
+      &lt;div className="card"&gt;
+				&lt;h3 className="card-title bg-secondary"&gt;{title}&lt;/h3&gt;
+        &lt;Chart chartType="BarChart" width="100%" height="300px" data={data} /&gt;
+      &lt;/div&gt;
+    );
+};
+&nbsp;
+export default ViewBarChart;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue May 14 2019 13:05:39 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
