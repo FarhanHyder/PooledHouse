@@ -20,22 +20,23 @@ beforeAll(async () => {
 });
 
 
+// Helper function for clickByText()
 const escapeXpathString = str => {
   const splitedQuotes = str.replace(/'/g, `', "'", '`);
   return `concat('${splitedQuotes}', '')`;
 };
 
+// Helper function for clicking on page selected by inner HTML text
 const clickByText = async (page, text) => {
   const escapedText = escapeXpathString(text);
   const linkHandlers = await page.$x(`//a[contains(text(), ${escapedText})]`);
-  
+
   if (linkHandlers.length > 0) {
     await linkHandlers[0].click();
   } else {
     throw new Error(`Link not found: ${text}`);
   }
 };
-
 
 
 // Test User Log-in
@@ -109,6 +110,17 @@ test("Should test tip submit with valid tip inputs", async () => {
   expect(submitConfirmation).toBe('success');
   // jest.setTimeout is 10000 since form submition takes longer
 }, 20000);
+
+
+// Test loading tips onCLick 'User's Tip'
+test("Should test user profile loading onCLick 'My Tips'", async () => {
+  await page.click('#dropdown-button-drop-left');
+  await clickByText(page, `My Tips`);
+  await page.waitFor(500);
+
+  const businessName = await page.$eval('#userTips-tab-accountSummary', el => el.textContent);
+  expect(businessName).toBe("Your Tips Summary");
+});
 
 
 // Close Chromium browser after all the E2E tests have finished running
