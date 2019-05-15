@@ -12,3 +12,5 @@ Since all tests are run against the deployed version on AWS cloud [from here](ht
 
 ## Developer Documentation  
 The developer documentation can be found in the front-end/out folder. This documentation has been created using jsdoc.  
+
+The developer documentation can be found in the  [PooledHouse/front-end/docs/](https://github.com/FarhanHyder/PooledHouse/tree/master/front-end/docs) folder. This documentation has been created using jsdoc.  
