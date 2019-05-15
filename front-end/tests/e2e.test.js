@@ -118,8 +118,19 @@ test("Should test user profile loading onCLick 'My Tips'", async () => {
   await clickByText(page, `My Tips`);
   await page.waitFor(500);
 
-  const businessName = await page.$eval('#userTips-tab-accountSummary', el => el.textContent);
-  expect(businessName).toBe("Your Tips Summary");
+  const profileHeading = await page.$eval('#userTips-tab-accountSummary', el => el.textContent);
+  expect(profileHeading).toBe("Your Tips Summary");
+});
+
+
+// Test loading tips onCLick 'User's Tip'
+test("Should test user 'Sign out'", async () => {
+  await page.click('#dropdown-button-drop-left');
+  await clickByText(page, `Sign out`);
+  await page.waitFor(500);
+
+  const signInPage = await page.$eval('.Section__sectionHeader___13iO4', el => el.textContent);
+  expect(signInPage).toBe("Sign in to your account");
 });
 
 
