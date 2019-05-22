@@ -92,6 +92,28 @@ test("Should return logged-in user's username", async () => {
 
 
 
+// Test Company Search
+test("Should return searched company info", async () => {
+  await clickByText(page, 'Companies');
+
+  await page.waitFor(1000);
+
+  await page.click('input[type="search"]');
+  await page.type('input[type="search"]', 'P');
+
+  await page.waitFor(1000);
+  await page.click('button.btn-outline-info');
+
+  await page.waitFor(1000);
+  await page.click('button.btn-dark');
+
+  await page.waitFor(1000);
+  const tipInfo = await page.$eval('h3.card-title', el => el.textContent);
+  expect(tipInfo).toBe('Average Tips By Position');
+});
+
+
+
 // Test loading page onCLick 'User's Tip'
 test("Should test 'page loading' onCLick 'Add Tips'", async () => {
   await page.click('#dropdown-button-drop-left');
