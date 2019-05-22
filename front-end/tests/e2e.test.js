@@ -12,7 +12,7 @@ beforeAll(async () => {
   // Wait until a browser window opens up
   browser = await puppeteer.launch({
     headless: false,
-    slowMo: 80,
+    slowMo: 10,
     args: ['--window-size=800,650']
   });
 
@@ -26,7 +26,7 @@ const escapeXpathString = str => {
   return `concat('${splitedQuotes}', '')`;
 };
 
-// Helper function for clicking on page selected by inner HTML text
+// Function for clicking on page elements selected by inner HTML text
 const clickByText = async (page, text) => {
   const escapedText = escapeXpathString(text);
   const linkHandlers = await page.$x(`//a[contains(text(), ${escapedText})]`);
@@ -39,12 +39,44 @@ const clickByText = async (page, text) => {
 };
 
 
+
+// Test Sign-up process
+test("Should successfully Sign-up new user", async () => {
+  await page.goto('http://front-end-20190514132134-hostingbucket-phdev.s3-website-us-east-1.amazonaws.com/');
+
+  await clickByText(page, `Create account`);
+
+  await page.click('input[name=username]');
+  await page.type('input[name=username]', 'shofi');
+
+  await page.click('input[name=password]');
+  await page.type('input[name=password]', '9293767625');
+
+  await page.click('input[name=email]');
+  await page.type('input[name=email]', 'shofi384@gmail.com');
+
+  await page.click('input[name=phone_line_number]');
+  await page.type('input[name=phone_line_number]', '9293767625');
+
+  await page.click('button.Button__button___1FrBC');
+
+  await page.waitFor(1000);
+
+  const userCreation = await page.$eval('div.Toast__toast___2YWKB', el => el.textContent);
+  expect(userCreation).toBe('User already exists');
+
+}, 20000);
+
+
+
 // Test User Log-in
 test("Should return logged-in user's username", async () => {
 
   // await page.goto('http://localhost:3000/');
   // Hosted on AWS S3
-  await page.goto('http://front-end-20190514132134-hostingbucket-phdev.s3-website-us-east-1.amazonaws.com/');
+  // await page.goto('http://front-end-20190514132134-hostingbucket-phdev.s3-website-us-east-1.amazonaws.com/');
+
+  await page.click('a.Anchor__a___3JUCG');
 
   await page.click('input[name=username]');
   await page.type('input[name=username]', 'shofi');
@@ -59,15 +91,17 @@ test("Should return logged-in user's username", async () => {
 }, 10000);
 
 
+
 // Test loading page onCLick 'User's Tip'
 test("Should test 'page loading' onCLick 'Add Tips'", async () => {
   await page.click('#dropdown-button-drop-left');
   await clickByText(page, `Add Tips`);
-  await page.waitFor(500);
+  await page.waitFor(1000);
 
   const formExist = await page.$eval('[type="submit"]', el => el.textContent);
   expect(formExist).toBe('Add Tips');
 }, 5000);
+
 
 
 // Test tip submit with no tip input'
@@ -81,6 +115,7 @@ test("Should test tip submit with no tip inputs", async () => {
   await page.waitFor(500);
   expect(submitConfirmation).toBe('tipentry failed');
 });
+
 
 
 // Test tip submit with valid tip input'
@@ -112,6 +147,7 @@ test("Should test tip submit with valid tip inputs", async () => {
 }, 20000);
 
 
+
 // Test loading tips onCLick 'User's Tip'
 test("Should test user profile loading onCLick 'My Tips'", async () => {
   await page.click('#dropdown-button-drop-left');
@@ -123,6 +159,7 @@ test("Should test user profile loading onCLick 'My Tips'", async () => {
 });
 
 
+
 // Test loading tips onCLick 'User's Tip'
 test("Should test user 'Sign out'", async () => {
   await page.click('#dropdown-button-drop-left');
@@ -132,6 +169,7 @@ test("Should test user 'Sign out'", async () => {
   const signInPage = await page.$eval('.Section__sectionHeader___13iO4', el => el.textContent);
   expect(signInPage).toBe("Sign in to your account");
 });
+
 
 
 // Close Chromium browser after all the E2E tests have finished running
